@@ -1,0 +1,11 @@
+{
+  "name": "eth",
+  "owner": { "name": "Mehedi Hasan" },
+  "plugins": [
+    {
+      "name": "presentation-builder",
+      "source": "./plugins/presentation-builder",
+      "description": "Interview-driven builder for single-file HTML slide decks, with specialist agents."
+    }
+  ]
+}

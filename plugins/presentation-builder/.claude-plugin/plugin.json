@@ -1,0 +1,6 @@
+{
+  "name": "presentation-builder",
+  "version": "0.1.0",
+  "description": "Interview-driven builder for single-file HTML slide decks, with specialist agents for research, writing, building and review.",
+  "author": { "name": "Mehedi Hasan" }
+}
