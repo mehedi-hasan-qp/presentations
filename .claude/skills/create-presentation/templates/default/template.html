@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{TITLE}}</title>
+  <style>
+  @import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&display=swap');
+
+  :root {
+    --bg:      #ffffff;
+    --fg:      #0f0f0f;
+    --fg-sub:  #2e2e2e;
+    --fg-muted:#666666;
+    --border:  #e0e0e0;
+    --surface: #f4f4f6;
+    --accent:  oklch(61.6% 0.1696 251.2);
+    --accent-soft: oklch(61.6% 0.1696 251.2 / 8%);
+    --accent-mid:  oklch(61.6% 0.1696 251.2 / 18%);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    height: 100%;
+    font-family: 'Fira Sans', system-ui, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--fg);
+    background: var(--bg);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .slides { width: 100vw; height: 100vh; overflow: hidden; position: relative; }
+
+  .slide {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: clamp(1.5rem, 5vw, 4.5rem) clamp(1.25rem, 7vw, 7rem);
+    padding-bottom: clamp(4rem, 8vw, 5.5rem);
+    overflow-y: auto;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.35s ease;
+    background: var(--bg);
+  }
+  /* auto-margin spacers center content vertically but let it scroll when taller than the screen */
+  .slide::before, .slide::after { content: ""; margin: auto; }
+  .slide.active { opacity: 1; pointer-events: auto; }
+  .slide.center { align-items: center; text-align: center; }
+
+  h1 { font-size: clamp(2.25rem, 6vw, 5.25rem); font-weight: 700; color: var(--fg); line-height: 1.06; letter-spacing: -0.025em; }
+  h2 { font-size: clamp(1.9rem, 4.5vw, 3.75rem); font-weight: 600; color: var(--fg); line-height: 1.1;  letter-spacing: -0.015em; }
+  h3 { font-size: clamp(1.4rem, 2.5vw, 2rem); font-weight: 600; color: var(--fg); line-height: 1.2; }
+  p  { font-size: clamp(1.05rem, 1.8vw, 1.45rem); color: var(--fg-sub); line-height: 1.65; }
+  code { font-family: monospace; font-size: 0.88em; background: var(--surface); border: 1px solid var(--border); border-radius: 5px; padding: 0.1em 0.4em; color: var(--fg); }
+
+  .kicker {
+    font-size: 0.85rem; font-weight: 700; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--accent); margin-bottom: 1.5rem;
+  }
+  .accent { color: var(--accent); }
+
+  /* Title slide */
+  .slide.title-slide { border-left: 6px solid var(--accent); }
+
+  /* Divider slides */
+  .slide.divider { background: var(--accent); }
+  .slide.divider h2 { color: #fff; }
+  .slide.divider .sub { font-size: clamp(1.05rem, 1.8vw, 1.35rem); color: oklch(100% 0 0 / 65%); margin-top: 0.75rem; }
+
+  /* Progress bar */
+  .progress-bar { position: fixed; top: 0; left: 0; height: 4px; background: var(--accent); width: 0; z-index: 100; transition: width 0.35s cubic-bezier(.2,.8,.2,1); }
+
+  /* Nav */
+  .slide-nav {
+    position: fixed; bottom: 1.5rem; right: 1.5rem;
+    display: flex; gap: 0.5rem; z-index: 100;
+  }
+  .slide-nav button {
+    font-family: inherit; font-size: 1.1rem; padding: 0.4rem 0.9rem;
+    border: 1px solid var(--border); border-radius: 6px;
+    background: var(--surface); color: var(--fg-muted); cursor: pointer;
+    transition: background 0.15s ease, transform 0.15s ease;
+  }
+  .slide-nav button:hover { color: var(--fg); background: #ebebeb; }
+  .slide-nav button:active { transform: scale(0.92); }
+
+  .slide-counter {
+    position: fixed; bottom: 1.75rem; left: 50%; transform: translateX(-50%);
+    font-size: 0.8rem; color: var(--fg-muted); z-index: 100;
+  }
+
+  /* Keyboard hint */
+  .kbd-hint {
+    position: fixed; bottom: 1.75rem; left: 1.5rem;
+    font-size: 0.72rem; color: var(--fg-muted); letter-spacing: 0.04em; z-index: 100;
+  }
+
+  /* Speaker notes */
+  aside.notes { display: none; }
+  .notes-panel {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 200;
+    max-height: 40vh; overflow-y: auto;
+    padding: 1rem clamp(1.25rem, 7vw, 7rem) 1.25rem;
+    background: var(--fg); color: #eee; font-size: 1rem; line-height: 1.55;
+    white-space: pre-line;
+    border-top: 3px solid var(--accent);
+    display: none;
+  }
+  .notes-panel.open { display: block; }
+  .notes-panel .notes-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.4rem; }
+  .notes-panel .none { color: #999; font-style: italic; }
+
+  /* ── Component styles ── */
+
+  /* Two-column comparison */
+  .vs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; width: 100%; margin-top: 2rem; }
+  .vs-card { border: 1.5px solid var(--border); border-radius: 14px; padding: 1.5rem 1.75rem; background: var(--surface); }
+  .vs-card.hi { border-color: var(--accent); background: var(--accent-soft); }
+  .vs-card-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--fg-muted); margin-bottom: 0.5rem; }
+  .vs-card.hi .vs-card-label { color: var(--accent); }
+  .vs-card-title { font-size: 1.6rem; font-weight: 700; color: var(--fg); margin-bottom: 0.75rem; }
+  .vs-card.hi .vs-card-title { color: var(--accent); }
+  .vs-attr { font-size: 1rem; color: var(--fg-muted); margin-bottom: 0.35rem; line-height: 1.5; }
+  .vs-attr strong { color: var(--fg-sub); font-weight: 600; }
+
+  /* Steps list */
+  .steps-list { display: flex; flex-direction: column; margin-top: 2rem; width: 100%; max-width: 680px; }
+  .step-row { display: flex; align-items: flex-start; gap: 1.5rem; padding: 1rem 1.25rem; border-bottom: 1px solid var(--border); background: var(--surface); }
+  .step-row:first-child { border-radius: 14px 14px 0 0; }
+  .step-row:last-child  { border-bottom: none; border-radius: 0 0 14px 14px; }
+  .step-row.hi { background: var(--accent-soft); }
+  .step-num   { font-size: 0.72rem; font-weight: 700; color: var(--accent); width: 22px; flex-shrink: 0; padding-top: 0.2rem; font-family: monospace; }
+  .step-title { font-size: 1rem;    font-weight: 700; color: var(--fg); }
+  .step-desc  { font-size: 0.92rem; color: var(--fg-muted); margin-top: 0.2rem; line-height: 1.45; }
+
+  /* Data table */
+  .dtable { width: 100%; border-collapse: collapse; margin-top: 2rem; }
+  .dtable th { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.5rem 1rem; border-bottom: 2px solid var(--border); color: var(--fg-muted); text-align: left; }
+  .dtable th.acc { color: var(--accent); }
+  .dtable td { padding: 0.75rem 1rem; border-bottom: 1px solid var(--border); font-size: 1rem; color: var(--fg-sub); vertical-align: middle; }
+  .dtable tr:last-child td { border-bottom: none; }
+  .dtable tr:hover td { background: var(--surface); }
+  .badge { display: inline-block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; padding: 0.18rem 0.55rem; border-radius: 5px; }
+  .badge-same { background: oklch(93.4% 0.0698 124.3); color: oklch(31% 0.12 140); border: 1px solid oklch(49.9% 0.1603 139.9 / 40%); }
+  .badge-diff { background: oklch(95% 0.0781 95.7); color: oklch(38% 0.1 80); border: 1px solid oklch(65% 0.12 80 / 35%); }
+
+  /* Dark mono code block */
+  .code-block { border: 1px solid var(--border); border-radius: 14px; overflow: hidden; width: 100%; margin-top: 1.75rem; }
+  .code-head { padding: 0.6rem 1.25rem; background: var(--surface); border-bottom: 1px solid var(--border); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); display: flex; gap: 1.25rem; }
+  .code-lang { color: oklch(72.3% 0.1755 56.7); }
+  .code-body { background: #0e0e0e; padding: 1.1rem 1.5rem; font-family: monospace; font-size: 0.95rem; line-height: 1.75; color: #ccc; overflow-x: auto; white-space: pre; }
+  .tok-warn { color: #e5c07b; }
+  .tok-ok   { color: #98c379; }
+  .tok-dim  { color: #666; }
+
+  /* Flow diagram */
+  .flow { display: flex; align-items: stretch; width: 100%; margin-top: 2rem; gap: 0; }
+  .flow-step { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.2rem; padding: 0.65rem 0.5rem; border: 1.5px solid var(--border); border-radius: 8px; background: var(--surface); }
+  .flow-step.on { border-color: var(--accent); background: var(--accent-soft); }
+  .flow-step-name { font-size: 0.82rem; font-weight: 700; color: var(--fg-muted); white-space: nowrap; }
+  .flow-step.on .flow-step-name { color: var(--accent); }
+  .flow-badge { font-size: 0.58rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); background: var(--accent-mid); padding: 0.1rem 0.35rem; border-radius: 4px; }
+  .flow-arr { font-size: 1rem; color: var(--border); padding: 0 0.3rem; align-self: center; flex-shrink: 0; }
+  .flow-arr.on { color: var(--accent); opacity: 0.5; }
+
+  /* Card grid */
+  .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 0.85rem; width: 100%; margin-top: 2rem; }
+  .card { border: 1.5px solid var(--border); border-radius: 12px; padding: 1.1rem 1rem; background: var(--surface); display: flex; flex-direction: column; gap: 0.35rem; }
+  .card.hi { border-color: var(--accent); background: var(--accent-soft); }
+  .card-slash { font-size: 1rem; font-weight: 700; color: var(--accent); font-family: monospace; }
+  .card-name  { font-size: 0.85rem; font-weight: 600; color: var(--fg-sub); line-height: 1.3; }
+  .card.hi .card-name { color: var(--fg); }
+  .card-sub   { font-size: 0.68rem; color: oklch(72.3% 0.1755 56.7); margin-top: 0.2rem; }
+
+  /* Live demo styling */
+  .kicker.demo { color: oklch(72.3% 0.1755 56.7); }
+  .demo-badge {
+    display: inline-block; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; padding: 0.3rem 0.8rem; border-radius: 6px; margin-bottom: 1.25rem;
+    background: oklch(72.3% 0.1755 56.7 / 8%); border: 1px solid oklch(72.3% 0.1755 56.7 / 30%);
+    color: oklch(38% 0.15 50);
+  }
+  .step-num.demo { color: oklch(72.3% 0.1755 56.7); }
+
+  /* ── Responsive ── */
+  @media (max-width: 900px) {
+    .vs-grid { grid-template-columns: 1fr; }
+    .flow { flex-wrap: wrap; gap: 0.5rem; }
+    .flow-step { flex: 1 1 40%; }
+    .flow-arr { display: none; }
+    .dtable { display: block; overflow-x: auto; }
+    .kbd-hint { display: none; }
+  }
+
+  /* ── Animations ── */
+  @media (prefers-reduced-motion: no-preference) {
+    @keyframes riseIn   { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: none; } }
+    @keyframes popIn    { from { opacity: 0; transform: scale(0.86); }      to { opacity: 1; transform: none; } }
+    @keyframes slideInL { from { opacity: 0; transform: translateX(-24px); } to { opacity: 1; transform: none; } }
+
+    .slide.active .kicker { animation: riseIn 0.5s ease both; }
+    .slide.active h1       { animation: riseIn 0.6s cubic-bezier(.2,.7,.2,1) 0.05s both; }
+    .slide.active h2       { animation: riseIn 0.6s cubic-bezier(.2,.7,.2,1) 0.05s both; }
+    .slide.active > p,
+    .slide.active .dtable  { animation: riseIn 0.6s ease 0.15s both; }
+    .slide.active > p ~ p  { animation-delay: 0.28s; }
+
+    .slide.divider.active h2   { animation: popIn 0.55s cubic-bezier(.2,.8,.2,1) both; }
+    .slide.divider.active .sub { animation: riseIn 0.5s ease 0.2s both; }
+
+    .slide.active .step-row { animation: slideInL 0.5s ease both; }
+    .slide.active .step-row:nth-child(1){animation-delay:.15s}
+    .slide.active .step-row:nth-child(2){animation-delay:.27s}
+    .slide.active .step-row:nth-child(3){animation-delay:.39s}
+    .slide.active .step-row:nth-child(4){animation-delay:.51s}
+    .slide.active .step-row:nth-child(5){animation-delay:.63s}
+    .slide.active .step-row:nth-child(6){animation-delay:.75s}
+
+    .slide.active .vs-card { animation: popIn 0.5s ease both; }
+    .slide.active .vs-card:nth-child(1){animation-delay:.10s}
+    .slide.active .vs-card:nth-child(2){animation-delay:.22s}
+
+    .slide.active .card { animation: popIn 0.45s ease both; }
+    .slide.active .card:nth-child(1){animation-delay:.08s}
+    .slide.active .card:nth-child(2){animation-delay:.16s}
+    .slide.active .card:nth-child(3){animation-delay:.24s}
+    .slide.active .card:nth-child(4){animation-delay:.32s}
+    .slide.active .card:nth-child(5){animation-delay:.40s}
+    .slide.active .card:nth-child(6){animation-delay:.48s}
+
+    .slide.active .flow-step { animation: popIn 0.4s ease both; }
+    .slide.active .flow-step:nth-child(1){animation-delay:.08s}
+    .slide.active .flow-step:nth-child(3){animation-delay:.18s}
+    .slide.active .flow-step:nth-child(5){animation-delay:.28s}
+    .slide.active .flow-step:nth-child(7){animation-delay:.38s}
+    .slide.active .flow-step:nth-child(9){animation-delay:.48s}
+
+    .slide.active .code-block { animation: riseIn 0.55s ease 0.2s both; }
+    .slide.active .vs-grid { animation: riseIn 0.55s ease 0.15s both; }
+    .slide.active .demo-badge { animation: popIn 0.45s ease both; }
+  }
+
+  /* ── Print / PDF: one slide per landscape page ── */
+  @page { size: landscape; margin: 0; }
+  @media print {
+    html, body { height: auto; }
+    .slides { width: auto; height: auto; overflow: visible; }
+    .slide {
+      position: relative; inset: auto; opacity: 1; pointer-events: auto;
+      min-height: 100vh; height: 100vh; overflow: hidden;
+      break-after: page; page-break-after: always;
+      -webkit-print-color-adjust: exact; print-color-adjust: exact;
+    }
+    .progress-bar, .slide-nav, .slide-counter, .kbd-hint, .notes-panel, aside.notes { display: none !important; }
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+  }
+  </style>
+</head>
+<body>
+
+<div class="slides">
+<!-- SLIDES:START -->
+
+  <!-- SAMPLE: title -->
+  <div class="slide title-slide active">
+    <div class="kicker">Event or context · Date</div>
+    <h1>Main title.<br><span class="accent">Subtitle hook.</span></h1>
+    <p style="margin-top: 2rem; max-width: 640px;">One sentence describing what this presentation covers.</p>
+    <aside class="notes">Welcome the audience and state the goal of the talk.</aside>
+  </div>
+
+  <!-- SAMPLE: center -->
+  <div class="slide center">
+    <div class="kicker">The problem</div>
+    <h1>Key point.<br><span class="accent">Bold claim.</span></h1>
+    <p style="margin-top: 2rem; max-width: 680px;">Supporting sentence that explains the key point in plain words.</p>
+    <p style="margin-top: 1.1rem; max-width: 620px; color: var(--fg-muted);">A quieter follow-up line.</p>
+    <aside class="notes">Pause here and let the statement land.</aside>
+  </div>
+
+  <!-- SAMPLE: divider -->
+  <div class="slide divider center">
+    <h2>01 · Section title</h2>
+    <div class="sub">One-line section description</div>
+    <aside class="notes">Introduce the next section.</aside>
+  </div>
+
+  <!-- SAMPLE: steps-list -->
+  <div class="slide">
+    <div class="kicker">Agenda</div>
+    <h2>Short heading.<br><span class="accent">Accent phrase.</span></h2>
+    <div class="steps-list" style="max-width: 100%;">
+      <div class="step-row">
+        <div class="step-num">01</div>
+        <div><div class="step-title">First step</div><div class="step-desc">Short description of the first step.</div></div>
+      </div>
+      <div class="step-row">
+        <div class="step-num">02</div>
+        <div><div class="step-title">Second step</div><div class="step-desc">Short description of the second step.</div></div>
+      </div>
+      <div class="step-row">
+        <div class="step-num">03</div>
+        <div><div class="step-title">Third step</div><div class="step-desc">Short description of the third step.</div></div>
+      </div>
+    </div>
+    <aside class="notes">Walk through each step in order.</aside>
+  </div>
+
+  <!-- SAMPLE: vs-grid -->
+  <div class="slide">
+    <div class="kicker">Comparison</div>
+    <h2>Option A vs.<br><span class="accent">option B.</span></h2>
+    <div class="vs-grid">
+      <div class="vs-card">
+        <div class="vs-card-label">Before</div>
+        <div class="vs-card-title">Card title</div>
+        <div class="vs-attr"><strong>Attribute:</strong> short value</div>
+        <div class="vs-attr"><strong>Attribute:</strong> short value</div>
+        <div class="vs-attr"><strong>Attribute:</strong> short value</div>
+      </div>
+      <div class="vs-card hi">
+        <div class="vs-card-label">After — recommended</div>
+        <div class="vs-card-title">Highlighted card title</div>
+        <div class="vs-attr"><strong>Attribute:</strong> short value</div>
+        <div class="vs-attr"><strong>Attribute:</strong> short value</div>
+        <div class="vs-attr"><strong>Attribute:</strong> short value</div>
+      </div>
+    </div>
+    <aside class="notes">Contrast the two columns and stress the highlighted one.</aside>
+  </div>
+
+  <!-- SAMPLE: dtable -->
+  <div class="slide">
+    <div class="kicker">Reference</div>
+    <h2>Table heading.<br><span class="accent">Accent phrase.</span></h2>
+    <table class="dtable">
+      <tr>
+        <th>Column one</th><th class="acc">Column two</th><th>Column three</th>
+      </tr>
+      <tr>
+        <td><strong>Row A</strong></td>
+        <td>Description with <code>inline code</code></td>
+        <td><span class="badge badge-same">Same</span></td>
+      </tr>
+      <tr>
+        <td><strong>Row B</strong></td>
+        <td>Another short description</td>
+        <td><span class="badge badge-diff">Different</span></td>
+      </tr>
+    </table>
+    <aside class="notes">Explain what the badges mean.</aside>
+  </div>
+
+  <!-- SAMPLE: code-block -->
+  <div class="slide">
+    <div class="kicker">Under the hood</div>
+    <h2>Code heading.<br><span class="accent">Accent phrase.</span></h2>
+    <div class="code-block">
+      <div class="code-head"><span>filename.ext</span><span class="code-lang">language</span></div>
+      <div class="code-body"><span class="tok-dim"># comment</span>
+key: value
+<span class="tok-ok">ok_line: passed</span>
+<span class="tok-warn">warn_line: check this</span></div>
+    </div>
+    <aside class="notes">Point out the highlighted lines.</aside>
+  </div>
+
+  <!-- SAMPLE: flow -->
+  <div class="slide">
+    <div class="kicker">Process</div>
+    <h2>Flow heading.<br><span class="accent">Accent phrase.</span></h2>
+    <div class="flow">
+      <div class="flow-step"><span class="flow-step-name">Step one</span></div>
+      <div class="flow-arr">→</div>
+      <div class="flow-step on"><span class="flow-step-name">Step two</span><span class="flow-badge">Focus</span></div>
+      <div class="flow-arr on">→</div>
+      <div class="flow-step"><span class="flow-step-name">Step three</span></div>
+      <div class="flow-arr">→</div>
+      <div class="flow-step"><span class="flow-step-name">Step four</span></div>
+    </div>
+    <aside class="notes">Trace the flow left to right.</aside>
+  </div>
+
+  <!-- SAMPLE: card-grid -->
+  <div class="slide">
+    <div class="kicker">Summary</div>
+    <h2>Recap heading.<br><span class="accent">Accent phrase.</span></h2>
+    <div class="card-grid">
+      <div class="card"><div class="card-slash">/one</div><div class="card-name">Card name</div><div class="card-sub">small note</div></div>
+      <div class="card"><div class="card-slash">/two</div><div class="card-name">Card name</div><div class="card-sub">small note</div></div>
+      <div class="card hi"><div class="card-slash">/three</div><div class="card-name">Highlighted card</div><div class="card-sub">small note</div></div>
+      <div class="card"><div class="card-slash">/four</div><div class="card-name">Card name</div><div class="card-sub">small note</div></div>
+    </div>
+    <aside class="notes">Recap each card in a sentence.</aside>
+  </div>
+
+  <!-- SAMPLE: demo -->
+  <div class="slide">
+    <div class="demo-badge">Live demo</div>
+    <div class="kicker demo">Demo title</div>
+    <h2>What we will show.<br><span class="accent">Accent phrase.</span></h2>
+    <div class="steps-list">
+      <div class="step-row hi">
+        <div class="step-num demo">01</div>
+        <div><div class="step-title">Demo step</div><div class="step-desc">What to do on screen.</div></div>
+      </div>
+      <div class="step-row">
+        <div class="step-num demo">02</div>
+        <div><div class="step-title">Demo step</div><div class="step-desc">What to do on screen.</div></div>
+      </div>
+    </div>
+    <aside class="notes">Switch to the live environment now.</aside>
+  </div>
+
+  <!-- SAMPLE: closing -->
+  <div class="slide center">
+    <div class="kicker">Thank you · Questions?</div>
+    <h1>Call to action.<br><span class="accent">Next step.</span></h1>
+    <p style="margin-top: 2rem; max-width: 660px;">One sentence telling the audience what to do next.</p>
+    <p style="margin-top: 1.1rem; max-width: 620px; color: var(--fg-muted);">link-or-contact · resource</p>
+    <aside class="notes">Invite questions and share the resources.</aside>
+  </div>
+
+<!-- SLIDES:END -->
+</div>
+
+<div class="progress-bar" id="progress"></div>
+
+<nav class="slide-nav">
+  <button id="prev" aria-label="Previous slide">←</button>
+  <button id="next" aria-label="Next slide">→</button>
+</nav>
+<div class="slide-counter" id="counter"></div>
+<div class="kbd-hint">← → Space · Home · End · N notes</div>
+<div class="notes-panel" id="notes-panel" aria-live="polite"></div>
+
+<script>
+  const slides   = document.querySelectorAll('.slides > .slide');
+  const progress = document.getElementById('progress');
+  const counter  = document.getElementById('counter');
+  const panel    = document.getElementById('notes-panel');
+  let cur = 0;
+
+  function renderNotes() {
+    const n = slides[cur].querySelector('aside.notes');
+    const text = n && n.textContent.trim();
+    panel.innerHTML = '<div class="notes-label">Speaker notes</div>';
+    const body = document.createElement('div');
+    if (text) body.textContent = text; else { body.className = 'none'; body.textContent = 'No notes'; }
+    panel.appendChild(body);
+  }
+
+  function show(n) {
+    slides[cur].classList.remove('active');
+    cur = (n + slides.length) % slides.length;
+    slides[cur].classList.add('active');
+    slides[cur].scrollTop = 0;
+    counter.textContent = `${cur + 1} / ${slides.length}`;
+    progress.style.width = `${((cur + 1) / slides.length) * 100}%`;
+    renderNotes();
+  }
+
+  document.getElementById('next').onclick = () => show(cur + 1);
+  document.getElementById('prev').onclick  = () => show(cur - 1);
+  document.addEventListener('keydown', e => {
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+    if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); show(cur + 1); }
+    if (e.key === 'ArrowLeft')  show(cur - 1);
+    if (e.key === 'Home')       show(0);
+    if (e.key === 'End')        show(slides.length - 1);
+    if (e.key === 'n' || e.key === 'N') panel.classList.toggle('open');
+  });
+
+  // Touch swipe: horizontal movement > 50px and mostly horizontal
+  let tx = 0, ty = 0;
+  document.addEventListener('touchstart', e => { tx = e.changedTouches[0].clientX; ty = e.changedTouches[0].clientY; }, { passive: true });
+  document.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - tx, dy = e.changedTouches[0].clientY - ty;
+    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) show(cur + (dx < 0 ? 1 : -1));
+  }, { passive: true });
+
+  show(0);
+</script>
+</body>
+</html>

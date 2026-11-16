@@ -1,5 +1,5 @@
 # Plan: Presentation-builder skill + repo init
-Status: Executing (wave 1)
+Status: Complete
 
 ## Goal / Done when / Non-goals
 Goal: a project-local skill that interviews the user (duration, template, topic, details, context) and emits one self-contained HTML/CSS presentation; plus CLAUDE.md for this repo and a DESIGN.md derived from the user's prior deck.
@@ -57,3 +57,18 @@ Output: `presentations/<slug>/index.html` in this repo; `./<slug>/index.html` el
 - git init; local author Mehedi Hasan; baseline porcelain: `?? docs/`
 - Wave 1 launched: 1.1 sonnet · 1.2 opus · 1.3 haiku
 - 1.3 haiku done: CLAUDE.md 50 lines
+- Baseline commit c7323a5 (user-approved)
+- 1.1 sonnet done: template.html (11 samples; notes-panel added; print clips very tall slides — accepted)
+- 1.2 opus done: SKILL.md 108, best-practices 47, review-agents 52 lines
+- 2.1 haiku + template reviewer (sonnet) launched; 2.2 opus launched
+- 1.1 review (sonnet): no blockers; minor: keydown ignores modifiers (fix after 2.2 to avoid chrome-diff noise); print clips tall slides (accepted). Render: desk ok, 11-page PDF, counter 1/11
+- 2.1 haiku done: DESIGN.md 250 lines; all classes/tokens grep-verified. Note: orange also used by .code-lang/.card-sub (inherited from source) vs 'orange only for demos' rule
+- 2.2 opus done: 8-slide deck + transcript in scratchpad/dryrun; chrome identical to template; 15 skill issues found
+- Wave 3 (fixes) launched: 3.1 sonnet (SKILL.md + references), 3.2 haiku (template.html modifier guard + notes pre-line + SAMPLE rename; DESIGN.md consistency)
+- 3.2 haiku done: modifier guard, notes pre-line, SAMPLE center; DESIGN.md consistency (node --check pass)
+- 3.1 sonnet done: 13 skill fixes applied (SKILL.md 109 lines)
+- Final verify launched: haiku verifier + sonnet skill-guide reviewer
+- Skill-guide review (sonnet): no blockers, 8 optional minors (not applied)
+- Final verifier (haiku): all pass except steps 5/6 — grep artifact (matched CSS numbers). Re-checked with id="counter" grep: template 1 / 11, dry-run 1 / 8.
+- VERIFY fix 3.1 (1 line): SKILL.md headless check now greps id="counter"
+- Actual mix: builders 1 sonnet(1.1) · 2 opus(1.2, 2.2) · 2 haiku(1.3, 2.1) · fixes 1 sonnet(3.1) · 1 haiku(3.2); support: 1 haiku scout, 1 haiku verifier, 2 sonnet reviewers. No escalations.
