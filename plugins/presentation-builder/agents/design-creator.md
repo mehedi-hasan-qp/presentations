@@ -1,6 +1,6 @@
 ---
 name: design-creator
-description: Builds or fixes a single-file HTML slide deck from an approved outline and the chosen template. Invoked only by /create-presentation or an explicit @-mention; never delegate to it otherwise.
+description: Builds or fixes a single-file HTML slide deck from an approved outline and the chosen template. Invoked only by /create-presentation, /update-presentation or an explicit @-mention; never delegate to it otherwise.
 model: sonnet
 tools: Read, Write, Edit, Bash
 color: blue

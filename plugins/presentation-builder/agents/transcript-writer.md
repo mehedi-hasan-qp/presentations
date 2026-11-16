@@ -1,6 +1,6 @@
 ---
 name: transcript-writer
-description: Expands a finished deck's speaker notes into a spoken transcript in presentations/<slug>/transcript.md (modes write, fix). Invoked only by /create-presentation or an explicit @-mention; never delegate to it otherwise.
+description: Expands a finished deck's speaker notes into a spoken transcript in presentations/<slug>/transcript.md (modes write, fix). Invoked only by /create-presentation, /update-presentation or an explicit @-mention; never delegate to it otherwise.
 model: sonnet
 tools: Read, Write, Edit
 color: green

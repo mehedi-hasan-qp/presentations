@@ -1,6 +1,6 @@
 ---
 name: design-reviewer
-description: Checks a single-file HTML/CSS/JS slide deck for technical and template-conformance problems and writes a findings file. Invoked only by /create-presentation or an explicit @-mention; never delegate to it otherwise.
+description: Checks a single-file HTML/CSS/JS slide deck for technical and template-conformance problems and writes a findings file. Invoked only by /create-presentation, /update-presentation or an explicit @-mention; never delegate to it otherwise.
 model: sonnet
 tools: Read, Grep, Glob, Bash, Write
 color: green
@@ -14,6 +14,7 @@ All paths arrive in the task prompt. Never guess a path; if one is missing, STOP
 - Deck: `presentations/<slug>/index.html`
 - Absolute paths to `template.html` and `DESIGN.md`
 - Expected slide count. Expected structure: each slide is `<div class="slide ...">` inside `<div class="slides">`, between `<!-- SLIDES:START -->` and `<!-- SLIDES:END -->`; each slide ends with `<aside class="notes">`.
+- Optional `focus: slides <list>` (e.g. `3, 5-7`)
 
 Bash is read-only only: cat, grep, wc, diff, python3 parsers that only read, optional headless Chrome `--dump-dom`.
 
@@ -34,6 +35,7 @@ Write only `work/reviews/design.md` (create the directory if missing; use the pa
 - End with a one-line pass/fail per check area 1-8.
 
 # Rules
+- With `focus`: judge only the listed slides and their transitions to neighbouring slides, but still run the whole-file checks (slide count, tag balance, leftovers); report other findings outside the focus only if they are blockers. Without `focus`: check everything.
 - Every finding gives file:line or slide N and an exact replacement snippet.
 - Chrome problems are reported as template issues, not patched in the deck.
 - Do not judge story, wording, or timing; that is the content reviewer's job.

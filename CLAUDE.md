@@ -17,6 +17,8 @@ ETH/
 │   │       └── default/
 │   │           ├── template.html
 │   │           └── DESIGN.md
+│   ├── skills/update-presentation/
+│   │   └── SKILL.md
 │   └── agents/                            (six specialist agents)
 ├── presentations/<slug>/
 │   ├── index.html
@@ -47,16 +49,26 @@ Run `/create-presentation` or ask for a presentation. The skill:
 3. Builds the deck.
 4. Runs the content-reviewer and design-reviewer agents and applies fixes only after you confirm.
 
+## Updating a deck
+
+Run `/update-presentation <slug>` and say what to change.
+
+1. Classifies the change as small (wording, typos, styling; no slides added, removed or reordered) or structural.
+2. Small: design-creator edits `index.html` directly.
+3. Structural: content-writer rebuilds `work/outline.md` from `index.html` if missing, revises it, and waits for approval before rebuilding slides.
+4. `transcript.md` is resynced if present, for any change to copy, notes or order.
+5. Reviewers run only for structural changes or when more than 3 slides changed; fixes apply only after you confirm.
+
 ## Agents
 
 - knowledge-explorer (haiku): reads your sources → `work/sources.md`
-- content-writer (opus): outline, narrative, timing, demo plan, slide copy + notes → `work/outline.md`
+- content-writer (opus): outline, narrative, timing, demo plan, slide copy + notes → `work/outline.md`; `backfill` rebuilds the outline from an existing deck
 - transcript-writer (sonnet): spoken transcript → `transcript.md`
 - design-creator (sonnet): builds `index.html` from the template + self-check
 - content-reviewer (opus): read-only content audit → `work/reviews/content.md`
 - design-reviewer (sonnet): read-only HTML/CSS/JS/a11y check → `work/reviews/design.md`
 
-Only `/create-presentation` or an explicit @-mention (e.g. `@agent-presentation-builder:content-writer`) invokes them.
+Only `/create-presentation`, `/update-presentation` or an explicit @-mention (e.g. `@agent-presentation-builder:content-writer`) invokes them.
 
 ## Conventions
 

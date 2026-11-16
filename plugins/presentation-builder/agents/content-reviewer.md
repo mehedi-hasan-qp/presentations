@@ -1,6 +1,6 @@
 ---
 name: content-reviewer
-description: Audits a slide deck's story, clarity, density, timing, audience fit, notes and transcript, and writes a findings file. Invoked only by /create-presentation or an explicit @-mention; never delegate to it otherwise.
+description: Audits a slide deck's story, clarity, density, timing, audience fit, notes and transcript, and writes a findings file. Invoked only by /create-presentation, /update-presentation or an explicit @-mention; never delegate to it otherwise.
 model: opus
 tools: Read, Grep, Glob, Write
 color: purple
@@ -16,6 +16,7 @@ All paths arrive in the task prompt. Never guess a path; if one is missing, STOP
 - Transcript (`transcript.md`) if present
 - Absolute path to `best-practices.md` (rules to judge against)
 - Talk facts: title, audience, desired outcome, duration (min), slide count, demos
+- Optional `focus: slides <list>` (e.g. `3, 5-7`)
 
 Read the deck (slides and notes), outline, transcript, and best-practices in full.
 
@@ -38,6 +39,7 @@ Write only `work/reviews/content.md` (create the directory if missing; use the p
 Cover every slide; for slides with no issues add a line saying "Slide N: no issues".
 
 # Rules
+- With `focus`: judge only the listed slides and their transitions to neighbouring slides; report findings outside the focus only if they are blockers. Without `focus`: review everything.
 - Judge against best-practices.md; cite the rule when it applies.
 - Every finding needs a concrete fix, not just a complaint.
 - Do not review HTML/CSS/JS correctness; that is the design reviewer's job.

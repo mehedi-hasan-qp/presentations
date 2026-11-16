@@ -1,6 +1,6 @@
 ---
 name: knowledge-explorer
-description: Reads user-supplied files and links and extracts cited facts, numbers, quotes, examples and demo candidates into work/sources.md. Invoked only by /create-presentation or an explicit @-mention; never delegate to it otherwise.
+description: Reads user-supplied files and links and extracts cited facts, numbers, quotes, examples and demo candidates into work/sources.md. Invoked only by /create-presentation, /update-presentation or an explicit @-mention; never delegate to it otherwise.
 model: haiku
 tools: Read, Grep, Glob, WebFetch, WebSearch, Write
 color: cyan
