@@ -4,11 +4,11 @@ Derived from `template.html` as built. Every class, value and key here exists in
 
 ## 1. Overview
 
-A clean, white, single-file slide deck set in Fira Sans. One blue accent carries emphasis; orange marks live demos and small secondary labels (`.code-lang`, `.card-sub`), never headings or emphasis. It originated as a CI/CD pipeline talk deck, so it favours short statements, plain tables, code panels and flow diagrams over decoration.
+A clean, white, single-file slide deck set in Fira Sans. One blue accent carries emphasis; orange marks live demos and small secondary labels (`.code-lang`, `.card-sub`, via `--demo-text`), never headings or emphasis. It originated as a CI/CD pipeline talk deck, so it favours short statements, plain tables, code panels and flow diagrams over decoration.
 
 ## 2. Tokens
 
-### Colour tokens (`:root`, template.html lines 10-20)
+### Colour tokens (`:root`)
 
 | Variable | Value | Use |
 |---|---|---|
@@ -18,15 +18,18 @@ A clean, white, single-file slide deck set in Fira Sans. One blue accent carries
 | `--fg-muted` | `#666666` | Labels, descriptions, counter, nav button text |
 | `--border` | `#e0e0e0` | Card, table and step dividers, `code` border |
 | `--surface` | `#f4f4f6` | Card, step-row and code-head background, `code` background |
-| `--accent` | `oklch(61.6% 0.1696 251.2)` | Kicker, `.accent`, progress bar, title-slide rule, highlighted borders |
+| `--accent` | `oklch(61.6% 0.1696 251.2)` | Large `.accent` headings, progress bar, title-slide rule, highlighted borders and other non-text uses |
 | `--accent-soft` | `oklch(61.6% 0.1696 251.2 / 8%)` | Highlighted card and step-row fill |
 | `--accent-mid` | `oklch(61.6% 0.1696 251.2 / 18%)` | `.flow-badge` fill |
+| `--accent-text` | `oklch(50% 0.17 251)` | Small accent text (WCAG AA, 5.9:1 on white, 5.4:1 on `--surface`): `.kicker`, `.code-head`, `.step-num`, `.vs-card.hi .vs-card-label`, `.card-slash`, `.flow-badge`, `.flow-step.on .flow-step-name`, `th.acc`; also the button focus ring |
+| `--demo-text` | `oklch(52% 0.15 50)` | Small demo-orange text (5.8:1 on white, 5.3:1 on `--surface`): `.code-lang`, `.card-sub`, `.kicker.demo`, `.step-num.demo` |
 
 Literal colours used outside `:root` (not tokens):
-- Demo orange `oklch(72.3% 0.1755 56.7)`: `.code-lang`, `.card-sub`, `.kicker.demo`, `.demo-badge`, `.step-num.demo`.
+- Demo orange `oklch(72.3% 0.1755 56.7)`: fills and borders only (`.demo-badge` background and border). Orange text uses `--demo-text`.
 - Badge colours: `.badge-same` (green oklch) and `.badge-diff` (amber oklch).
-- Code panel: `.code-body` `#0e0e0e` background, `#ccc` text; `.tok-warn` `#e5c07b`, `.tok-ok` `#98c379`, `.tok-dim` `#666`.
-- Divider slide: `h2` `#fff`, `.sub` `oklch(100% 0 0 / 65%)`.
+- Code panel: `.code-body` `#0e0e0e` background, `#ccc` text; `.tok-warn` `#e5c07b`, `.tok-ok` `#98c379`, `.tok-dim` `#9a9a9a` (6.9:1 on the code background).
+- Divider slide: background `oklch(50% 0.17 251)` (white text 5.9:1), `h2` `#fff`, `.sub` `#fff` at `opacity: 0.94`.
+- `body.on-dark` chrome: white text, `oklch(100% 0 0 / 70%)` button border, `oklch(100% 0 0 / 18%)` button fill (`/ 32%` on hover), white progress bar and focus ring.
 - Notes panel: background `var(--fg)`, text `#eee`, `.none` `#999`.
 - Nav hover background `#ebebeb`.
 
@@ -60,7 +63,7 @@ Stack: `'Fira Sans', system-ui, sans-serif`. Code uses `monospace`. Body is 16px
 
 ### Motion
 
-- Slide fade: `.slide` `transition: opacity 0.35s ease`.
+- Slide fade: `.slide` `transition: opacity 0.35s ease, visibility 0s 0.35s`; `.slide.active` `transition: opacity 0.35s ease` (visibility flips instantly on show, after the fade on hide).
 - Progress: `width 0.35s cubic-bezier(.2,.8,.2,1)`.
 - Nav buttons: background 0.15s, `:active` scale(0.92).
 - Keyframes (inside `@media (prefers-reduced-motion: no-preference)`): `riseIn`, `popIn`, `slideInL`. Applied only to `.slide.active` descendants, with staggered `animation-delay` on `.step-row`, `.card`, `.vs-card`, `.flow-step`.
@@ -81,7 +84,7 @@ Stack: `'Fira Sans', system-ui, sans-serif`. Code uses `monospace`. Body is 16px
 ```
 
 - Every slide is a direct child of `.slides` and matches `.slides > .slide`. The script selects slides with that selector.
-- `.slide` is absolutely positioned and invisible. `.slide.active` is shown; exactly one slide is active. The script sets `active` on load (`show(0)`).
+- `.slide` is absolutely positioned and `visibility: hidden` (out of the accessibility tree and tab order). `.slide.active` is shown; exactly one slide is active. The script sets `active` on load (`show(0)`).
 - Place new slides between `<!-- SLIDES:START -->` and `<!-- SLIDES:END -->`. Keep the markers.
 - `{{TITLE}}` is the only placeholder, in `<title>`. Replace it when building.
 - `<aside class="notes">` is the last child of each slide. Its text feeds the notes panel. It is hidden on the slide itself.
@@ -219,7 +222,9 @@ key: value
 
 - Keys: `ArrowRight` and `Space` next; `ArrowLeft` previous; `Home` first; `End` last; `N` toggles notes. Navigation wraps at both ends.
 - Buttons: `#prev` and `#next` in `.slide-nav`, bottom right. Both use `aria-label`.
-- Swipe: horizontal movement over 50px and greater than vertical movement triggers next or previous.
+- Swipe: horizontal movement over 50px and greater than vertical movement triggers next or previous. Ignored when the touch starts or ends inside `.code-body`, `.dtable` or `.notes-panel` (those scroll horizontally).
+- Buttons keep native Space/Enter: the keydown handler returns early when the event target is inside a `button`, so Space on a focused nav button activates it once instead of also advancing. `.slide-nav button:focus-visible` shows a 3px `--accent-text` outline (white on dark).
+- On dark slides: `show()` toggles `body.on-dark` when the current slide has `.divider`. CSS under `body.on-dark` recolours `.slide-counter`, `.kbd-hint`, `.slide-nav button` (text, border, fill, hover, focus ring) and `.progress-bar` to white so the chrome stays visible on the blue background.
 - Progress: `#progress` (`.progress-bar`) is a 4px fixed top bar whose width is `(cur + 1) / total`.
 - Counter: `#counter` (`.slide-counter`) shows `n / total`, bottom centre.
 - Key hint: `.kbd-hint` bottom left.
@@ -229,7 +234,7 @@ key: value
 
 Responsive (`max-width: 900px`): `vs-grid` becomes one column; `flow` wraps and hides `flow-arr`; `dtable` scrolls horizontally; `kbd-hint` is hidden.
 
-Print and PDF: `@page { size: landscape; margin: 0; }`. Each `.slide` becomes a static page of `100vh` with a page break after it. Nav, counter, progress, hint and notes are hidden. Limit: a slide taller than one screen is clipped in print (`overflow: hidden`). Keep every slide within one screen.
+Print and PDF: `@page { size: landscape; margin: 0; }`. Each `.slide` becomes a static page (`visibility: visible` forced) of `100vh` with a page break after it. Nav, counter, progress, hint and notes are hidden. Limit: a slide taller than one screen is clipped in print (`overflow: hidden`). Keep every slide within one screen.
 
 ## 7. Do and don't
 

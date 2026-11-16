@@ -18,11 +18,11 @@ Ask these in order, **one question per message**, each with a recommended defaul
 1. **Topic** — what the talk is about, in one sentence.
 2. **Audience & context** — who is in the room, where (meetup, all-hands, client call, conference), and what they should do or feel afterwards. This drives tone and density; see the audience tuning in [references/best-practices.md](references/best-practices.md).
 3. **Duration** in minutes.
-4. **Slide count** — suggest one from duration: about 1 content slide per minute, plus title, section dividers, and closing. The user decides; duration then only drives pacing.
-5. **Template** — list the folders under `templates/` (each holds `template.html` + `DESIGN.md`); recommend `default`.
-6. **Details & source material** — notes, file paths, links, data. Read every file or link given before outlining; the deck should carry their facts, not generic filler.
-7. **Live-demo segments** — where in the talk, and how long each. For each demo, follow up: what is demoed (tool/app) and the fallback (recording/screenshot location, or "none").
-8. **Spoken transcript?** — yes/no (default: no). Yes means a `transcript.md` with a word-for-word script per slide.
+4. **Template** — list the folders under `templates/` (each holds `template.html` + `DESIGN.md`); recommend `default`.
+5. **Details & source material** — notes, file paths, links, data. Read every file or link given before outlining; the deck should carry their facts, not generic filler.
+6. **Live-demo segments** — where in the talk, and how long each. For each demo, follow up: what is demoed (tool/app) and the fallback (recording/screenshot location, or "none").
+7. **Spoken transcript?** — yes/no (default: no). Yes means a `transcript.md` with a word-for-word script per slide.
+8. **Slide count** — asked last, once all context is in; suggest one from duration, demo time, and material: about 1 content slide per minute, plus title, section dividers, and closing. The user decides; duration then only drives pacing.
 
 Done when every question has an answer (given or defaulted).
 
