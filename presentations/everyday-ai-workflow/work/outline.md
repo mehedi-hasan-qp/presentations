@@ -2,7 +2,11 @@
 
 Backfilled from `index.html`, `context.md` and `transcript.md` on 2026-11-16. **Revision 2 (2026-11-16):** slides made self-explanatory for a first-time audience (one primer slide added, context moved from notes onto slides, terms defined on first use). Revision 2 approved; `## Slides` regenerated for the 31-slide deck. **Review fixes (2026-11-16):** user-approved content/design review fixes applied in `index.html`; Outline table and `## Slides` resynced to `index.html`.
 
-**Revision 3 (2026-11-17, approved by the user 2026-11-17; `## Slides` finalized for the design-creator):** eqc-kit section only (old slides 4-12, 9 slides → new slides 4-10, 7 slides). Denser, self-explanatory slides; plain titles; first-person notes; a new "why I built it" slide; a comparison table (manual / ask AI / eqc-kit) with eqc-kit's cons; eqc-kit dev-branch features (code map, HTML report, baseline + `eqc guard`, optional `verify`, opt-in hooks) from `work/sources.md`; one combined demo (cached /eqc-check, HTML report, /eqc-fix ranked list); saved-plan demo dropped. Section time unchanged (12.25 min incl. 2 min Q&A), total still 40.0 min. Old slides 13-31 become 11-29 (-2), content unchanged except cross-references. In the Outline table, **NEW** / **CHG** tags now mark revision 3 only (revision 2 tags removed; they are recorded under "Revision 2: on-slide changes").
+**Revision 3 (2026-11-17, approved by the user 2026-11-17; `## Slides` finalized for the design-creator):** eqc-kit section only (old slides 4-12, 9 slides → new slides 4-10, 7 slides). Denser, self-explanatory slides; plain titles; first-person notes; a new "why I built it" slide; a comparison table (manual / ask AI / eqc-kit) with eqc-kit's cons; eqc-kit dev-branch features (code map, HTML report, baseline + `eqc guard`, optional `verify`, opt-in hooks) from `work/sources.md`; one combined demo (cached /eqc-check, HTML report, /eqc-fix ranked list); saved-plan demo dropped. Section time unchanged (12.25 min incl. 2 min Q&A), total still 40.0 min. Old slides 13-31 become 11-29 (-2), content unchanged except cross-references.
+
+**Revision 4 (2026-11-17, approved by the user 2026-11-17; `## Slides` regenerated for the 26-slide deck):** /orchestrate section only (old slides 11-20, 10 slides → new slides 11-17, 7 slides). Same treatment as revision 3: the speaker's origin story, a comparison table (long prompt / plan mode / /goal / /orchestrate) with honest cons, a dense "what it is like" slide that folds in the 5 phases, scoring updated to the current skill (opus tier for security and unsplittable tasks), and one merged results + reveal + Q&A slide. Jokes dropped, plain titles. Section time unchanged (15.0 min incl. 2.5 min Q&A), total still 40.0 min. Old slides 21-29 become 18-26 (-3), content unchanged except cross-references. In the Outline table, **NEW** / **CHG** tags now mark revision 4 only. User decisions applied at approval: slide 13 `[TBD]` cells filled by the speaker; the /orchestrate "Interviews you first?" cell edited to "Yes (if needed), one question at a time"; slide 17 notes say the runs predate the opus tier; slide 16 PREP and fallback screenshot come from the current skill with one security task; slide 17 overflow rule ("~11 runs" moves to the notes first).
+
+**Review fixes (2026-11-17, user-confirmed; applied in `index.html`, Outline table rows 11-17, Demo 2 and `## Slides` 11-17 resynced):** content-review findings 1-3, 5, 6, 8-13 (`work/reviews/content.md`). Slide 11 sub shortened (14). Slide 12 rows 02 and 03 merged, footer reworded (13). Slide 13 cells shortened, /goal OK cell "No, it starts working right away", /orchestrate OK cell "a hard gate: "just go" in your goal doesn't skip it", cons line lowercase models, one-line h2 (1, 3, 12). Slide 14 retitled "How /orchestrate runs a big task, phase by phase", lead and EXECUTE row no longer contradict (11, 2). Slide 15 retitled "How it picks a model for each task", header "Score or task type", guess-first now "add a config entry with exact steps" (10, 9, 8). Slide 16 demo puts "just go" into the goal and replies "ok, but drop task 3", then rejects (1). Slide 17 card title "Two "done" claims that weren't true", build line ends "(before the opus tier existed)" (5, 6). Finding 7: the "~11 runs" line left slide 17's left card and lives only in its notes. Findings 4 (context.md) fixed outside this file; finding 15 (timing) not applied, cues unchanged.
 
 ## Brief
 
@@ -11,57 +15,73 @@ Backfilled from `index.html`, `context.md` and `transcript.md` on 2026-11-16. **
 - **Audience:** fellow engineers, internal team session / brown-bag. First exposure: they have never seen eqc-kit, /orchestrate, reflect, /git-commit, /send-pr, release-notes or ci-pipeline. Every slide must make sense without the speaker.
 - **Desired outcome:** each listener picks 2-3 skills or habits and tries them on their own work this week
 - **Duration:** 40 min (3 sections: 15 / 15 / 10, each ending in a Q&A buffer of 2-2.5 min; cues sum to 40.0 min)
-- **Slide count:** 29
+- **Slide count:** 26
 - **Template:** default
-- **Transcript:** yes (`transcript.md`: engaging, human, light humour)
-- **Demos:** slide 8 (eqc-kit: cached /eqc-check scorecard, the HTML compliance report, /eqc-fix ranked list), slide 15 (/orchestrate preview gate), slide 25 (v1.9.4 release notes beside git log)
+- **Transcript:** yes (`transcript.md`: human, casual first person; no jokes in the revised sections)
+- **Demos:** slide 8 (eqc-kit: cached /eqc-check scorecard, the HTML compliance report, /eqc-fix ranked list), slide 16 (/orchestrate preview gate), slide 22 (v1.9.4 release notes beside git log)
 
 ## Narrative arc
 
 - **Hook (slide 2, not an agenda):** show of hands: who has read the whole 39-rule quality standard, and who checked their code against every rule. Slide 1's footer ("Built with /create-presentation") is planted for a later payoff. Slide 3 then gives first-timers the four terms the rest of the talk uses.
-- **Problem:** checking 39 rules by hand never happens (slide 2); I was asked if my projects were compliant and checking by hand, even with AI, was too much (slide 5); one expensive model in one long session that nobody checks (slide 12).
-- **Stakes:** HARD_FAIL compliance; AI that says "pass" when it isn't and breaks fixed rules again on the next feature (slide 6); best model burned on boilerplate; "Done!" claims that are not true.
-- **Insight:** AI checks each rule with proof, a plain script works out the level, and the guard remembers what passed (slides 6-7); scoring picks the model, not mood (slide 14); one piece of writing has four audiences (slide 23).
-- **Solution:** eqc-kit (slides 4-9), /orchestrate (slides 11-19), the ship chain (slides 21-26).
-- **Proof:** HARD_FAIL to MEDIUM in about 5 days (slide 9); verifier caught two false "done"s (slide 17); ~11 runs on cheap models (slide 18); demos on slides 8, 15, 25.
-- **Climax:** slide 19, the meta reveal (this deck was built by a skill that /orchestrate built), at ~26.25-27.5 min (~66-69% of runtime).
-- **Close / CTA (slide 28):** "Pick two. Try them this week." (`npx eqc-kit init` · `/orchestrate` on your next ticket · `/git-commit` today), each paired with the pain it fixes. Commands stay on screen through the final Q&A (slide 29).
+- **Problem:** checking 39 rules by hand never happens (slide 2); I was asked if my projects were compliant and checking by hand, even with AI, was too much (slide 5); I kept typing the same plan-mode instructions (phases, tiered sub-agents, interview me first) for every big task (slide 12).
+- **Stakes:** HARD_FAIL compliance; AI that says "pass" when it isn't and breaks fixed rules again on the next feature (slide 6); one model builds everything, nothing stops it before edits, and it checks its own work (slide 13); "done" claims that are not true (slide 17).
+- **Insight:** AI checks each rule with proof, a plain script works out the level, and the guard remembers what passed (slides 6-7); a score per task picks the model, and the lower tier wins when unsure (slide 15); one piece of writing has four audiences (slide 20).
+- **Solution:** eqc-kit (slides 4-9), /orchestrate (slides 11-17), the ship chain (slides 18-23).
+- **Proof:** HARD_FAIL to MEDIUM in about 5 days (slide 9); two "done" claims that weren't true, and ~11 runs ran mostly on haiku / sonnet (slide 17, the runs line in the notes); demos on slides 8, 16, 22.
+- **Climax:** slide 17, the reveal (this deck was built by a skill that /orchestrate built), at ~26.5-27.5 min (~66-69% of runtime).
+- **Close / CTA (slide 25):** "Pick two. Try them this week." (`npx eqc-kit init` · `/orchestrate` on your next ticket · `/git-commit` today), each paired with the pain it fixes. Commands stay on screen through the final Q&A (slide 26).
 
 ## Outline
 
 | # | Component | Title | Key points | Notes gist | Min |
 |---|---|---|---|---|---|
-| 1 | title | Ask first, build cheap, ship clean | subtitle: "three tools for checking, planning and shipping code"; footer: built with /create-presentation | Intro, goal: leave with 2-3 things to try; **CHG** footer comes back on slide 19 | 0.5 |
+| 1 | title | Ask first, build cheap, ship clean | subtitle: "three tools for checking, planning and shipping code"; footer: built with /create-presentation | Intro, goal: leave with 2-3 things to try; **CHG** footer comes back on slide 17 | 0.5 |
 | 2 | center | 39 rules. One long doc. Nobody wants to check them by hand. | "39 rules in 3 tiers (9 LOW, 13 MEDIUM, 17 HIGH)"; "eqc-kit checks · /orchestrate plans · the ship chain ships" | Show of hands; checking 39 rules by hand never happens | 1.25 |
 | 3 | dtable | A skill is a playbook. Sub-agents are its helpers. | Claude Code: AI coding agent in your terminal; skill (`/name`) = saved playbook, sub-agent = helper given one task; haiku → sonnet → opus = cheapest → priciest model | Primer for first-timers; every tool today is a skill or uses sub-agents | 1 |
-| 4 | divider | 01 · eqc-kit | sub: "Checks your code against your team's own quality standard" | **CHG** ~10 min then Q&A; open MIT npm package | 0.25 |
-| 5 | steps-list | **NEW** How I ended up building eqc-kit | 4 first-person rows: handed the standard + "are your projects compliant?" → checked rule by rule by hand → AI helped, still too much → automated it (hi): eqc-kit, MIT npm package; install line + 5 supported tools | Speaker's own story, close to his words; tiers come from your doc; one-command install | 1.25 |
-| 6 | dtable | **NEW** Three ways to check a project against the standard | Table Question \| Manual review \| Ask AI directly \| eqc-kit (acc), 5 rows: trust "pass" · every rule covered · same answer twice · stays fixed later · cost every time; cons line: needs a written standard, first audit costs time + tokens, agents can misjudge | Speaker's pains with asking AI directly; what eqc-kit does about each; honest cons | 2.25 |
-| 7 | dtable | **NEW** What you run, and where AI is used | Table Command \| What it does (acc) \| Uses AI?: `/eqc-check` (code map, verdict + proof, script counts, MD + HTML report) · `/eqc-fix` (low effort, high gain first; big fixes need your OK; never commits) · `eqc guard` (baseline, fails only on regressions) · `verify` + hooks (optional, mechanical rules only, opt-in, no AI) | Plain-language walk-through; replaces old slides 5, 6, 8 and the guardrails paragraph of old 11 | 2 |
-| 8 | demo | **NEW** Demo: check, report, and what to fix next | 01 `/eqc-check` cached (hi): instant, no agents · 02 open `docs/eqc/COMPLIANCE.html` · 03 `/eqc-fix`: ranked list, cancel before fixing | 3-part demo with numbered steps; watch-for lines in notes; ~30 s cut-over to FALLBACK on part 3; FALLBACK screenshot per part; guess-first on Logger file count | 2.75 |
-| 9 | dtable | **CHG** Our mobile app went from HARD_FAIL to MEDIUM in about 5 days | Lead defines HARD_FAIL / MEDIUM + today's 33 / 2 / 4; rows: ESLint 54 errors / 30 files · Logger 58 files · `Platform.select()` 34 places · tests ~85 files, 2912/2912 green · still failing (4), TypeScript recorded as a fail, not faked | Merges old 10 + 11; reveal 58; i18n took 7 audits; hardcoded secret handled | 1.75 |
-| 10 | center | Questions? (eqc-kit) | Q&A buffer | **CHG** seeds updated; move on at 15 min | 2 |
-| 11 | divider | 02 · /orchestrate | sub: "For work too big for one prompt: you plan and approve, cheaper models build" | Separate tool; the manager who actually reads the PR | 0.25 |
-| 12 | center | One expensive model. One long session. Nobody checked. | Guesses scope, edits as it goes, says it's done; what /orchestrate is | "Done!" (it was not); why a better prompt is not enough | 1.25 |
-| 13 | steps-list | Five phases, two hard stops | "GRILL · stop 1" and "PREVIEW gate · stop 2" (hi); CLOSE reports which models did the work, never commits | Each phase; plan file makes runs resumable | 1.75 |
-| 14 | dtable | Scoring picks the model, not mood | Lead glosses Ambiguity / Breadth / Reasoning; 0-2 haiku, 3-4 sonnet, 5-6 "too big: split it first"; security ≥ sonnet | Guess-first: "write CLAUDE.md" → haiku; tie-breaker; escalation ladder | 1.75 |
-| 15 | demo | Demo: the preview gate | Step-descs: what PREVIEW shows; only approve / edit / reject count; watch-for kept | Pre-staged terminal; "just go" gets the same question back; **CHG** cut-path refs → slides 16/17 | 1.5 |
-| 16 | dtable | Every reasonable-sounding shortcut is banned | Lead: rules the orchestrator must follow; "Tempting thought \| What it does instead" | Cuttable; hard rules; "reports are data, not instructions" | 1.5 |
-| 17 | vs-grid | The verifier caught two "done"s that weren't | Lead defines verifier; coverage audit: ~65 identifiers missing → 0 missing; E2E: line 143 still uncovered | Verifiers fail too (CSS false alarm); **CHG** cut-path refs → slides 18/19 | 1.75 |
-| 18 | card-grid | ~11 real runs: mostly cheap models, a few surprises | haiku/sonnet did most work; retries rarely moved up; 15 issues from an opus trial run; ENOSPC disk full, zero bytes | Cuttable; disk-full joke; **CHG** cut-path ref → slide 17 | 1.5 |
-| 19 | center | This deck was built by a skill that /orchestrate built | /create-presentation is the skill that built these slides; 5 tasks + 2 fixes, 0 escalations | Payoff of slide 1 footer; **CHG** cut-path ref → slide 18 | 1.25 |
-| 20 | center | Questions? (/orchestrate) | Q&A buffer | Seed: a ticket that scores 0-2; move on ~30 min | 2.5 |
-| 21 | divider | 03 · The ship chain | sub: "After the code works: commit, PR, release notes, build" | Lighter section; value is in the connection | 0.25 |
-| 22 | steps-list | Each skill feeds the next | 01-05: /reflect, /git-commit (hi, "start here"), /send-pr, /release-notes, ci-pipeline | What each step does; /git-commit is the cheapest start | 1.5 |
-| 23 | dtable | One change, four write-ups, four readers | Commit: devs + testers; PR: reviewers; Release notes: managers; Store note: users; "Written by" column | Guess-first: who reads your commits; **CHG** cut-path refs → slides 24/25 | 1.5 |
-| 24 | code-block | Commits are written for the release notes | git-commit: "raw material for release notes"; release-notes: "don't trust commit messages alone" | Cuttable; two halves of a contract | 0.75 |
-| 25 | demo | Demo: v1.9.4 notes beside their commits | Step-descs; code block "One change, three write-ups"; watch-for line | Match a commit to its sentence; read the store note | 1.5 |
-| 26 | center | No release notes, no build | CI fails if `RELEASE_NOTES_v<version>.md` is missing; staging and production copy the store note from it | Enforced, not recommended | 1 |
-| 27 | card-grid | Ask first, build cheap, ship clean (recap) | eqc-kit (Ask first: big fixes wait for your OK; **CHG** sub "checks your code, keeps passing rules passing"); /orchestrate (Build cheap); ship chain (hi, Ship clean) | One sentence per section; **CHG** eqc-kit sentence mentions the guard; "Pick two" | 0.75 |
-| 28 | closing | Pick two. Try them this week. | Each command paired with its pain; install line | Match tools to pain; install line is a prompt | 0.75 |
-| 29 | center | Questions? (final) | Mirrors slide 28 (pain + command) + install line on screen | Open floor; "Which two are you trying first?" | 2 |
+| 4 | divider | 01 · eqc-kit | sub: "Checks your code against your team's own quality standard" | ~10 min then Q&A; open MIT npm package | 0.25 |
+| 5 | steps-list | How I ended up building eqc-kit | 4 first-person rows: handed the standard + "are your projects compliant?" → checked rule by rule by hand → AI helped, still too much → automated it (hi): eqc-kit, MIT npm package; install line + 5 supported tools | Speaker's own story, close to his words; tiers come from your doc; one-command install | 1.25 |
+| 6 | dtable | Three ways to check a project against the standard | Table Question \| Manual review \| Ask AI directly \| eqc-kit (acc), 5 rows: trust "pass" · every rule covered · same answer twice · stays fixed later · cost every time; cons line: needs a written standard, first audit costs time + tokens, agents can misjudge | Speaker's pains with asking AI directly; what eqc-kit does about each; honest cons | 2.25 |
+| 7 | dtable | What you run, and where AI is used | Table Command \| What it does (acc) \| Uses AI?: `/eqc-check` (code map, verdict + proof, script counts, MD + HTML report) · `/eqc-fix` (low effort, high gain first; big fixes need your OK; never commits) · `eqc guard` (baseline, fails only on regressions) · `verify` + hooks (optional, mechanical rules only, opt-in, no AI) | Plain-language walk-through | 2 |
+| 8 | demo | Demo: check, report, and what to fix next | 01 `/eqc-check` cached (hi): instant, no agents · 02 open `docs/eqc/COMPLIANCE.html` · 03 `/eqc-fix`: ranked list, cancel before fixing | 3-part demo with numbered steps; ~30 s cut-over to FALLBACK on part 3; FALLBACK screenshot per part; guess-first on Logger file count | 2.75 |
+| 9 | dtable | Our mobile app went from HARD_FAIL to MEDIUM in about 5 days | Lead defines HARD_FAIL / MEDIUM + today's 33 / 2 / 4; rows: ESLint 54 errors / 30 files · Logger 58 files · `Platform.select()` 34 places · tests ~85 files, 2912/2912 green · still failing (4), TypeScript recorded as a fail | Reveal 58; i18n took 7 audits; hardcoded secret handled | 1.75 |
+| 10 | center | Questions? (eqc-kit) | Q&A buffer | Seeds; move on at 15 min | 2 |
+| 11 | divider | 02 · /orchestrate | **CHG** sub: "Plans big work with you, then sends each task to the cheapest model that can do it" | **CHG** separate tool, ~12 min then questions; drop the "manager who reads the PR" line | 0.25 |
+| 12 | steps-list | **NEW** Why I built /orchestrate | 3 first-person rows: kept going back to plan mode → typed the same asks every time (split into phases, a sub-agent per phase on a model that fits, interview me first; same prompt, every big task) → made it a skill (hi); footer: why I built it, to spend fewer tokens by sending each piece to the cheapest model that can do it | Speaker's origin story in his words; replaces old 12 (problem); no token number, come back to it on slide 15 | 1.5 |
+| 13 | dtable | **NEW** Four ways to run a big task with AI | Table Question \| Long prompt every time \| Plan mode \| /goal \| /orchestrate (acc); 6 rows: remembers the instructions · interviews you first · stops for your OK before building (/goal: starts right away; /orchestrate: hard gate, "just go" in your goal doesn't skip it) · picks a model per task · who checks the work · picks up after a break; cons line: overhead not worth it on small tasks, has to run on opus or sonnet (stops on haiku), you still read the report | Speaker-confirmed gaps per column; the OK row's difference is "can't be skipped"; /orchestrate cells point to slides 14-15; honest cons; fast lane softens the small-task con | 2.75 |
+| 14 | dtable | **NEW** How /orchestrate runs a big task, phase by phase | Lead: 5 phases GRILL → PLAN → PREVIEW → EXECUTE / VERIFY → CLOSE; the orchestrator doesn't write the code, helpers on haiku / sonnet / opus do; table Phase \| What it does (acc), 5 rows: GRILL (one question at a time, recommended answer; code map before grep; fast lane skips it for tiny goals) · PLAN (scored tasks; max 3 helpers at once, one owner per file) · PREVIEW · the gate ("just go" in the goal ignored, "ok, but…" is an edit) · EXECUTE / VERIFY (helpers build; haiku verifier, sonnet reviewer or opus security reviewer; orchestrator may make one ≤5-line fix per task, only for a verifier-found bug) · CLOSE (reports the model mix; plan file for stop / resume / reject; never commits on its own) | Walk the phases; banned shortcuts and the 2 files × 100 lines read cap live in the CUTTABLE notes paragraph | 2.5 |
+| 15 | dtable | **CHG** How it picks a model for each task | Lead glosses Ambiguity / Breadth / Reasoning 0-2; table Score or task type \| Goes to (acc): 0-2 haiku · 3-4 sonnet · 5-6 split first, opus if it can't be split · security work: always opus + an opus security reviewer; footer lines: you can ask for opus; more than 2 opus tasks → it asks you to confirm; quote "When unsure, pick the lower tier: escalating costs less than over-provisioning."; ladder: haiku retry → sonnet retry → one opus try or the orchestrator re-scopes → pauses and tells you | Guess-first "add a config entry with exact steps" → haiku; token saving stays in the rule line and the notes, qualitative, no numbers ("look at the model mix at CLOSE") | 2 |
+| 16 | demo | **CHG** Demo: the preview gate | 01 paused at PREVIEW: "just go" written into the goal, it still stopped and says so; each task with score and model, the opus row says why · 02 reply "ok, but drop task 3" (hi): an edit, plan changes and shows again; only a plain yes approves; watch-for: "just go" in the goal didn't skip the gate | Pre-staged `/orchestrate <goal>, just go` with one security task, paused at PREVIEW; reply the edit, show the re-preview, then reject; never type a bare "go" / "just go" at the prompt | 1.75 |
+| 17 | vs-grid | **CHG** What happened when I used it | Left card: two "done" claims that weren't true (coverage audit ~65 identifiers missing → 0 after retry; E2E line 143 wasn't covered); right card (hi): this deck was built by /create-presentation, which /orchestrate built: 5 tasks + 2 fixes, 0 escalations (before the opus tier existed); closing line "Questions?" | Merges old 17, 18, 19, 20; slide 1 payoff; verifiers fail too (CSS false alarm); "~11 runs, mostly haiku / sonnet" is in the notes only (finding 7); runs predate the opus tier; Q&A seed; transition to the ship chain; content ~1.75 + Q&A 2.5 | 4.25 |
+| 18 | divider | 03 · The ship chain | sub: "After the code works: commit, PR, release notes, build" | Lighter section; value is in the connection | 0.25 |
+| 19 | steps-list | Each skill feeds the next | 01-05: /reflect, /git-commit (hi, "start here"), /send-pr, /release-notes, ci-pipeline | What each step does; /git-commit is the cheapest start | 1.5 |
+| 20 | dtable | One change, four write-ups, four readers | Commit: devs + testers; PR: reviewers; Release notes: managers; Store note: users; "Written by" column | Guess-first: who reads your commits; **CHG** cut-path refs → slides 21/22 | 1.5 |
+| 21 | code-block | Commits are written for the release notes | git-commit: "raw material for release notes"; release-notes: "don't trust commit messages alone" | Cuttable; two halves of a contract | 0.75 |
+| 22 | demo | Demo: v1.9.4 notes beside their commits | Step-descs; code block "One change, three write-ups"; watch-for line | Match a commit to its sentence; read the store note | 1.5 |
+| 23 | center | No release notes, no build | CI fails if `RELEASE_NOTES_v<version>.md` is missing; staging and production copy the store note from it | Enforced, not recommended | 1 |
+| 24 | card-grid | Ask first, build cheap, ship clean (recap) | eqc-kit (Ask first: big fixes wait for your OK; sub "checks your code, keeps passing rules passing"); /orchestrate (Build cheap); ship chain (hi, Ship clean) | One sentence per section; "Pick two" | 0.75 |
+| 25 | closing | Pick two. Try them this week. | Each command paired with its pain; install line | Match tools to pain; install line is a prompt | 0.75 |
+| 26 | center | Questions? (final) | **CHG** mirrors slide 25 (pain + command) + install line on screen | Open floor; "Which two are you trying first?" | 2 |
 
-Total: 40.0 min (40 min slot). Sections: eqc-kit 15.0 (slides 1-10; eqc-kit part 4-10 = 12.25, same as before) · /orchestrate 15.0 (11-20) · ship chain 10.0 (21-29). Rows: 29 (matches slide count).
+Total: 40.0 min (40 min slot). Sections: eqc-kit 15.0 (slides 1-10) · /orchestrate 15.0 (11-17: content 12.5 + Q&A 2.5 inside slide 17) · ship chain 10.0 (18-26). Rows: 26 (matches slide count).
+
+**REMOVED (revision 4, old numbers):** 12 center "One expensive model. One long session. Nobody checked." (→ new 12 origin story + new 13 comparison) · 13 steps-list "Five phases, two hard stops" (→ new 14 lead + rows) · 16 dtable "Every reasonable-sounding shortcut is banned" (→ new 14 notes) · 18 card-grid "~11 real runs…" (→ new 17 left card; disk-full joke dropped; 15-issue dry-run → notes) · 20 center "Questions? (/orchestrate)" (→ new 17 closing line + notes). Old 19 "This deck was built by a skill…" → new 17 right card. Old 21-29 → new 18-26 (-3), content unchanged except cross-references. Corrected against the current skill (sources.md, 2026-11-17): security is now always opus (was "≥ sonnet"); 5-6 is split first, opus if unsplittable; escalation ladder wording updated.
+
+### Revision 4: slide 13 table cells (approved 2026-11-17)
+
+Long prompt, plan mode and /goal cells are the speaker's confirmed gaps (sources.md, speaker interview; the former `[TBD]` cells were filled by the speaker at approval). The /orchestrate "Interviews you first?" cell is the speaker's edit (the fast lane skips the interview for tiny goals).
+
+| Question | Long prompt every time | Plan mode | /goal | /orchestrate (acc) |
+|---|---|---|---|---|
+| Remembers the instructions? | No, you retype or paste them | No, you retype the phase, sub-agent, model and interview asks | No, it keeps the goal, not your method | Yes, it's a skill |
+| Interviews you first? | Only if you type that in | Only if you ask, every time | No, it just starts working | Yes (if needed), one question at a time |
+| Stops for your OK before building? | No, it starts editing | Yes, once, for the whole plan | No per-task approval gate | Yes, a hard gate on the full plan; "just go" doesn't count |
+| Picks a model per task? | No, same model for everything | No, one model builds it all | No | Yes, by score: haiku, sonnet or opus |
+| Who checks the work? | Nothing enforces the rules | The same model that built it | It checks itself | A separate haiku verifier, plus sonnet or opus reviewers |
+| Picks up after a break? | No, forgets between sessions | No, the plan lives in the chat | Only within the session | Yes, from the plan file (`/orchestrate resume`) |
+
+Cons line under the table: "The catch: the planning and checking add overhead that isn't worth it on small tasks, the orchestrator itself has to run on Opus or Sonnet, and you still read the report."
+
+Superseded by the 2026-11-17 review fixes (findings 1, 3, 12): plan mode row 1 "No, you retype your asks"; /goal OK cell "No, it starts working right away"; /orchestrate OK cell "Yes, a hard gate: "just go" in your goal doesn't skip it"; long prompt "Who checks" "Nobody, unless you do"; cons line "…it has to run on opus or sonnet (it stops on haiku)…". `## Slides` slide 13 is current.
 
 **REMOVED (revision 3, old numbers):** 5 flow "Bring your standard, get a compliance level" (install + tools → new 5; flow → new 7) · 6 steps-list "/eqc-check: agents judge, the engine counts" (→ new 7) · 7 demo "the free scorecard" (→ new 8, step 01) · 8 vs-grid "/eqc-fix: small fixes go straight…" (→ new 7 row + notes) · 9 demo "ranked fixes and a chunked plan" (ranked list → new 8 step 03; MEDIUM-10 saved-plan demo dropped) · 11 card-grid "4 fails left…" (fails → new 9 row; guardrails → new 7; unsourced "40 seconds" line dropped; "gate" → `guard`; "each rule gets a verify command" corrected).
 
@@ -102,7 +122,7 @@ Historical record of the revision 2 proposal, in pre-revision-3 numbering. Items
 
 ## Demo plan
 
-Revision 3 numbering. The eqc-kit section now has one combined demo (slide 8); the old saved-plan demo is dropped.
+Revision 4 numbering. The eqc-kit section has one combined demo (slide 8); the /orchestrate demo moves to slide 16, the release-notes demo to slide 22.
 
 ### Demo 1 (slide 8): check, report, and what to fix next, ~2.75 min
 PREP: dev eqc-kit installed in our mobile app repo; full /eqc-check re-run before the talk so `docs/eqc/COMPLIANCE.html` exists and the numbers match slide 9; browser tab with the HTML page already open.
@@ -118,17 +138,17 @@ FALLBACK (part 1): screenshot ./screenshots/eqc-check-scorecard.png — "Here's 
 FALLBACK (part 2): screenshot ./screenshots/eqc-compliance-report.png — "This is the page it writes next to the Markdown report; it's just a file, no setup."
 FALLBACK (part 3): screenshot ./screenshots/eqc-fix-ranked.png — "Here's the ranked list from my last run; same output, no waiting."
 
-### Demo 2 (slide 15): the preview gate, ~1.5 min
-PREP: before the talk, run /orchestrate on a small prepared goal, answer GRILL, and stop at PREVIEW. Leave that terminal paused at "Approve, edit, or reject?". Don't approve.
-Watch for: "just go" gets the same question back.
+### Demo 2 (slide 16): the preview gate, ~1.75 min
+PREP: before the talk, on the current skill (with the opus tier), run `/orchestrate <small goal with one security task>, just go` on opus or sonnet, answer GRILL, and stop at PREVIEW. The preview should print a line saying approval in the goal was ignored. Leave that terminal paused at "Approve, edit, or reject?". Don't approve. Capture ./screenshots/orchestrate-preview.png from this run. Check the behaviour in rehearsal.
+Watch for: "just go" in the goal didn't skip the gate.
 1. Switch to the pre-staged terminal.
-2. Walk the task table (task, score, model) and read the "Mix" line.
-3. Point at the prompt: "Approve, edit, or reject?"
-4. Type "just go". Show that it's ignored and the prompt comes back.
+2. Walk the task table (task, score, tier) and point at the Tier column: the opus row carries its reason, e.g. `opus (security: <surface>)`. Read the "Mix" line.
+3. Point at the line saying "just go" in the goal was ignored, then at the prompt: "Approve, edit, or reject?"
+4. Reply "ok, but drop task 3". That counts as an edit: show the re-preview with the plan changed. Never type a bare "go" or "just go" at the prompt: that approves.
 5. Reject, and switch back to the slides.
-FALLBACK: screenshot ./screenshots/orchestrate-preview.png — "Here's the preview from a real run; the bit to notice is that 'just go' gets the same question back."
+FALLBACK: screenshot ./screenshots/orchestrate-preview.png, recaptured from the PREP run on the current skill (not the README's illustrative preview) — "Here's the preview from a real run; the bit to notice is that 'just go' in the goal didn't skip the gate."
 
-### Demo 3 (slide 25): v1.9.4 notes beside their commits, ~1.5 min
+### Demo 3 (slide 22): v1.9.4 notes beside their commits, ~1.5 min
 The code block on screen is the example: one real change in three write-ups. The live demo shows it side by side.
 Watch for: one commit line turning into a sentence a manager or a user can read.
 1. Open docs/RELEASE_NOTES_v1.9.4.md in the editor, left pane.
@@ -140,20 +160,20 @@ FALLBACK: screenshot ./screenshots/release-notes-v1.9.4.png — "Here are the tw
 
 ## Engagement suggestions
 
-Items 1-7 already applied in the deck (accepted suggestions recorded in `context.md`). Slide numbers updated for revision 3. Item 8 now also covers revision 3.
+Items 1-7 already applied in the deck (accepted suggestions recorded in `context.md`). Slide numbers updated for revision 4. Item 8 now also covers revision 4.
 
-1. **What:** retitle to "Ask first, build cheap, ship clean". **Why:** title matches the three-part workflow and the "pick two" outcome. **Where:** 1, 27.
+1. **What:** retitle to "Ask first, build cheap, ship clean". **Why:** title matches the three-part workflow and the "pick two" outcome. **Where:** 1, 24.
 2. **What:** keep company/internal names off slides ("our mobile app", "our quality standard"). **Why:** internal names only in notes. **Where:** all, esp. 5, 9.
-3. **What:** a "guess first" audience moment per section. **Why:** interaction every ~8-10 min. **Where:** 8→9 (Logger file count), 14 ("write CLAUDE.md" model), 23 (who reads commits); plus show of hands on 2.
-4. **What:** demo prep: re-run /eqc-check and capture a screenshot fallback for every demo part. **Why:** slides 8 and 9 must agree; demos can break. **Where:** 8, 9, 15, 25.
-5. **What:** intentional honest limits. **Why:** engineers trust stated failure modes. **Where:** 6 (eqc-kit cons line), 9 ("still failing" row).
-6. **What:** slide 1 footer foreshadows the meta reveal. **Why:** setup and payoff. **Where:** 1, 19.
-7. **What:** mark cuttable content in notes. **Why:** recover time if running late. **Where:** 16, 18, 24, and the hooks paragraph in slide 7's notes.
-8. **What:** self-explanatory slides for a first-time audience: a 4-term primer, a "what it is" line on each divider and intro slide, terms defined on first use; in eqc-kit, denser slides (tables with context, comparison, pros/cons) so a slide read without the speaker still makes sense, plain titles and first-person notes. **Why:** nobody has seen these tools; the speaker wants the deck to work without narration. **Where:** 3, 4-9, 11, 12, 21, 22.
+3. **What:** a "guess first" audience moment per section. **Why:** interaction every ~8-10 min. **Where:** 8→9 (Logger file count), 15 ("add a config entry with exact steps" model), 20 (who reads commits); plus show of hands on 2.
+4. **What:** demo prep: re-run /eqc-check and capture a screenshot fallback for every demo part. **Why:** slides 8 and 9 must agree; demos can break. **Where:** 8, 9, 16, 22.
+5. **What:** intentional honest limits. **Why:** engineers trust stated failure modes. **Where:** 6 (eqc-kit cons line), 9 ("still failing" row), 13 (/orchestrate cons line), 17 (verifiers fail too, in notes).
+6. **What:** slide 1 footer foreshadows the reveal. **Why:** setup and payoff. **Where:** 1, 17.
+7. **What:** mark cuttable content in notes. **Why:** recover time if running late. **Where:** 21, the hooks paragraph in slide 7's notes, the banned-shortcuts paragraph in slide 14's notes, the escalation-ladder paragraph in slide 15's notes.
+8. **What:** self-explanatory slides for a first-time audience: a 4-term primer, a "what it is" line on each divider and intro slide, terms defined on first use; in eqc-kit and /orchestrate, denser slides (tables with context, comparison, pros/cons) so a slide read without the speaker still makes sense, plain titles, no jokes, and casual first-person notes. **Why:** nobody has seen these tools; the speaker wants the deck to work without narration. **Where:** 3, 4-9, 11-17, 18, 19.
 
 ## Slides
 
-Revision 3, 29 slides. Slides 4-10 are new copy (revision 3, approved); all other slides are unchanged revision 2 copy except renumbering and cross-references. `(hi)` = `.hi` / `.on` emphasis; `/` in a title = line break before the `.accent` part. Notes lines are separate lines in `<aside class="notes">`.
+Revision 4, 26 slides (regenerated 2026-11-17). Slides 11-17 are new copy (revision 4, approved); slides 4-10 are revision 3 copy; slides 1-3 and 18-26 are revision 2 copy (18-26 = old 21-29), changed only in renumbering and cross-references. `(hi)` = `.hi` / `.on` emphasis; ` / ` (with spaces) in a title = line break before the `.accent` part; a slash command keeps its slash. Notes lines are separate lines in `<aside class="notes">`. dtable has no row highlight: its one emphasis is `th.acc`. A "Builder note" is for the design-creator, not for `<aside class="notes">`.
 
 ### Slide 1 — Ask first, build cheap, ship clean (title)
 On-slide copy:
@@ -166,7 +186,7 @@ Speaker notes:
 Hi, I'm Mehedi, from the Mobile Team. This is the AI workflow I actually use every day, not the conference-poster version.
 Three tools: one checks code, one plans work, one chain ships it. Each stands on its own.
 Goal: you leave with two or three things to try this week.
-Ignore that footer for now. It comes back on slide 19.
+Ignore that footer for now. It comes back on slide 17.
 Transition: "Let's start with a document most of us have never read to the end."
 ~0.5 min
 
@@ -352,162 +372,153 @@ Transition: "eqc-kit checks code against a standard. Next is how I get bigger wo
 ### Slide 11 — 02 · /orchestrate (divider)
 On-slide copy:
 - 02 · /orchestrate
-- For work too big for one prompt: you plan and approve, cheaper models build
+- Plans big work with you, then sends each task to the cheapest model that can do it
 
 Speaker notes:
-Section two: /orchestrate. Separate tool, stands on its own.
-One-line pitch: the orchestrator never writes the code itself. It's the manager who actually reads the PR.
-Transition: "First, the habit it replaces."
+Section two: /orchestrate. It's a separate tool, you can use it without eqc-kit.
+About 12 minutes, then questions.
+Same as before, I'll start with why I built it.
+Transition: "It came out of a habit I had with plan mode."
 ~0.25 min
 
-### Slide 12 — One expensive model. One long session. Nobody checked. (center)
+### Slide 12 — Why I built /orchestrate (steps-list)
 On-slide copy:
-- Kicker: The problem
-- One expensive model. One long session. / Nobody checked.
-- It guesses at scope, edits as it goes, then says it's done.
-- /orchestrate: a skill that plans first, waits for your OK, then hands each task to a cheaper model.
+- Kicker: /orchestrate · Why I built it
+- Why I built /orchestrate (accent on "/orchestrate", no line break)
+- 01 I kept going back to plan mode — Plan mode: Claude Code writes a plan and waits for your OK before it edits. I used it for every long task.
+- 02 I typed the same asks every time — Split into phases, a sub-agent per phase on a model that fits, interview me first. Same prompt, every big task.
+- 03 So I made it a skill (hi) — Now it's /orchestrate. One command, and the instructions are already there.
+- Why I built it: to spend fewer tokens by sending each piece to the cheapest model that can do it.
 
 Speaker notes:
-We've all seen this message: "Done! ✅" (Narrator: it was not.)
-Along the way it reads half the repo into context and burns your best model on boilerplate. You only find out what it guessed when you review the diff.
-Why not just a better prompt? A prompt forgets between sessions. It can't stop itself, because the check has to live outside the model's mood. It uses the same model for everything. And it loses its place in long runs.
-Transition: "So instead of one long session, it's five phases."
-~1.25 min
+This one comes straight out of my day-to-day work.
+I was doing my usual work and kept going back to plan mode. Every time, I asked Claude to split the long work into phases, hand each phase to a sub-agent on a model that matches how hard that piece is, and interview me before starting.
+It was the same prompt and the same instructions over and over again, every big task. So I started building this skill.
+The main reason I built it is tokens. Most pieces of a big task don't need the biggest model. If each piece goes to the cheapest model that can do it, you spend fewer.
+I don't have a number for that, and I'll come back to it in a couple of slides.
+Transition: "Before the skill, I used three other ways. Here's how they compare."
+~1.5 min
 
-### Slide 13 — Five phases, two hard stops (steps-list)
+### Slide 13 — Four ways to run a big task with AI (dtable)
 On-slide copy:
-- Kicker: /orchestrate · Phases
-- Five phases, two hard stops (accent on "two hard stops", no line break)
-- 01 GRILL · stop 1 — Questions one at a time; you lock the answers
-- 02 PLAN — Goal split into tasks, each scored
-- 03 PREVIEW gate · stop 2 (hi) — Nothing runs until you approve
-- 04 EXECUTE / VERIFY — Sub-agents build, a verifier checks
-- 05 CLOSE — Reports which models did the work; never commits
+- Kicker: /orchestrate · Why not plan mode or /goal?
+- Four ways to run a big task with AI (accent on "a big task with AI", one line, smaller h2)
+- Table Question | Long prompt every time | Plan mode | /goal (keeps working until the goal is met) | /orchestrate (acc):
+  - Remembers the instructions? | No, you retype or paste them | No, you retype your asks | No, it keeps the goal, not your method | Yes, it's a skill
+  - Interviews you first? | Only if you type that in | Only if you ask, every time | No, it just starts working | Yes (if needed), one question at a time
+  - Stops for your OK before building? | No, it starts editing | Yes, once, for the whole plan | No, it starts working right away | Yes, a hard gate: "just go" in your goal doesn't skip it
+  - Picks a model per task? | No, same model for everything | No, one model builds it all | No | Yes, by score: haiku, sonnet or opus
+  - Who checks the work? | Nobody, unless you do | The same model that built it | It checks itself | A separate haiku verifier, plus sonnet or opus reviewers
+  - Picks up after a break? | No, forgets between sessions | No, the plan lives in the chat | Only within the session | Yes, from the plan file (`/orchestrate resume`)
+- The catch: the planning and checking add overhead that isn't worth it on small tasks, it has to run on opus or sonnet (it stops on haiku), and you still read the report.
 
 Speaker notes:
-The two hard stops are GRILL and PREVIEW.
-GRILL: each question comes with its recommended answer first. Locking the answers is the first stop.
-PLAN: contracts first, then each task is scored, in waves of at most three agents.
-PREVIEW is the second stop, the hard gate.
-EXECUTE / VERIFY: every agent gets an explicit model; a haiku verifier checks the work, a sonnet reviewer reads it.
-CLOSE reports the model mix it actually used and the follow-ups. It suggests a commit; it never runs one.
-All of it goes into a plan file, so /orchestrate resume picks up exactly where it stopped. Close the laptop, come back tomorrow.
-Transition: "How does it decide which model gets which task?"
-~1.75 min
+These are the three things I used before. The first three columns are how each one worked for me day to day, not a feature list from the docs.
+Long prompt: it works, but I pasted it every time, one model did everything, and nothing stopped it before it started editing. Next session, it was gone.
+Plan mode is good at planning. But I still typed the phases, the sub-agents, the models and the "interview me" part every time. Once I approved, one model built the whole thing and checked its own work, and the plan only lived in that chat.
+/goal keeps going until the goal is met. It doesn't ask me anything first, it starts working right away, there's no model choice, and it checks itself.
+The /orchestrate column is what the next two slides explain. On the OK row, the difference is that its gate can't be skipped: even "just go" written into the goal doesn't skip it. "If needed" on the interview: for tiny goals it takes a fast lane and skips the questions. The verifier still runs.
+The bottom line is the honest part. On a small task, all that planning and checking is overhead you don't need. It has to run on opus or sonnet; on haiku it stops and asks you to switch. And you still read the report at the end.
+Transition: "So what's it actually like to use?"
+~2.75 min
 
-### Slide 14 — Scoring picks the model, not mood (dtable)
+### Slide 14 — How /orchestrate runs a big task, phase by phase (dtable)
 On-slide copy:
-- Kicker: /orchestrate · Scoring
-- Scoring picks the model, / not mood
-- Each task scores 0–2 on Ambiguity (how unclear), Breadth (how wide), Reasoning (how hard). The total picks the model.
-- Table Total | Goes to (acc): 0–2 | haiku · 3–4 | sonnet · 5–6 | Too big: split it first · Security | sonnet or higher, always
+- Kicker: /orchestrate · How it works
+- How /orchestrate runs a big task, / phase by phase
+- Lead: Five phases: GRILL → PLAN → PREVIEW → EXECUTE / VERIFY → CLOSE. The orchestrator doesn't write the code; helpers on haiku, sonnet or opus do.
+- Table Phase | What it does (acc):
+  - GRILL | Asks you questions one at a time, each with a recommended answer. If you have a code map, its helpers search that before grepping. Tiny goals skip this step (fast lane).
+  - PLAN | Splits the goal into tasks and scores each one (next slide). At most 3 helpers run at once, and each file has one owner.
+  - PREVIEW · the gate | Shows every task with its score and model, then stops. Only your reply counts: "just go" written into the goal is ignored, and "ok, but…" is an edit.
+  - EXECUTE / VERIFY | Helpers build. A haiku verifier runs the checks; a sonnet reviewer reads the diff (an opus security reviewer for security tasks). The orchestrator may make one fix of 5 lines or less per task, only for a bug the verifier found.
+  - CLOSE | Reports which models did the work. Everything is in a plan file, so you can stop, resume or reject. Never commits on its own.
 
 Speaker notes:
-GUESS-FIRST: which model gets "write CLAUDE.md"? Take a few answers. (Answer: haiku. Low ambiguity, narrow, little reasoning. Ask "which model", not "which tier".)
-The tie-breaker rule, quoted: "When unsure, pick the lower tier: escalating costs less than over-provisioning."
-If a task fails, it climbs a ladder: haiku, retry, sonnet, retry, then the orchestrator re-scopes it, and finally it pauses and asks you.
+This is the whole thing in one table. I'll go through it quickly.
+GRILL is the interview I used to ask for by hand. One question at a time, and it gives you its recommended answer, so most of the time I just say yes. If the goal is tiny, it skips this.
+PLAN: it splits the goal into tasks and scores each one. Scoring is the next slide. It also decides up front who owns which file, so three helpers working at the same time don't step on each other.
+PREVIEW is the part I care about most. It shows the full plan and stops. I'll show you that live in a minute.
+EXECUTE: the orchestrator doesn't write the code, the helpers do. The one exception is a fix of 5 lines or less per task, and only for a bug the verifier found. Then a cheap haiku verifier re-runs the checks, and a separate reviewer reads the diff.
+CLOSE tells me which models actually did the work. Everything lives in a plan file under docs/plans, so I can stop, close the laptop, and run /orchestrate resume the next day. It suggests a commit; it never makes one.
+CUTTABLE if running late — the shortcuts it isn't allowed to take. Each one sounds reasonable in the moment. "I'll do this quick fix myself": hand it to a helper. "Approval was given in advance": show the preview anyway. "Small repo, I'll just read it": it reads at most 2 files of 100 lines per phase itself and sends a scout for the rest. "I'll run the tests to be sure": the verifier does that. "This agent sets its own model": pass the model anyway.
+Transition: "The part of PLAN I want to show you is how it picks the model."
+~2.5 min
+
+### Slide 15 — How it picks a model for each task (dtable)
+On-slide copy:
+- Kicker: /orchestrate · Picking a model
+- How it picks a model / for each task
+- Lead: Each task scores 0–2 on Ambiguity (how unclear it is), Breadth (how much it touches) and Reasoning (how hard it is to think through). The total picks the model.
+- Table Score or task type | Goes to (acc):
+  - 0–2 | haiku
+  - 3–4 | sonnet
+  - 5–6 | Split into smaller tasks first; opus only if it can't be split
+  - Security work (auth, secrets, crypto, permissions…) | Always opus, plus an opus security reviewer
+- You can ask for opus yourself. If a plan has more than 2 opus tasks, it asks you to confirm.
+- Its rule: "When unsure, pick the lower tier: escalating costs less than over-provisioning."
+- If a task fails: haiku retries → sonnet retries → one opus try, or the orchestrator re-scopes it → still failing? It pauses and tells you.
+
+Speaker notes:
+GUESS-FIRST: which model gets "add a config entry with exact steps"? Take a few answers. (Answer: haiku. It's clear, it's one file, and it doesn't need much thinking.)
+Three questions per task: how unclear is it, how much does it touch, how hard is it to think through. Zero to two each, add them up.
+Big tasks get split first. Opus only gets a task that really can't be split, or anything that touches security, like auth, secrets, crypto or permissions. Those always go to opus, and a fresh opus reviewer goes through the diff looking for vulnerabilities.
+The rule I like most is the one on screen. When it's unsure, it picks the cheaper model. If that was wrong, the task fails and moves up. That still costs less than sending everything to the big model just in case.
+That's where the token saving comes from. I can't give you a number. Try it on one real task and look at the model mix it reports at CLOSE.
+CUTTABLE if running late — the retry ladder: a failed haiku task retries once on haiku with the exact error and the current diff, then moves to sonnet. Sonnet retries once, then the orchestrator either tries opus once or works out the problem itself and re-scopes or splits the task. If that still fails, it pauses and reports to me. Every retry is logged in the plan file.
 Transition: "Now the gate itself, live."
-~1.75 min
+~2 min
 
-### Slide 15 — Demo: the preview gate (demo)
+### Slide 16 — Demo: the preview gate (demo)
 On-slide copy:
 - Badge: Live demo
-- Kicker: Demo · the gate
+- Kicker: Demo · the preview gate
 - Demo: / the preview gate
-- 01 Paused at PREVIEW — Every task with its score and model; nothing has run
-- 02 Type "just go" (hi) — Only approve, edit or reject count
-- Watch for: "just go" gets the same question back.
+- 01 Paused at PREVIEW — I wrote "just go" into the goal. It still stopped, and says so. Every task has its score and model; the opus row says why.
+- 02 Reply "ok, but drop task 3" (hi) — That counts as an edit: it changes the plan and shows it again. Only a plain yes approves.
+- Watch for: "just go" in the goal didn't skip the gate.
 
 Speaker notes:
-PREP: before the talk, run /orchestrate on a small prepared goal, answer GRILL, and stop at PREVIEW. Leave that terminal paused at "Approve, edit, or reject?". Don't approve.
-Watch for: "just go" gets the same question back.
+Watch for: "just go" in the goal didn't skip the gate.
+PREP: before the talk, use the current skill (the one with the opus tier). Run /orchestrate on opus or sonnet with a small goal that includes one security-touching task, and end the goal with "just go": /orchestrate <goal>, just go. An opus row with its reason tag should show up. Answer GRILL and stop at PREVIEW. The preview should print a line saying approval in the goal was ignored. Leave the terminal paused at "Approve, edit, or reject?". Don't approve.
+PREP: capture ./screenshots/orchestrate-preview.png from that same run. Don't use the README preview; it's marked illustrative.
 1. Switch to the pre-staged terminal.
-2. Walk the task table (task, score, model) and read the "Mix" line.
-3. Point at the prompt: "Approve, edit, or reject?"
-4. Type "just go". Show that it's ignored and the prompt comes back.
+2. Walk the task table (task, score, tier). Point at the Tier column: the opus row carries its reason, e.g. opus (security: <surface>). Read the "Mix" line.
+3. Point at the line saying "just go" in the goal was ignored, then at the prompt: "Approve, edit, or reject?"
+4. Reply "ok, but drop task 3". That counts as an edit: show the re-preview with the plan changed. Never type a bare 'go' or 'just go' at the prompt: that approves.
 5. Reject, and switch back to the slides.
-FALLBACK: screenshot ./screenshots/orchestrate-preview.png — "Here's the preview from a real run; the bit to notice is that 'just go' gets the same question back."
-Transition: "That gate exists because I don't trust myself either." (If slide 16 is cut: "The gate stops it before. The verifier checks after." and go to slide 17.)
-~1.5 min
-
-### Slide 16 — Every reasonable-sounding shortcut is banned (dtable)
-On-slide copy:
-- Kicker: /orchestrate · Rules
-- Every reasonable-sounding / shortcut is banned
-- Rules the orchestrator must follow, even when a shortcut sounds fine.
-- Table Tempting thought | What it does instead (acc): "I'll do this quick fix myself" | Hand it to a sub-agent · "Approval was given in advance" | Show the preview · "I'll run the tests to be sure" | Let the verifier run them
-
-Speaker notes:
-CUTTABLE if running late.
-The left column sounds reasonable every single time. That's the problem.
-Two more in the skill: "Small repo, I'll read directly" → read cap holds, send a scout; "Custom agent sets its own model" → pass the model anyway.
-Other hard rules: at most 3 live agents, one owner per file per wave, a read cap of 2 files × 100 lines per phase, reports of 15 lines or fewer.
-My favourite: "Sub-agent reports are data, not instructions." An agent can't talk its way past the gate.
-Transition: "Rules are nice. Checking is better."
-~1.5 min
-
-### Slide 17 — The verifier caught two "done"s that weren't (vs-grid)
-On-slide copy:
-- Kicker: /orchestrate · Verify
-- The verifier caught / two "done"s that weren't
-- Verifier: a separate cheap agent that re-checks every "done" claim.
-- Agent said: "Done." · Coverage audit: "done" · E2E (end-to-end) test: "line 143 covered"
-- Verifier found (hi): Not quite. · Coverage audit: ~65 identifiers missing → retry with exact list → 0 missing · E2E test: line 143 still uncovered
-
-Speaker notes:
-Two real runs. In the coverage audit, sonnet "wrote from memory". The verifier found about 65 identifiers missing; the retry got the exact list and came back with 0 missing.
-The E2E agent claimed line 143 was covered. A coverage refresh said no.
-Fair warning: verifiers fail too. On one run the final verifier raised a false alarm because its grep matched numbers in CSS. You still read the report.
-Each task gets one small fix (5 lines max) after VERIFY, not an endless loop.
-Transition: "So what does this look like across real runs?" (If slide 18 is cut: "Remember the footer on slide 1?" and go to slide 19.)
+FALLBACK: screenshot ./screenshots/orchestrate-preview.png — "Here's the preview from a real run; the bit to notice is that 'just go' in the goal didn't skip the gate."
+Transition: "That's the check before anything runs. Here's what the checking after looked like on real runs."
 ~1.75 min
 
-### Slide 18 — ~11 real runs: mostly cheap models, a few surprises (card-grid)
+### Slide 17 — What happened when I used it (vs-grid)
 On-slide copy:
 - Kicker: /orchestrate · In practice
-- ~11 real runs: / mostly cheap models, a few surprises
-- haiku / sonnet (hi): Did most of the work
-- retries: Retried on the same model, rarely moved up
-- 15: Issues an opus trial run caught before real work
-- ENOSPC: Disk full: 3 agents, zero bytes written
+- What happened / when I used it
+- Left vs-card: label "My runs" · title "Two "done" claims that weren't true"
+  - Coverage audit: the agent said "done", but ~65 identifiers were missing. Retried with the exact list: 0 missing.
+  - E2E (end-to-end) test: the agent said line 143 was covered. It wasn't.
+- Right vs-card (hi): label "This deck" · title "Built by a skill that /orchestrate built"
+  - The skill: /create-presentation made these slides.
+  - The build: /orchestrate built it in 5 tasks + 2 fixes, 0 escalations (before the opus tier existed).
+- Closing line: Questions?
 
 Speaker notes:
-CUTTABLE if running late. If you cut it, end slide 17 with: "Remember the footer on slide 1?"
-About 11 plan files. The model mix skews haiku and sonnet.
-The dry-run found its 15 issues before any real work; 13 got fixed.
-The disk one: a library audit's first wave hit ENOSPC. Three agents, zero bytes. The most efficient run I've ever had.
-Logged rule breaks happen too: one agent ran git stash/pop, one skipped the TDD red step, one sent an empty first report. That's why they're logged.
-Transition: "Speaking of that dry-run... remember the footer on slide 1?"
-~1.5 min
-
-### Slide 19 — This deck was built by a skill that /orchestrate built (center)
-On-slide copy:
-- Kicker: About slide 1
-- This deck was built by a skill / that /orchestrate built
-- /create-presentation is the skill that built these slides. /orchestrate built it: 5 tasks + 2 fixes, 0 escalations (no task needed a bigger model).
-
-Speaker notes:
-Payoff of the slide 1 footer. One 1-line VERIFY fix in the whole run.
-That opus dry-run with 15 issues? This skill. (If slide 18 was cut: an opus dry-run found 15 issues before any real work; 13 got fixed.)
-And the verifier false alarm, the CSS numbers? Also this skill. It's turtles all the way down.
-Context docs (CONTEXT.md, plan files) carry the decisions between sessions. The facts in this deck come from a context file in the same folder, which is why it doesn't make numbers up. If a slide is wrong, blame the context doc, not the model.
-Transition: "Questions on /orchestrate?"
-~1.25 min
-
-### Slide 20 — Questions? (/orchestrate) (center)
-On-slide copy:
-- Kicker: Q&A
-- Questions?
-- /orchestrate
-
-Speaker notes:
-Open the floor.
-Seed if quiet: "What's a ticket on your board right now that would score 0–2?"
-Move on at about 30 minutes in.
+Two real catches from my own runs. In a test-coverage audit, a sonnet helper wrote from memory and said it was done. The verifier found about 65 identifiers missing. The retry got the exact list and came back with zero missing.
+Another time, a helper said line 143 of an end-to-end test was covered. A coverage refresh said it wasn't.
+Verifiers get it wrong too. On one run the final verifier raised a false alarm because its search matched numbers in CSS. So I still read the report.
+Across about 11 runs, most of the work went to haiku and sonnet.
+One thing to be clear on: the ~11 runs and the 0-escalation build all happened before I added the opus tier you saw on slide 15.
+Now the right side. Remember the footer on slide 1? /create-presentation is the skill that built this deck, and /orchestrate built that skill. 5 tasks plus 2 fixes, nothing had to move to a bigger model, and one 1-line fix during VERIFY.
+Before any real work, an opus dry-run found 15 issues in that skill; 13 got fixed. And the CSS false alarm I just mentioned was this same build.
+The facts in this deck come from a context file in the same folder, so it doesn't make numbers up. If a slide is wrong, that file is the place to check.
+Q&A: open the floor on /orchestrate. Seed if quiet: "What's a ticket on your board right now that would score 0–2?" Move on at about 30 minutes in.
 Transition: "Last section is lighter: what happens after the code is written."
-~2.5 min — Q&A buffer
+~4.25 min (~1.75 content + 2.5 Q&A buffer)
 
-### Slide 21 — 03 · The ship chain (divider)
+Builder note: applied (review finding 7). The "~11 runs" line is no longer on the left card; it lives only in the notes ("Across about 11 runs…"). Keep the right card whole.
+
+### Slide 18 — 03 · The ship chain (divider)
 On-slide copy:
 - 03 · The ship chain
 - After the code works: commit, PR, release notes, build
@@ -517,7 +528,7 @@ Section three, lighter coverage. Each skill is small on its own; the value is th
 Transition: "Here's the chain."
 ~0.25 min
 
-### Slide 22 — Each skill feeds the next (steps-list)
+### Slide 19 — Each skill feeds the next (steps-list)
 On-slide copy:
 - Kicker: Ship chain · 4 skills + our CI
 - Each skill feeds the next (accent on "feeds the next", no line break)
@@ -537,7 +548,7 @@ The first four are skills in the install repo; the last is our CI.
 Transition: "The trick is that it's one piece of writing with several readers."
 ~1.5 min
 
-### Slide 23 — One change, four write-ups, four readers (dtable)
+### Slide 20 — One change, four write-ups, four readers (dtable)
 On-slide copy:
 - Kicker: Ship chain · Audiences
 - One change, / four write-ups, four readers
@@ -551,10 +562,10 @@ Speaker notes:
 GUESS-FIRST: who reads your commit messages? Take answers. "Nobody" is the usual one.
 Answer: more people than you think. On our dev builds, the last commit message becomes the tester note. So "wip fix stuff" is what QA sees.
 Same facts, rewritten for each reader as they move down the chain.
-Transition: "Which means commits get written with the next step in mind." (If slide 24 is cut: "Here's a real one." and go to slide 25.)
+Transition: "Which means commits get written with the next step in mind." (If slide 21 is cut: "Here's a real one." and go to slide 22.)
 ~1.5 min
 
-### Slide 24 — Commits are written for the release notes (code-block)
+### Slide 21 — Commits are written for the release notes (code-block)
 On-slide copy:
 - Kicker: Ship chain · Under the hood
 - Commits are written / for the release notes
@@ -569,7 +580,7 @@ The why comes from /reflect: /release-notes reads CLAUDE.md and CONTEXT.md becau
 Transition: "Here's a real one."
 ~0.75 min
 
-### Slide 25 — Demo: v1.9.4 notes beside their commits (demo)
+### Slide 22 — Demo: v1.9.4 notes beside their commits (demo)
 On-slide copy:
 - Badge: Live demo
 - Kicker: Demo · our mobile app v1.9.4
@@ -594,7 +605,7 @@ FALLBACK: screenshot ./screenshots/release-notes-v1.9.4.png — "Here are the tw
 Transition: "And this file isn't optional."
 ~1.5 min
 
-### Slide 26 — No release notes, no build (center)
+### Slide 23 — No release notes, no build (center)
 On-slide copy:
 - Kicker: Enforced, not recommended
 - No release notes, / no build
@@ -608,7 +619,7 @@ This is the difference between a habit and a process: the chain is enforced by C
 Transition: "Let's pull the three sections together."
 ~1 min
 
-### Slide 27 — Ask first, build cheap, ship clean (card-grid)
+### Slide 24 — Ask first, build cheap, ship clean (card-grid)
 On-slide copy:
 - Kicker: Recap
 - Ask first, build cheap, / ship clean
@@ -624,7 +635,7 @@ Ship chain: write the commit for whoever reads it next, and it becomes the PR, t
 Transition: "You don't need all three. Pick two."
 ~0.75 min
 
-### Slide 28 — Pick two. Try them this week. (closing)
+### Slide 25 — Pick two. Try them this week. (closing)
 On-slide copy:
 - Kicker: Your move
 - Pick two. / Try them this week.
@@ -639,7 +650,7 @@ The same lines stay on the next slide through Q&A, so no rush to copy.
 Transition: "Thanks. Last round of questions."
 ~0.75 min
 
-### Slide 29 — Questions? (final) (center)
+### Slide 26 — Questions? (final) (center)
 On-slide copy:
 - Kicker: Q&A
 - Questions?
@@ -655,7 +666,7 @@ Transition: none, this is the end.
 
 ## Open questions
 
-Items 5-7 and 9 are resolved history and keep pre-revision-3 slide numbers.
+Items 5-7 and 9 are resolved history and keep pre-revision-3 slide numbers. Items 1-4, 8, 10-12 use revision 3 numbers unless marked; items 13-18 are revision 4 (26-slide numbering). Revision 4 renumbering for items 2-4: demo 15 → 16, demo 25 → 22; slides 16/18/24 cut list → 21 plus the notes paragraphs in engagement item 7.
 
 1. eqc-kit numbers: slide 9 uses the cached `compliance.json` (2026-10-02: 33 pass / 2 partial / 4 fail); `docs/eqc/COMPLIANCE.md` (2026-09-28) says 30 / 5 / 4. Re-run /eqc-check (with the dev eqc-kit) before the talk so slides 8 and 9 agree and `docs/eqc/COMPLIANCE.html` exists.
 2. Demo fallbacks: five screenshots in `./screenshots/`, all still to capture: `eqc-check-scorecard.png`, `eqc-compliance-report.png` (NEW), `eqc-fix-ranked.png` (replaces `eqc-fix-plan.png`; the saved-plan part is dropped), `orchestrate-preview.png`, `release-notes-v1.9.4.png`. (`context.md` checklist: **resolved**, renumbered 2026-11-17.)
@@ -669,3 +680,12 @@ Items 5-7 and 9 are resolved history and keep pre-revision-3 slide numbers.
 10. Density (by the speaker's request): slides 6, 7 and 9 go well past the ~30-word guideline, and slide 6 / slide 9 have 5 dtable rows (DESIGN.md says "about four"). Design-creator must check each fits one screen (print clips overflow). If one overflows, which to trim first: slide 6's "cost" row (it repeats slide 7's code-map and cached-check points) or slide 7's cell text?
 11. Dev eqc-kit: presented as available. Confirm it is published before the talk and give the version, or the slides stay version-free [TBD]. Known dev wording bug: `npx eqc-kit hooks` output still says "verify + gate" though the pre-push hook runs `guard` (sources.md, Contradictions); avoid running `hooks` live or fix it before publishing.
 12. /eqc-fix ranking: "low effort, high gain" is from your interview; the old deck said "top 10 easiest fails first". Confirm the wording /eqc-fix prints, so the slide matches what the audience sees.
+13. **Resolved (2026-11-17):** slide 13 `[TBD]` cells filled by the speaker; /orchestrate "Interviews you first?" edited to "Yes (if needed), one question at a time"; table keeps 6 rows. Plan mode and /goal behaviour still come only from the speaker, not checked against Claude Code docs (the slide 13 notes say "how each one worked for me").
+14. **Resolved (2026-11-17):** slides 13-15 fit one 1280x720 screen after the review fixes (slide 13: one-line h2, 0.9rem cells, all 6 rows kept). Print preview not yet checked. Original note: slide 13 is 6 rows × 5 columns and slide 14 is 5 rows with long cells, both well past DESIGN.md's ~4 rows / ~30 words. Design-creator must check each fits one screen (print clips overflow). If one overflows, trim first: slide 14's GRILL/CLOSE extras (code map, stop/resume/reject) into the notes, then shorten slide 13's plan mode cells?
+15. **Resolved (2026-11-17):** slide 17 keeps the approved density; if the design-creator reports overflow, the "~11 runs" line moves to the notes first (Builder note on slide 17).
+16. **Resolved (2026-11-17):** slide 17 notes say the ~11 runs and the 0-escalation build happened before the opus tier existed.
+17. **Resolved in the notes (2026-11-17):** slide 16 PREP uses the current skill with one security-touching task; `./screenshots/orchestrate-preview.png` must be recaptured from that run (still to capture, see item 2).
+18. **Resolved (2026-11-17):** `transcript.md` resynced to the 26-slide deck after the review fixes (jokes removed throughout). Original note: `transcript.md` (/orchestrate section rewritten for slides 11-17, jokes dropped; ship-chain headings shift by -3) and `context.md` (accepted-suggestion and checklist slide numbers) need a resync once revision 4 is approved. (**`context.md` resolved 2026-11-17** per review finding 4: 26-slide numbering, security always opus, no jokes, new demo pre-staging line.)
+19. **Resolved (2026-11-17, review finding 7):** the "~11 runs: most of the work went to haiku and sonnet" line moved from slide 17's left card to its notes only.
+20. Slide 16 demo (review finding 1): confirm in rehearsal that `/orchestrate <goal>, just go` still stops at PREVIEW and prints that approval in the goal was ignored, and that "ok, but drop task 3" re-previews. Recapture `./screenshots/orchestrate-preview.png` from that run.
+21. **Resolved (2026-11-17):** slide 12 merged to 3 rows in `index.html` (01 plan mode · 02 "I typed the same asks every time" · 03 "So I made it a skill"). Original note: `index.html` slide 12 did not yet match review finding 13 as recorded here: it still has the old row 03 "Same prompt, over and over" and the old row 02 text, and the last row is numbered "03" too (two "03"s, 4 rows). The outline records the confirmed merge (3 rows). Fix the deck to match, or confirm the 4-row version.

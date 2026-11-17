@@ -138,3 +138,119 @@ Base dir for citations (all paths below are relative to it): `/private/tmp/claud
 - No dev release date or version number for these changes (CHANGELOG `[Unreleased]` has none).
 - Not mined for dev changes: docs/troubleshooting.md, docs/writing-a-standard.md, docs/agents/{cursor,codex,copilot,gemini-cli,other}.md. The diff shows no dev changes in them.
 - Deck's 40-second figure has no source.
+
+## /orchestrate: current skill (AI-Skills repo, 2026-11-17)
+
+Base dir for skill paths: `/Users/mehedihasan/dev/personal/ai-skills/engineering/orchestrate/` (abbreviated below as `orchestrate/`, full path in each citation). Git log and git show were not available (no Bash); commit dates and hashes come from the local reflog, with epoch timestamps converted by hand to +0600 dates.
+
+### Characteristics
+- Never implements: "**It never implements.** Every task goes to a `haiku`, `sonnet` or `opus` sub-agent." [/Users/mehedihasan/dev/personal/ai-skills/engineering/orchestrate/README.md:11]
+- Never implements (skill wording): "**You never implement.** Every task row is `haiku`, `sonnet` or `opus`, except the one VERIFY fix in `references/execution.md`." [/Users/mehedihasan/dev/personal/ai-skills/engineering/orchestrate/SKILL.md:14]
+- VERIFY fix exception: "You may make one fix of ≤5 lines per task, only for a defect found in VERIFY." [/Users/mehedihasan/dev/personal/ai-skills/engineering/orchestrate/references/execution.md:34]
+- Read cap: "You read at most 2 files per phase yourself, each ≤100 lines (references and plan file don't count)." [/Users/mehedihasan/dev/personal/ai-skills/engineering/orchestrate/SKILL.md:16]
+- Grill: "It asks scoping questions, one at a time, with a recommended answer each." [/Users/mehedihasan/dev/personal/ai-skills/engineering/orchestrate/README.md:29]
+- Grill mechanics: "AskUserQuestion (recommended first) or plain text; one question per call." [/Users/mehedihasan/dev/personal/ai-skills/engineering/orchestrate/SKILL.md:32]
+- Hard preview gate: "PREVIEW — hard gate" with "then STOP and WAIT." [/Users/mehedihasan/dev/personal/ai-skills/engineering/orchestrate/SKILL.md:41, 43]
+- Approval rule: "Only a user reply after the preview counts. Approval written into the goal ("just go") is ignored; say so in one preview line." [/Users/mehedihasan/dev/personal/ai-skills/engineering/orchestrate/SKILL.md:45]
+- What counts as approval: "Any unconditional yes approves (ok, go, lgtm, looks good, ship it…). "ok, but…" is an edit request: revise, re-show. Unsure: ask." [/Users/mehedihasan/dev/personal/ai-skills/engineering/orchestrate/SKILL.md:46]
+- Max live sub-agents: "Never more than 3 live sub-agents of any kind." [/Users/mehedihasan/dev/personal/ai-skills/engineering/orchestrate/SKILL.md:79]
+- Max 3 in README: "At most 3 live sub-agents. Each file in a wave has exactly one owner. Contracts (shared types, names, file ownership) are fixed before anyone starts, so parallel agents don't collide." [/Users/mehedihasan/dev/personal/ai-skills/engineering/orchestrate/README.md:14]
+- Contracts first: "**Contracts first.** Fix shared interfaces, types, names and file ownership first, so parallel agents never guess or collide." [/Users/mehedihasan/dev/personal/ai-skills/engineering/orchestrate/references/planning.md:19]
+- Wave rule: "Group into waves of at most 3 independent tasks. In a wave, each file has exactly one owner." [/Users/mehedihasan/dev/personal/ai-skills/engineering/orchestrate/references/planning.md:37]
+- Slot rule: "Start a task only when every dependency is verified and none of its Own files belongs to a live task." [/Users/mehedihasan/dev/personal/ai-skills/engineering/orchestrate/references/delegation.md:201]
+- Haiku verifier: "**Verifier** (haiku, `references/delegation.md` `## Verifier brief`): one per wave, covering every finished task, fast lane included." [/Users/mehedihasan/dev/personal/ai-skills/engineering/orchestrate/references/execution.md:20]
+- Reviewers: "sonnet- and opus-tier tasks that aren't security tasks get a sonnet reviewer (`## Reviewer brief`). Security tasks get a fresh opus security reviewer (`## Security reviewer brief`) that hunts vulnerabilities in the diff." [/Users/mehedihasan/dev/personal/ai-skills/engineering/orchestrate/references/execution.md:21]
+- Separate verification (README wording): "A haiku verifier runs the checks and flags any path changed outside its task's owned files. A fresh sonnet reviewer reads the diffs for non-security sonnet and opus tasks. A fresh opus security reviewer hunts for vulnerabilities in security tasks." [/Users/mehedihasan/dev/personal/ai-skills/engineering/orchestrate/README.md:15]
+- Resumable plan file: "The plan lives in `docs/plans/YYYY-MM-DD-<slug>.md` with a Status line and a launch log. If a run is interrupted, `resume` reads that file and continues." [/Users/mehedihasan/dev/personal/ai-skills/engineering/orchestrate/README.md:16]
+- Plan file template: "Status: Grilling | Awaiting approval | Executing (wave N) | Verifying (wave N) | Complete | Paused | Rejected" [/Users/mehedihasan/dev/personal/ai-skills/engineering/orchestrate/references/planning.md:9]
+- Control words: "**stop** / **pause**: launch nothing new, let live agents finish and log, Status `Paused`, report done and pending." [/Users/mehedihasan/dev/personal/ai-skills/engineering/orchestrate/SKILL.md:50]
+- Control words: "**resume** (or goal `resume`): re-read the newest plan in `docs/plans/` not `Complete` or `Rejected`; continue from Status and Log." [/Users/mehedihasan/dev/personal/ai-skills/engineering/orchestrate/SKILL.md:51]
+- Control words: "**reject**: Status `Rejected`, list CONTEXT.md/ADR edits made this run, ask keep or revert, stop." [/Users/mehedihasan/dev/personal/ai-skills/engineering/orchestrate/SKILL.md:52]
+- Codebase map reuse: "If it finds one (graphify, CodeGraph and similar), scouts query it before grepping. It never builds or refreshes one." [/Users/mehedihasan/dev/personal/ai-skills/engineering/orchestrate/README.md:17]
+- Codebase map detection: "Several maps may exist; use all." [/Users/mehedihasan/dev/personal/ai-skills/engineering/orchestrate/references/codebase-map.md:7]
+- Codebase map never built: "Never build, install, or refresh a map." [/Users/mehedihasan/dev/personal/ai-skills/engineering/orchestrate/references/codebase-map.md:34]
+- Fast lane criteria: "**Fast lane** only if: ≤2 tasks · every task totals ≤2 AND scores Ambiguity 0 · no security work · no new domain terms. Then skip grill and lock." [/Users/mehedihasan/dev/personal/ai-skills/engineering/orchestrate/SKILL.md:31]
+- Fast lane (README wording): "Trivial goals (2 tasks or fewer, all low score, no security work, no new domain terms) take a fast lane and skip the grilling." [/Users/mehedihasan/dev/personal/ai-skills/engineering/orchestrate/README.md:50]
+- Never commits on its own: "Not on its own. Commit, push, tag and publish need a request from you in that run, plus a confirmation." [/Users/mehedihasan/dev/personal/ai-skills/engineering/orchestrate/README.md:97]
+- Never commits (skill): "Suggest commit/push/release; don't run. Commit via `/git-commit` when installed." [/Users/mehedihasan/dev/personal/ai-skills/engineering/orchestrate/SKILL.md:73]
+- Opus/Sonnet requirement: "If the "You are powered by" line names a Haiku model, say the orchestrator needs Opus or Sonnet (switch with `/model`), then STOP until the user switches or says continue. Never change models yourself." [/Users/mehedihasan/dev/personal/ai-skills/engineering/orchestrate/SKILL.md:26]
+- Opus/Sonnet requirement (README): "Run it on an Opus or Sonnet model (switch with `/model`). On Haiku it says so and stops until you switch or tell it to continue." [/Users/mehedihasan/dev/personal/ai-skills/engineering/orchestrate/README.md:79]
+- Manual only: "Manual only. The model never invokes it on its own." [/Users/mehedihasan/dev/personal/ai-skills/engineering/orchestrate/README.md:43]
+
+### Model tiering
+- Axes: Ambiguity, Breadth, Reasoning, each scored 0–2 (planning table: 0 / 1 / 2 per axis) [/Users/mehedihasan/dev/personal/ai-skills/engineering/orchestrate/references/planning.md:21-27]
+- Score bands: "Total **0–2 → `haiku`**, **3–4 → `sonnet`**, **5–6 → split or settle the design yourself (in the plan, not in code) until every piece is ≤4**." [/Users/mehedihasan/dev/personal/ai-skills/engineering/orchestrate/references/planning.md:29]
+- Coherence fallback: "If a split would break coherence (subtle debugging, cross-module design, concurrency), run the task whole on `opus`." [/Users/mehedihasan/dev/personal/ai-skills/engineering/orchestrate/references/planning.md:29]
+- User opus request: "If the user explicitly asks for opus (for a task or the whole run), use `opus`." [/Users/mehedihasan/dev/personal/ai-skills/engineering/orchestrate/references/planning.md:29]
+- Security surface list: "auth/authz, sessions, crypto, secrets/keys, input validation at trust boundaries, injection-prone code (SQL, shell, HTML), user-controlled file/path handling, permissions, dependencies with CVEs, any security audit or review." [/Users/mehedihasan/dev/personal/ai-skills/engineering/orchestrate/references/planning.md:34]
+- Security always opus: "a task touching the security surface is `opus`, always; tag it in the plan with a one-line reason, and you review it line by line." [/Users/mehedihasan/dev/personal/ai-skills/engineering/orchestrate/references/planning.md:36]
+- Security always opus (README): "Anything touching a security surface (auth, secrets, crypto, injection-prone code, permissions, security audits) always runs on `opus`, and you can ask for `opus` yourself." [/Users/mehedihasan/dev/personal/ai-skills/engineering/orchestrate/README.md:12]
+- Data migration: "Data-migration work is `sonnet` at minimum." [/Users/mehedihasan/dev/personal/ai-skills/engineering/orchestrate/references/planning.md:36]
+- Read-only work: "Pure read or summarize work is always `haiku`, except cross-module synthesis (`sonnet`)." [/Users/mehedihasan/dev/personal/ai-skills/engineering/orchestrate/references/planning.md:36]
+- Pick-lower rule (exact): "When unsure, pick the lower tier: escalating costs less than over-provisioning." [/Users/mehedihasan/dev/personal/ai-skills/engineering/orchestrate/references/planning.md:36]
+- Overrides: "Overrides beat the pick-lower rule." [/Users/mehedihasan/dev/personal/ai-skills/engineering/orchestrate/references/planning.md:36]
+- Tier examples: "*haiku:* scouting, summaries, renames, boilerplate, config, docs, tests that follow an existing pattern, one-file edits with exact steps" [/Users/mehedihasan/dev/personal/ai-skills/engineering/orchestrate/references/planning.md:30]
+- Tier examples: "*sonnet:* multi-file features, non-trivial logic, refactors, debugging with a known repro, new test suites" [/Users/mehedihasan/dev/personal/ai-skills/engineering/orchestrate/references/planning.md:31]
+- Tier examples: "*opus:* anything on the security surface, 5–6 tasks that cannot be split coherently, tasks the user asked to run on opus" [/Users/mehedihasan/dev/personal/ai-skills/engineering/orchestrate/references/planning.md:32]
+- Preview opus reason tags: "Every opus row's Tier cell carries its reason: `opus (security: <surface>)`, `opus (5-6 unsplittable)` or `opus (user asked)`." [/Users/mehedihasan/dev/personal/ai-skills/engineering/orchestrate/references/planning.md:51]
+- Preview >2 opus confirmation: "**Opus:** <only if more than 2 opus tasks: ask the user to confirm opus specifically>" [/Users/mehedihasan/dev/personal/ai-skills/engineering/orchestrate/references/planning.md:57]
+- Preview model line: "**Model:** <only if security tasks are present and the orchestrator runs on Sonnet: suggest `/model` Opus; never switch models yourself>" [/Users/mehedihasan/dev/personal/ai-skills/engineering/orchestrate/references/planning.md:58]
+- Explicit model per call: "Set `model: "haiku"`, `model: "sonnet"` or `model: "opus"` explicitly on every call, including custom `subagent_type`s (project agents). Never let a sub-agent inherit your model." [/Users/mehedihasan/dev/personal/ai-skills/engineering/orchestrate/references/execution.md:9]
+- Model is passed even if agent sets its own: "Custom agent sets its own model" → "Pass `model` anyway." [/Users/mehedihasan/dev/personal/ai-skills/engineering/orchestrate/SKILL.md:61]
+
+### Escalation ladder (exact current wording)
+- Ladder, verbatim from execution.md:28-30:
+  ```
+  haiku  ✗ → retry once on haiku with a Retry brief → sonnet
+  sonnet ✗ → retry once with a Retry brief → you pick: one opus attempt, or diagnose, re-scope or split yourself; log which and why
+  opus   ✗ → retry once on opus with a Retry brief → you diagnose, re-scope or split → re-delegate
+  ```
+  [/Users/mehedihasan/dev/personal/ai-skills/engineering/orchestrate/references/execution.md:28-30]
+- Retry brief content: "Retries use `references/delegation.md` `## Retry brief` (original brief + exact error + current `git diff -- <Own>`)" [/Users/mehedihasan/dev/personal/ai-skills/engineering/orchestrate/references/execution.md:26]
+- Stop rule after failed re-delegation: "If the re-delegated attempt after your diagnosis also fails, set plan Status `Paused`, report to the user, and stop launching." [/Users/mehedihasan/dev/personal/ai-skills/engineering/orchestrate/references/execution.md:32]
+- Logging: "Log every retry and escalation in the plan file." [/Users/mehedihasan/dev/personal/ai-skills/engineering/orchestrate/references/execution.md:34]
+- Prose version (README FAQ): "Haiku retries once with the error and current diff, then moves to sonnet. Sonnet retries once, then the orchestrator either tries opus once or diagnoses and re-delegates (it logs which). Opus retries once, then the orchestrator diagnoses. If that also fails, it pauses and reports." [/Users/mehedihasan/dev/personal/ai-skills/engineering/orchestrate/README.md:100]
+
+### Cost
+- FAQ question: "**Does this cost more than just prompting?**" [/Users/mehedihasan/dev/personal/ai-skills/engineering/orchestrate/README.md:84]
+- FAQ answer (verbatim): "It adds planning and a verifier pass. In return most of the building is routed to the cheaper tiers, and it picks the lower tier when unsure. I can't give you a number. Try it on one real task and look at the tier mix it reports at CLOSE." [/Users/mehedihasan/dev/personal/ai-skills/engineering/orchestrate/README.md:85]
+- CLOSE reports actual tier mix and escalations: "Plan `Complete`, with actual tier mix and escalations." [/Users/mehedihasan/dev/personal/ai-skills/engineering/orchestrate/SKILL.md:70]
+- No cost, token or timing numbers appear in any of the six skill files read.
+
+### Recent changes (git reflog, newest first; dates are +0600)
+- 2026-11-17 · 9f8017e · "feat(orchestrate): add an opus tier for security work and unsplittable tasks, with an opus reviewer" [/Users/mehedihasan/dev/personal/ai-skills/.git/logs/HEAD:45; /Users/mehedihasan/dev/personal/ai-skills/.git/logs/refs/heads/main:24]
+- 2026-10-15 · f0f4d08 · "chore(orchestrate): stop tracking the eval suite so evals stay local-only" [/Users/mehedihasan/dev/personal/ai-skills/.git/logs/HEAD:29]
+- 2026-10-15 · 88ceb59 · "feat(orchestrate): detect an existing codebase map and route scouts through it before grep" [/Users/mehedihasan/dev/personal/ai-skills/.git/logs/HEAD:24]
+- 2026-10-13 · 1b97271 · "test(orchestrate): add a blind bench that runs tasks against the skill, bare goal and hint arms" [/Users/mehedihasan/dev/personal/ai-skills/.git/logs/HEAD:14]
+- 2026-10-09 · a8296a6 · "fix(orchestrate): delegate verification to a haiku verifier so the orchestrator stops running checks" [/Users/mehedihasan/dev/personal/ai-skills/.git/logs/HEAD:13]
+- 2026-10-08 · 0750683 · "docs(handoffs): add handoffs for eval-sandbox Bash and an independent orchestrate audit" [/Users/mehedihasan/dev/personal/ai-skills/.git/logs/HEAD:11]
+- 2026-10-08 · 44b9a7b · "fix(orchestrate): close merged-audit P0–P3 gaps in approval, sub-agent permissions and fast lane" [/Users/mehedihasan/dev/personal/ai-skills/.git/logs/HEAD:10]
+- 2026-10-06 · 7a65fd8 · "test(orchestrate): add an eval suite that runs /orchestrate in fresh sessions and grades guardrails" [/Users/mehedihasan/dev/personal/ai-skills/.git/logs/HEAD:9]
+- 2026-10-06 · 5472148 · "fix(orchestrate): close all 25 audit gaps so delegation, gates and commits follow strict rules" [/Users/mehedihasan/dev/personal/ai-skills/.git/logs/HEAD:8]
+- 2026-10-05 · 8b61800 · "Update orchestrate: orchestrator never implements, fast lane still delegates" [/Users/mehedihasan/dev/personal/ai-skills/.git/logs/HEAD:7]
+- 2026-10-05 · d2b214c · "Add orchestrate skill" [/Users/mehedihasan/dev/personal/ai-skills/.git/logs/HEAD:5; /Users/mehedihasan/dev/personal/ai-skills/.git/logs/refs/heads/main:5]
+- Commit bodies and diffs for these commits were not read (no git show). Only 9f8017e, 88ceb59 and a8296a6 were requested; their diffs are not available here.
+
+### Speaker interview (2026-11-17)
+- Origin, verbatim: "I was doing my usual work and kept going back to plan mode, asking Claude to divide the long work in phases, delegate them to tiered sub-agents based on difficulty of the divided task, asking it to interview me before starting, etc. It was the same prompt and instruction over and over again. So I started building this skill." [speaker interview]
+- Methods compared: long prompt every time, plan mode, /goal. [speaker interview]
+- Long prompt gaps (speaker confirmed): same model for everything; no stop before it edits; forgets between sessions; has to be retyped or pasted; nothing enforces the rules. [speaker interview]
+- Plan mode gaps (speaker confirmed): plans well, but you retype the phase, sub-agent, model and interview instructions every time; after approval one model builds it all. [speaker interview]
+- /goal gaps (speaker confirmed): keeps going until the goal is met; no tiering; no per-task approval gate; checks itself. [speaker interview]
+- Cost: speaker gave no numbers; keep cost qualitative. One stated reason for building the skill: optimize token cost by dividing tasks across sub-agents by difficulty (brief wording, not a verbatim quote). [speaker interview]
+
+### Demo candidates
+- DEMO: `/orchestrate add dark mode to settings`; show the GRILL question, then the preview table, then stop at the approval gate with nothing built [/Users/mehedihasan/dev/personal/ai-skills/engineering/orchestrate/README.md:25-39]. The preview table is marked "Illustrative" in the README, so label it as such on screen.
+- DEMO: approval gate. Reply "ok, but..." to the preview and show it re-previews as an edit request, not a go [/Users/mehedihasan/dev/personal/ai-skills/engineering/orchestrate/SKILL.md:46].
+- DEMO: `stop` mid-run, then `/orchestrate resume` reads the plan under `docs/plans/` and continues from Status and Log [/Users/mehedihasan/dev/personal/ai-skills/engineering/orchestrate/SKILL.md:50-51; /Users/mehedihasan/dev/personal/ai-skills/engineering/orchestrate/README.md:16].
+- DEMO: Haiku model check. Switch to Haiku and run `/orchestrate`; it stops and asks for Opus or Sonnet [/Users/mehedihasan/dev/personal/ai-skills/engineering/orchestrate/SKILL.md:26].
+
+### Gaps (orchestrate)
+- No captured orchestrate run anywhere in the sources: the preview table is illustrative (README.md:39).
+- No cost, token, timing or tier-mix numbers from any real run. The README says "I can't give you a number" (README.md:85).
+- The eval suite (7a65fd8) and blind bench (1b97271) results are not in the sources; f0f4d08 stopped tracking the eval suite, so evals are local-only.
+- SKILL.md:32 points to `references/grill-with-docs.md`. It was not in the supplied list and was not read.
+- Diffs and commit bodies for 9f8017e, 88ceb59 and a8296a6 were not read (no git show; no Bash). Hashes and dates come from the reflog only.
+- Dates are my conversion of reflog epoch timestamps at +0600; they are not from `git log` output.
+- No statement of why the opus tier was added beyond the commit subject line (9f8017e).
+- Plan mode and /goal behavior descriptions come only from the speaker; not checked against Claude Code docs.
