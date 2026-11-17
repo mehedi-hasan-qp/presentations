@@ -8,7 +8,7 @@ Single-file HTML slide decks, built with the `create-presentation` Claude Code s
 |---|---|
 | [`presentations/everyday-ai-workflow`](presentations/everyday-ai-workflow/index.html) | Ask first, build cheap, ship clean: my everyday AI workflow (eqc-kit, `/orchestrate`, the ship chain) |
 
-Each deck folder has `index.html` (the deck), and optionally `transcript.md` (spoken script) and `context.md` (research and prep checklist).
+Each deck folder has `index.html` (the deck), and optionally `transcript.md` (spoken script), `context.md` (research and prep checklist), `screenshots/` (demo fallbacks) and `work/` (agent hand-offs: `outline.md`, `reviews/`).
 
 ## Presenting
 

@@ -8,11 +8,11 @@ Research, decisions and constraints behind `index.html` and `transcript.md` in t
 - **Speaker:** Mehedi Hasan, Mobile Team
 - **Audience:** fellow engineers, internal team session / brown-bag
 - **Outcome:** each listener picks 2–3 skills or habits and tries them on their own work this week
-- **Duration:** ~39.75 min of cues = 3 sections, each ending in a Q&A buffer
-  - eqc-kit: 15 min (12.5 content incl. demo + 2.5 Q&A); title + hook live inside it
-  - /orchestrate: 14.75 min (12.25 + 2.5)
+- **Duration:** 40 min of cues = 3 sections, each ending in a Q&A buffer
+  - eqc-kit: 15 min (13 content incl. title, hook, primer and demos + 2 Q&A)
+  - /orchestrate: 15 min (12.5 + 2.5)
   - Ship chain (light coverage): 10 min (8 + 2); recap + CTA live inside it; the closing Q&A slide keeps the CTA commands on screen
-- **Slides:** 30 · **Template:** default · **Transcript:** yes — engaging, human, light humor, relatable puns, AI-slop jokes
+- **Slides:** 31 · **Template:** default · **Transcript:** yes — engaging, human, light humor, relatable puns, AI-slop jokes
 - **Framing:** eqc-kit and /orchestrate are each shown as independent, self-contained tools. The light items are shown as one connected chain.
 - **Naming:** always "eqc-kit" (eqc-check / eqc-fix are its commands).
 - **Hooks and context docs:** mention where relevant, one line, no deep dive.
@@ -22,19 +22,20 @@ Research, decisions and constraints behind `index.html` and `transcript.md` in t
 
 1. Retitle to "Ask first, build cheap, ship clean".
 2. Company names stay off slides.
-3. A "guess first" audience moment in each section (asked at the end of slide 8 and revealed on 9; 15; 24).
-4. Re-run `/eqc-check` before the talk so slides 6 and 9 agree (see checklist).
-5. Slide 10 is an intentional "honest limits" slide.
-6. Slide 1 footer foreshadows the meta reveal ("built with /create-presentation"); slide 20 pays it off.
-7. Slides 17, 19 and 25, plus slide 10's guardrails paragraph, marked cuttable in notes.
+3. A "guess first" audience moment in each section (asked at the end of slide 9 and revealed on 10; 16; 25).
+4. Re-run `/eqc-check` before the talk so slides 7 and 10 agree (see checklist).
+5. Slide 11 is an intentional "honest limits" slide.
+6. Slide 1 footer foreshadows the meta reveal ("built with /create-presentation"); slide 21 pays it off.
+7. Slides 18, 20 and 26, plus slide 11's guardrails paragraph, marked cuttable in notes.
 8. Screenshot fallback for every demo (see checklist).
+9. Revision 2 (2026-11-16): slides made self-explanatory for first-time viewers. New primer slide 3 (Claude Code, skill, sub-agent, model tiers); terms defined on first use; slides 15 and 24 became steps-lists; eqc-kit Q&A trimmed to 2 min. Outline lives in `work/outline.md`.
 
 ## Before-the-talk checklist
 
-- [ ] Run `/eqc-check` in the mobile app repo; make slide 6/9 numbers match the fresh output (cached `compliance.json` 2026-10-02 says 33 pass / 2 partial / 4 fail; `docs/eqc/COMPLIANCE.md` 2026-09-28 says 30 / 5 / 4).
-- [ ] Capture screenshot fallbacks: slide 6 (`/eqc-check` scorecard), slide 8 (`/eqc-fix` top-10 + `MEDIUM-10` plan), slide 16 (`/orchestrate` preview table), slide 26 (v1.9.4 notes beside `git log`). Save into `./screenshots/` and reference them in notes.
-- [ ] Pre-stage slide 16: run `/orchestrate` on a small prepared goal up to PREVIEW and leave the terminal paused at "Approve, edit, or reject?" (live, only type "just go").
-- [ ] Rehearse once with a timer; cut slides 17/19/25 (and slide 10's guardrails paragraph) if over.
+- [ ] Run `/eqc-check` in the mobile app repo; make slide 7/10 numbers match the fresh output (cached `compliance.json` 2026-10-02 says 33 pass / 2 partial / 4 fail; `docs/eqc/COMPLIANCE.md` 2026-09-28 says 30 / 5 / 4).
+- [ ] Capture screenshot fallbacks: slide 7 (`/eqc-check` scorecard), slide 9 (`/eqc-fix` top-10 + `MEDIUM-10` plan), slide 17 (`/orchestrate` preview table), slide 27 (v1.9.4 notes beside `git log`). Save into `./screenshots/` and reference them in notes.
+- [ ] Pre-stage slide 17: run `/orchestrate` on a small prepared goal up to PREVIEW and leave the terminal paused at "Approve, edit, or reject?" (live, only type "just go").
+- [ ] Rehearse once with a timer; cut slides 18/20/26 (and slide 11's guardrails paragraph) if over.
 
 ## Research: eqc-kit
 
