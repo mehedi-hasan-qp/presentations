@@ -287,7 +287,7 @@
     <aside class="notes">Hi, I'm Mehedi, from the Mobile Team. This is the AI workflow I actually use every day, not the conference-poster version.
 Three tools: one checks code, one plans work, one chain ships it. Each stands on its own.
 Goal: you leave with two or three things to try this week.
-Ignore that footer for now. It comes back on slide 21.
+Ignore that footer for now. It comes back on slide 19.
 Transition: "Let's start with a document most of us have never read to the end."
 ~0.5 min</aside>
   </div>
@@ -331,192 +331,170 @@ Transition: "With those four words, section one."
   <div class="slide divider center">
     <h2>01 · eqc-kit</h2>
     <div class="sub">Checks your code against your team's own quality standard</div>
-    <aside class="notes">Section one: eqc-kit. About 11 minutes, then questions.
-It's an open npm package, MIT, so you can use it on any project with any written standard.
-Transition: "Here's the whole idea in one line."
+    <aside class="notes">Section one: eqc-kit. About 10 minutes, then questions.
+This is the one I built myself, so I'll start with how that happened.
+Transition: "It started with one question."
 ~0.25 min</aside>
   </div>
 
-  <!-- 5 flow -->
+  <!-- 5 steps-list -->
   <div class="slide">
-    <div class="kicker">eqc-kit · How it works</div>
-    <h2>Bring your standard,<br><span class="accent">get a compliance level</span></h2>
-    <p style="margin-top: 1.5rem; max-width: 820px; font-size: 1.15rem;">Open-source npm package: AI agents audit your code against your own written standard.</p>
-    <div class="flow">
-      <div class="flow-step"><span class="flow-step-name">Your standard</span></div>
-      <div class="flow-arr">→</div>
-      <div class="flow-step"><span class="flow-step-name">Rule list</span></div>
-      <div class="flow-arr">→</div>
-      <div class="flow-step"><span class="flow-step-name">Code audit</span></div>
-      <div class="flow-arr on">→</div>
-      <div class="flow-step on"><span class="flow-step-name">Level</span><span class="flow-badge">Output</span></div>
-      <div class="flow-arr">→</div>
-      <div class="flow-step"><span class="flow-step-name">Fixes</span></div>
-    </div>
-    <p style="margin-top: 1.75rem; max-width: 820px; font-size: 1.05rem; color: var(--fg-muted);"><code>npx eqc-kit init</code> · Claude Code, Codex, Cursor, Copilot, Gemini CLI</p>
-    <aside class="notes">You bring your own document. The tiers come from it: Bronze/Silver/Gold, LOW/MEDIUM/HIGH, whatever your doc says.
-It turns the doc into a rule list, audits the code, and gives you one level. Then it helps you fix the gaps.
-Install is one command; the wizard's questions all have defaults, so you can just keep pressing Enter. Zero dependencies, Node 18 or newer.
-In Claude Code you get slash commands. In Codex, Cursor, Copilot and Gemini CLI it adds an AGENTS.md block, so you just say "eqc check".
-Transition: "Let's open up the check step."
-~1.25 min</aside>
-  </div>
-
-  <!-- 6 steps-list -->
-  <div class="slide">
-    <div class="kicker">eqc-kit · /eqc-check</div>
-    <h2>/eqc-check: agents judge,<br><span class="accent">the engine counts</span></h2>
-    <div class="steps-list" style="max-width: 100%; margin-top: 1rem;">
-      <div class="step-row" style="padding: 0.65rem 1.25rem;">
+    <div class="kicker">eqc-kit · Why I built it</div>
+    <h2>How I ended up<br><span class="accent">building eqc-kit</span></h2>
+    <div class="steps-list" style="max-width: 100%; margin-top: 0.5rem;">
+      <div class="step-row" style="padding: 0.5rem 1.25rem;">
         <div class="step-num">01</div>
-        <div><div class="step-title">Index agent</div><div class="step-desc">Reads your doc, lists every rule by tier</div></div>
+        <div><div class="step-title">I was handed our quality standard</div><div class="step-desc">And one question: are your projects compliant?</div></div>
       </div>
-      <div class="step-row" style="padding: 0.65rem 1.25rem;">
+      <div class="step-row" style="padding: 0.5rem 1.25rem;">
         <div class="step-num">02</div>
-        <div><div class="step-title">Audit agents</div><div class="step-desc">One per tier, in parallel, reading your code</div></div>
+        <div><div class="step-title">So I checked it by hand</div><div class="step-desc">Read a rule, looked through the project, wrote it down, next rule. Tedious.</div></div>
       </div>
-      <div class="step-row" style="padding: 0.65rem 1.25rem;">
+      <div class="step-row" style="padding: 0.5rem 1.25rem;">
         <div class="step-num">03</div>
-        <div><div class="step-title">Verdict + evidence</div><div class="step-desc">pass / partial / fail / n/a, each with file proof</div></div>
+        <div><div class="step-title">Then I used AI</div><div class="step-desc">It helped, but it was still too much work, and I didn't fully trust the answers.</div></div>
       </div>
-      <div class="step-row hi" style="padding: 0.65rem 1.25rem;">
+      <div class="step-row hi" style="padding: 0.5rem 1.25rem;">
         <div class="step-num">04</div>
-        <div><div class="step-title">Engine does the maths</div><div class="step-desc">Plain script, no AI. Level = highest tier where it and every tier below have no fails.</div></div>
+        <div><div class="step-title">So I automated it</div><div class="step-desc">One thing led to another. Now it's eqc-kit: an open-source (MIT) npm package that checks your code against your own written standard.</div></div>
       </div>
     </div>
-    <aside class="notes">The split matters: the LLM thinks, a zero-dependency script does the arithmetic.
-Every verdict has to point at checkable evidence, so you can argue with it.
-The engine never reads your code. Precisely: a tier counts when every rule in it and below has a verdict and none fail. A fail in the lowest tier is HARD_FAIL.
-Fun one: our doc's changelog contradicted its own body. Even the standard didn't pass the standard.
-Transition: "And because the engine keeps state, the second run is free. Let me show you."
+    <p style="margin-top: 0.5rem; max-width: 960px; font-size: 1.05rem; color: var(--fg-muted);"><code>npx eqc-kit init</code> · works in Claude Code, Codex, Cursor, Copilot and Gemini CLI</p>
+    <aside class="notes">So, quick story. I was given the EQC docs and asked if my projects were compliant.
+I went through the doc and checked it one by one against the project. It was a tedious job.
+I was using AI, but it was still too much.
+So I started to make the process automated. And one thing led to another, and now I have this entire eqc-kit.
+It's not tied to our doc. You bring any written standard, and the tiers come from it: LOW/MEDIUM/HIGH, Bronze/Silver/Gold, whatever your doc uses.
+Install is one command. The setup asks a few questions, and they all have defaults, so you can just keep pressing Enter. No dependencies, Node 18 or newer.
+In Claude Code you get slash commands. In the other tools it adds a block to AGENTS.md, so you just say "eqc check".
+Transition: "Before I built it, I tried the two obvious ways. Here's how they compare."
 ~1.25 min</aside>
   </div>
 
-  <!-- 7 demo -->
+  <!-- 6 dtable -->
   <div class="slide">
-    <div class="demo-badge">Live demo</div>
-    <div class="kicker demo">Demo · /eqc-check, cached</div>
-    <h2>Demo:<br><span class="accent">the free scorecard</span></h2>
-    <p style="margin-top: 1.5rem; max-width: 820px; font-size: 1.2rem;"><code>/eqc-check</code> with no arguments re-reads the last audit: level per tier, every open fail with its evidence.</p>
-    <p style="margin-top: 1rem; max-width: 820px; font-size: 1.05rem; color: var(--fg-muted);">Watch for: it's instant, with no agents running.</p>
-    <aside class="notes">Watch for: it's instant. No agents, no tokens.
-1. Switch to the terminal in our mobile app repo.
-2. Type /eqc-check with no arguments and press Enter.
-3. Scroll the tier table: point at the current level and say "hold that number". It comes back on slide 10.
-4. Pick one fail and read its evidence line out loud.
-5. Switch back to the slides.
-(Re-run the full check before the talk so these numbers match slide 10.)
-FALLBACK: screenshot ./screenshots/eqc-check-scorecard.png — "Here's the same scorecard from this morning; the live one says the same thing, just slower to type."
-Transition: "A score is nice. Fixing is where the time goes."
-~1.5 min</aside>
+    <div class="kicker">eqc-kit · Why not just ask AI?</div>
+    <h2>Three ways to check a project<br><span class="accent">against the standard</span></h2>
+    <table class="dtable" style="margin-top: 0.4rem;">
+      <tr><th style="padding: 0.4rem 0.7rem; width: 15%;">Question</th><th style="padding: 0.4rem 0.7rem; width: 22%;">Manual review<br><span style="text-transform: none; letter-spacing: 0; font-weight: 400;">read the doc, check each rule by hand</span></th><th style="padding: 0.4rem 0.7rem; width: 26%;">Ask AI directly<br><span style="text-transform: none; letter-spacing: 0; font-weight: 400;">paste the doc, ask "is my project compliant?"</span></th><th class="acc" style="padding: 0.4rem 0.7rem; width: 37%;">eqc-kit</th></tr>
+      <tr><td style="padding: 0.2rem 0.7rem; font-size: 0.82rem;"><strong>Can I trust a "pass"?</strong></td><td style="padding: 0.2rem 0.7rem; font-size: 0.82rem;">Yes, if I was careful</td><td style="padding: 0.2rem 0.7rem; font-size: 0.82rem;">It said pass when it wasn't</td><td style="padding: 0.2rem 0.7rem; font-size: 0.82rem;">Every rule's answer points at the file that proves it; a plain script, not the AI, works out the level</td></tr>
+      <tr><td style="padding: 0.2rem 0.7rem; font-size: 0.82rem;"><strong>Is every rule checked?</strong></td><td style="padding: 0.2rem 0.7rem; font-size: 0.82rem;">Easy to skip one when you're tired</td><td style="padding: 0.2rem 0.7rem; font-size: 0.82rem;">Lost track halfway</td><td style="padding: 0.2rem 0.7rem; font-size: 0.82rem;">First it lists every rule; then one agent per tier checks them</td></tr>
+      <tr><td style="padding: 0.2rem 0.7rem; font-size: 0.82rem;"><strong>Same answer next time?</strong></td><td style="padding: 0.2rem 0.7rem; font-size: 0.82rem;">Depends who checks</td><td style="padding: 0.2rem 0.7rem; font-size: 0.82rem;">Different answer every time</td><td style="padding: 0.2rem 0.7rem; font-size: 0.82rem;">Saved results are re-read, not re-guessed; a plain script turns the same answers into the same level every time.</td></tr>
+      <tr><td style="padding: 0.2rem 0.7rem; font-size: 0.82rem;"><strong>Does it stay fixed?</strong></td><td style="padding: 0.2rem 0.7rem; font-size: 0.82rem;">One-off check</td><td style="padding: 0.2rem 0.7rem; font-size: 0.82rem;">Fixed today, broken again by the next feature</td><td style="padding: 0.2rem 0.7rem; font-size: 0.82rem;">Remembers every rule that passed; <code>eqc guard</code> and optional git hooks catch it slipping back</td></tr>
+      <tr><td style="padding: 0.2rem 0.7rem; font-size: 0.82rem;"><strong>What does each run cost?</strong></td><td style="padding: 0.2rem 0.7rem; font-size: 0.82rem;">Your time, every time</td><td style="padding: 0.2rem 0.7rem; font-size: 0.82rem;">Same exploring, same tokens, every time</td><td style="padding: 0.2rem 0.7rem; font-size: 0.82rem;">Re-reading saved results costs nothing; uses your code map if it's up to date</td></tr>
+    </table>
+    <p style="margin-top: 0.4rem; max-width: 100%; font-size: 0.88rem; line-height: 1.4; color: var(--fg-muted);"><strong>The catch:</strong> you need a written standard, the first full check takes time and tokens, and agents can still get it wrong, so read the evidence.</p>
+    <aside class="notes">Manual review is where I started. It works if you're careful, but it's slow and it's a one-off. Nobody does it twice.
+Then I tried the obvious thing: paste the doc into the AI and ask "is my project compliant?" Here's what actually happened to me.
+It said pass when it wasn't.
+It lost track halfway through. Thirty-nine rules is a lot to hold in one go.
+Ask twice, get a different answer.
+It fixed things for now, and later, while working on a new feature, the AI would break the same rule again.
+And every time, it burned tokens and time doing the same exploring from scratch.
+The right column is what eqc-kit does about each one. By "answer" I mean pass, partial, fail or not applicable, plus the file that shows it. You can open the file and argue with it.
+Bottom line on the slide is the honest part. You need a written standard first. The first full check isn't cheap. And the agents can still be wrong, which is exactly why every answer comes with evidence you can read.
+Transition: "So what do you actually run?"
+~2.25 min</aside>
   </div>
 
-  <!-- 8 vs-grid -->
+  <!-- 7 dtable -->
   <div class="slide">
-    <div class="kicker">eqc-kit · /eqc-fix</div>
-    <h2>/eqc-fix: small fixes go straight,<br><span class="accent">big ones get a plan</span></h2>
-    <p style="margin-top: 1rem; max-width: 820px; font-size: 1.1rem;">Starts with the 10 easiest fails. Never commits for you.</p>
-    <div class="vs-grid" style="margin-top: 1.25rem;">
-      <div class="vs-card">
-        <div class="vs-card-label">Small</div>
-        <div class="vs-attr"><strong>Who:</strong> one fixer agent, one pass</div>
-        <div class="vs-attr"><strong>Then:</strong> re-audit, log a milestone (one recorded fix)</div>
-      </div>
-      <div class="vs-card hi">
-        <div class="vs-card-label">Medium / large</div>
-        <div class="vs-attr"><strong>First:</strong> opus writes a read-only plan; you approve it</div>
-        <div class="vs-attr"><strong>Then:</strong> chunks (small steps) run on haiku or sonnet</div>
-      </div>
-    </div>
-    <aside class="notes">Remember the models from slide 3: opus plans, the cheap ones do the typing.
-Mechanical chunks go to haiku, judgment calls to sonnet. The plan is resumable if you stop halfway.
-Gates ask first before anything touching CI, packages, architecture or the top tier. It never installs packages without asking and won't overwrite files you've edited.
-Audits run in parallel; fixes run one at a time. Rule of the house: never two fixers at once. Two fixers in one file is how you get a merge conflict with yourself.
-Transition: "Let me show you what one of those plans looks like."
-~1.25 min</aside>
+    <div class="kicker">eqc-kit · The commands</div>
+    <h2>What you run,<br><span class="accent">and where AI is used</span></h2>
+    <table class="dtable" style="margin-top: 0.4rem;">
+      <tr><th style="padding: 0.4rem 0.7rem; width: 14%;">Command</th><th class="acc" style="padding: 0.4rem 0.7rem; width: 63%;">What it does</th><th style="padding: 0.4rem 0.7rem; width: 23%;">Uses AI?</th></tr>
+      <tr><td style="padding: 0.4rem 0.7rem; font-size: 0.9rem;"><code>/eqc-check</code></td><td style="padding: 0.4rem 0.7rem; font-size: 0.9rem;">Turns your doc into a rule list, then one agent per tier checks the code (using a code map, e.g. a graphify graph, first, if yours is up to date). Each rule gets pass / partial / fail / n/a with the file as proof. A plain script works out the level (the highest tier with no fails at or below it). Writes <code>COMPLIANCE.md</code> and a <code>COMPLIANCE.html</code> page.</td><td style="padding: 0.4rem 0.7rem; font-size: 0.9rem;">Yes, to check rules. No, to count.</td></tr>
+      <tr><td style="padding: 0.4rem 0.7rem; font-size: 0.9rem;"><code>/eqc-fix</code></td><td style="padding: 0.4rem 0.7rem; font-size: 0.9rem;">Suggests what to fix first: low effort, high gain. Small fixes go straight to one helper; big ones get a plan you approve first. Never commits for you.</td><td style="padding: 0.4rem 0.7rem; font-size: 0.9rem;">Yes</td></tr>
+      <tr><td style="padding: 0.4rem 0.7rem; font-size: 0.9rem;"><code>eqc guard</code></td><td style="padding: 0.4rem 0.7rem; font-size: 0.9rem;">Compares the latest results with the baseline (every rule that has passed). Fails only if one of those stops passing, or the level drops. Known fails don't block you.</td><td style="padding: 0.4rem 0.7rem; font-size: 0.9rem;">No</td></tr>
+      <tr><td style="padding: 0.4rem 0.7rem; font-size: 0.9rem;"><code>verify</code> + git hooks</td><td style="padding: 0.4rem 0.7rem; font-size: 0.9rem;">An optional shell check (e.g. <code>npm run lint</code>), only for rules a command can test. Runs on commit and push once you opt in with <code>npx eqc-kit hooks</code>.</td><td style="padding: 0.4rem 0.7rem; font-size: 0.9rem;">No: too slow, costly and unpredictable for every commit</td></tr>
+    </table>
+    <aside class="notes">Four things you run. The top two use AI, the bottom two don't.
+/eqc-check: the first time, one agent reads your doc and lists every rule by tier. Then one agent per tier goes through the code, in parallel.
+If you already have a code map, like a graphify graph, it looks there first, but only if the map is newer than your last commit and your uncommitted changes. It never builds or refreshes the map for you, and anything it finds there it confirms in the real code.
+Then a plain script, no AI, works out the level: the highest tier where that tier and every tier below it have no fails. A fail in the lowest tier is HARD_FAIL. The script never reads your code; it just counts the answers.
+New: next to the Markdown report you also get an HTML page. One file, no JavaScript, you just open it in the browser.
+/eqc-fix: it ranks what to fix, low effort and high gain first. Small stuff goes to one fixer. Bigger stuff: opus writes a plan, you approve it, and cheaper models do the typing. It asks before touching CI, packages, architecture or the top tier, and it only runs one fixer at a time.
+guard: this is the answer to "AI fixed it, then broke it again". Every time results are saved, it remembers which rules passed. That's the baseline, and it only goes up. Guard checks against it. A rule that was already failing won't block you; only something that used to pass and now doesn't.
+verify: some rules a plain command can check, like "lint is clean". Those rules carry a command, like npm run lint. Not every rule gets one, only the ones a command can check without judgment. The script runs them only for rules that are passing, so a known fail never blocks a commit; only a regression does.
+CUTTABLE if running late — hooks: opt-in, one command per clone, npx eqc-kit hooks. Commit runs verify; push runs verify, then guard. It won't override hooks you already have, like Husky; it prints the lines to add instead. Anyone can skip hooks with --no-verify, so put the same two commands in CI.
+Why no AI in the hooks? Too slow, costs money on every commit, and you'd get a different answer each time.
+Transition: "Enough talking. Let me show you two of these, and the report it writes, on our app."
+~2 min</aside>
   </div>
 
-  <!-- 9 demo -->
+  <!-- 8 demo -->
   <div class="slide">
     <div class="demo-badge">Live demo</div>
-    <div class="kicker demo">Demo · ranked fixes</div>
-    <h2>Demo: ranked fixes<br><span class="accent">and a chunked plan</span></h2>
-    <div class="steps-list" style="max-width: 100%; margin-top: 1.25rem;">
+    <div class="kicker demo">Demo · /eqc-check · the report · /eqc-fix</div>
+    <h2>Demo: check, report,<br><span class="accent">and what to fix next</span></h2>
+    <div class="steps-list" style="max-width: 100%; margin-top: 0.6rem;">
       <div class="step-row hi">
         <div class="step-num demo">01</div>
-        <div><div class="step-title">Run /eqc-fix</div><div class="step-desc">The top 10, easiest first</div></div>
+        <div><div class="step-title"><code>/eqc-check</code> with no arguments</div><div class="step-desc">Re-reads the last saved results: level per tier, every open fail with its evidence. Instant, no agents running.</div></div>
       </div>
       <div class="step-row">
         <div class="step-num demo">02</div>
-        <div><div class="step-title">Open a saved plan</div><div class="step-desc">Rule MEDIUM-10: 34 <code>Platform.OS</code> checks → <code>Platform.select()</code>, in chunks</div></div>
+        <div><div class="step-title">Open <code>docs/eqc/COMPLIANCE.html</code></div><div class="step-desc">The same results as one page in the browser: level, progress per tier, what needs attention, every rule.</div></div>
+      </div>
+      <div class="step-row">
+        <div class="step-num demo">03</div>
+        <div><div class="step-title">Run <code>/eqc-fix</code></div><div class="step-desc">A ranked list of what to fix next, low effort and high gain first. I'll cancel before it changes anything.</div></div>
       </div>
     </div>
-    <p style="margin-top: 0.75rem; max-width: 820px; font-size: 1.05rem; color: var(--fg-muted);">Each chunk names its model: haiku for mechanical edits, sonnet for judgment calls. It stops before anything touching CI, packages or architecture.</p>
-    <aside class="notes">Watch for: which model each chunk gets, and where it stops to ask.
-1. In the terminal, run /eqc-fix.
-2. Read the top three candidates and why they're cheap.
-3. Cancel at the prompt. We are not running a fix live today.
-4. Open the MEDIUM-10 plan file (Platform.OS → Platform.select) in the editor.
-5. Point at the model on each chunk: haiku for mechanical, sonnet for judgment.
-6. Switch back to the slides.
-FALLBACK: screenshot ./screenshots/eqc-fix-plan.png — "Here's the ranked list and the plan from my last run; same output, no waiting."
-Transition (GUESS-FIRST, take a few numbers before flipping to slide 10): "Before I flip: how many files did the Logger sweep touch?"
+    <aside class="notes">Watch for: the first part is instant (no agents, no tokens); the report is just a file; the fix list starts with the cheap wins.
+PREP: dev eqc-kit installed in the app repo, full check re-run this morning, browser tab with COMPLIANCE.html already open.
+1. Switch to the terminal in our mobile app repo.
+2. Type /eqc-check with no arguments and press Enter.
+3. Point at the level: "hold that number, it's on the next slide". Read one fail's evidence line out loud.
+4. Switch to the browser tab with docs/eqc/COMPLIANCE.html. Scroll once: level and tier progress at the top, then what needs attention, then every rule by tier.
+5. Back in the terminal, run /eqc-fix. If the ranked list hasn't appeared in ~30 s, cancel and show FALLBACK (part 3).
+6. Read the top three suggestions and why they're low effort, high gain. Cancel at the prompt. No fixes live today.
+7. Switch back to the slides.
+FALLBACK (part 1): screenshot ./screenshots/eqc-check-scorecard.png — "Here's the same scorecard from this morning; the live one says the same thing."
+FALLBACK (part 2): screenshot ./screenshots/eqc-compliance-report.png — "This is the page it writes next to the Markdown report; it's just a file, no setup."
+FALLBACK (part 3): screenshot ./screenshots/eqc-fix-ranked.png — "Here's the ranked list from my last run; same output, no waiting."
+Transition (GUESS-FIRST, take a few numbers before flipping to slide 9): "Before I flip: one of the fixes moved all our console logs to our Logger. How many files did that touch?"
+Watch for: how fast the first one is, and which fixes it puts at the top.
+~2.75 min</aside>
+  </div>
+
+  <!-- 9 dtable -->
+  <div class="slide">
+    <div class="kicker">eqc-kit · Our mobile app</div>
+    <h2>Our mobile app went from HARD_FAIL<br><span class="accent">to MEDIUM in about 5 days</span></h2>
+    <p style="margin-top: 0.5rem; max-width: 100%; font-size: 0.95rem; line-height: 1.4;">HARD_FAIL = a rule in the lowest tier fails. MEDIUM = no fails in LOW or MEDIUM. Today: MEDIUM, 33 pass, 2 partial, 4 fail.</p>
+    <table class="dtable" style="margin-top: 0.5rem;">
+      <tr><th style="padding: 0.4rem 0.8rem; width: 32%;">What changed</th><th class="acc" style="padding: 0.4rem 0.8rem;">How much</th></tr>
+      <tr><td style="padding: 0.55rem 0.8rem; font-size: 0.95rem;"><strong>ESLint errors</strong></td><td style="padding: 0.55rem 0.8rem; font-size: 0.95rem;">54 errors in 30 files. This alone took us from HARD_FAIL to LOW.</td></tr>
+      <tr><td style="padding: 0.55rem 0.8rem; font-size: 0.95rem;"><code>console.*</code> → our Logger</td><td style="padding: 0.55rem 0.8rem; font-size: 0.95rem;">58 files</td></tr>
+      <tr><td style="padding: 0.55rem 0.8rem; font-size: 0.95rem;"><code>Platform.OS</code> checks → <code>Platform.select()</code></td><td style="padding: 0.55rem 0.8rem; font-size: 0.95rem;">34 places</td></tr>
+      <tr><td style="padding: 0.55rem 0.8rem; font-size: 0.95rem;"><strong>Tests kept green the whole way</strong></td><td style="padding: 0.55rem 0.8rem; font-size: 0.95rem;">~85 test files touched, 2,912 of 2,912 passing</td></tr>
+      <tr><td style="padding: 0.55rem 0.8rem; font-size: 0.95rem;"><strong>Still failing (4)</strong></td><td style="padding: 0.55rem 0.8rem; font-size: 0.95rem;">3 big architecture jobs (state migration across 123 files, a data-fetching library, certificate pinning) + TypeScript, recorded as a fail because the project has to stay JavaScript</td></tr>
+    </table>
+    <aside class="notes">The guess: 58 files for the Logger sweep.
+Fifty-eight. And the level you saw in the terminal: MEDIUM, right there in the title.
+We started at HARD_FAIL. Fixing the ESLint errors alone got us to LOW. All in, 27 recorded fixes in about five days: 25 done, 2 partial.
+Not on the slide: FlatList windowSize on 33 lists, and Crashlytics error handling in 17 files.
+My favourite one: the i18n rule took 7 audits and 6 rounds of fixes, because every audit found more hardcoded English. In the end I added a custom ESLint rule so it can't come back.
+The four still failing are honest. Three are big architecture moves, not quick wins. TypeScript can't pass because the project has to stay JavaScript, so the kit records it as a fail and says why it doesn't apply, instead of pretending. I'd rather have an honest fail than a fake pass.
+Also, the audit found a hardcoded secret in the codebase. I'm not naming it. It's handled.
+(The "today" numbers come from the cached check. Re-run before the talk and update if they moved.)
+Transition: "That's eqc-kit. Questions before we move on?"
 ~1.75 min</aside>
   </div>
 
-  <!-- 10 dtable -->
-  <div class="slide">
-    <div class="kicker">eqc-kit · Our mobile app</div>
-    <h2>From HARD_FAIL to MEDIUM<br><span class="accent">in 27 milestones</span></h2>
-    <p style="margin-top: 0.25rem; max-width: 960px; font-size: 1rem; line-height: 1.4;">~5 days. HARD_FAIL = a lowest-tier rule fails. MEDIUM = no fails in LOW or MEDIUM.</p>
-    <table class="dtable" style="margin-top: 0.1rem;">
-      <tr><th>Fix</th><th class="acc">Scope</th></tr>
-      <tr><td><strong>ESLint errors</strong></td><td>54 errors across 30 files</td></tr>
-      <tr><td><code>console.*</code> → Logger</td><td>58 files</td></tr>
-      <tr><td><code>Platform.OS</code> → <code>select()</code></td><td>34 checks</td></tr>
-      <tr><td>FlatList <code>windowSize</code></td><td>33 lists</td></tr>
-      <tr><td><strong>Test suite</strong></td><td>~85 files, 2912/2912 green</td></tr>
-    </table>
-    <aside class="notes">Reveal the guess from slide 9: the Logger sweep touched 58 files.
-We started at HARD_FAIL. The ESLint milestone alone lifted it to LOW. 27 milestones in about five days: 25 done, 2 partial.
-The test-suite row was a 13-chunk sweep across about 85 files: all 2,912 tests, green the whole time.
-Also: Crashlytics error handling in 17 files.
-Best story: the i18n rule took 7 audits and 6 fix rounds, because every audit found more hardcoded English. It ended with a custom ESLint rule so it can't come back.
-Latest cached check (the number you held from the slide 7 demo): MEDIUM, 33 pass, 2 partial, 4 fail. Re-run before the talk and update if it moved.
-Transition: "And those 4 fails are where I have to be honest."
-~1.5 min</aside>
-  </div>
-
-  <!-- 11 card-grid -->
-  <div class="slide">
-    <div class="kicker">eqc-kit · Honest limits</div>
-    <h2>4 fails left —<br><span class="accent">an honest fail beats a fake pass</span></h2>
-    <div class="card-grid">
-      <div class="card"><div class="card-slash">3 big moves</div><div class="card-name">Architecture, not quick wins</div><div class="card-sub">state migration (123 files), data-fetching library, cert pinning</div></div>
-      <div class="card hi"><div class="card-slash">TypeScript</div><div class="card-name">Recorded as a fail, not faked</div><div class="card-sub">project mandates JavaScript</div></div>
-      <div class="card"><div class="card-slash">By design</div><div class="card-name">No LLM in pre-commit</div><div class="card-sub">too slow, costly and nondeterministic for every commit</div></div>
-    </div>
-    <aside class="notes">The 4 remaining fails are 3 big moves plus TypeScript: the state-management migration, adopting a data-fetching library, certificate pinning, and TypeScript.
-The TypeScript one can't pass. The kit records it as "fail, structurally inapplicable" rather than pretending. I'd rather have an honest fail than a fake pass.
-Also: the audit found a hardcoded secret in the codebase. Not naming it. It's handled.
-No LLM in pre-commit: nobody wants a commit that takes 40 seconds and gives a different answer each time.
-CUTTABLE if running late — guardrails, coming soon (unreleased): each rule gets a plain shell verify command, a gate fails on regressions below a tier, and opt-in pre-commit / pre-push hooks via npx eqc-kit hooks.
-Transition: "That's eqc-kit. Questions before we move on?"
-~1.5 min</aside>
-  </div>
-
-  <!-- 12 center Q&A -->
+  <!-- 10 center Q&amp;A -->
   <div class="slide center">
     <div class="kicker">Q&amp;A</div>
     <h1>Questions?<br><span class="accent">eqc-kit</span></h1>
     <aside class="notes">Open the floor.
-If it's quiet, seed one: "What would you put in your own standard?" or "Which tier would your project land in today?"
+If it's quiet, seed one: "Which tier would your project land in today?" or "Which of your rules could a plain command check, like lint?"
 Watch the clock: this buffer is 2 minutes. Move on at 15 minutes into the talk.
 Transition: "eqc-kit checks code against a standard. Next is how I get bigger work done without burning my best model."
 ~2 min — Q&amp;A buffer</aside>
   </div>
 
-  <!-- 13 divider -->
+  <!-- 11 divider -->
   <div class="slide divider center">
     <h2>02 · /orchestrate</h2>
     <div class="sub">For work too big for one prompt: you plan and approve, cheaper models build</div>
@@ -526,7 +504,7 @@ Transition: "First, the habit it replaces."
 ~0.25 min</aside>
   </div>
 
-  <!-- 14 center -->
+  <!-- 12 center -->
   <div class="slide center">
     <div class="kicker">The problem</div>
     <h1>One expensive model. One long session.<br><span class="accent">Nobody checked.</span></h1>
@@ -539,7 +517,7 @@ Transition: "So instead of one long session, it's five phases."
 ~1.25 min</aside>
   </div>
 
-  <!-- 15 steps-list -->
+  <!-- 13 steps-list -->
   <div class="slide">
     <div class="kicker">/orchestrate · Phases</div>
     <h2>Five phases, <span class="accent">two hard stops</span></h2>
@@ -576,7 +554,7 @@ Transition: "How does it decide which model gets which task?"
 ~1.75 min</aside>
   </div>
 
-  <!-- 16 dtable -->
+  <!-- 14 dtable -->
   <div class="slide">
     <div class="kicker">/orchestrate · Scoring</div>
     <h2>Scoring picks the model,<br><span class="accent">not mood</span></h2>
@@ -595,7 +573,7 @@ Transition: "Now the gate itself, live."
 ~1.75 min</aside>
   </div>
 
-  <!-- 17 demo -->
+  <!-- 15 demo -->
   <div class="slide">
     <div class="demo-badge">Live demo</div>
     <div class="kicker demo">Demo · the gate</div>
@@ -619,11 +597,11 @@ Watch for: "just go" gets the same question back.
 4. Type "just go". Show that it's ignored and the prompt comes back.
 5. Reject, and switch back to the slides.
 FALLBACK: screenshot ./screenshots/orchestrate-preview.png — "Here's the preview from a real run; the bit to notice is that 'just go' gets the same question back."
-Transition: "That gate exists because I don't trust myself either." (If slide 18 is cut: "The gate stops it before. The verifier checks after." and go to slide 19.)
+Transition: "That gate exists because I don't trust myself either." (If slide 16 is cut: "The gate stops it before. The verifier checks after." and go to slide 17.)
 ~1.5 min</aside>
   </div>
 
-  <!-- 18 dtable -->
+  <!-- 16 dtable -->
   <div class="slide">
     <div class="kicker">/orchestrate · Rules</div>
     <h2>Every reasonable-sounding<br><span class="accent">shortcut is banned</span></h2>
@@ -643,7 +621,7 @@ Transition: "Rules are nice. Checking is better."
 ~1.5 min</aside>
   </div>
 
-  <!-- 19 vs-grid -->
+  <!-- 17 vs-grid -->
   <div class="slide">
     <div class="kicker">/orchestrate · Verify</div>
     <h2>The verifier caught<br><span class="accent">two "done"s that weren't</span></h2>
@@ -666,11 +644,11 @@ Transition: "Rules are nice. Checking is better."
 The E2E agent claimed line 143 was covered. A coverage refresh said no.
 Fair warning: verifiers fail too. On one run the final verifier raised a false alarm because its grep matched numbers in CSS. You still read the report.
 Each task gets one small fix (5 lines max) after VERIFY, not an endless loop.
-Transition: "So what does this look like across real runs?" (If slide 20 is cut: "Remember the footer on slide 1?" and go to slide 21.)
+Transition: "So what does this look like across real runs?" (If slide 18 is cut: "Remember the footer on slide 1?" and go to slide 19.)
 ~1.75 min</aside>
   </div>
 
-  <!-- 20 card-grid -->
+  <!-- 18 card-grid -->
   <div class="slide">
     <div class="kicker">/orchestrate · In practice</div>
     <h2>~11 real runs:<br><span class="accent">mostly cheap models, a few surprises</span></h2>
@@ -680,7 +658,7 @@ Transition: "So what does this look like across real runs?" (If slide 20 is cut:
       <div class="card"><div class="card-slash">15</div><div class="card-name">Issues an opus trial run caught before real work</div></div>
       <div class="card"><div class="card-slash">ENOSPC</div><div class="card-name">Disk full: 3 agents, zero bytes written</div></div>
     </div>
-    <aside class="notes">CUTTABLE if running late. If you cut it, end slide 19 with: "Remember the footer on slide 1?"
+    <aside class="notes">CUTTABLE if running late. If you cut it, end slide 17 with: "Remember the footer on slide 1?"
 About 11 plan files. The model mix skews haiku and sonnet.
 The dry-run found its 15 issues before any real work; 13 got fixed.
 The disk one: a library audit's first wave hit ENOSPC. Three agents, zero bytes. The most efficient run I've ever had.
@@ -689,20 +667,20 @@ Transition: "Speaking of that dry-run... remember the footer on slide 1?"
 ~1.5 min</aside>
   </div>
 
-  <!-- 21 center -->
+  <!-- 19 center -->
   <div class="slide center">
     <div class="kicker">About slide 1</div>
     <h1>This deck was built by a skill<br><span class="accent">that /orchestrate built</span></h1>
     <p style="margin-top: 2rem; max-width: 820px;">/create-presentation is the skill that built these slides. /orchestrate built it: 5 tasks + 2 fixes, 0 escalations (no task needed a bigger model).</p>
     <aside class="notes">Payoff of the slide 1 footer. One 1-line VERIFY fix in the whole run.
-That opus dry-run with 15 issues? This skill. (If slide 20 was cut: an opus dry-run found 15 issues before any real work; 13 got fixed.)
+That opus dry-run with 15 issues? This skill. (If slide 18 was cut: an opus dry-run found 15 issues before any real work; 13 got fixed.)
 And the verifier false alarm, the CSS numbers? Also this skill. It's turtles all the way down.
 Context docs (CONTEXT.md, plan files) carry the decisions between sessions. The facts in this deck come from a context file in the same folder, which is why it doesn't make numbers up. If a slide is wrong, blame the context doc, not the model.
 Transition: "Questions on /orchestrate?"
 ~1.25 min</aside>
   </div>
 
-  <!-- 22 center Q&A -->
+  <!-- 20 center Q&A -->
   <div class="slide center">
     <div class="kicker">Q&amp;A</div>
     <h1>Questions?<br><span class="accent">/orchestrate</span></h1>
@@ -713,7 +691,7 @@ Transition: "Last section is lighter: what happens after the code is written."
 ~2.5 min — Q&amp;A buffer</aside>
   </div>
 
-  <!-- 23 divider -->
+  <!-- 21 divider -->
   <div class="slide divider center">
     <h2>03 · The ship chain</h2>
     <div class="sub">After the code works: commit, PR, release notes, build</div>
@@ -722,7 +700,7 @@ Transition: "Here's the chain."
 ~0.25 min</aside>
   </div>
 
-  <!-- 24 steps-list -->
+  <!-- 22 steps-list -->
   <div class="slide">
     <div class="kicker">Ship chain · 4 skills + our CI</div>
     <h2>Each skill <span class="accent">feeds the next</span></h2>
@@ -758,7 +736,7 @@ Transition: "The trick is that it's one piece of writing with several readers."
 ~1.5 min</aside>
   </div>
 
-  <!-- 25 dtable -->
+  <!-- 23 dtable -->
   <div class="slide">
     <div class="kicker">Ship chain · Audiences</div>
     <h2>One change,<br><span class="accent">four write-ups, four readers</span></h2>
@@ -772,11 +750,11 @@ Transition: "The trick is that it's one piece of writing with several readers."
     <aside class="notes">GUESS-FIRST: who reads your commit messages? Take answers. "Nobody" is the usual one.
 Answer: more people than you think. On our dev builds, the last commit message becomes the tester note. So "wip fix stuff" is what QA sees.
 Same facts, rewritten for each reader as they move down the chain.
-Transition: "Which means commits get written with the next step in mind." (If slide 26 is cut: "Here's a real one." and go to slide 27.)
+Transition: "Which means commits get written with the next step in mind." (If slide 24 is cut: "Here's a real one." and go to slide 25.)
 ~1.5 min</aside>
   </div>
 
-  <!-- 26 code-block -->
+  <!-- 24 code-block -->
   <div class="slide">
     <div class="kicker">Ship chain · Under the hood</div>
     <h2>Commits are written<br><span class="accent">for the release notes</span></h2>
@@ -796,7 +774,7 @@ Transition: "Here's a real one."
 ~0.75 min</aside>
   </div>
 
-  <!-- 27 demo -->
+  <!-- 25 demo -->
   <div class="slide">
     <div class="demo-badge">Live demo</div>
     <div class="kicker demo">Demo · our mobile app v1.9.4</div>
@@ -833,7 +811,7 @@ Transition: "And this file isn't optional."
 ~1.5 min</aside>
   </div>
 
-  <!-- 28 center -->
+  <!-- 26 center -->
   <div class="slide center">
     <div class="kicker">Enforced, not recommended</div>
     <h1>No release notes,<br><span class="accent">no build</span></h1>
@@ -846,24 +824,24 @@ Transition: "Let's pull the three sections together."
 ~1 min</aside>
   </div>
 
-  <!-- 29 card-grid -->
+  <!-- 27 card-grid -->
   <div class="slide">
     <div class="kicker">Recap</div>
     <h2>Ask first, build cheap,<br><span class="accent">ship clean</span></h2>
     <div class="card-grid">
-      <div class="card"><div class="card-slash">eqc-kit</div><div class="card-name">Ask first: big fixes wait for your OK</div><div class="card-sub">LLM judges, a script counts</div></div>
+      <div class="card"><div class="card-slash">eqc-kit</div><div class="card-name">Ask first: big fixes wait for your OK</div><div class="card-sub">checks your code, keeps passing rules passing</div></div>
       <div class="card"><div class="card-slash">/orchestrate</div><div class="card-name">Build cheap: score the task, then pick the model</div><div class="card-sub">plans, then cheaper models build</div></div>
       <div class="card hi"><div class="card-slash">ship chain</div><div class="card-name">Ship clean: write the commit for its next reader</div><div class="card-sub">commit → PR → notes → build</div></div>
     </div>
     <aside class="notes">One sentence each.
-eqc-kit: agents judge your code against your own standard, a script counts the score, and big fixes get a plan.
+eqc-kit: agents check your code against your own standard, a plain script works out the level, big fixes wait for your OK, and the guard stops passing rules from slipping back.
 /orchestrate: every task gets a score before it gets a model; you approve the plan, cheaper models build and a verifier checks.
 Ship chain: write the commit for whoever reads it next, and it becomes the PR, the release notes and the store note, with CI making sure.
 Transition: "You don't need all three. Pick two."
 ~0.75 min</aside>
   </div>
 
-  <!-- 30 closing -->
+  <!-- 28 closing -->
   <div class="slide center">
     <div class="kicker">Your move</div>
     <h1>Pick two.<br><span class="accent">Try them this week.</span></h1>
@@ -877,7 +855,7 @@ Transition: "Thanks. Last round of questions."
 ~0.75 min</aside>
   </div>
 
-  <!-- 31 center Q&A -->
+  <!-- 29 center Q&A -->
   <div class="slide center">
     <div class="kicker">Q&amp;A</div>
     <h1>Questions?</h1>

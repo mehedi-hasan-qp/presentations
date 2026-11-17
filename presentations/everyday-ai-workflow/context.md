@@ -22,20 +22,21 @@ Research, decisions and constraints behind `index.html` and `transcript.md` in t
 
 1. Retitle to "Ask first, build cheap, ship clean".
 2. Company names stay off slides.
-3. A "guess first" audience moment in each section (asked at the end of slide 9 and revealed on 10; 16; 25).
-4. Re-run `/eqc-check` before the talk so slides 7 and 10 agree (see checklist).
-5. Slide 11 is an intentional "honest limits" slide.
-6. Slide 1 footer foreshadows the meta reveal ("built with /create-presentation"); slide 21 pays it off.
-7. Slides 18, 20 and 26, plus slide 11's guardrails paragraph, marked cuttable in notes.
+3. A "guess first" audience moment in each section (asked at the end of slide 8 and revealed on 9; 14; 23).
+4. Re-run `/eqc-check` before the talk so slides 8 and 9 agree (see checklist).
+5. Slide 9's "Still failing (4)" row is the intentional "honest limits" moment (TypeScript recorded as a fail, not faked).
+6. Slide 1 footer foreshadows the meta reveal ("built with /create-presentation"); slide 19 pays it off.
+7. Slides 16, 18 and 24, plus slide 7's hooks paragraph, marked cuttable in notes.
 8. Screenshot fallback for every demo (see checklist).
 9. Revision 2 (2026-11-16): slides made self-explanatory for first-time viewers. New primer slide 3 (Claude Code, skill, sub-agent, model tiers); terms defined on first use; slides 15 and 24 became steps-lists; eqc-kit Q&A trimmed to 2 min. Outline lives in `work/outline.md`.
+10. Revision 3 (2026-11-17): eqc-kit section cut from 9 to 7 slides (4-10), humanized from a speaker interview: "why I built it" story (slide 5), manual review vs asking AI vs eqc-kit comparison (slide 6), commands incl. dev-branch `eqc guard`, `verify`, hooks, code map and HTML report (slide 7), one 3-part demo (slide 8), results + remaining fails (slide 9). Old slides 13-31 are now 11-29.
 
 ## Before-the-talk checklist
 
-- [ ] Run `/eqc-check` in the mobile app repo; make slide 7/10 numbers match the fresh output (cached `compliance.json` 2026-10-02 says 33 pass / 2 partial / 4 fail; `docs/eqc/COMPLIANCE.md` 2026-09-28 says 30 / 5 / 4).
-- [ ] Capture screenshot fallbacks: slide 7 (`/eqc-check` scorecard), slide 9 (`/eqc-fix` top-10 + `MEDIUM-10` plan), slide 17 (`/orchestrate` preview table), slide 27 (v1.9.4 notes beside `git log`). Save into `./screenshots/` and reference them in notes.
-- [ ] Pre-stage slide 17: run `/orchestrate` on a small prepared goal up to PREVIEW and leave the terminal paused at "Approve, edit, or reject?" (live, only type "just go").
-- [ ] Rehearse once with a timer; cut slides 18/20/26 (and slide 11's guardrails paragraph) if over.
+- [ ] Run `/eqc-check` in the mobile app repo; make slide 8/9 numbers match the fresh output (cached `compliance.json` 2026-10-02 says 33 pass / 2 partial / 4 fail; `docs/eqc/COMPLIANCE.md` 2026-09-28 says 30 / 5 / 4).
+- [ ] Capture screenshot fallbacks: slide 8 (`eqc-check-scorecard.png`, `eqc-compliance-report.png` = the `COMPLIANCE.html` page, `eqc-fix-ranked.png` = `/eqc-fix` ranked list), slide 15 (`/orchestrate` preview table), slide 25 (v1.9.4 notes beside `git log`). Save into `./screenshots/` and reference them in notes.
+- [ ] Pre-stage slide 15: run `/orchestrate` on a small prepared goal up to PREVIEW and leave the terminal paused at "Approve, edit, or reject?" (live, only type "just go").
+- [ ] Rehearse once with a timer; cut slides 16/18/24 (and slide 7's hooks paragraph) if over.
 
 ## Research: eqc-kit
 
@@ -49,7 +50,7 @@ Sources: `~/dev/personal/eqc-upgrade` (KIT), `~/dev/personal/eqc-upgrade-guardra
 - **/eqc-fix:** top-10 candidates easiest-first; Gates ask before CI/package/architecture/top-tier changes; small → `eqc-fixer` one pass; medium/large → `eqc-planner` (opus, read-only) writes a chunked plan, user approves, fixer runs chunks (mechanical → haiku, judgment → sonnet), resumable. Re-audit after each fix, log a Milestone. Audits parallel, fixes serial — "never two fixers at once".
 - **Tier maths:** a tier is reached when every rule in it and below has a verdict and none fail; a fail in the lowest tier = HARD_FAIL.
 - **Safety defaults:** never commits, no package installs without approval, no postinstall, hash manifest so edited files aren't overwritten.
-- **Guardrails (GR, unreleased):** `.eqc/RULES.md` digest + AGENTS.md/CLAUDE.md block; per-rule `verify` shell commands; `gate --min TIER` fails on regressions; opt-in `pre-commit`/`pre-push` hooks (`npx eqc-kit hooks`); ADR 0004: no LLM in pre-commit — slow, costly, nondeterministic.
+- **Guardrails (dev branch, published by talk time; see `work/sources.md`):** `.eqc/RULES.md` digest + AGENTS.md/CLAUDE.md block; optional per-rule `verify` shell commands (mechanical rules only, run on passing rules); baseline + `eqc guard [--min TIER]` fails only on regressions; code map; `COMPLIANCE.html` report; opt-in `pre-commit`/`pre-push` hooks (`npx eqc-kit hooks`); ADR 0004: no LLM in pre-commit — slow, costly, nondeterministic.
 - **Numbers (APP):** standard has 39 rules (9 LOW + 13 MEDIUM + 17 HIGH). Started HARD_FAIL; LOW-2 milestone flipped it to LOW. Latest: MEDIUM, 33 pass / 2 partial / 4 fail. 27 milestones (25 done, 2 partial) over ~5 days (2026-09-23 → 09-28).
   - 54 real ESLint errors fixed across 30 files (LOW-2)
   - 13-chunk sweep across ~85 files, suite 2912/2912 green (MEDIUM-8)

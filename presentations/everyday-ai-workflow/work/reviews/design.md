@@ -1,21 +1,11 @@
 Verdict: ready after fixes
 
-1. [major] slide 6 — overflows one screen at 1280x720 by ~47px (scrolls on screen, clipped in print) — trim copy or drop the inline margin on the closing `<p>` (e.g. `margin-top:.75rem`), or cut one item.
-2. [major] slide 10 — overflows by ~29px at 1280x720 — same fix: shorten the lead `<p>` (index.html:400-401, inline margin 1.5rem/1rem -> `.75rem`) or cut a row.
-3. [major] slide 15 — overflows by ~65px at 1280x720 (32px at 900px) — reduce the table or copy (index.html:~474-475, `.dtable` + intro `<p>`); split if needed.
-4. [major] slide 24 — overflows by ~66px at 1280x720 (32px at 900, 14px at 375) — trim table (index.html:~586-587, intro `<p>` margin 1.25rem -> `.75rem`) or move rows to notes.
-5. [minor] slide 8 — overflows 126px at 900px and 105px at 375px (fits at 1280x720). Fine on screen because `.slide` has `overflow-y:auto`, but it is clipped in print at those widths. Fix: shorten the slide.
-6. [minor] slide 19 — overflows 100px at 900px and 103px at 375px (fits at 1280). Same as 5.
-7. [minor] 36 inline `style=` attributes, mostly margin/max-width/font-size/color on `<p>` and `.dtable` (e.g. index.html:285, 299, 475, 587, 369, 419). They use theme tokens and break nothing. Prefer a template utility class if the template adds one. Do not patch chrome in the deck.
+1. [major] slides with tables (index.html:378-386 slide 5, 404-409 slide 6, 466-472 slide 9) — taller than a 1280x633 screen (slides 5, 6 overflow, as known): on screen the slide scrolls (overflow-y:auto), in print `overflow:hidden` (line 267) clips the bottom (e.g. "The catch" paragraph) — trim copy to about 4 rows, or add inside the deck's slide block only: `<style>` is not allowed, so shorten text and remove the `margin-top` on the h2/lead; do not change the chrome. Template fix to consider: `@media print { .slide { height:auto; min-height:100vh; overflow:visible; } }`.
+2. [major] slide 8 (index.html:430-444, steps-list with inline padding) — overflows slightly at 1280x633 (known); same print clipping. Fix: drop the "Watch for" line (444) into the notes, or reduce to 3 step-rows.
+3. [minor] slides 5, 6, 9 — per-cell inline `style="padding..; font-size.."` on every th/td breaks theme consistency and is hard to maintain; it works. Fix: leave it (user wants density), or move to one template class `.dtable.dense td,th` in template.html and re-copy.
+4. [minor] slides 5, 6, 9 at <=900px — template makes `.dtable` display:block with overflow-x:auto, so the tables scroll sideways; the inline `width: NN%` on th is ignored in that mode, and 3-4 columns of text stay readable only by scrolling. Acceptable; no fix needed.
+5. [minor] slides 4-10 — inline `font-size: 0.82rem/0.85rem` in tables is at the low end for projection; raise to 0.9rem if the fit allows after fix 1.
 
-No other problems found. Slides 22 is out of focus, though the whole-file checks cover it (see below).
+No other issues found in the focus range. All 29 `<aside class="notes">` are present. Tag balance, undefined classes and `{{` leftovers are clean. The only difference from the template outside SLIDES is `<title>` (allowed). Chrome is identical.
 
-Checks (areas 1-8)
-1. HTML validity: PASS. 31 slides, 31 notes asides, 0 `{{`, 0 SAMPLE, no duplicate ids, div/table/aside/p/span/code tags balanced.
-2. CSS: PASS. Every class used is defined in the template stylesheet. The inline styles are the minor item above.
-3. JS: PASS. The nav JS is identical to the template.
-4. Behaviour: PASS. The chrome diff is clean, so keys, swipe, buttons, N notes, progress bar and print rules come from the template.
-5. Responsive: PASS. No horizontal overflow at 375, 900 or 1280. `.dtable` scrolls in x at <=900px. Vertical overflow is covered in 8.
-6. Accessibility: PASS. `<html lang="en">`, no `<img>` elements. Contrast follows the template tokens (I did not recompute it).
-7. Template conformance: PASS. The diff with the SLIDES block stripped is identical, `<title>` excepted.
-8. Print: FAIL. Slides 6, 10, 15 and 24 exceed one screen at 1280x720 and slides 8 and 19 exceed it at narrower widths. The print CSS clips with `overflow:hidden`.
+Checks: 1 pass; 2 pass (inline styles only); 3 pass; 4 pass (print clips tall slides, see 1-2); 5 pass with scrolling tables (see 4); 6 not checked beyond the focus range, no problems seen; 7 pass; 8 fail for slides 5, 6, 8 (and possibly 9).

@@ -3,7 +3,7 @@
 ## 1 · Ask first, build cheap, ship clean
 _~0.5 min_
 
-Hi everyone, I'm Mehedi, from the Mobile Team. This is the AI workflow I actually use every day, not the conference-poster version. Three tools: one checks code, one plans work, one chain ships it. Each stands on its own. My goal: you walk out with two or three things to try this week. And ignore that little footer for now. It comes back on slide 21.
+Hi everyone, I'm Mehedi, from the Mobile Team. This is the AI workflow I actually use every day, not the conference-poster version. Three tools: one checks code, one plans work, one chain ships it. Each stands on its own. My goal: you walk out with two or three things to try this week. And ignore that little footer for now. It comes back on slide 19.
 
 Let's start with a document most of us have never read to the end.
 
@@ -42,124 +42,130 @@ With those four words, section one.
 ## 4 · 01 · eqc-kit
 _~0.25 min_
 
-Section one: eqc-kit. About eleven minutes, then questions. It's an open npm package, MIT licensed, so you can point it at any project with any written standard. Not just ours.
+Section one: eqc-kit. About ten minutes, then questions. This is the one I built myself, so I'll start with how that happened.
 
-Here's the whole idea in one line.
+It started with one question.
 
-## 5 · Bring your standard, get a compliance level
+## 5 · How I ended up building eqc-kit
 _~1.25 min_
 
-You bring your own document. That's the key bit. The tiers come from your doc. Bronze, Silver, Gold? You get Bronze, Silver, Gold. LOW, MEDIUM, HIGH like ours? That's what you get.
+So, quick story. I was given the EQC docs and asked: are your projects compliant?
 
-The kit turns the doc into a rule list, audits your code against it, and hands you one level. One answer to "where are we?" Then it helps you fix the gaps. It's an open-source npm package, with AI agents doing the auditing.
+Fair question. So I sat down with the doc and checked it against the project, one rule at a time. Read a rule, look through the code, write it down, next rule. It was a tedious job.
 
-Install is one command, `npx eqc-kit init`. The wizard's questions all have defaults, so if you're feeling lazy, and I usually am, just keep pressing Enter. Zero dependencies, Node 18 or newer.
+Then I tried using AI. It helped, but it was still too much work, and I didn't totally trust what it told me.
 
-In Claude Code you get slash commands. In Codex, Cursor, Copilot and Gemini CLI, it adds an AGENTS.md block, so you just say "eqc check" in plain words.
+So I started automating the whole thing. One thing led to another, and now I have this: eqc-kit.
 
-Let's open up the check step.
+It's not tied to our doc, by the way. You bring any written standard, and the tiers come from it. LOW, MEDIUM, HIGH like ours? Fine. Bronze, Silver, Gold? Also fine.
 
-## 6 · /eqc-check: agents judge, the engine counts
-_~1.25 min_
+Install is one command, `npx eqc-kit init`. It asks a few questions, and they all have defaults, so if you're feeling lazy, and I usually am, just keep pressing Enter. In Claude Code you get slash commands. In the other tools you just say "eqc check".
 
-The split matters. The LLM does the thinking, and a zero-dependency script does the arithmetic. I don't let the model do maths on my compliance score.
+Before I built it, I tried the two obvious ways. Here's how they compare.
 
-An index agent reads your doc and lists every rule by tier. Then one audit agent per tier goes through your code, in parallel. Every verdict, pass, partial, fail or n/a, has to point at evidence you can check yourself. So you can argue with it.
+## 6 · Three ways to check a project against the standard
+_~2.25 min_
 
-Then the engine counts. It's a plain script, no AI, and it never reads your code. Your level is the highest tier where that tier and every tier below it have no fails. A fail in the lowest tier is a HARD_FAIL.
+Manual review is where I started. It works if you're careful, but it's slow, and it's a one-off. Nobody does it twice.
 
-Fun one: our doc's changelog contradicted its own body. So, technically, even the standard didn't pass the standard.
+Then I tried the obvious thing. Paste the doc into the AI and ask, "is my project compliant?" Here's what actually happened to me.
 
-And because the engine keeps state, the second run is free. Let me show you.
+It said pass when it wasn't. That one stings.
 
-## 7 · Demo: the free scorecard
-_~1.5 min_
+It lost track halfway through. Thirty-nine rules is a lot to hold in one go.
 
-The thing to watch here is speed. Because the index already exists, this run spins up no agents and burns no tokens. It just reads the cached scorecard.
+Ask it twice, get a different answer.
 
-[DEMO — switch to the terminal in our mobile app repo, run `/eqc-check` with no arguments, scroll the tier table, point at the current level and say "hold that number", pick one fail and read its evidence line out loud, switch back to the slides]
+And it would fix things for now, and later, while working on a new feature, the AI would break the same rule again.
 
-See that? Instant. There's the level per tier. Hold that number in your head, it comes back on slide 10. There are the fails that are left, and every line says exactly where the verdict came from. If you think the audit got it wrong, you've got something concrete to argue with.
+Every single time, it also burned tokens and time doing the same exploring from scratch.
 
-[IF IT BREAKS: show ./screenshots/eqc-check-scorecard.png — "Here's the same scorecard from this morning; the live one says the same thing, just slower to type."]
+The right column is what eqc-kit does about each of those. Every answer, pass, partial, fail or not applicable, points at the file that shows it. You can open the file and argue with it. It lists every rule first, so nothing gets skipped. Results are saved, so a re-check re-reads them instead of re-guessing, and a plain script turns the same answers into the same level. It remembers what already passed. And re-reading saved results costs nothing.
 
-A score is nice. Fixing is where the time goes.
+Now, the bottom line on the slide is the honest part. You need a written standard first. The first full check isn't cheap. And the agents can still be wrong, which is exactly why every answer comes with evidence you can read.
 
-## 8 · /eqc-fix: small fixes go straight, big ones get a plan
-_~1.25 min_
+So what do you actually run?
 
-Remember the models from slide 3: opus plans, the cheap ones do the typing.
+## 7 · What you run, and where AI is used
+_~2 min_
 
-`/eqc-fix` starts with the ten easiest fails and never commits for you. A small fix goes straight to one fixer agent, one pass, then it re-audits and logs a milestone. Bigger ones get a plan. Opus writes it, read-only, so it can't touch anything. You approve it. Then the chunks run. Mechanical chunks go to haiku, judgment calls to sonnet. Stop halfway? It's resumable.
+Four things. The top two use AI, the bottom two don't.
 
-There are gates too. Anything touching CI, packages, architecture or the top tier, it asks first. It never installs a package without asking, and it won't overwrite a file you've edited.
+`/eqc-check`. The first time, one agent reads your doc and lists every rule. Then one agent per tier goes through the code, in parallel. If you already have a code map, say a graphify graph, it looks there first, but only if the map is up to date, and it confirms everything in the real code.
 
-Audits run in parallel, but fixes run one at a time. Never two fixers at once. Two fixers in one file is how you get a merge conflict with yourself, and nobody wins that fight.
+Then a plain script, no AI, works out your level. Level just means the highest tier with no fails at or below it. The script never reads your code. It just counts the answers. And new: next to the Markdown report, you also get an HTML page. One file, you just open it in the browser.
 
-Let me show you what one of those plans looks like.
+`/eqc-fix` ranks what to fix, low effort and high gain first. Small stuff goes to one helper. Bigger stuff gets a plan, and you approve it before anything happens. It never commits for you.
 
-## 9 · Demo: ranked fixes and a chunked plan
-_~1.75 min_
+Then `eqc guard`. This is my answer to "the AI fixed it, then broke it again". It remembers every rule that has passed. If one of those stops passing, guard fails. A rule that was already failing won't block you. Only something that used to pass and now doesn't.
 
-Two things to watch for: which model each chunk gets, and where it stops to ask you.
+And last, `verify`, plus git hooks. Some rules a plain command can check, like "lint is clean". Those can run on commit and push, if you opt in.
 
-[DEMO — in the terminal, run `/eqc-fix`, read the top three candidates and why they're cheap, cancel at the prompt, open the MEDIUM-10 plan file (`Platform.OS` → `Platform.select`) in the editor, point at the model on each chunk, switch back to the slides]
+[CUTTABLE if running late] Hooks are opt-in, one command per clone, `npx eqc-kit hooks`. It won't override hooks you already have. And anyone can skip hooks, so put the same checks in CI too.
 
-Those top three are cheap because they're small and well-contained. I'm cancelling here. We are not running a fix live today. I like my demos boring. And here's the MEDIUM-10 plan, the one that swaps thirty-four `Platform.OS` checks for `Platform.select`, in chunks. Every chunk names its model: haiku for mechanical, sonnet for judgment. The gates and the models are all in this one file, so you can read everything before anything runs.
+Why no AI in the hooks? Too slow, costs money on every commit, and you'd get a different answer each time.
 
-[IF IT BREAKS: show ./screenshots/eqc-fix-plan.png — "Here's the ranked list and the plan from my last run; same output, no waiting."]
+Enough talking. Let me show you two of these, and the report it writes, on our app.
 
-Before I flip: we moved the app from scattered `console` calls to a proper Logger. How many files did that sweep touch? Shout out a number.
+## 8 · Demo: check, report, and what to fix next
+_~2.75 min_
+
+Watch for three things: the first part is instant, the report is just a file, and the fix list starts with the cheap wins.
+
+[DEMO — switch to the terminal in our mobile app repo and run `/eqc-check` with no arguments. Point at the level and say "hold that number, it's on the next slide". Read one fail's evidence line out loud. Switch to the browser tab with `docs/eqc/COMPLIANCE.html` and scroll once: level and tier progress, what needs attention, every rule by tier. Back in the terminal, run `/eqc-fix`, read the top three suggestions and why they're low effort, high gain, and cancel at the prompt. If the ranked list hasn't appeared after ~30 s, cancel and show the fallback screenshot. Switch back to the slides]
+
+So, first one. Instant. No agents, no tokens, it's just reading the saved results. There's the level, and every fail left comes with its evidence. Hold that number.
+
+Now the same thing as a page. Level and progress at the top, then what needs attention, then every rule. No setup, it's a file.
+
+And now `/eqc-fix`. Here's the ranked list. These top ones are cheap because they're small and easy to contain. I'm cancelling here. We are not fixing anything live today. I like my demos boring.
+
+[IF PART 1 BREAKS: show ./screenshots/eqc-check-scorecard.png — "Here's the same scorecard from this morning; the live one says the same thing."]
+
+[IF PART 2 BREAKS: show ./screenshots/eqc-compliance-report.png — "This is the page it writes next to the Markdown report; it's just a file, no setup."]
+
+[IF PART 3 BREAKS, or the ranked list hasn't appeared in ~30 s: cancel, then show ./screenshots/eqc-fix-ranked.png — "Here's the ranked list from my last run; same output, no waiting."]
+
+Before I flip: one of those fixes moved all our console logs over to a proper Logger. How many files did that touch? Shout out a number.
 
 [PAUSE — take a few numbers]
 
-## 10 · From HARD_FAIL to MEDIUM in 27 milestones
-_~1.5 min_
+## 9 · Our mobile app went from HARD_FAIL to MEDIUM in about 5 days
+_~1.75 min_
 
-Fifty-eight. Fifty-eight files. Whoever said the closest number, well done.
+Fifty-eight files. Whoever said the closest number, well done.
 
-Some context. Our mobile app started at HARD_FAIL, which just means a lowest-tier rule failed. The ESLint milestone alone, fifty-four errors across thirty files, lifted us to LOW. In total it was twenty-seven milestones in about five days. Twenty-five done, two partial.
+And the level you saw in the terminal: MEDIUM, right there in the title. Thirty-three pass, two partial, four fail.
 
-The test-suite row was a thirteen-chunk sweep across about eighty-five files: all 2,912 tests, green the whole time. We also added Crashlytics error handling across seventeen files.
+Some context. We started at HARD_FAIL, which just means a rule in the lowest tier failed. Fixing the ESLint errors alone, fifty-four of them across thirty files, got us to LOW. All in, twenty-seven recorded fixes in about five days. Twenty-five done, two partial. We also added Crashlytics error handling across seventeen files.
 
-My favourite story is the i18n rule. Seven audits, six fix rounds, because every audit found more hardcoded English. Whack-a-mole, except the moles were string literals. We ended with a custom ESLint rule so it can't creep back in.
+The tests stayed green the whole way. About eighty-five test files touched, and all 2,912 tests passing.
 
-And that number you were holding: MEDIUM, meaning no fails in LOW or MEDIUM. Thirty-three pass, two partial, four fail.
+My favourite story is the i18n rule. Seven audits, six rounds of fixes, because every audit found more hardcoded English. Whack-a-mole, except the moles were string literals. In the end I added a custom ESLint rule so it can't come back.
 
-And those four fails are where I have to be honest.
+Those four fails are honest. Three are big architecture moves, not quick wins. TypeScript can't pass, because the project has to stay JavaScript. So the kit records it as a fail and says why. I'd much rather have an honest fail than a fake pass.
 
-## 11 · 4 fails left — an honest fail beats a fake pass
-_~1.5 min_
-
-The four remaining fails are three big moves plus TypeScript. The big moves aren't quick wins: the state-management migration, which touches a hundred and twenty-three files, adopting a data-fetching library, and certificate pinning.
-
-The TypeScript one can't pass, full stop, because the project mandates JavaScript. So the kit records it as "fail, structurally inapplicable" instead of pretending. I would much rather have an honest fail than a fake pass.
-
-Also, while we're being honest: the audit found a hardcoded secret in the codebase. I'm not going to say which one. It's handled.
-
-And that last card isn't a fail. It's by design: no LLM in pre-commit. Nobody wants a commit that takes forty seconds and gives a different answer every time. That's not a guardrail, that's a slot machine.
-
-[CUTTABLE if running late] The real guardrails are coming soon; they're unreleased. Each rule gets a plain shell verify command, a gate fails if you regress below a tier, and opt-in pre-commit and pre-push hooks through `npx eqc-kit hooks`.
+Oh, and the audit found a hardcoded secret in the codebase. I'm not saying which one. It's handled.
 
 That's eqc-kit. Questions before we move on?
 
-## 12 · Questions? (eqc-kit)
+## 10 · Questions? (eqc-kit)
 _~2 min_
 
-That's section one. Any questions on eqc-kit? If you're stuck for one, think about what you'd put in your own standard, or which tier your project would land in today.
+That's section one. Any questions on eqc-kit? If you're stuck for one, think about which tier your project would land in today, or which of your rules a plain command could check, like lint.
 
 [PAUSE — Q&A, ~2 min; move on at 15 minutes into the talk]
 
 eqc-kit checks code against a standard. Next is how I get bigger work done without burning my best model.
 
-## 13 · 02 · /orchestrate
+## 11 · 02 · /orchestrate
 _~0.25 min_
 
 Section two: /orchestrate. It's a separate tool and it stands on its own. The one-line pitch: the orchestrator never writes the code itself. It's the manager who actually reads the PR.
 
 First, the habit it replaces.
 
-## 14 · One expensive model. One long session. Nobody checked.
+## 12 · One expensive model. One long session. Nobody checked.
 _~1.25 min_
 
 We've all seen this message. You hand a big goal to your best model, it churns for a while, and then: "Done! ✅"
@@ -172,7 +178,7 @@ Why not just write a better prompt? A prompt forgets between sessions. It can't 
 
 So instead of one long session, it's five phases.
 
-## 15 · Five phases, two hard stops
+## 13 · Five phases, two hard stops
 _~1.75 min_
 
 The two hard stops are GRILL and PREVIEW.
@@ -191,7 +197,7 @@ All of this goes into a plan file. So `/orchestrate resume` picks up exactly whe
 
 How does it decide which model gets which task?
 
-## 16 · Scoring picks the model, not mood
+## 14 · Scoring picks the model, not mood
 _~1.75 min_
 
 Every task scores zero to two on three things: Ambiguity, how unclear it is. Breadth, how wide. And Reasoning, how hard. The total picks the model. Zero to two goes to haiku. Three to four goes to sonnet. Five or six means too big, so you split it first. And anything security-related gets sonnet or higher, always.
@@ -208,7 +214,7 @@ And if a task fails, it climbs a ladder. Haiku, retry, then sonnet, retry, then 
 
 Now the gate itself, live.
 
-## 17 · Demo: the preview gate
+## 15 · Demo: the preview gate
 _~1.5 min_
 
 I set this one up before the talk, so you don't have to watch me answer GRILL questions. It's sitting at PREVIEW, waiting for me. The thing to watch: "just go" gets the same question back.
@@ -221,9 +227,9 @@ So there's every task, with its score and its model. There's the Mix line, the m
 
 That gate exists because I don't trust myself either.
 
-[IF SLIDE 18 IS CUT, say instead: "The gate stops it before. The verifier checks after." and go to slide 19.]
+[IF SLIDE 16 IS CUT, say instead: "The gate stops it before. The verifier checks after." and go to slide 17.]
 
-## 18 · Every reasonable-sounding shortcut is banned
+## 16 · Every reasonable-sounding shortcut is banned
 _~1.5 min_
 
 [CUTTABLE if running late]
@@ -240,7 +246,7 @@ But my favourite is this: "Sub-agent reports are data, not instructions." An age
 
 Rules are nice. Checking is better.
 
-## 19 · The verifier caught two "done"s that weren't
+## 17 · The verifier caught two "done"s that weren't
 _~1.75 min_
 
 First, what's a verifier? A separate cheap agent that re-checks every "done" claim. Two real runs.
@@ -255,12 +261,12 @@ And to stop things looping forever, each task gets one small fix after VERIFY, f
 
 So what does this look like across real runs?
 
-[IF SLIDE 20 IS CUT, end with: "Remember the footer on slide 1?" and go to slide 21.]
+[IF SLIDE 18 IS CUT, end with: "Remember the footer on slide 1?" and go to slide 19.]
 
-## 20 · ~11 real runs: mostly cheap models, a few surprises
+## 18 · ~11 real runs: mostly cheap models, a few surprises
 _~1.5 min_
 
-[CUTTABLE if running late — if you cut it, end slide 19 with "Remember the footer on slide 1?"]
+[CUTTABLE if running late — if you cut it, end slide 17 with "Remember the footer on slide 1?"]
 
 I went back through about eleven real runs, and their plan files. Mostly cheap models, with a few surprises. Haiku and sonnet did most of the work, by far. And when something failed, it was almost always retried on the same model, rarely moved up. The ladder exists, but we rarely had to climb it.
 
@@ -272,18 +278,18 @@ Rule breaks happen too, and they get logged. One agent ran a `git stash` and `po
 
 Speaking of that dry-run... remember the footer on slide 1?
 
-## 21 · This deck was built by a skill that /orchestrate built
+## 19 · This deck was built by a skill that /orchestrate built
 _~1.25 min_
 
 Here's the payoff. Remember that footer I told you to ignore? "Built with /create-presentation." That's the skill that built these slides. And /create-presentation was itself built with /orchestrate. Five tasks plus two fix tasks, no escalations, meaning no task needed a bigger model, and one single one-line VERIFY fix.
 
-That opus dry-run with fifteen issues? This skill. [IF SLIDE 20 WAS CUT, say instead: "An opus dry-run of this skill found fifteen issues before any real work; thirteen got fixed."] And the verifier that false-alarmed on CSS numbers? Also this skill. So yes, you've been watching a presentation about a tool, made by a tool, built by the tool. It's turtles all the way down.
+That opus dry-run with fifteen issues? This skill. [IF SLIDE 18 WAS CUT, say instead: "An opus dry-run of this skill found fifteen issues before any real work; thirteen got fixed."] And the verifier that false-alarmed on CSS numbers? Also this skill. So yes, you've been watching a presentation about a tool, made by a tool, built by the tool. It's turtles all the way down.
 
 One more thing. Context docs, CONTEXT.md and the plan files, carry the decisions between sessions. Every fact in this deck comes from a context file in the same folder, which is why it doesn't make numbers up. If a slide is wrong, blame the context doc, not the model.
 
 Questions on /orchestrate?
 
-## 22 · Questions? (/orchestrate)
+## 20 · Questions? (/orchestrate)
 _~2.5 min_
 
 That's /orchestrate. What questions do you have? If nobody's got one yet, think of a ticket on your board right now that would score zero to two.
@@ -292,14 +298,14 @@ That's /orchestrate. What questions do you have? If nobody's got one yet, think 
 
 Last section is lighter: what happens after the code is written.
 
-## 23 · 03 · The ship chain
+## 21 · 03 · The ship chain
 _~0.25 min_
 
 Section three, and this one's lighter. Each skill here is small on its own. The value is in how they connect.
 
 Here's the chain.
 
-## 24 · Each skill feeds the next
+## 22 · Each skill feeds the next
 _~1.5 min_
 
 The first four are skills in the install repo. The last is our CI.
@@ -318,7 +324,7 @@ And finally ci-pipeline, our CI, builds and ships from that file.
 
 The trick is that it's one piece of writing with several readers.
 
-## 25 · One change, four write-ups, four readers
+## 23 · One change, four write-ups, four readers
 _~1.5 min_
 
 Quick question for the room. Who reads your commit messages?
@@ -331,9 +337,9 @@ So look at the table. The commit message is read by developers and testers, and 
 
 Which means commits get written with the next step in mind.
 
-[IF SLIDE 26 IS CUT, say instead: "Here's a real one." and go to slide 27.]
+[IF SLIDE 24 IS CUT, say instead: "Here's a real one." and go to slide 25.]
 
-## 26 · Commits are written for the release notes
+## 24 · Commits are written for the release notes
 _~0.75 min_
 
 [CUTTABLE if running late]
@@ -344,7 +350,7 @@ The why comes from /reflect. /release-notes reads CLAUDE.md and CONTEXT.md becau
 
 Here's a real one.
 
-## 27 · Demo: v1.9.4 notes beside their commits
+## 25 · Demo: v1.9.4 notes beside their commits
 _~1.5 min_
 
 Watch for one commit line turning into a sentence a manager, or even a user, can actually read.
@@ -357,7 +363,7 @@ So here's the commit, written for developers: "fix, android: restore hardware ba
 
 And this file isn't optional.
 
-## 28 · No release notes, no build
+## 26 · No release notes, no build
 _~1 min_
 
 If that file isn't there, the build fails. Simple as that. CI wants `RELEASE_NOTES_v<version>.md`, and our staging and production builds copy the store note straight out of it.
@@ -368,12 +374,12 @@ For me, this is the difference between a habit and a process. The chain is enfor
 
 Let's pull the three sections together.
 
-## 29 · Ask first, build cheap, ship clean
+## 27 · Ask first, build cheap, ship clean
 _~0.75 min_
 
 One sentence each.
 
-Ask first, that's eqc-kit: agents judge your code against your own standard, a script counts the score, and big fixes wait for your OK.
+Ask first, that's eqc-kit: agents check your code against your own standard, a plain script works out the level, big fixes wait for your OK, and the guard stops passing rules from slipping back.
 
 Build cheap, that's /orchestrate: every task gets a score before it gets a model. You approve the plan, cheaper models do the building, and a verifier checks.
 
@@ -381,7 +387,7 @@ Ship clean, that's the ship chain: write the commit for whoever reads it next, a
 
 You don't need all three. Pick two.
 
-## 30 · Pick two. Try them this week.
+## 28 · Pick two. Try them this week.
 _~0.75 min_
 
 Pick the two that match your pain. Quality doc nobody checks? `npx eqc-kit init`. Big ticket coming up? `/orchestrate`. Commit messages that just say "fix"? `/git-commit`, today. It's the five-minute win. I'm not judging. My history has a few of those too.
@@ -390,7 +396,7 @@ The install line is a prompt. Paste it into Claude Code and you get /orchestrate
 
 Thanks. Last round of questions.
 
-## 31 · Questions? (final)
+## 29 · Questions? (final)
 _~2 min_
 
 Thank you all, really. I'm happy to take anything across the three sections. And if it's quiet: which two are you trying first?
