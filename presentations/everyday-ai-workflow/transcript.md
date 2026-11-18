@@ -56,7 +56,7 @@ Skill: it's a saved set of instructions. You type its name with a slash, and it 
 
 Sub-agent: it's a helper. The main session gives it one task, and it sends back a short report.
 
-Now the models: you must already know haiku, sonnet and opus. Three models from 2 tiers.
+Now the models: you must already know haiku, sonnet and opus. Three models from 3 tiers.
 A lot of today is about sending work to the cheapest model that can do it.
 
 Everything you will see is a skill, a set of sub-agents, or both. Also, eqc-kit works in four other AI coding tools too. So for that one, you don't need Claude Code.
