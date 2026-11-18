@@ -1,18 +1,32 @@
 # Ask first, build cheap, ship clean
 
-## 1 · Ask first, build cheap, ship clean
-_~0.5 min_
+| You see | Means |
+|---|---|
+| `# Section …` / `## Slide N · …` | Where you are. Don't read it. |
+| Plain paragraph | Say it out loud. |
+| `> 🎬 DO:` | An action. Do it, don't say it. |
+| `> ⏸ PAUSE:` | Stop and let the room answer. |
+| `> ✂️ CUTTABLE` | Say it only if you're on time. |
+| `> ⚠️ IF …:` | Backup: only if that condition happens. |
+| `➡️ Next slide` | Press → |
+
+# Section 1 · eqc-kit (slides 1–10 · 15 min)
+
+## Slide 1 · Ask first, build cheap, ship clean
+⏱ ~0.5 min
 
 Hi everyone, I'm Mehedi, from the Mobile Team. This is the AI workflow I actually use every day, not the conference-poster version. Three tools: one checks code, one plans work, one chain ships it. Each stands on its own. My goal: you walk out with two or three things to try this week. And ignore that little footer for now. It comes back on slide 17.
 
 Let's start with a document most of us have never read to the end.
 
-## 2 · 39 rules. One long doc. Nobody wants to check them by hand.
-_~1.25 min_
+➡️ **Next slide**
+
+## Slide 2 · 39 rules. One long doc. Nobody wants to check them by hand.
+⏱ ~1.25 min
 
 Quick show of hands. Who here has read the whole quality standard, start to finish? ... Okay. Now keep your hand up if you've actually checked your own code against every single rule in it.
 
-[PAUSE — look at the hands]
+> ⏸ **PAUSE:** look at the hands
 
 Yeah. That's about what I expected, and honestly, that's the point of this slide.
 
@@ -22,8 +36,10 @@ Each part of today is something I used to skip: checking, planning, writing it u
 
 Before the tools, four words you'll hear all talk.
 
-## 3 · A skill is a playbook. Sub-agents are its helpers.
-_~1 min_
+➡️ **Next slide**
+
+## Slide 3 · A skill is a playbook. Sub-agents are its helpers.
+⏱ ~1 min
 
 Quick primer, because none of these tools have come up here before.
 
@@ -39,15 +55,19 @@ eqc-kit also works in four other AI coding tools, so you don't need Claude Code 
 
 With those four words, section one.
 
-## 4 · 01 · eqc-kit
-_~0.25 min_
+➡️ **Next slide**
+
+## Slide 4 · 01 · eqc-kit
+⏱ ~0.25 min
 
 Section one: eqc-kit. About ten minutes, then questions. This is the one I built myself, so I'll start with how that happened.
 
 It started with one question.
 
-## 5 · How I ended up building eqc-kit
-_~1.25 min_
+➡️ **Next slide**
+
+## Slide 5 · How I ended up building eqc-kit
+⏱ ~1.25 min
 
 So, quick story. I was given the EQC docs and asked: are your projects compliant?
 
@@ -63,8 +83,10 @@ Install is one command, `npx eqc-kit init`. It asks a few questions, and they al
 
 Before I built it, I tried the two obvious ways. Here's how they compare.
 
-## 6 · Three ways to check a project against the standard
-_~2.25 min_
+➡️ **Next slide**
+
+## Slide 6 · Three ways to check a project against the standard
+⏱ ~2.25 min
 
 Manual review is where I started. It works if you're careful, but it's slow, and it's a one-off. Nobody does it twice.
 
@@ -86,8 +108,10 @@ Now, the bottom line on the slide is the honest part. You need a written standar
 
 So what do you actually run?
 
-## 7 · What you run, and where AI is used
-_~2 min_
+➡️ **Next slide**
+
+## Slide 7 · What you run, and where AI is used
+⏱ ~2 min
 
 Four things. The top two use AI, the bottom two don't.
 
@@ -101,37 +125,57 @@ Then `eqc guard`. This is my answer to "the AI fixed it, then broke it again". I
 
 And last, `verify`, plus git hooks. Some rules a plain command can check, like "lint is clean". Those can run on commit and push, if you opt in.
 
-[CUTTABLE if running late] Hooks are opt-in, one command per clone, `npx eqc-kit hooks`. It won't override hooks you already have. And anyone can skip hooks, so put the same checks in CI too.
+> ✂️ **CUTTABLE — say only if on time:**
+> Hooks are opt-in, one command per clone, `npx eqc-kit hooks`. It won't override hooks you already have. And anyone can skip hooks, so put the same checks in CI too.
 
 Why no AI in the hooks? Too slow, costs money on every commit, and you'd get a different answer each time.
 
 Enough talking. Let me show you two of these, and the report it writes, on our app.
 
-## 8 · Demo: check, report, and what to fix next
-_~2.75 min_
+➡️ **Next slide**
+
+## Slide 8 · Demo: check, report, and what to fix next
+⏱ ~2.75 min
 
 Watch for three things: the first part is instant, the report is just a file, and the fix list starts with the cheap wins.
 
-[DEMO — switch to the terminal in our mobile app repo and run `/eqc-check` with no arguments. Point at the level and say "hold that number, it's on the next slide". Read one fail's evidence line out loud. Switch to the browser tab with `docs/eqc/COMPLIANCE.html` and scroll once: level and tier progress, what needs attention, every rule by tier. Back in the terminal, run `/eqc-fix`, read the top three suggestions and why they're low effort, high gain, and cancel at the prompt. If the ranked list hasn't appeared after ~30 s, cancel and show the fallback screenshot. Switch back to the slides]
+> 🎬 **DO (demo) — part 1:**
+> 1. Switch to the terminal in our mobile app repo.
+> 2. Run `/eqc-check` with no arguments.
+> 3. Point at the level and say "hold that number, it's on the next slide".
+> 4. Read one fail's evidence line out loud.
+
+> ⚠️ **IF** part 1 breaks: show ./screenshots/eqc-check-scorecard.png, then say: "Here's the same scorecard from this morning; the live one says the same thing."
 
 So, first one. Instant. No agents, no tokens, it's just reading the saved results. There's the level, and every fail left comes with its evidence. Hold that number.
 
+> 🎬 **DO (demo) — part 2:**
+> 1. Switch to the browser tab with `docs/eqc/COMPLIANCE.html`.
+> 2. Scroll once: level and tier progress, what needs attention, every rule by tier.
+
+> ⚠️ **IF** part 2 breaks: show ./screenshots/eqc-compliance-report.png, then say: "This is the page it writes next to the Markdown report; it's just a file, no setup."
+
 Now the same thing as a page. Level and progress at the top, then what needs attention, then every rule. No setup, it's a file.
+
+> 🎬 **DO (demo) — part 3:**
+> 1. Back in the terminal, run `/eqc-fix`.
+> 2. Read the top three suggestions and why they're low effort, high gain.
+> 3. Cancel at the prompt.
 
 And now `/eqc-fix`. Here's the ranked list. These top ones are cheap because they're small and easy to contain. I'm cancelling here. We are not fixing anything live today.
 
-[IF PART 1 BREAKS: show ./screenshots/eqc-check-scorecard.png — "Here's the same scorecard from this morning; the live one says the same thing."]
+> ⚠️ **IF** part 3 breaks, or the ranked list hasn't appeared in ~30 s: cancel, show ./screenshots/eqc-fix-ranked.png, then say: "Here's the ranked list from my last run; same output, no waiting."
 
-[IF PART 2 BREAKS: show ./screenshots/eqc-compliance-report.png — "This is the page it writes next to the Markdown report; it's just a file, no setup."]
-
-[IF PART 3 BREAKS, or the ranked list hasn't appeared in ~30 s: cancel, then show ./screenshots/eqc-fix-ranked.png — "Here's the ranked list from my last run; same output, no waiting."]
+> 🎬 **DO:** Switch back to the slides.
 
 Before I flip: one of those fixes moved all our console logs over to a proper Logger. How many files did that touch? Shout out a number.
 
-[PAUSE — take a few numbers]
+> ⏸ **PAUSE:** take a few numbers
 
-## 9 · Our mobile app went from HARD_FAIL to MEDIUM in about 5 days
-_~1.75 min_
+➡️ **Next slide**
+
+## Slide 9 · Our mobile app went from HARD_FAIL to MEDIUM in about 5 days
+⏱ ~1.75 min
 
 Fifty-eight files. Whoever said the closest number, well done.
 
@@ -149,24 +193,32 @@ Oh, and the audit found a hardcoded secret in the codebase. I'm not saying which
 
 That's eqc-kit. Questions before we move on?
 
-## 10 · Questions? (eqc-kit)
-_~2 min_
+➡️ **Next slide**
+
+## Slide 10 · Questions? (eqc-kit)
+⏱ ~2 min
 
 That's section one. Any questions on eqc-kit? If you're stuck for one, think about which tier your project would land in today, or which of your rules a plain command could check, like lint.
 
-[PAUSE — Q&A, ~2 min; move on at 15 minutes into the talk]
+> ⏸ **PAUSE:** Q&A, ~2 min; move on at 15 minutes into the talk
 
 eqc-kit checks code against a standard. Next is how I get bigger work done without burning my best model.
 
-## 11 · 02 · /orchestrate
-_~0.25 min_
+➡️ **Next slide**
+
+# Section 2 · /orchestrate (slides 11–17 · 15 min)
+
+## Slide 11 · 02 · /orchestrate
+⏱ ~0.25 min
 
 Section two: /orchestrate. It's a separate tool, so you can use it without eqc-kit. About twelve minutes, then questions.
 
 Same as before, I'll start with why I built it. It came out of a habit I had with plan mode.
 
-## 12 · Why I built /orchestrate
-_~1.5 min_
+➡️ **Next slide**
+
+## Slide 12 · Why I built /orchestrate
+⏱ ~1.5 min
 
 This one comes straight out of my day-to-day work.
 
@@ -180,8 +232,10 @@ I don't have a number for that, and I'll come back to it in a couple of slides.
 
 Before the skill, I used three other ways. Here's how they compare.
 
-## 13 · Four ways to run a big task with AI
-_~2.75 min_
+➡️ **Next slide**
+
+## Slide 13 · Four ways to run a big task with AI
+⏱ ~2.75 min
 
 These are the three things I used before. The first three columns are how each one worked for me day to day. It's not a feature list from the docs.
 
@@ -197,8 +251,10 @@ Now the bottom line, which is the honest part. On a small task, all that plannin
 
 So what's it actually like to use?
 
-## 14 · How /orchestrate runs a big task, phase by phase
-_~2.5 min_
+➡️ **Next slide**
+
+## Slide 14 · How /orchestrate runs a big task, phase by phase
+⏱ ~2.5 min
 
 This is the whole thing in one table. I'll go through it quickly.
 
@@ -212,16 +268,19 @@ EXECUTE. The orchestrator doesn't write the code, the helpers do. The one except
 
 CLOSE tells me which models actually did the work. Everything lives in a plan file, so I can stop, close the laptop, and run `/orchestrate resume` the next day. It suggests a commit, but it never makes one.
 
-[CUTTABLE if running late] There are also shortcuts it isn't allowed to take, and each one sounds reasonable in the moment. "I'll do this quick fix myself"? It hands it to a helper. "Approval was given in advance"? It shows the preview anyway. "Small repo, I'll just read it"? It reads at most two files of a hundred lines per phase itself, and sends a scout for the rest. "I'll run the tests to be sure"? The verifier does that. "This agent sets its own model"? It passes the model anyway.
+> ✂️ **CUTTABLE — say only if on time:**
+> There are also shortcuts it isn't allowed to take, and each one sounds reasonable in the moment. "I'll do this quick fix myself"? It hands it to a helper. "Approval was given in advance"? It shows the preview anyway. "Small repo, I'll just read it"? It reads at most two files of a hundred lines per phase itself, and sends a scout for the rest. "I'll run the tests to be sure"? The verifier does that. "This agent sets its own model"? It passes the model anyway.
 
 The part of PLAN I want to show you is how it picks the model.
 
-## 15 · How it picks a model for each task
-_~2 min_
+➡️ **Next slide**
+
+## Slide 15 · How it picks a model for each task
+⏱ ~2 min
 
 Let's try one first. Which model would you give the task "add a config entry with exact steps"?
 
-[PAUSE — take a few answers]
+> ⏸ **PAUSE:** take a few answers
 
 Haiku. It's clear, it's one file, and it doesn't need much thinking.
 
@@ -233,29 +292,45 @@ The rule I like most is the one on screen: when it's unsure, it picks the cheape
 
 That's where the token saving comes from. I can't give you a number. Try it on one real task, and look at the model mix it reports at CLOSE.
 
-[CUTTABLE if running late] And if a task fails, it climbs a ladder. A failed haiku task retries once on haiku, with the exact error and the current diff, then moves to sonnet. Sonnet retries once. Then the orchestrator either tries opus once, or works out the problem itself and re-scopes or splits the task. If that still fails, it pauses and reports to me. Every retry is logged in the plan file.
+> ✂️ **CUTTABLE — say only if on time:**
+> And if a task fails, it climbs a ladder. A failed haiku task retries once on haiku, with the exact error and the current diff, then moves to sonnet. Sonnet retries once. Then the orchestrator either tries opus once, or works out the problem itself and re-scopes or splits the task. If that still fails, it pauses and reports to me. Every retry is logged in the plan file.
 
 Now the gate itself, live.
 
-## 16 · Demo: the preview gate
-_~1.75 min_
+➡️ **Next slide**
+
+## Slide 16 · Demo: the preview gate
+⏱ ~1.75 min
 
 The thing to watch: "just go" in the goal didn't skip the gate.
 
-[DEMO — switch to the pre-staged terminal paused at PREVIEW. Walk the task table (task, score, tier) and point at the Tier column: the opus row carries its reason. Read the "Mix" line. Point at the line saying "just go" in the goal was ignored, then at "Approve, edit, or reject?". Reply "ok, but drop task 3" and show the re-preview with the plan changed, then reject, switch back to the slides. SPEAKER REMINDER: never type a bare "go" or "just go" at the prompt, that approves.]
+> 🎬 **DO (demo) — part 1:**
+> 1. Switch to the pre-staged terminal paused at PREVIEW.
+> 2. Walk the task table (task, score, tier) and point at the Tier column: the opus row carries its reason.
+> 3. Read the "Mix" line.
+> 4. Point at the line saying "just go" in the goal was ignored, then at "Approve, edit, or reject?".
+
+> ⚠️ **Careful:** never type a bare "go" or "just go" at the prompt, that approves.
 
 I set this up before the talk, so you don't have to watch me answer GRILL questions. When I started it, I wrote "just go" into the goal. It's sitting at PREVIEW anyway, waiting for me, and it says so right here.
 
 So there's every task, with its score and its tier. See this opus row? It says why it's on opus. And there's the Mix line, the model mix for this run. Nothing has run yet.
 
+> 🎬 **DO (demo) — part 2:**
+> 1. Type the reply "ok, but drop task 3" and show the re-preview with the plan changed.
+> 2. Reject.
+> 3. Switch back to the slides.
+
 Now I'll reply "ok, but drop task 3". That counts as an edit. It changes the plan and shows it to me again, and you can see task 3 is gone. Only a plain yes approves. I'll reject, and we're out.
 
-[IF IT BREAKS: show ./screenshots/orchestrate-preview.png — "Here's the preview from a real run; the bit to notice is that 'just go' in the goal didn't skip the gate."]
+> ⚠️ **IF** the demo breaks: show ./screenshots/orchestrate-preview.png, then say: "Here's the preview from a real run; the bit to notice is that 'just go' in the goal didn't skip the gate."
 
 That's the check before anything runs. Here's what the checking after looked like on real runs.
 
-## 17 · What happened when I used it
-_~4.25 min (~1.75 content + 2.5 Q&A)_
+➡️ **Next slide**
+
+## Slide 17 · What happened when I used it
+⏱ ~4.25 min (~1.75 content + 2.5 Q&A)
 
 Two "done" claims that weren't true, from my own runs. In a test-coverage audit, a sonnet helper wrote the list from memory and said it was done. The verifier found about sixty-five identifiers missing. The retry got the exact list and came back with zero missing.
 
@@ -273,19 +348,25 @@ The facts in this deck come from a context file in the same folder, so it doesn'
 
 So, questions on /orchestrate? If you're stuck for one, think of a ticket on your board right now that would score zero to two.
 
-[PAUSE — Q&A, ~2.5 min; move on at about 30 minutes in]
+> ⏸ **PAUSE:** Q&A, ~2.5 min; move on at about 30 minutes in
 
 Last section is lighter: what happens after the code is written.
 
-## 18 · 03 · The ship chain
-_~0.25 min_
+➡️ **Next slide**
+
+# Section 3 · The ship chain (slides 18–26 · 10 min)
+
+## Slide 18 · 03 · The ship chain
+⏱ ~0.25 min
 
 Section three, and this one's lighter. Each skill here is small on its own. The value is in how they connect.
 
 Here's the chain.
 
-## 19 · Each skill feeds the next
-_~1.5 min_
+➡️ **Next slide**
+
+## Slide 19 · Each skill feeds the next
+⏱ ~1.5 min
 
 The first four are skills in the install repo. The last is our CI.
 
@@ -303,12 +384,14 @@ And finally ci-pipeline, our CI, builds and ships from that file.
 
 The trick is that it's one piece of writing with several readers.
 
-## 20 · One change, four write-ups, four readers
-_~1.5 min_
+➡️ **Next slide**
+
+## Slide 20 · One change, four write-ups, four readers
+⏱ ~1.5 min
 
 Quick question for the room. Who reads your commit messages?
 
-[PAUSE — take a few answers]
+> ⏸ **PAUSE:** take a few answers
 
 I heard a "nobody" in there. That's the usual answer. The real answer: more people than you think. On our dev builds, the last commit message becomes the tester note. So if your commit says "wip fix stuff," that's what QA reads.
 
@@ -316,34 +399,44 @@ So look at the table. The commit message is read by developers and testers, and 
 
 Which means commits get written with the next step in mind.
 
-[IF SLIDE 21 IS CUT, say instead: "Here's a real one." and go to slide 22.]
+> ⚠️ **IF** slide 21 is cut: skip it and go to slide 22, then say: "Here's a real one."
 
-## 21 · Commits are written for the release notes
-_~0.75 min_
+➡️ **Next slide**
 
-[CUTTABLE if running late]
+## Slide 21 · Commits are written for the release notes
+⏱ ~0.75 min
 
-These quotes come straight from each skill's instruction file. They're two halves of a contract. The commit skill writes each line so it can be reused later, technical and product-facing. The /release-notes skill trusts, but verifies. It doesn't trust commit messages alone, so it reads the code diffs and doc changes too. Same idea as the verifier in section two.
-
-The why comes from /reflect. /release-notes reads CLAUDE.md and CONTEXT.md because they often explain why a change happened.
+> ✂️ **CUTTABLE — say only if on time:**
+> These quotes come straight from each skill's instruction file. They're two halves of a contract. The commit skill writes each line so it can be reused later, technical and product-facing. The /release-notes skill trusts, but verifies. It doesn't trust commit messages alone, so it reads the code diffs and doc changes too. Same idea as the verifier in section two.
+>
+> The why comes from /reflect. /release-notes reads CLAUDE.md and CONTEXT.md because they often explain why a change happened.
 
 Here's a real one.
 
-## 22 · Demo: v1.9.4 notes beside their commits
-_~1.5 min_
+➡️ **Next slide**
+
+## Slide 22 · Demo: v1.9.4 notes beside their commits
+⏱ ~1.5 min
 
 Watch for one commit line turning into a sentence a manager, or even a user, can actually read.
 
-[DEMO — open docs/RELEASE_NOTES_v1.9.4.md in the left pane, run `git log` for the v1.9.4 range in the right pane, pick one commit and find where it shows up in the notes, scroll to the App Store / Play Store release-note block and read it out loud, switch back to the slides]
+> 🎬 **DO (demo):**
+> 1. Open docs/RELEASE_NOTES_v1.9.4.md in the left pane.
+> 2. Run `git log` for the v1.9.4 range in the right pane.
+> 3. Pick one commit and find where it shows up in the notes.
+> 4. Scroll to the App Store / Play Store release-note block and read it out loud.
+> 5. Switch back to the slides.
 
 So here's the commit, written for developers: "fix, android: restore hardware back button navigation on SDK 36." Here's the same change in the release notes, written for a manager: "Android Back Button Fixed, Android 16 slash SDK 36." And down here, in the store block, it's written for someone who just wants to know why the app updated overnight: "Fixed the Android back button and improved app stability." One change, three write-ups.
 
-[IF IT BREAKS: show ./screenshots/release-notes-v1.9.4.png — "Here are the two side by side; same commit, two very different audiences."]
+> ⚠️ **IF** the demo breaks: show ./screenshots/release-notes-v1.9.4.png, then say: "Here are the two side by side; same commit, two very different audiences."
 
 And this file isn't optional.
 
-## 23 · No release notes, no build
-_~1 min_
+➡️ **Next slide**
+
+## Slide 23 · No release notes, no build
+⏱ ~1 min
 
 If that file isn't there, the build fails. Simple as that. CI wants `RELEASE_NOTES_v<version>.md`, and our staging and production builds copy the store note straight out of it.
 
@@ -353,8 +446,10 @@ For me, this is the difference between a habit and a process. The chain is enfor
 
 Let's pull the three sections together.
 
-## 24 · Ask first, build cheap, ship clean
-_~0.75 min_
+➡️ **Next slide**
+
+## Slide 24 · Ask first, build cheap, ship clean
+⏱ ~0.75 min
 
 One sentence each.
 
@@ -366,8 +461,10 @@ Ship clean, that's the ship chain: write the commit for whoever reads it next, a
 
 You don't need all three. Pick two.
 
-## 25 · Pick two. Try them this week.
-_~0.75 min_
+➡️ **Next slide**
+
+## Slide 25 · Pick two. Try them this week.
+⏱ ~0.75 min
 
 Pick the two that match your pain. Quality doc nobody checks? `npx eqc-kit init`. Big ticket coming up? `/orchestrate`. Commit messages that just say "fix"? `/git-commit`, today. It's the five-minute win.
 
@@ -375,9 +472,15 @@ The install line is a prompt. Paste it into Claude Code and you get /orchestrate
 
 Thanks. Last round of questions.
 
-## 26 · Questions? (final)
-_~2 min_
+➡️ **Next slide**
+
+## Slide 26 · Questions? (final)
+⏱ ~2 min
 
 Thank you all, really. I'm happy to take anything across the three sections. And if it's quiet: which two are you trying first?
 
-[PAUSE — Q&A, ~2 min; leave this slide up so the commands and the install line stay on screen]
+> ⏸ **PAUSE:** Q&A, ~2 min
+
+> 🎬 **DO:** Leave this slide up so the commands and the install line stay on screen.
+
+🏁 **End of talk**
