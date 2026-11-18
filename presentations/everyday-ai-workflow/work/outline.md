@@ -14,6 +14,10 @@ Backfilled from `index.html`, `context.md` and `transcript.md` on 2026-11-16. **
 
 **Review fixes (2026-11-18, user-confirmed; `work/reviews/content.md` findings 1-5, 7-17, 19 partial, 21; Outline table and `## Slides` updated to match):** CUTTABLE notes on slides 6, 7, 9, 18 (1, 17); slide 17 → 18 transition (2); slide 14 header "/goal (runs until done)", footer reworded, "The same model" in both Who-checks cells, /goal defined in the notes, repeated "just go" sentence dropped (3, 13, 14); recap card "Ask first: check every rule, with proof, before you fix" plus "ask first / build cheap / ship clean" lines in the slide 4, 12, 19 notes (4); slide 9 row "One big sweep" (5); slide 2 notes open with the QuestionPro line (7); slide 5 notes trust line (8); slide 6 eqc-kit cells (9); slide 7 "Uses AI?" cell (10); slide 13 "slide 16" pointer (12); slide 15 first notes line (15); slide 18 attrs and notes wording (16); slide 26 notes "quickest win" (19; the "Too much hassle…" line stays as is). Minutes unchanged. Findings 6, 18, 20 (context.md) and 11 (transcript only) handled outside this file.
 
+**Fix (2026-11-18, user-requested; Outline rows 1, 6, 9, 14, 18 and `## Slides` 1, 5 (transition), 6, 9, 14, 18 updated):** slide 6 table → two boxes (light red "AI prompting" vs light green "eqc-kit", vs-grid), short lines, by-hand path and catch line to the notes; slide 9 table → 3 positive highlights (card-grid), the rest to the notes, 58 reveal kept; slide 14 table → three boxes (light red plan mode and /goal, light green /orchestrate), footer detail to the notes; slide 18 right card is now presentation-builder (3 /orchestrate runs, 18 builder tasks 6 haiku / 10 sonnet / 2 opus, 0 escalations, opus dry-run 15 issues / 13 fixed), left card shortened; slide 1 footer "Built with presentation-builder". Same 27 slides, same order, same minutes (40.0).
+
+**Review fixes round 2 (2026-11-18, user-confirmed; Outline rows 6, 9, 14, 18 and `## Slides` 1, 5, 6, 9, 14, 18 updated):** A slide 18 dry-run (opus tested the finished skill on a sample deck; 13 fixed after) · B slide 14 split "e.g. … auth → opus" · E slide 18 eqc-kit 0.1.0 paragraph CUTTABLE, "no task had to move to a bigger model" said once · G slide 18 left card (title = run stats, "Own tools" line; "most of my skills and agents" kept in the notes) · H slide 18 notes: the two opus tasks were asked for at approval · I "0 escalations" → "None moved up a model." · J slide 14 /goal line 2 "One model builds all." · K slide 6 title and notes say "AI prompting" (box label kept) · L slide 6 eqc-kit line 4 · M slide 6 rule line glosses god files · N, O slide 9 cards 1 and 3 · P slide 9 Platform.select and FlatList/Crashlytics lines CUTTABLE · S slide 1 footer line · T slide 5 notes. Layout F, Q, R recorded in the Builder notes on 6, 9, 14. Transcript-only C, D not in this file. Minutes unchanged (40.0).
+
 ## Brief
 
 - **Topic:** "Ask first, build cheap, ship clean": my everyday AI workflow (eqc-kit, /orchestrate, the ship chain)
@@ -28,37 +32,37 @@ Backfilled from `index.html`, `context.md` and `transcript.md` on 2026-11-16. **
 
 ## Narrative arc
 
-- **Hook (slide 2, not an agenda):** "At QuestionPro we take engineering quality seriously", then a show of hands: who has read the whole Mobile EQC (Engineering Quality Checks, 39 rules), and who checked their code against every rule. Slide 1's footer ("Built with /create-presentation") is planted for a later payoff. Slide 3 then gives first-timers the four terms the rest of the talk uses.
+- **Hook (slide 2, not an agenda):** "At QuestionPro we take engineering quality seriously", then a show of hands: who has read the whole Mobile EQC (Engineering Quality Checks, 39 rules), and who checked their code against every rule. Slide 1's footer ("Built with presentation-builder") is planted for a later payoff. Slide 3 then gives first-timers the four terms the rest of the talk uses.
 - **Problem:** checking 39 Mobile EQC rules by hand never happens (slide 2); I was asked if my projects were compliant and checking by hand, even with AI, was too much (slide 5); I kept typing the same plan-mode instructions (phases, tiered sub-agents, interview me first) for every big task (slide 13).
-- **Stakes:** HARD_FAIL compliance; even one rule (folder structure) checked in an AI chat gives "pass" with no proof and can break again later (slide 6); one model builds all of a "forgot password" flow, auth included, and checks its own work (slide 14).
+- **Stakes:** HARD_FAIL compliance; even one rule (folder structure) checked with AI prompting gives "pass" with no proof and can break again later (slide 6); one model builds all of a "forgot password" flow, auth included, and checks its own work (slide 14).
 - **Insight:** AI checks each rule with proof, a plain script works out the level, and the guard remembers what passed (slides 6-7); eqc-kit isn't tied to the Mobile EQC: it takes your team's own written standard and uses its tiers (slide 10); a score per task picks the model, security always goes to opus, and the lower tier wins when unsure (slides 14, 16); one piece of writing has four audiences (slide 21).
 - **Solution:** eqc-kit (slides 4-10), /orchestrate (slides 12-18), the ship chain (slides 19-24).
-- **Proof:** compliance level HARD_FAIL → MEDIUM against the Mobile EQC in about 5 days (slide 9); 48 finished /orchestrate runs across 8 projects, 13 of them on my own skills, agents and eqc-kit's latest upgrade, mostly on haiku / sonnet (slide 18); demos on slides 8, 17, 23.
-- **Climax:** slide 18, the reveal (this deck was built by a skill that /orchestrate built), at ~25.75-27.5 min (~64-69% of runtime).
+- **Proof:** compliance level HARD_FAIL → MEDIUM against the Mobile EQC in about 5 days (slide 9); 48 finished /orchestrate runs across 8 projects, 13 of them on my own skills, agents and eqc-kit's latest upgrade, mostly on haiku / sonnet; presentation-builder in 3 runs, 18 builder tasks, none moved up a model (slide 18); demos on slides 8, 17, 23.
+- **Climax:** slide 18, the reveal (this deck was built with presentation-builder, a plugin /orchestrate built), at ~25.75-27.5 min (~64-69% of runtime).
 - **Close / CTA (slide 26):** "Pick any one. Try it. Or build your own." (EQC compliance hassle → eqc-kit · big ticket → `/orchestrate` · vague commits → `/git-commit`), each paired with the pain it fixes. Commands stay on screen through the final Q&A (slide 27).
 
 ## Outline
 
 | # | Component | Title | Key points | Notes gist | Min |
 |---|---|---|---|---|---|
-| 1 | title | Ask first, build cheap, ship clean | **CHG** kicker "Mehedi Hasan · Mobile Team · QuestionPro"; subtitle: three tools for checking, planning and shipping code; footer: built with /create-presentation | Intro; **CHG** goal: try one thing or build your own; footer comes back on slide 18 | 0.5 |
+| 1 | title | Ask first, build cheap, ship clean | **CHG** kicker "Mehedi Hasan · Mobile Team · QuestionPro"; subtitle: three tools for checking, planning and shipping code; footer: built with presentation-builder | Intro; **CHG** goal: try one thing or build your own; footer comes back on slide 18 | 0.5 |
 | 2 | center | **CHG** 39 rules. Nobody wants to check them by hand. | "At QuestionPro we take engineering quality seriously"; Mobile EQC (Engineering Quality Checks): 39 rules, 3 tiers, React Native / Flutter / Android / iOS; "eqc-kit checks · /orchestrate plans · the ship chain ships" | Opens with the QuestionPro line; show of hands; EQC spelled out; tier counts (9 / 13 / 17) in notes | 1.25 |
 | 3 | dtable | A skill is a playbook. Sub-agents are its helpers. | Claude Code: AI coding agent in your terminal; skill (`/name`) = saved playbook, sub-agent = helper given one task; haiku → sonnet → opus = cheapest → priciest model | Primer for first-timers; every tool today is a skill or uses sub-agents | 1 |
 | 4 | divider | 01 · eqc-kit | **CHG** sub: "Checks every rule in your standard, one by one, and shows the file that proves it" | ~10 min then Q&A; "ask first" signpost | 0.25 |
 | 5 | steps-list | How I ended up building eqc-kit | **CHG** 4 short rows: handed the Mobile EQC → checked by hand → AI, still too much → automated it (hi); install line + 5 tools | Speaker's story; "not tied to the Mobile EQC" saved for slide 10; one-command install | 1.25 |
-| 6 | dtable | **CHG** One Mobile EQC rule, checked three ways | Rule: MEDIUM, folder structure, "feature-first, no god files"; table Step \| By hand \| AI chat \| eqc-kit (acc), 4 short rows: find · check · answer · next time; "our app passes" + one-line catch | RN folder list (cuttable) and my AI-chat pains in the notes; honest catch | 1.5 |
+| 6 | vs-grid | **CHG** One Mobile EQC rule: AI prompting vs eqc-kit | Rule: MEDIUM, folder structure, "feature-first, no god files (one huge file that does everything)"; light red box "AI prompting": says pass, no proof, new answer each time · light green box (hi) "eqc-kit": checks the folders, pass + the files, saved and read back next time; "our app passes" | By hand, RN folder list (cuttable), my AI-prompting pains and the honest catch in the notes | 1.5 |
 | 7 | dtable | What you run, and where AI is used | **CHG** one-line "What it does" per command: `/eqc-check` · `/eqc-fix` · `eqc guard` · `verify` + hooks; short "Uses AI?" column ("Yes (a plain script sets the level)" for `/eqc-check`) | Detail (code map, level script, HTML report, baseline) in the notes; code-map, second half of verify and hooks paragraphs cuttable | 1.75 |
 | 8 | demo | Demo: check, report, and what to fix next | **CHG** shorter step-descs: 01 cached `/eqc-check` (hi) · 02 `COMPLIANCE.html` · 03 `/eqc-fix` ranked list | 3-part demo; FALLBACK per part; guess-first on Logger file count | 2.75 |
-| 9 | dtable | **CHG** Our mobile app against the Mobile EQC: Compliance level: HARD_FAIL → MEDIUM | Lead: about 5 days, level definitions, today 33 / 2 / 4; 5 short rows: ESLint · Logger 58 · `Platform.select()` 34 · one big sweep (~85 files, 2,912 / 2,912 tests passing) · still failing (4) | Reveal 58; architecture details and i18n story (cuttable) in the notes; hardcoded secret handled | 1.75 |
+| 9 | card-grid | **CHG** Our mobile app against the Mobile EQC: Compliance level: HARD_FAIL → MEDIUM | 3 positive cards: ~5 days (from HARD_FAIL to MEDIUM, 27 recorded fixes) · 58 files to our Logger (hi) · 2,912 / 2,912 tests passing (after one ~85-file fix); one-line level definitions | Reveal 58; ESLint, `Platform.select()` (cuttable), FlatList / Crashlytics (cuttable), today 33 / 2 / 4, the 4 still failing, i18n story (cuttable) and the secret in the notes | 1.75 |
 | 10 | steps-list | **NEW** Not tied to the Mobile EQC. Bring your own standard. | Bring your team's written standard → eqc-kit reads it and lists every rule in your tiers (LOW/MEDIUM/HIGH, Bronze/Silver/Gold) → same check, report and fixes (hi) | eqc-kit is the tool, the standard is yours; built to adapt to your standard and tiers; it needs a written standard | 1 |
 | 11 | center | Questions? (eqc-kit) | Q&A buffer | Seeds; move on at 15 min | 2 |
 | 12 | divider | 02 · /orchestrate | sub: "Plans big work with you, then sends each task to the cheapest model that can do it" | Separate tool, ~12 min then questions; "build cheap" signpost | 0.25 |
 | 13 | steps-list | Why I built /orchestrate | **CHG** 3 shorter rows: kept going back to plan mode → typed the same asks every time → made it a skill (hi); footer: main reason, fewer tokens | Speaker's origin story; no token number | 1.5 |
-| 14 | dtable | **CHG** One "forgot password" task, three ways to run it | Lead: endpoint, reset email, reset screen, tests; it touches auth; table Step \| Plan mode \| /goal (runs until done) \| /orchestrate (acc), 4 rows: before it builds · who builds (email → haiku, screen → sonnet, token + endpoint → opus) · who checks ("The same model" for plan mode and /goal) · next big task; gate + catch line (main session on opus or sonnet) | /goal defined in one line; the split is an example, not a captured run; security is always opus; "just go" only in the footer, saved for the demo | 2.75 |
+| 14 | vs-grid | **CHG** One "forgot password" task, three ways to run it | Lead: endpoint, reset email, reset screen, tests; it touches auth; light red boxes "Plan mode" and "/goal (runs till done)": one model builds all, checks itself · light green box (hi) "/orchestrate": asks first, splits (e.g. email → haiku · screen → sonnet · auth → opus), waits for your OK, another agent checks | /goal defined in one line; the split is an example, not a captured run; security is always opus; "just go" doesn't skip the OK, the catch, and "next big task" in the notes | 2.75 |
 | 15 | dtable | How /orchestrate runs a big task, phase by phase | **CHG** lead: the orchestrator plans and checks, helpers write the code; 5 one-line rows: GRILL · PLAN · PREVIEW (the gate) · EXECUTE / VERIFY · CLOSE | Detail (fast lane, 3 helpers, file owners, "ok, but…", ≤5-line fix, reviewers, resume) in the notes; shortcuts paragraph cuttable | 2.5 |
 | 16 | dtable | How it picks a model for each task | **CHG** shorter lead; 0–2 haiku · 3–4 sonnet · 5–6 split first, opus if it can't be split · security always opus; pick-lower quote; one-line "if a task fails" | Guess-first "add a config entry with exact steps" → haiku; ties back to slide 14; opus requests and retry ladder in the notes | 2 |
 | 17 | demo | Demo: the preview gate | 01 paused at PREVIEW, "just go" written into the goal · 02 reply "ok, but drop task 3" (hi); watch-for: "just go" in the goal didn't skip the gate | Pre-staged run with one security task; reject at the end; never type a bare "go" / "just go" at the prompt | 1.75 |
-| 18 | vs-grid | **CHG** What I've built with /orchestrate | **CHG** left: eqc-kit's latest upgrade + most of my skills and agents; 48 finished runs, 8 projects, ~6 weeks; 13 of the 48 runs on my own tools; mostly haiku / sonnet · right (hi): this deck, 5 tasks + 2 fixes, 0 escalations (no task needed a bigger model); closing line "Questions?" | Slide 1 payoff; eqc-kit 0.1.0 predates /orchestrate; verifier false alarm (honest limit); dry-run and context-file lines cuttable; Q&A seed; content ~1.75 + Q&A 2.5 | 4.25 |
+| 18 | vs-grid | **CHG** What I've built with /orchestrate | **CHG** left (short): title "48 finished runs · 8 projects · ~6 weeks"; own tools: 13 runs (skills, agents, eqc-kit's latest upgrade); mostly haiku / sonnet · right (hi) "This deck": slide 1 footer callback; presentation-builder (/create-presentation, /update-presentation, 6 agents) built with /orchestrate: 3 runs, 18 builder tasks (6 haiku · 10 sonnet · 2 opus), none moved up a model, opus dry-run on a sample deck 15 issues / 13 fixed; closing line "Questions?" | Slide 1 payoff; the 2 opus tasks were asked for at approval; eqc-kit 0.1.0 predates /orchestrate (cuttable); verifier false alarm (honest limit); context-file line cuttable; Q&A seed; content ~1.75 + Q&A 2.5 | 4.25 |
 | 19 | divider | 03 · The ship chain | sub: "After the code works: commit, PR, release notes, build" | Lighter section; value is in the connection; "ship clean" signpost | 0.25 |
 | 20 | steps-list | Each skill feeds the next | 01-05: /reflect, /git-commit (hi, "start here"), /send-pr, /release-notes, ci-pipeline | What each step does; /git-commit is the cheapest start | 1.5 |
 | 21 | dtable | One change, four write-ups, four readers | Commit: devs + testers; PR: reviewers; Release notes: managers; Store note: users; "Written by" column | Guess-first: who reads your commits; cut-path refs → slides 22/23 | 1.5 |
@@ -175,9 +179,9 @@ Items 1-7 already applied in the deck (accepted suggestions recorded in `context
 2. **What:** keep internal names off slides ("our mobile app"), except QuestionPro on slides 1-2 and the Mobile EQC by name (speaker decision, revision 5); no project or repo names on slide 18. **Why:** internal detail lives in the notes. **Where:** all, esp. 5, 9, 18.
 3. **What:** a "guess first" audience moment per section. **Why:** interaction every ~8-10 min. **Where:** 8→9 (Logger file count), 16 ("add a config entry with exact steps" model), 21 (who reads commits); plus show of hands on 2.
 4. **What:** demo prep: re-run /eqc-check and capture a screenshot fallback for every demo part. **Why:** slides 8 and 9 must agree; demos can break. **Where:** 8, 9, 17, 23.
-5. **What:** intentional honest limits. **Why:** engineers trust stated failure modes. **Where:** 6 (eqc-kit catch line), 9 ("still failing" row), 14 (/orchestrate catch line), 18 (verifiers fail too, in notes).
+5. **What:** intentional honest limits. **Why:** engineers trust stated failure modes. **Where:** 6 (eqc-kit catch, in notes), 9 (the 4 still failing, in notes), 14 (/orchestrate catch, in notes), 18 (verifiers fail too, in notes).
 6. **What:** slide 1 footer foreshadows the reveal. **Why:** setup and payoff. **Where:** 1, 18.
-7. **What:** mark cuttable content in notes. **Why:** recover time if running late. **Where:** 22, the folder-list paragraph in slide 6's notes, the code-map, second-half-of-verify and hooks paragraphs in slide 7's notes, the i18n story in slide 9's notes, the dry-run and context-file lines in slide 18's notes, the banned-shortcuts paragraph in slide 15's notes, the retry-ladder paragraph in slide 16's notes.
+7. **What:** mark cuttable content in notes. **Why:** recover time if running late. **Where:** 22, the folder-list paragraph in slide 6's notes, the code-map, second-half-of-verify and hooks paragraphs in slide 7's notes, the i18n story in slide 9's notes, the context-file line in slide 18's notes, the banned-shortcuts paragraph in slide 15's notes, the retry-ladder paragraph in slide 16's notes.
 8. **What:** self-explanatory slides for a first-time audience: a 4-term primer, a "what it is" line on each divider and intro slide, terms defined on first use (EQC = Engineering Quality Checks); one real example per comparison (one Mobile EQC rule on 6, one "forgot password" task on 14); short one-line cells, detail in the notes, plain titles, no jokes, casual first-person notes. **Why:** nobody has seen these tools; the speaker wants the deck to work without narration and to be easy to read at a glance. **Where:** 2, 3, 4-10, 12-18, 19, 20.
 
 ## Slides
@@ -189,13 +193,13 @@ On-slide copy:
 - Kicker: Mehedi Hasan · Mobile Team · QuestionPro
 - Ask first, build cheap, / ship clean
 - My everyday AI workflow: three tools for checking, planning and shipping code.
-- Built with /create-presentation — more on that later.
+- Built with presentation-builder — more on that later.
 
 Speaker notes:
 Hi, I'm Mehedi, from the Mobile Team here at QuestionPro. This is the AI workflow I actually use every day.
 Three tools: one checks code, one plans work, one chain ships it. Each one stands on its own.
 Goal: you leave with one thing to try, or an idea for something of your own.
-Ignore that footer for now. It comes back on slide 18.
+Keep this small footer in mind: 'Built with presentation-builder'. I'll come back to it on slide eighteen.
 Transition: "Let's start with a standard most of us have never read to the end."
 ~0.5 min
 
@@ -261,34 +265,41 @@ On-slide copy:
 Speaker notes:
 Quick story. I was given our Mobile EQC and asked if my projects were compliant.
 I went through the standard and checked it rule by rule against the project. It was slow, boring work.
-I was using AI, but it was still too much work, and I didn't trust the answers.
+Then I used AI. It helped, but it was still too much work, and I didn't trust the answers.
 So I started to automate the process. One thing led to another, and now I have eqc-kit.
 It's not tied to the Mobile EQC. I'll come back to that just before questions.
 Install is one command. The setup asks a few questions, and they all have defaults, so you can just keep pressing Enter. No dependencies, Node 18 or newer.
 In Claude Code you get slash commands. In the other tools it adds a block to AGENTS.md, so you just say "eqc check".
-Transition: "Here's what checking one rule looks like, three ways."
+Transition: "Here's what checking one rule looks like: with AI prompting, and with eqc-kit."
 ~1.25 min
 
-### Slide 6 — One Mobile EQC rule, checked three ways (dtable)
+### Slide 6 — One Mobile EQC rule: AI prompting vs eqc-kit (vs-grid)
 On-slide copy:
-- Kicker: eqc-kit · One rule, three ways
-- One Mobile EQC rule, / checked three ways
-- Lead: The rule (MEDIUM tier): Folder structure — feature-first, no god files (no single huge file that does everything).
-- Table Step | By hand | Paste the standard into an AI chat | eqc-kit (acc):
-  - Find the rule | Look it up in the standard | Paste all 39 rules | Already on its rule list
-  - Check the code | Open every folder, look for huge files | Explores from scratch, can lose track | An agent for the MEDIUM rules checks the folders
-  - The answer | Your own notes | Can say "pass" when it isn't | pass, with the files that prove it
-  - Next time | Do it all again | Same tokens again, maybe a different answer | Saved; a guard flags it if it stops passing
-- Our app passes this rule. The catch: eqc-kit needs a written standard, and the first full check costs time and tokens.
+- Kicker: eqc-kit · One rule, two ways
+- One Mobile EQC rule: / AI prompting vs eqc-kit
+- Lead: The rule (MEDIUM): Folder structure — feature-first, no god files (one huge file that does everything).
+- Left box (light red): label "AI prompting" (paste the standard into an AI chat, ask)
+  - Ask AI.
+  - AI says pass.
+  - No proof.
+  - Ask again: new answer.
+- Right box (light green, hi): label "eqc-kit"
+  - Reads the rule.
+  - Checks the folders.
+  - Says pass + shows the files.
+  - Saved. Read back next time, not re-guessed.
+- Our app passes this rule.
+
+Builder note: two vs-card style boxes, light red fill for the "without" box (AI prompting) and light green for the eqc-kit box. Label + 4 short lines each (plain `.vs-attr` lines, no `<strong>` attribute names); no `.vs-card-title` needed. The fills and `.vs-card-label` at 0.95rem are inline styles in this deck only; template unchanged (Open question 30).
 
 Speaker notes:
-Let's make it concrete with one real rule from the Mobile EQC. MEDIUM tier: folder structure, feature-first, no god files.
-CUTTABLE: The rule lists the folders per stack. For React Native that's src/screens, src/features, src/components and src/navigation. Flutter, Android and iOS each get their own layout.
-By hand: find the rule, open the project, walk the folders, look for huge files. It works if you're careful. Then you do it again next time, plus the other 38 rules.
-Pasting the standard into an AI chat is what I tried next. Here's what actually happened to me: it explored from scratch every time, it lost track, it said pass when it wasn't, and asking twice gave a different answer. And later, while working on a new feature, the AI would break the same rule again.
-eqc-kit: the rule is already on its list, a MEDIUM-tier agent checks it, and the answer comes with the files that prove it. You can open them and argue with it. It's saved, so next time it's re-read, not re-guessed, and guard warns you if the rule stops passing.
+Let's make it concrete with one real rule from the Mobile EQC. MEDIUM tier: folder structure, feature-first, no god files. No single huge file that does everything.
+CUTTABLE if running late — The rule lists the folders per stack. For React Native that's src/screens, src/features, src/components and src/navigation. Flutter, Android and iOS each get their own layout.
+By hand you'd find the rule, walk every folder, look for huge files. It works if you're careful. Then you do it again next time, plus the other 38 rules.
+The red box is AI prompting, what I tried next: paste the standard into the AI and ask. Here's what actually happened to me. It explored from scratch every time, it lost track, it said pass when it wasn't, and asking twice gave a different answer. And later, while working on a new feature, the AI would break the same rule again.
+The green box is eqc-kit. The rule is already on its list, a MEDIUM-tier agent checks the folders, and "pass" comes with the files that prove it. You can open them and argue with it. It's saved, so next time it's re-read, not re-guessed, and guard warns you if the rule stops passing.
 Our app passes this one.
-The bottom line is the honest part: you need a written standard, the first full check isn't cheap, and the agents can still be wrong, so read the evidence.
+The honest part: eqc-kit needs a written standard, the first full check costs time and tokens, and the agents can still be wrong, so read the evidence.
 Transition: "So what do you actually run?"
 ~1.5 min
 
@@ -343,24 +354,26 @@ Transition (GUESS-FIRST, take a few numbers before flipping to slide 9): "Before
 Watch for: how fast the first one is, and which fixes it puts at the top.
 ~2.75 min
 
-### Slide 9 — Our mobile app against the Mobile EQC: Compliance level: HARD_FAIL → MEDIUM (dtable)
+### Slide 9 — Our mobile app against the Mobile EQC: Compliance level: HARD_FAIL → MEDIUM (card-grid)
 On-slide copy:
 - Kicker: eqc-kit · Our mobile app
 - Our mobile app against the Mobile EQC / Compliance level: HARD_FAIL → MEDIUM
-- Lead: In about 5 days. HARD_FAIL = a LOW-tier rule fails. MEDIUM = nothing fails in LOW or MEDIUM. Today: 33 pass, 2 partial, 4 fail.
-- Table What changed | How much (acc):
-  - ESLint errors | 54 errors in 30 files (this alone: HARD_FAIL → LOW)
-  - `console.*` → our Logger | 58 files
-  - `Platform.OS` → `Platform.select()` | 34 places
-  - One big sweep | ~85 files, 2,912 / 2,912 tests passing
-  - Still failing (4) | 3 big architecture jobs + TypeScript (the project must stay JavaScript)
+- Cards (card-slash / card-name / card-sub):
+  - ~5 days / From HARD_FAIL to MEDIUM / 27 recorded fixes
+  - 58 files (hi) / Console logs moved to our Logger / in one fix
+  - 2,912 / 2,912 / Tests passing / after one ~85-file fix
+- HARD_FAIL = a LOW-tier rule fails. MEDIUM = nothing fails in LOW or MEDIUM.
+
+Builder note: three cards only; `.hi` on the 58 card (the slide 8 guess-first reveal). The level-definition line is a short `p` under the grid. Larger card text as inline styles in this deck only (template unchanged): `.card-slash` 2.2rem, `.card-name` 1.2rem, `.card-sub` 0.95rem.
 
 Speaker notes:
 The guess: 58 files for the Logger sweep.
-Fifty-eight. And the level you saw in the terminal: against the Mobile EQC, our compliance level went from HARD_FAIL to MEDIUM.
-Fixing the ESLint errors alone got us from HARD_FAIL to LOW. All in, 27 recorded fixes in about five days: 25 done, 2 partial.
-Not on the slide: FlatList windowSize on 33 lists, and Crashlytics error handling in 17 files.
-CUTTABLE: My favourite one: the i18n rule took 7 audits and 6 rounds of fixes, because every audit found more hardcoded English. In the end I added a custom ESLint rule so it can't come back.
+Fifty-eight. And the level you saw in the terminal: against the Mobile EQC, our compliance level went from HARD_FAIL to MEDIUM, in about five days. And after one fix that touched about 85 files, all 2,912 tests still passed.
+Some detail behind it. Fixing the ESLint errors alone, 54 errors in 30 files, got us from HARD_FAIL to LOW. Of the 27 recorded fixes, 25 are done and 2 partial.
+CUTTABLE if running late — 34 Platform.OS checks became Platform.select().
+CUTTABLE if running late — Also: FlatList windowSize on 33 lists, and Crashlytics error handling in 17 files.
+Today it's 33 pass, 2 partial, 4 fail.
+CUTTABLE if running late — My favourite one: the i18n rule took 7 audits and 6 rounds of fixes, because every audit found more hardcoded English. In the end I added a custom ESLint rule so it can't come back.
 The four still failing are honest. Three are big architecture moves, not quick wins: a state migration across 123 files, a data-fetching library, and certificate pinning. TypeScript can't pass because the project has to stay JavaScript, so the kit records it as a fail and says why it doesn't apply, instead of pretending. I'd rather have an honest fail than a fake pass.
 Also, the audit found a hardcoded secret in the codebase. I'm not naming it. It's handled.
 (The "today" numbers come from the cached check. Re-run before the talk and update if they moved.)
@@ -429,30 +442,40 @@ I don't have a number for that. I'll come back to it on slide 16.
 Transition: "Here's how it compares with plan mode and /goal, on one task."
 ~1.5 min
 
-### Slide 14 — One "forgot password" task, three ways to run it (dtable)
+### Slide 14 — One "forgot password" task, three ways to run it (vs-grid)
 On-slide copy:
 - Kicker: /orchestrate · Why not plan mode or /goal?
 - One "forgot password" task, / three ways to run it
 - Lead: The task: an API endpoint, a reset email, a reset screen, tests. It touches auth.
-- Table Step | Plan mode | /goal (runs until done) | /orchestrate (acc):
-  - Before it builds | Writes a plan, waits for your OK | Starts right away | Asks you questions, shows the plan, waits for your OK
-  - Who builds | One model does it all | One model does it all | Email template → haiku · Reset screen → sonnet · Token + endpoint → opus (auth)
-  - Who checks | The same model | The same model | A haiku verifier + an opus security reviewer
-  - Next big task | Type your asks again | Type your method again | Same skill: `/orchestrate`
-- Writing "just go" in the goal doesn't skip the OK. The catch: too much overhead for small tasks, and your main session must run on opus or sonnet.
+- Box 1 (light red): label "Plan mode"
+  - Makes a plan.
+  - You OK it.
+  - One model builds all.
+  - It checks itself.
+- Box 2 (light red): label "/goal (runs till done)"
+  - Starts right away.
+  - One model builds all.
+  - No questions.
+  - It checks itself.
+- Box 3 (light green, hi): label "/orchestrate"
+  - Asks you first.
+  - Splits it, e.g. email → haiku · screen → sonnet · auth → opus.
+  - Waits for your OK.
+  - Another agent checks.
 
-Builder note: optional, only if slide 14 still fits one screen: append "(/goal: Claude Code keeps working until a goal is met.)" to the lead.
+Builder note: three vs-card style boxes, light red fill for the two "without" boxes (plan mode, /goal) and light green for the /orchestrate box. Label + 4 short lines each (plain `.vs-attr` lines, no `<strong>` attribute names); no `.vs-card-title` needed. Auto-fit grid (`grid-template-columns: repeat(auto-fit, minmax(240px, 1fr))`, 3 columns at full width), the fills and `.vs-card-label` at 0.95rem are inline styles in this deck only; template unchanged (Open question 30).
 
 Speaker notes:
 One task every stack has: forgot password. An API endpoint, a reset email, a reset screen, and tests. It touches auth, which matters in a second.
-The plan mode and /goal columns are how they worked for me day to day, not a feature list from the docs.
+The two red boxes are how plan mode and /goal worked for me day to day, not a feature list from the docs.
 Plan mode writes a plan and waits for my OK, which is good. But I type the phases, sub-agents, models and "interview me" part myself, every time. After I approve, one model builds all four parts and checks its own work.
 /goal tells Claude Code to keep working until a goal is met. It starts right away, no questions, one model, and it checks itself.
-/orchestrate asks me a few questions first, one at a time. Then it splits the work and scores each piece. The email template is simple, so haiku. The reset screen is real UI logic, so sonnet. The reset token and the endpoint touch auth, and anything on the security surface always goes to opus. The tests get scored the same way.
+The green box is /orchestrate. It asks me a few questions first, one at a time. Then it splits the work and scores each piece. The email template is simple, so haiku. The reset screen is real UI logic, so sonnet. The reset token and the endpoint touch auth, and anything on the security surface always goes to opus. The tests get scored the same way.
 That split is an example to show the rules, not a captured run.
 Checking: a cheap haiku verifier re-runs the checks. The reset screen gets a sonnet reviewer, and because the auth part is security, a fresh opus security reviewer reads that diff looking for vulnerabilities.
-And nothing gets built until I say yes.
-The bottom line is the honest part. On a small task, all that planning and checking is overhead you don't need. It has to run on opus or sonnet; on haiku it stops and asks you to switch. And you still read the report at the end.
+And nothing gets built until I say yes. Writing "just go" in the goal doesn't skip that OK; I'll show you that live in a few minutes.
+Next big task: with plan mode or /goal I type my asks again. With /orchestrate it's the same skill, one command.
+The honest part. On a small task, all that planning and checking is overhead you don't need. It has to run on opus or sonnet; on haiku it stops and asks you to switch. And you still read the report at the end.
 Transition: "Here are the phases it goes through."
 ~2.75 min
 
@@ -529,29 +552,32 @@ Transition: "That's the check before anything runs. Here's what I've actually bu
 On-slide copy:
 - Kicker: /orchestrate · In practice
 - What I've built / with /orchestrate
-- Left vs-card: label "Built with it" · title "eqc-kit's latest upgrade, and most of my skills and agents"
-  - Runs: 48 finished, across 8 projects, in about 6 weeks
-  - On my own tools: 13 of the 48 runs (skills, agents, eqc-kit)
-  - Models: most tasks went to haiku and sonnet
-- Right vs-card (hi): label "This deck" · title "Built by a skill that /orchestrate built"
-  - The skill: /create-presentation made these slides.
-  - The build: /orchestrate built it in 5 tasks + 2 fixes, 0 escalations (no task needed a bigger model).
+- Left vs-card: label "Built with it" · title "48 finished runs · 8 projects · ~6 weeks"
+  - Own tools: 13 runs (skills, agents, eqc-kit's latest upgrade)
+  - Models: mostly haiku and sonnet
+- Right vs-card (hi): label "This deck" · title "Remember the footer on slide 1? /orchestrate built presentation-builder."
+  - What: /create-presentation, /update-presentation + 6 agents
+  - Runs: 3 (the skill, the 6 agents, /update-presentation)
+  - Builders: 18 tasks: 6 haiku · 10 sonnet · 2 opus. None moved up a model.
+  - Dry-run: opus tested the new skill on a sample deck: 15 issues, 13 fixed
 - Closing line: Questions?
 
 Speaker notes:
 I built eqc-kit's latest upgrade with /orchestrate: the code map, the HTML report and the guard you heard about earlier. Same for most of my skills and agents.
 I only counted runs that finished: 48, across 8 projects, in about 6 weeks. 13 of them were on my own tools.
-eqc-kit itself, version 0.1.0, I built before /orchestrate existed. Only the latest upgrade went through it: 1 opus, 2 sonnet and 1 haiku builder, no escalations, 60 of 60 tests passing.
+CUTTABLE if running late — eqc-kit itself, version 0.1.0, I built before /orchestrate existed. Only the latest upgrade went through it: 1 opus, 2 sonnet and 1 haiku builder, 60 of 60 tests passing.
 Across those runs, most of the building went to haiku and sonnet. Opus shows up in a few.
-Now the right side. Remember the footer on slide 1? /create-presentation is the skill that built this deck, and /orchestrate built that skill. 5 tasks plus 2 fixes, nothing had to move to a bigger model, and one 1-line fix during VERIFY. That build happened before the opus tier existed.
-CUTTABLE: Before any real work, an opus dry-run found 15 issues in that skill; 13 got fixed.
-Verifiers get it wrong too: on that build, the final verifier raised a false alarm because its search matched numbers in CSS. So I still read the report.
-CUTTABLE: The facts in this deck come from a context file in the same folder, so it doesn't make numbers up. If a slide is wrong, that file is the place to check.
+Now the right side. Remember the footer on slide 1? presentation-builder is the plugin that built this deck: /create-presentation, /update-presentation and six agents that write, design and review. I built it with /orchestrate.
+Three runs: one for the skill, one for the six agents, one for /update-presentation. 18 builder tasks in total: 6 on haiku, 10 on sonnet, 2 on opus. None moved up a model: no task had to move to a bigger model.
+The two opus tasks were ones I asked for at approval. You saw on slide 16 that you can do that.
+Then opus tried the finished skill on a sample deck, a dry-run. It found 15 issues, and 13 got fixed after.
+Verifiers get it wrong too: on one of those builds, the final verifier raised a false alarm because its search matched numbers in CSS. So I still read the report.
+CUTTABLE if running late — The facts in this deck come from a context file in the same folder, so it doesn't make numbers up. If a slide is wrong, that file is the place to check.
 Q&A: open the floor on /orchestrate. Seed if quiet: "What's a ticket on your board right now that would score 0–2?" Move on at about 30 minutes in.
 Transition: "Last section is lighter: what happens after the code is written."
 ~4.25 min (~1.75 content + 2.5 Q&A buffer)
 
-Builder note: no project or repo names on this slide. Both cards keep 3 / 2 short attrs; if it overflows, drop the left card's "Models" line into the notes first. Keep the right card whole (slide 1 payoff).
+Builder note: no project or repo names on this slide (presentation-builder is the plugin name, it stays). Cards keep 2 / 4 short attrs; if it overflows, drop the left card's "Models" line into the notes first, then the right card's "What" line. Keep the right card's runs, builders and dry-run lines (slide 1 payoff).
 
 ### Slide 19 — 03 · The ship chain (divider)
 On-slide copy:
@@ -727,3 +753,4 @@ Items 5-7 and 9 are resolved history and keep pre-revision-3 slide numbers. Item
 20. Slide 16 demo (review finding 1): confirm in rehearsal that `/orchestrate <goal>, just go` still stops at PREVIEW and prints that approval in the goal was ignored, and that "ok, but drop task 3" re-previews. Recapture `./screenshots/orchestrate-preview.png` from that run.
 21. **Resolved (2026-11-17):** slide 12 merged to 3 rows in `index.html` (01 plan mode · 02 "I typed the same asks every time" · 03 "So I made it a skill"). Original note: `index.html` slide 12 did not yet match review finding 13 as recorded here: it still has the old row 03 "Same prompt, over and over" and the old row 02 text, and the last row is numbered "03" too (two "03"s, 4 rows). The outline records the confirmed merge (3 rows). Fix the deck to match, or confirm the 4-row version.
 29. **Resolved (2026-11-18):** `transcript.md` resynced to 27 slides; the remaining `context.md` items (review findings 18 and 20: slide 18 run facts, stale outcome and slide numbers) were updated by the orchestrating session. Original note (pending resync, outside this file): `transcript.md` and `context.md` need a resync to 27 slides (new slide 10 "Not tied to the Mobile EQC", no "any project / any stack" wording; old 10-26 → 11-27; slide 1 footer payoff → 18; demos 17 and 23; "pick any one" close; EQC spelled out, "the Mobile EQC" wording; slide 18's new runs card).
+30. Fix 2026-11-18 (slides 6, 9, 14, 18): resolved. Red/green boxes are inline styles on `.vs-card` inside this deck only (template unchanged, by decision of the orchestrating session); presentation-builder = 3 runs (the 4th ETH plan is an eqc-kit review, not a build); facts added to sources.md; transcript resynced.

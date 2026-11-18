@@ -283,11 +283,11 @@
     <div class="kicker">Mehedi Hasan · Mobile Team · QuestionPro</div>
     <h1>Ask first, build cheap,<br><span class="accent">ship clean</span></h1>
     <p style="margin-top: 2rem; max-width: 720px;">My everyday AI workflow: three tools for checking, planning and shipping code.</p>
-    <p style="margin-top: 1.1rem; max-width: 620px; color: var(--fg-muted); font-size: 0.95rem;">Built with /create-presentation — more on that later.</p>
+    <p style="margin-top: 1.1rem; max-width: 620px; color: var(--fg-muted); font-size: 0.95rem;">Built with presentation-builder — more on that later.</p>
     <aside class="notes">Hi, I'm Mehedi, from the Mobile Team here at QuestionPro. This is the AI workflow I actually use every day.
 Three tools: one checks code, one plans work, one chain ships it. Each one stands on its own.
 Goal: you leave with one thing to try, or an idea for something of your own.
-Ignore that footer for now. It comes back on slide 18.
+Keep this small footer in mind: 'Built with presentation-builder'. I'll come back to it on slide 18.
 Transition: "Let's start with a standard most of us have never read to the end."
 ~0.5 min</aside>
   </div>
@@ -365,35 +365,32 @@ Transition: "It started with one question."
     <p style="margin-top: 0.6rem; max-width: 100%; font-size: 1rem; line-height: 1.4; color: var(--fg-muted);"><code>npx eqc-kit init</code> · works in Claude Code, Codex, Cursor, Copilot and Gemini CLI</p>
     <aside class="notes">Quick story. I was given our Mobile EQC and asked if my projects were compliant.
 I went through the standard and checked it rule by rule against the project. It was slow, boring work.
-I was using AI, but it was still too much work, and I didn't trust the answers.
+Then I used AI. It helped, but it was still too much work, and I didn't trust the answers.
 So I started to automate the process. One thing led to another, and now I have eqc-kit.
 It's not tied to the Mobile EQC. I'll come back to that just before questions.
 Install is one command. The setup asks a few questions, and they all have defaults, so you can just keep pressing Enter. No dependencies, Node 18 or newer.
 In Claude Code you get slash commands. In the other tools it adds a block to AGENTS.md, so you just say "eqc check".
-Transition: "Here's what checking one rule looks like, three ways."
+Transition: "Here's what checking one rule looks like: with AI prompting, and with eqc-kit."
 ~1.25 min</aside>
   </div>
 
   <!-- 6 dtable -->
   <div class="slide" style="padding-top: 2rem; padding-bottom: 4.25rem;">
-    <div class="kicker">eqc-kit · One rule, three ways</div>
-    <h2 style="font-size: clamp(1.6rem, 3.4vw, 2.8rem);">One Mobile EQC rule,<br><span class="accent">checked three ways</span></h2>
-    <p style="margin-top: 0.5rem; max-width: 100%; font-size: 1rem; line-height: 1.4;">The rule (MEDIUM tier): <strong>Folder structure</strong> — feature-first, no god files (no single huge file that does everything).</p>
-    <table class="dtable" style="margin-top: 0.4rem;">
-      <tr><th style="padding: 0.4rem 0.8rem; width: 14%;">Step</th><th style="padding: 0.4rem 0.8rem; width: 23%;">By hand</th><th style="padding: 0.4rem 0.8rem; width: 27%;">Paste the standard into an AI chat</th><th class="acc" style="padding: 0.4rem 0.8rem; width: 36%;">eqc-kit</th></tr>
-      <tr><td style="padding: 0.4rem 0.8rem; font-size: 0.9rem;"><strong>Find the rule</strong></td><td style="padding: 0.4rem 0.8rem; font-size: 0.9rem;">Look it up in the standard</td><td style="padding: 0.4rem 0.8rem; font-size: 0.9rem;">Paste all 39 rules</td><td style="padding: 0.4rem 0.8rem; font-size: 0.9rem;">Already on its rule list</td></tr>
-      <tr><td style="padding: 0.4rem 0.8rem; font-size: 0.9rem;"><strong>Check the code</strong></td><td style="padding: 0.4rem 0.8rem; font-size: 0.9rem;">Open every folder, look for huge files</td><td style="padding: 0.4rem 0.8rem; font-size: 0.9rem;">Explores from scratch, can lose track</td><td style="padding: 0.4rem 0.8rem; font-size: 0.9rem;">An agent for the MEDIUM rules checks the folders</td></tr>
-      <tr><td style="padding: 0.4rem 0.8rem; font-size: 0.9rem;"><strong>The answer</strong></td><td style="padding: 0.4rem 0.8rem; font-size: 0.9rem;">Your own notes</td><td style="padding: 0.4rem 0.8rem; font-size: 0.9rem;">Can say "pass" when it isn't</td><td style="padding: 0.4rem 0.8rem; font-size: 0.9rem;">pass, with the files that prove it</td></tr>
-      <tr><td style="padding: 0.4rem 0.8rem; font-size: 0.9rem;"><strong>Next time</strong></td><td style="padding: 0.4rem 0.8rem; font-size: 0.9rem;">Do it all again</td><td style="padding: 0.4rem 0.8rem; font-size: 0.9rem;">Same tokens again, maybe a different answer</td><td style="padding: 0.4rem 0.8rem; font-size: 0.9rem;">Saved; a guard flags it if it stops passing</td></tr>
-    </table>
-    <p style="margin-top: 0.5rem; max-width: 100%; font-size: 1rem; line-height: 1.4; color: var(--fg-muted);">Our app passes this rule. <strong>The catch:</strong> eqc-kit needs a written standard, and the first full check costs time and tokens.</p>
-    <aside class="notes">Let's make it concrete with one real rule from the Mobile EQC. MEDIUM tier: folder structure, feature-first, no god files.
+    <div class="kicker">eqc-kit · One rule, two ways</div>
+    <h2 style="font-size: clamp(1.6rem, 3.4vw, 2.8rem);">One Mobile EQC rule:<br><span class="accent">AI prompting vs eqc-kit</span></h2>
+    <p style="margin-top: 0.5rem; max-width: 100%; font-size: 1.1rem; line-height: 1.4;">The rule (MEDIUM): <strong>Folder structure</strong> — feature-first, no god files (one huge file that does everything).</p>
+    <div class="vs-grid" style="margin-top: 1rem;">
+      <div class="vs-card" style="background: oklch(95% 0.03 25); border: 1px solid oklch(80% 0.08 25);"><div class="vs-card-label" style="font-size: 0.95rem;">AI prompting</div><div class="vs-attr" style="font-size: 1.15rem; margin-top: 0.5rem;">Ask AI.</div><div class="vs-attr" style="font-size: 1.15rem; margin-top: 0.5rem;">AI says pass.</div><div class="vs-attr" style="font-size: 1.15rem; margin-top: 0.5rem;">No proof.</div><div class="vs-attr" style="font-size: 1.15rem; margin-top: 0.5rem;">Ask again: new answer.</div></div>
+      <div class="vs-card hi" style="background: oklch(95% 0.04 150); border: 1px solid oklch(78% 0.1 150);"><div class="vs-card-label" style="font-size: 0.95rem;">eqc-kit</div><div class="vs-attr" style="font-size: 1.15rem; margin-top: 0.5rem;">Reads the rule.</div><div class="vs-attr" style="font-size: 1.15rem; margin-top: 0.5rem;">Checks the folders.</div><div class="vs-attr" style="font-size: 1.15rem; margin-top: 0.5rem;">Says pass + shows the files.</div><div class="vs-attr" style="font-size: 1.15rem; margin-top: 0.5rem;">Saved. Read back next time, not re-guessed.</div></div>
+    </div>
+    <p style="margin-top: 1rem; max-width: 100%; font-size: 1.1rem; line-height: 1.4; color: var(--fg-muted);">Our app passes this rule.</p>
+    <aside class="notes">Let's make it concrete with one real rule from the Mobile EQC. MEDIUM tier: folder structure, feature-first, no god files. No single huge file that does everything.
 CUTTABLE if running late — The rule lists the folders per stack. For React Native that's src/screens, src/features, src/components and src/navigation. Flutter, Android and iOS each get their own layout.
-By hand: find the rule, open the project, walk the folders, look for huge files. It works if you're careful. Then you do it again next time, plus the other 38 rules.
-Pasting the standard into an AI chat is what I tried next. Here's what actually happened to me: it explored from scratch every time, it lost track, it said pass when it wasn't, and asking twice gave a different answer. And later, while working on a new feature, the AI would break the same rule again.
-eqc-kit: the rule is already on its list, a MEDIUM-tier agent checks it, and the answer comes with the files that prove it. You can open them and argue with it. It's saved, so next time it's re-read, not re-guessed, and guard warns you if the rule stops passing.
+By hand you'd find the rule, walk every folder, look for huge files. It works if you're careful. Then you do it again next time, plus the other 38 rules.
+The red box is what I tried next: AI prompting. I pasted the standard into a chat and asked. Here's what actually happened to me. It explored from scratch every time, it lost track, it said pass when it wasn't, and asking twice gave a different answer. And later, while working on a new feature, the AI would break the same rule again.
+The green box is eqc-kit. The rule is already on its list, a MEDIUM-tier agent checks the folders, and "pass" comes with the files that prove it. You can open them and argue with it. It's saved, so next time it's re-read, not re-guessed, and guard warns you if the rule stops passing.
 Our app passes this one.
-The bottom line is the honest part: you need a written standard, the first full check isn't cheap, and the agents can still be wrong, so read the evidence.
+The honest part: eqc-kit needs a written standard, the first full check costs time and tokens, and the agents can still be wrong, so read the evidence.
 Transition: "So what do you actually run?"
 ~1.5 min</aside>
   </div>
@@ -464,19 +461,18 @@ Watch for: how fast the first one is, and which fixes it puts at the top.
   <div class="slide" style="padding-top: 2rem; padding-bottom: 4.25rem;">
     <div class="kicker">eqc-kit · Our mobile app</div>
     <h2 style="font-size: clamp(1.6rem, 3.4vw, 2.8rem);">Our mobile app against the Mobile EQC<br><span class="accent">Compliance level: HARD_FAIL → MEDIUM</span></h2>
-    <p style="margin-top: 0.5rem; max-width: 100%; font-size: 1rem; line-height: 1.4;">In about 5 days. HARD_FAIL = a LOW-tier rule fails. MEDIUM = nothing fails in LOW or MEDIUM. Today: 33 pass, 2 partial, 4 fail.</p>
-    <table class="dtable" style="margin-top: 0.4rem;">
-      <tr><th style="padding: 0.4rem 0.8rem; width: 34%;">What changed</th><th class="acc" style="padding: 0.4rem 0.8rem; width: 66%;">How much</th></tr>
-      <tr><td style="padding: 0.4rem 0.8rem; font-size: 0.9rem;"><strong>ESLint errors</strong></td><td style="padding: 0.4rem 0.8rem; font-size: 0.9rem;">54 errors in 30 files (this alone: HARD_FAIL → LOW)</td></tr>
-      <tr><td style="padding: 0.4rem 0.8rem; font-size: 0.9rem;"><code>console.*</code> → our Logger</td><td style="padding: 0.4rem 0.8rem; font-size: 0.9rem;">58 files</td></tr>
-      <tr><td style="padding: 0.4rem 0.8rem; font-size: 0.9rem;"><code>Platform.OS</code> → <code>Platform.select()</code></td><td style="padding: 0.4rem 0.8rem; font-size: 0.9rem;">34 places</td></tr>
-      <tr><td style="padding: 0.4rem 0.8rem; font-size: 0.9rem;"><strong>One big sweep</strong></td><td style="padding: 0.4rem 0.8rem; font-size: 0.9rem;">~85 files, 2,912 / 2,912 tests passing</td></tr>
-      <tr><td style="padding: 0.4rem 0.8rem; font-size: 0.9rem;"><strong>Still failing (4)</strong></td><td style="padding: 0.4rem 0.8rem; font-size: 0.9rem;">3 big architecture jobs + TypeScript (the project must stay JavaScript)</td></tr>
-    </table>
+    <div class="card-grid" style="margin-top: 1.5rem;">
+      <div class="card"><div class="card-slash" style="font-size: 2.2rem;">~5 days</div><div class="card-name" style="font-size: 1.2rem;">From HARD_FAIL to MEDIUM</div><div class="card-sub" style="font-size: 0.95rem;">27 recorded fixes</div></div>
+      <div class="card hi"><div class="card-slash" style="font-size: 2.2rem;">58 files</div><div class="card-name" style="font-size: 1.2rem;">Console logs moved to our Logger</div><div class="card-sub" style="font-size: 0.95rem;">in one fix</div></div>
+      <div class="card"><div class="card-slash" style="font-size: 2.2rem;">2,912 / 2,912</div><div class="card-name" style="font-size: 1.2rem;">Tests passing</div><div class="card-sub" style="font-size: 0.95rem;">after one ~85-file fix</div></div>
+    </div>
+    <p style="margin-top: 1.5rem; max-width: 100%; font-size: 1.05rem; line-height: 1.4; color: var(--fg-muted);">HARD_FAIL = a LOW-tier rule fails. MEDIUM = nothing fails in LOW or MEDIUM.</p>
     <aside class="notes">The guess: 58 files for the Logger sweep.
-Fifty-eight. And the level you saw in the terminal: against the Mobile EQC, our compliance level went from HARD_FAIL to MEDIUM.
-Fixing the ESLint errors alone got us from HARD_FAIL to LOW. All in, 27 recorded fixes in about five days: 25 done, 2 partial.
-Not on the slide: FlatList windowSize on 33 lists, and Crashlytics error handling in 17 files.
+Fifty-eight. And the level you saw in the terminal: against the Mobile EQC, our compliance level went from HARD_FAIL to MEDIUM, in about five days. And after one ~85-file fix, all 2,912 tests still passed.
+The rest isn't on the slide. Fixing the ESLint errors alone, 54 errors in 30 files, got us from HARD_FAIL to LOW. All in, 27 recorded fixes: 25 done, 2 partial.
+CUTTABLE if running late — 34 Platform.OS checks became Platform.select().
+CUTTABLE if running late — Also: FlatList windowSize on 33 lists, and Crashlytics error handling in 17 files.
+Today it's 33 pass, 2 partial, 4 fail.
 CUTTABLE if running late — My favourite one: the i18n rule took 7 audits and 6 rounds of fixes, because every audit found more hardcoded English. In the end I added a custom ESLint rule so it can't come back.
 The four still failing are honest. Three are big architecture moves, not quick wins: a state migration across 123 files, a data-fetching library, and certificate pinning. TypeScript can't pass because the project has to stay JavaScript, so the kit records it as a fail and says why it doesn't apply, instead of pretending. I'd rather have an honest fail than a fake pass.
 Also, the audit found a hardcoded secret in the codebase. I'm not naming it. It's handled.
@@ -567,24 +563,22 @@ Transition: "Here's how it compares with plan mode and /goal, on one task."
   <div class="slide" style="padding-top: 2rem; padding-bottom: 4.25rem;">
     <div class="kicker">/orchestrate · Why not plan mode or /goal?</div>
     <h2 style="font-size: clamp(1.6rem, 3.4vw, 2.8rem);">One "forgot password" task,<br><span class="accent">three ways to run it</span></h2>
-    <p style="margin-top: 0.5rem; max-width: 100%; font-size: 1rem; line-height: 1.4;">The task: an API endpoint, a reset email, a reset screen, tests. It touches auth. (/goal: Claude Code keeps working until a goal is met.)</p>
-    <table class="dtable" style="margin-top: 0.4rem;">
-      <tr><th style="padding: 0.4rem 0.8rem; width: 15%;">Step</th><th style="padding: 0.4rem 0.8rem; width: 20%;">Plan mode</th><th style="padding: 0.4rem 0.8rem; width: 20%;">/goal (runs until done)</th><th class="acc" style="padding: 0.4rem 0.8rem; width: 45%;">/orchestrate</th></tr>
-      <tr><td style="padding: 0.4rem 0.8rem; font-size: 0.9rem;"><strong>Before it builds</strong></td><td style="padding: 0.4rem 0.8rem; font-size: 0.9rem;">Writes a plan, waits for your OK</td><td style="padding: 0.4rem 0.8rem; font-size: 0.9rem;">Starts right away</td><td style="padding: 0.4rem 0.8rem; font-size: 0.9rem;">Asks you questions, shows the plan, waits for your OK</td></tr>
-      <tr><td style="padding: 0.4rem 0.8rem; font-size: 0.9rem;"><strong>Who builds</strong></td><td style="padding: 0.4rem 0.8rem; font-size: 0.9rem;">One model does it all</td><td style="padding: 0.4rem 0.8rem; font-size: 0.9rem;">One model does it all</td><td style="padding: 0.4rem 0.8rem; font-size: 0.9rem;">Email template → haiku · Reset screen → sonnet · Token + endpoint → opus (auth)</td></tr>
-      <tr><td style="padding: 0.4rem 0.8rem; font-size: 0.9rem;"><strong>Who checks</strong></td><td style="padding: 0.4rem 0.8rem; font-size: 0.9rem;">The same model</td><td style="padding: 0.4rem 0.8rem; font-size: 0.9rem;">The same model</td><td style="padding: 0.4rem 0.8rem; font-size: 0.9rem;">A haiku verifier + an opus security reviewer</td></tr>
-      <tr><td style="padding: 0.4rem 0.8rem; font-size: 0.9rem;"><strong>Next big task</strong></td><td style="padding: 0.4rem 0.8rem; font-size: 0.9rem;">Type your asks again</td><td style="padding: 0.4rem 0.8rem; font-size: 0.9rem;">Type your method again</td><td style="padding: 0.4rem 0.8rem; font-size: 0.9rem;">Same skill: <code>/orchestrate</code></td></tr>
-    </table>
-    <p style="margin-top: 0.5rem; max-width: 100%; font-size: 1rem; line-height: 1.4; color: var(--fg-muted);">Writing "just go" in the goal doesn't skip the OK. <strong>The catch:</strong> too much overhead for small tasks, and your main session must run on opus or sonnet.</p>
+    <p style="margin-top: 0.5rem; max-width: 100%; font-size: 1.05rem; line-height: 1.4;">The task: an API endpoint, a reset email, a reset screen, tests. It touches auth.</p>
+    <div class="vs-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.25rem; margin-top: 1rem;">
+      <div class="vs-card" style="background: oklch(95% 0.03 25); border: 1px solid oklch(80% 0.08 25);"><div class="vs-card-label" style="font-size: 0.95rem;">Plan mode</div><div class="vs-attr" style="font-size: 1.15rem; margin-top: 0.5rem;">Makes a plan.</div><div class="vs-attr" style="font-size: 1.15rem; margin-top: 0.5rem;">You OK it.</div><div class="vs-attr" style="font-size: 1.15rem; margin-top: 0.5rem;">One model builds all.</div><div class="vs-attr" style="font-size: 1.15rem; margin-top: 0.5rem;">It checks itself.</div></div>
+      <div class="vs-card" style="background: oklch(95% 0.03 25); border: 1px solid oklch(80% 0.08 25);"><div class="vs-card-label" style="font-size: 0.95rem;">/goal (runs till done)</div><div class="vs-attr" style="font-size: 1.15rem; margin-top: 0.5rem;">Starts right away.</div><div class="vs-attr" style="font-size: 1.15rem; margin-top: 0.5rem;">One model builds all.</div><div class="vs-attr" style="font-size: 1.15rem; margin-top: 0.5rem;">No questions.</div><div class="vs-attr" style="font-size: 1.15rem; margin-top: 0.5rem;">It checks itself.</div></div>
+      <div class="vs-card hi" style="background: oklch(95% 0.04 150); border: 1px solid oklch(78% 0.1 150);"><div class="vs-card-label" style="font-size: 0.95rem;">/orchestrate</div><div class="vs-attr" style="font-size: 1.15rem; margin-top: 0.5rem;">Asks you first.</div><div class="vs-attr" style="font-size: 1.15rem; margin-top: 0.5rem;">Splits it, e.g. email → haiku · screen → sonnet · auth → opus.</div><div class="vs-attr" style="font-size: 1.15rem; margin-top: 0.5rem;">Waits for your OK.</div><div class="vs-attr" style="font-size: 1.15rem; margin-top: 0.5rem;">Another agent checks.</div></div>
+    </div>
     <aside class="notes">One task every stack has: forgot password. An API endpoint, a reset email, a reset screen, and tests. It touches auth, which matters in a second.
-The plan mode and /goal columns are how they worked for me day to day, not a feature list from the docs.
+The two red boxes are how plan mode and /goal worked for me day to day, not a feature list from the docs.
 Plan mode writes a plan and waits for my OK, which is good. But I type the phases, sub-agents, models and "interview me" part myself, every time. After I approve, one model builds all four parts and checks its own work.
-/goal is a Claude Code command that keeps working until a goal is met. It starts right away, no questions, one model, and it checks itself.
-/orchestrate asks me a few questions first, one at a time. Then it splits the work and scores each piece. The email template is simple, so haiku. The reset screen is real UI logic, so sonnet. The reset token and the endpoint touch auth, and anything on the security surface always goes to opus. The tests get scored the same way.
+/goal tells Claude Code to keep working until a goal is met. It starts right away, no questions, one model, and it checks itself.
+The green box is /orchestrate. It asks me a few questions first, one at a time. Then it splits the work and scores each piece. The email template is simple, so haiku. The reset screen is real UI logic, so sonnet. The reset token and the endpoint touch auth, and anything on the security surface always goes to opus. The tests get scored the same way.
 That split is an example to show the rules, not a captured run.
 Checking: a cheap haiku verifier re-runs the checks. The reset screen gets a sonnet reviewer, and because the auth part is security, a fresh opus security reviewer reads that diff looking for vulnerabilities.
-And nothing gets built until I say yes.
-The bottom line is the honest part. On a small task, all that planning and checking is overhead you don't need. It has to run on opus or sonnet; on haiku it stops and asks you to switch. And you still read the report at the end.
+And nothing gets built until I say yes. Writing "just go" in the goal doesn't skip that OK; I'll show you that live in a few minutes.
+Next big task: with plan mode or /goal I type my asks again. With /orchestrate it's the same skill, one command.
+The honest part. On a small task, all that planning and checking is overhead you don't need. It has to run on opus or sonnet; on haiku it stops and asks you to switch. And you still read the report at the end.
 Transition: "Here are the phases it goes through."
 ~2.75 min</aside>
   </div>
@@ -673,26 +667,29 @@ Transition: "That's the check before anything runs. Here's what I've actually bu
     <div class="vs-grid" style="margin-top: 1rem;">
       <div class="vs-card">
         <div class="vs-card-label">Built with it</div>
-        <div class="vs-card-title" style="font-size: 1.35rem;">eqc-kit's latest upgrade, and most of my skills and agents</div>
-        <div class="vs-attr"><strong>Runs:</strong> 48 finished, across 8 projects, in about 6 weeks</div>
-        <div class="vs-attr"><strong>On my own tools:</strong> 13 of the 48 runs (skills, agents, eqc-kit)</div>
-        <div class="vs-attr"><strong>Models:</strong> most tasks went to haiku and sonnet</div>
+        <div class="vs-card-title" style="font-size: 1.35rem;">48 finished runs · 8 projects · ~6 weeks</div>
+        <div class="vs-attr"><strong>Own tools:</strong> 13 runs (skills, agents, eqc-kit's latest upgrade)</div>
+        <div class="vs-attr"><strong>Models:</strong> mostly haiku and sonnet</div>
       </div>
       <div class="vs-card hi">
         <div class="vs-card-label">This deck</div>
-        <div class="vs-card-title" style="font-size: 1.35rem;">Built by a skill that /orchestrate built</div>
-        <div class="vs-attr"><strong>The skill:</strong> /create-presentation made these slides.</div>
-        <div class="vs-attr"><strong>The build:</strong> /orchestrate built it in 5 tasks + 2 fixes, 0 escalations (no task needed a bigger model).</div>
+        <div class="vs-card-title" style="font-size: 1.35rem;">Remember the footer on slide 1? /orchestrate built presentation-builder.</div>
+        <div class="vs-attr"><strong>What:</strong> /create-presentation, /update-presentation + 6 agents</div>
+        <div class="vs-attr"><strong>Runs:</strong> 3 (the skill, the 6 agents, /update-presentation)</div>
+        <div class="vs-attr"><strong>Builders:</strong> 18 tasks: 6 haiku · 10 sonnet · 2 opus. None moved up a model.</div>
+        <div class="vs-attr"><strong>Dry-run:</strong> opus tested the new skill on a sample deck: 15 issues, 13 fixed</div>
       </div>
     </div>
     <p style="margin-top: 1rem; max-width: 960px; font-size: 1.2rem; color: var(--fg-muted);">Questions?</p>
     <aside class="notes">I built eqc-kit's latest upgrade with /orchestrate: the code map, the HTML report and the guard you heard about earlier. Same for most of my skills and agents.
 I only counted runs that finished: 48, across 8 projects, in about 6 weeks. 13 of them were on my own tools.
-eqc-kit itself, version 0.1.0, I built before /orchestrate existed. Only the latest upgrade went through it: 1 opus, 2 sonnet and 1 haiku builder, no escalations, 60 of 60 tests passing.
+CUTTABLE if running late — eqc-kit itself, version 0.1.0, I built before /orchestrate existed. Only the latest upgrade went through it: 1 opus, 2 sonnet and 1 haiku builder, 60 of 60 tests passing.
 Across those runs, most of the building went to haiku and sonnet. Opus shows up in a few.
-Now the right side. Remember the footer on slide 1? /create-presentation is the skill that built this deck, and /orchestrate built that skill. 5 tasks plus 2 fixes, nothing had to move to a bigger model, and one 1-line fix during VERIFY. That build happened before the opus tier existed.
-CUTTABLE if running late — Before any real work, an opus dry-run found 15 issues in that skill; 13 got fixed.
-Verifiers get it wrong too: on that build, the final verifier raised a false alarm because its search matched numbers in CSS. So I still read the report.
+Now the right side. Remember the footer on slide 1? presentation-builder is the plugin that built this deck: /create-presentation, /update-presentation and six agents that write, design and review. I built it with /orchestrate.
+Three runs: one for the skill, one for the six agents, one for /update-presentation. 18 builder tasks in total: 6 on haiku, 10 on sonnet, 2 on opus. Zero escalations in all three runs: no task had to move to a bigger model.
+Then opus tried the finished skill on a sample deck and found 15 issues. 13 got fixed after that.
+The two opus tasks were ones I asked for at approval. You saw on slide 16 that you can do that.
+Verifiers get it wrong too: on one of those builds, the final verifier raised a false alarm because its search matched numbers in CSS. So I still read the report.
 CUTTABLE if running late — The facts in this deck come from a context file in the same folder, so it doesn't make numbers up. If a slide is wrong, that file is the place to check.
 Q&amp;A: open the floor on /orchestrate. Seed if quiet: "What's a ticket on your board right now that would score 0–2?" Move on at about 30 minutes in.
 Transition: "Last section is lighter: what happens after the code is written."

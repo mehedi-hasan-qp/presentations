@@ -1,66 +1,58 @@
 Verdict: ready after fixes
 
-Scope: focus slides 1, 2, 4, 5, 6, 7, 9, 10, 13, 14, 15, 16, 18, 25, 26, 27 (27-slide numbering), their transitions, and cross-references in transcript.md, context.md and outline.md. Other slides were not judged and have no blockers. The speaker's preferences (dense but self-explanatory, plain titles, casual first-person notes, no jokes, no invented numbers, "the Mobile EQC", QuestionPro on slides 1-2 only, soft scope for eqc-kit) override the generic density rule, so density is flagged only where it hurts a first-time reader. Word counts are estimated from transcript.md at ~130 wpm.
+Scope: focus slides 1, 5, 6, 9, 14, 18, their transitions (1→2, 4→5→6→7, 8→9→10, 13→14→15, 17→18→19) and the matching transcript sections. I judged them against the speaker's intent: slides 6 and 14 are caveman-simple red/green boxes, slide 9 shows only the high points, and slide 18 credits presentation-builder and calls back slide 1. I found no blockers outside the focus.
 
-1. [major] slides 6, 7, 9 (index.html:388-396, 410-421, 473-482; transcript.md:97-214): section 1 runs long. The spoken text is about 250 words on slide 6 (~1.9 min against a 1.5 cue), ~375 words on slide 7 (~2.9 min against 1.75, ~3.4 with the hooks paragraph) and ~280 words on slide 9 (~2.2 min against 1.75). Section 1 ends ~1.8 min late, which leaves almost nothing of the 2-minute eqc-kit Q&A (best-practices: Timing, keep each section within its slot). Fix: mark these as CUTTABLE in the notes and the transcript. Slide 7: the code-map paragraph ("If you already have a code map…") and the second half of verify ("Not every rule gets one…"). Slide 6: the folder-list paragraph ("The rule lists the folders per stack…"). Slide 9: the "Not on the slide" line and the i18n story. Saying none of them recovers ~1.5 min.
-2. [major] slide 17→18 transition (index.html:662; transcript.md:383): the line "Here's what the checking after looked like on real runs" is left over from the old slide 17 (verifier catches), which was dropped in revision 5. Slide 18 now shows what was built and the run stats. Fix: Transition: "That's the check before anything runs. Here's what I've actually built with it." Use the same line in the transcript.
-3. [major] slide 14 (index.html:567-569), plus slide 13's transition (index.html:559): /goal is never defined on any slide, including the slide 3 primer, but it gets a whole column. A first-time reader can't follow it, which breaks the "self-explanatory" requirement. Fix: change the lead to "The task: an API endpoint, a reset email, a reset screen, tests. It touches auth. (/goal: Claude Code keeps working until a goal is met.)", or the header to "/goal (runs until done)".
-4. [major] slides 4, 25 (index.html:333-334, 837): the three title phrases appear only on slides 1 and 25. No section is signposted as "Ask first", "Build cheap" or "Ship clean". On the recap, "Ask first: big fixes wait for your OK" is a weak fit for eqc-kit, because asking first and waiting for an OK is what /orchestrate does (GRILL + PREVIEW). Fix: slide 25 card-name "Ask first: check every rule, with proof, before you fix". Slide 4 notes: add "This is the 'ask first' part: ask the standard before you change code." Add the matching one-liners "build cheap" to the slide 12 notes and "ship clean" to the slide 19 notes.
-5. [major] slide 9 (index.html:470; transcript.md:204): the transcript says "The tests stayed green all the way. We touched about eighty-five test files." The sources only say "13-chunk sweep across ~85 files, suite 2912/2912 green (MEDIUM-8)" (context.md:58). Nothing says they were test files, or that tests stayed green across every fix. Fix the transcript: "One big sweep touched about eighty-five files, and all 2,912 tests still pass." Fix the slide row: "One big sweep | ~85 files, 2,912 / 2,912 tests passing".
-6. [major] slides 5, 6, 7, 26, 27 (index.html:363, 385, 405-408, 853, 868): guard, verify, hooks, the HTML report and the code map are all "[Unreleased]" (sources.md:1-5). The published eqc-kit is 0.1.0. The CTA `npx eqc-kit init` only gives people what slides 6-7 promise once the dev branch is published. Outline open question 11 is still open, and the context.md checklist has no publish step. Fix: add a checklist line to context.md: "Publish eqc-kit with guard / verify / hooks / HTML report; confirm `npx eqc-kit init` installs it." If it isn't out by the talk, add "(next release)" to the slide 7 rows for `eqc guard` and `verify` + git hooks.
-7. [minor] slide 2 (index.html:301; transcript.md:29-33): the transcript opens with "At QuestionPro, we take engineering quality seriously" and the notes don't. The transcript also scripts "Yes. Very few hands." as a fact. Fix: make that line the first notes line. Change the transcript to "If few hands: Yes. Very few hands. That's the point. If many: Great, then you know how long it takes."
-8. [minor] slide 5 (index.html:356, 364-367; transcript.md:81): the slide says "I didn't trust the answers" and the notes skip it. "Tedious" is hard to say for a non-native speaker. Fix: notes line 3 "I was using AI, but it was still too much work, and I didn't trust the answers." Transcript: "It was slow, boring work."
-9. [minor] slide 6 (index.html:383, 385): "A MEDIUM-tier agent" and `eqc guard` appear before slide 7 explains them. Fix: "An agent for the MEDIUM rules checks the folders" and "Saved; a guard flags it if it stops passing".
-10. [minor] slide 7 (index.html:405): the "Uses AI?" cell "Yes to check, no to count" is cryptic for first-timers. Fix: "Yes (a plain script sets the level)".
-11. [minor] slide 10 (transcript.md:220): "It does not." is a stronger claim than the notes' "It isn't tied to it." and pushes against the soft scope. Fix: "You may think eqc-kit only works with the Mobile EQC. It isn't tied to it."
-12. [minor] slide 13 (index.html:558; transcript.md:272): the notes say "in a couple of slides" and the transcript says "in a few slides". The payoff is slide 16, three slides on. Fix both: "I'll come back to it on slide 16."
-13. [minor] slide 14 (index.html:572, 575): in the footer, "its OK" and "it has to run on opus or sonnet" are unclear. In the table, "The same model" and "Itself" mean the same thing. Fix: footer 'Writing "just go" in the goal doesn't skip the OK. The catch: too much overhead for small tasks, and your main session must run on opus or sonnet.' Use "The same model" in both Who-checks cells.
-14. [minor] slides 14, 15 (index.html:583, 605): "just go" comes up four times before the demo (slide 14 footer + notes, slide 15 notes, slide 17). That spoils the slide 17 watch-for and costs time. Fix: drop the sentence "Even if I write 'just go' into the goal, it still stops and waits." from the slide 14 notes and transcript.md:296. Keep the footer.
-15. [minor] slide 15 (index.html:602; transcript.md:308): spoken aloud, "The detail is here, not on the slide" makes no sense to the room. Fix: "Five phases. The slide keeps it short; I'll add the detail as I go."
-16. [minor] slide 18 (index.html:675, 682, 686; transcript.md:391, 395): "13 of them" could be read as 13 tools. "0 escalations" is jargon. The code map and guard weren't shown, only talked about. Fix: "On my own tools: 13 of the 48 runs (skills, agents, eqc-kit)". "0 escalations (no task needed a bigger model)". Notes: "the guard you heard about earlier". Transcript: "No task had to move to a bigger model."
-17. [minor] slide 18 timing (index.html:691-693): ~290 spoken words of content (~2.2 min against the 1.75 content cue), taken out of the 2.5-minute Q&A. Fix: mark the opus dry-run line and the "facts come from a context file" line as CUTTABLE.
-18. [minor] slide 18 ↔ context.md:77-83: the notes say "if a slide is wrong, that file is the place to check". But context.md's /orchestrate research still says "Real runs (~11 plan files)" and lacks the 48-run, 8-project, 60/60 and upgrade model-mix facts. Fix: replace context.md:77 with the sources.md:271-275 facts, and keep the ~11-run items labelled as the older sample.
-19. [minor] slides 26, 27 (index.html:853, 856, 868; outline.md:669, 685; transcript.md:538): "Too much hassle to check and keep up EQC compliance?" is awkward, drops "Mobile", and ties eqc-kit to EQC right after slide 10 said to bring your own standard. "Five-minute win" reads like an invented number. Fix: "Checking the Mobile EQC, or your own standard, by hand? Try eqc-kit: `npx eqc-kit init`" on both slides and in the outline. Notes and transcript: "/git-commit is the quickest win: start today."
-20. [minor] context.md:10, 31: the outcome is stale ("picks 2–3 skills or habits … this week"), and item 9 says "five phases now live in slide 14" and "ship-chain slide (now 19)". Fix: outcome "each listener picks any one tool or idea and tries it, or builds their own". Item 9: "(revision 5: slides 15 and 20)".
-21. [minor] outline.md:720 (open question 29): it still says transcript.md needs a 27-slide resync. That's done; only the context.md items in findings 18 and 20 remain. Fix: mark it resolved for the transcript and point it at findings 18 and 20. Point open question 11 at finding 6.
+## Findings
 
-Slide 1: no issues. The hook lands at ~0.5 min, the footer pays off on slide 18, and the transcript matches.
-Slide 4: no issues beyond the signposting line in finding 4. The section promise of ~10 min matches the cues on slides 5-10 (10.0).
-Slide 16: no issues. The guess-first is placed well, it ties back to slide 14, and the retry ladder is already CUTTABLE.
-Slide 25: only finding 4.
-Story check: the hook, arc, dividers, recap and single "pick any one" CTA all work. There is an audience moment about every 8-10 minutes (slides 2, 8→9, 16, 21 plus three Q&A buffers). The climax (slide 18) lands at ~64-69% of runtime, a little ahead of the 70-80% guidance. That's fine because the slide also carries Q&A, so no change is needed.
+1. [major] slide 18 (index.html:680, :690; transcript.md:412) — The dry-run timing is wrong. The slide says "opus found 15 issues before any real work", and the notes and transcript say it "went through the plan… 13 got fixed before building started". The source says otherwise. In docs/plans/2026-11-16-presentation-skill.md:52, :66 and :69, task 2.2 ran after SKILL.md was built (it depends on 1.1 and 1.2): it used the finished skill to make a sample deck and found 15 skill issues, and wave 3 then applied 13 fixes. — Fix: on the slide, write `Dry-run: opus tested the new skill on a sample deck: 15 issues, 13 fixed`. In the notes and transcript, write "Then an opus dry run used the new skill to make a sample deck. It found fifteen issues, and thirteen got fixed."
+2. [major] slide 14 (index.html:569) — "token → opus" is ambiguous. The previous slide says "Main reason: fewer tokens", so a first-time reader will think LLM tokens, not the reset token. The split is also only an example (the notes say so), but nothing on the slide marks it as one. — Fix: `Splits it, e.g. email → haiku · screen → sonnet · auth → opus.`
+3. [major] slide 14 transcript (transcript.md:307) — The script still says "The last line is the honest part", but that footer line moved to the notes. It also repeats "Writing 'just go' in the goal does not skip the OK", which was already said at :303. The 2026-11-18 review fixes dropped this repeat from the notes but not from the transcript. — Fix: "One honest note. For a small task, this is too much overhead. Your main session must run on opus or sonnet. On haiku, it stops and asks you to switch. And you still read the report at the end."
+4. [major] slide 6 transcript (transcript.md:116) — The script says "The last line is the honest part", but the slide's last line is now "Our app passes this rule." The catch line moved to the notes. — Fix: "One honest note. You need a written standard. The first full check is not cheap. And the agents can still be wrong, so read the evidence."
+5. [major] slide 18 timing (transcript.md:400-423) — The non-cuttable speech is about 310 words, which is about 2.4 min against the 1.75 min content cue. That cuts the /orchestrate Q&A from 2.5 to about 1.85 min and pushes the "move on at 30 min" checkpoint. "No task had to move to a bigger model" is said twice (:404 and :410). — Fix: mark the eqc-kit 0.1.0 paragraph CUTTABLE (transcript :404, notes line 3). Drop the first "No task had to move to a bigger model" and keep it only on the presentation-builder line. (best-practices: Timing, "mark… cut if running late")
+6. [minor] slide 18 left card (index.html:669-671) — The card title "My skills, agents, and eqc-kit's latest upgrade" sits above "Runs: 48 finished", so it reads as if all 48 runs built those tools. Only 13 did (sources.md, Revision 3 facts). "Mine: 13 of them" is unclear too, because all 48 runs are his. — Fix: title `48 finished runs · 8 projects · ~6 weeks`. Attrs: `Own tools: 13 runs (skills, agents, eqc-kit's latest upgrade)` · `Models: mostly haiku and sonnet`.
+7. [minor] slide 18 notes and transcript (index.html:684; transcript.md:400) — "Same for most of my skills and agents" claims a share that no source backs. The sources list only presentation-builder with its agents, /update-presentation, /reflect, /send-pr and /orchestrate's own upgrades. — Fix: "I also built several of my skills and agents with it, like presentation-builder, /reflect and /send-pr."
+8. [minor] slide 18 notes — The 2 opus builders in the presentation-builder runs look like they break slide 16's rule (opus only for security or unsplittable work), which invites a Q&A trap. The plan log says opus for 1.2 and 2.2 was set at approval (docs/plans/2026-11-16-presentation-skill.md:56). — Fix: add a notes line: "The 2 opus tasks were ones I asked for at approval; you saw on slide 16 that you can do that."
+9. [minor] slide 18 (index.html:679) — "0 escalations" is jargon on the slide for first-timers; only the notes explain it. — Fix: `18 tasks: 6 haiku · 10 sonnet · 2 opus. None moved up a model.`
+10. [minor] slide 14 (index.html:568) — In the /goal box, "Keeps going till done." repeats its label "(runs till done)", and the box never says "one model". That is the contrast the plan-mode box shows and the reason /orchestrate exists. — Fix: replace line 2 with `One model builds all.`
+11. [minor] slide 6 (index.html:383) — The box label "AI prompting" doesn't match the title, notes and transcript, which all say "AI chat". — Fix: label `AI chat`.
+12. [minor] slide 6 (index.html:384) — "Saved. Same answer next time." overclaims. A fresh re-audit is AI again and can differ (the notes admit "agents can still be wrong"). What the sources support is that the saved result is read back (no-arg /eqc-check) and guard flags changes. — Fix: `Saved. Read back next time, not re-guessed.` This matches the notes.
+13. [minor] slide 6 (index.html:381) — "god files" is defined only in the notes, which breaks the self-explanatory rule for this audience. — Fix: `The rule (MEDIUM): Folder structure — feature-first, no god files (one huge file that does everything).`
+14. [minor] slide 9 (index.html:465) — Card 1 repeats the title word for word ("HARD_FAIL → MEDIUM", "against the Mobile EQC"). — Fix: card `~5 days` / `From HARD_FAIL to MEDIUM` / `27 recorded fixes` (27 milestones, context.md).
+15. [minor] slide 9 (index.html:467) — "after the biggest sweep" means nothing on its own, and "sweep" is jargon. — Fix: sub `after one ~85-file fix`.
+16. [minor] slide 9 transcript (transcript.md:206-210) — There are about 14 numbers in 40 seconds of speech: hard to follow by ear and hard to say. — Fix: mark the FlatList/Crashlytics line (:208) and the Platform.select sentence CUTTABLE. Keep the ESLint → LOW line and "33 pass, 2 partial, 4 fail".
+17. [minor] slide 1 (index.html:290; transcript.md:19) — "Please ignore the small footer for now" works against the plant that slide 18 pays off ("Remember the footer on slide 1?"). — Fix: "Keep this small footer in mind: 'Built with presentation-builder'. I will come back to it on slide eighteen."
+18. [minor] slide 5 (index.html:358, :368; transcript.md:85) — The slide says "I didn't trust the answers", but the transcript says "I did not fully trust the answers". The notes say "I was using AI", but the slide says "Then I used AI". — Fix: transcript "Then I used AI. It helped, but it was still too much work, and I did not trust the answers." Notes "Then I used AI. It helped, but…".
 
-## Timing
+Accepted as intended, no change needed:
+- Density: slides 5 (~75 words), 9 (~45) and 18 (~85) are over the ~30-word limit, but this fits the speaker's dense, self-explanatory style.
+- Slides 6 and 14 are caveman-simple.
+
+Verified against sources:
+- Mobile EQC: 39 rules (9/13/17); the folder-structure rule is MEDIUM; our app passes it.
+- Our app: ~5 days, 58 Logger files, 2,912/2,912 tests, 54 errors / 30 files, 34 Platform.select, 27 fixes (25/2), 33/2/4, the 4 remaining fails, i18n 7/6.
+- Install: MIT, Node 18, 5 tools.
+- /orchestrate: security always opus, plus a haiku verifier and a sonnet/opus reviewer; must run on opus or sonnet.
+- Run history: 48 runs / 8 projects / ~6 weeks / 13 own; eqc-kit upgrade 1/2/1, 60/60; presentation-builder 3 runs, 18 tasks 6/10/2, 0 escalations; CSS false alarm.
+
+Naming: "eqc-kit" and "the Mobile EQC" are used correctly throughout. Scope stays soft and nothing claims "any project". There are no jokes.
+
+Slide 1: no issues beyond finding 17. The hook lands on slide 2 at ~0.5 min, and the 1→2 transition works.
+Slide 5: no issues beyond finding 18. The 4→5 and 5→6 transitions work.
+Slide 6: the 6→7 transition works.
+Slide 9: the 8→9 guess-first reveal and the 9→10 transition work.
+Slide 14: the 13→14 and 14→15 transitions work.
+Slide 18: the 17→18 and 18→19 transitions work.
+
+## Timing (focus slides; transcript at ~130 wpm, CUTTABLE excluded)
 
 | Slide | Planned min | Est. min |
 |---|---|---|
-| 1 | 0.5 | 0.6 |
-| 2 | 1.25 | 1.3 |
-| 3 | 1 | 1 (not judged) |
-| 4 | 0.25 | 0.25 |
-| 5 | 1.25 | 1.25 |
-| 6 | 1.5 | 1.9 |
-| 7 | 1.75 | 2.9 (3.4 with hooks) |
-| 8 | 2.75 | 2.75 (not judged) |
-| 9 | 1.75 | 2.2 |
-| 10 | 1 | 0.8 |
-| 11 | 2 | 2 (Q&A) |
-| 12 | 0.25 | 0.3 |
-| 13 | 1.5 | 1.1 |
-| 14 | 2.75 | 2.6 |
-| 15 | 2.5 | 2.1 (2.8 with CUTTABLE) |
-| 16 | 2 | 2.1 (2.6 with CUTTABLE) |
-| 17 | 1.75 | 1.75 (not judged) |
-| 18 | 4.25 | 4.7 (2.2 content + 2.5 Q&A) |
-| 19 | 0.25 | 0.25 (not judged) |
-| 20 | 1.5 | 1.5 (not judged) |
-| 21 | 1.5 | 1.5 (not judged) |
-| 22 | 0.75 | 0.75 (not judged) |
-| 23 | 1.5 | 1.5 (not judged) |
-| 24 | 1 | 1 (not judged) |
-| 25 | 0.75 | 0.75 |
-| 26 | 0.75 | 0.95 |
-| 27 | 2 | 2 (Q&A) |
-| **Total** | **40.0** | **~41.7 (~42.9 with every CUTTABLE said)** vs 40-min slot |
+| 1 | 0.5 | 0.65 |
+| 5 | 1.25 | 1.3 |
+| 6 | 1.5 | 1.6 |
+| 9 | 1.75 | 1.8 |
+| 14 | 2.75 | 2.8 (2.6 after finding 3) |
+| 18 | 4.25 (1.75 + 2.5 Q&A) | 4.9 (2.4 + 2.5 Q&A), or Q&A shrinks to ~1.85 |
+| Focus total | 12.0 | ~13.05 (+1.05) |
 
-Sections: eqc-kit 15.0 planned → ~16.8 est.; /orchestrate 15.0 → ~14.7; ship chain 10.0 → ~10.2. The overall total is within ±10%. The section 1 overrun eats its Q&A buffer, so cut there first (finding 1). If you're still late, cut slide 22 and the slide 15/16 CUTTABLE paragraphs.
+The whole deck's planned cues sum to 40.0 min for the 40 min slot. Left as is, the focus slides add about 1 min, mostly on slide 18. Findings 3 and 5 recover about 0.8 min. If the talk is running late, cut the CUTTABLE note blocks on slides 6, 9 and 18 first.

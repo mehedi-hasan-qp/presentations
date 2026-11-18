@@ -16,7 +16,7 @@
 
 ⏱ ~0.5 min
 
-Hi everyone, I'm Mehedi, from the Mobile Team here at QuestionPro. This is the AI workflow I use every day. There are three tools. One checks code. One plans work. One chain ships it. Each one works on its own. My goal is simple: you leave with one thing to try, or an idea to build your own. Please ignore the small footer for now. It comes back on slide eighteen.
+Hi everyone, I'm Mehedi, from the Mobile Team here at QuestionPro. This is the AI workflow I use every day. There are three tools. One checks code. One plans work. One chain ships it. Each one works on its own. My goal is simple: you leave with one thing to try, or an idea to build your own. Keep this small footer in mind: "Built with presentation-builder". I'll come back to it on slide eighteen.
 
 Let's start with a standard most of us have never read to the end.
 
@@ -82,7 +82,7 @@ Here is the short story. Someone gave me the Mobile EQC and asked: are your proj
 
 So I took the standard and checked it against the project, rule by rule. It was slow, boring work.
 
-Then I used AI. It helped, but it was still too much work, and I did not fully trust the answers.
+Then I used AI. It helped, but it was still too much work, and I did not trust the answers.
 
 So I started to automate the process. One thing led to another, and now I have eqc-kit.
 
@@ -92,11 +92,11 @@ Install is one command. The setup asks a few questions. All of them have default
 
 In Claude Code, you get slash commands. In the other tools, it adds a block to AGENTS.md, so you just say "eqc check".
 
-Now let me show you what checking one rule looks like, three ways.
+Now let me show you what checking one rule looks like, with AI prompting and with eqc-kit.
 
 ➡️ **Next slide**
 
-## Slide 6 · One Mobile EQC rule, checked three ways
+## Slide 6 · One Mobile EQC rule: AI prompting vs eqc-kit
 
 ⏱ ~1.5 min
 
@@ -107,13 +107,13 @@ Let's use one real rule from the Mobile EQC. It is a MEDIUM rule: folder structu
 
 First, by hand. You find the rule, open the project, walk through the folders, and look for huge files. It works if you are careful. Then next time you do it all again, plus the other thirty-eight rules.
 
-Second, I pasted the standard into an AI chat. Here is what happened to me. Each time, it explored the project from the start. It lost track. It said pass when it was not a pass. When I asked twice, I got two different answers. And later, when I built a new feature, the AI broke the same rule again.
+The red box is what I tried next. I tried AI prompting. I pasted the standard in and asked. Here is what happened to me. Each time, it explored the project from the start. It lost track. It said pass when it was not a pass. When I asked twice, I got two different answers. And later, when I built a new feature, the AI broke the same rule again.
 
-Third, eqc-kit. The rule is already on its list. An agent for the MEDIUM rules checks the folders. The answer comes with the files that prove it, so you can open them and argue. The result is saved. Next time it is read again, not guessed again. And a guard flags it if the rule stops passing.
+The green box is eqc-kit. The rule is already on its list. An agent for the MEDIUM rules checks the folders. The answer comes with the files that prove it, so you can open them and argue. The result is saved. Next time it is read back, not re-guessed. And guard warns you if the rule stops passing.
 
 Our app passes this one.
 
-The last line is the honest part. You need a written standard. The first full check is not cheap. And the agents can still be wrong, so read the evidence.
+One honest note. You need a written standard. The first full check is not cheap. And the agents can still be wrong, so read the evidence.
 
 So, what do you actually run?
 
@@ -201,13 +201,19 @@ Before I flip, one question. One of those fixes moved all our console logs to ou
 
 Fifty-eight files. Well done to whoever was closest.
 
-And here is the level you saw in the terminal. Against the Mobile EQC, our compliance level went from HARD_FAIL to MEDIUM. Today we have thirty-three passes, two partial, and four fails.
+And here is the level you saw in the terminal. Against the Mobile EQC, our compliance level went from HARD_FAIL to MEDIUM, in about five days. After one fix across about eighty-five files, all two thousand nine hundred twelve tests still passed.
 
-Some context. HARD_FAIL means a rule in the lowest tier fails. Fixing the ESLint errors alone got us to LOW. That was fifty-four errors in thirty files. In about five days, we made twenty-seven recorded fixes. Twenty-five are done and two are partial.
+The rest is not on the slide. Fixing the ESLint errors alone got us from HARD_FAIL to LOW. That was fifty-four errors in thirty files.
 
-Some things are not on the slide. We changed FlatList windowSize on thirty-three lists. And we added Crashlytics error handling in seventeen files.
+> ✂️ **CUTTABLE — say only if on time:**
+> Thirty-four Platform.OS checks became Platform.select().
 
-One big sweep touched about eighty-five files, and all two thousand nine hundred twelve tests still pass.
+All in, we made twenty-seven recorded fixes. Twenty-five are done and two are partial.
+
+> ✂️ **CUTTABLE — say only if on time:**
+> We also changed FlatList windowSize on thirty-three lists. And we added Crashlytics error handling in seventeen files.
+
+Today we have thirty-three passes, two partial, and four fails.
 
 > ✂️ **CUTTABLE — say only if on time:**
 > My favourite story is the i18n rule. It took seven audits and six rounds of fixes, because each audit found more hardcoded English. In the end, I added a custom ESLint rule so it cannot come back.
@@ -288,21 +294,23 @@ Now let me compare it with plan mode and /goal, on one task.
 
 Here is a task every app has: forgot password. It has an API endpoint, a reset email, a reset screen, and tests. It touches auth. That matters in a moment.
 
-The plan mode and /goal columns show how they worked for me every day. They are not a feature list from the docs.
+The two red boxes show how plan mode and /goal worked for me every day. They are not a feature list from the docs.
 
-Plan mode writes a plan and waits for my OK. That is good. But I type the phases, the sub-agents, the models and the "interview me" part myself, every time. After I approve, the same model builds all four parts and checks its own work.
+Plan mode writes a plan and waits for my OK. That is good. But I type the phases, the sub-agents, the models and the "interview me" part myself, every time. After I approve, one model builds all four parts and checks its own work.
 
-/goal is a Claude Code command. It keeps working until a goal is met. It starts right away. It asks no questions. The same model does the work, and it checks itself.
+/goal tells Claude Code to keep working until a goal is met. It starts right away. It asks no questions. One model builds all. It checks itself.
 
-/orchestrate first asks me a few questions, one at a time. Then it splits the work and gives each piece a score. The email template is simple, so it goes to haiku. The reset screen has real UI logic, so it goes to sonnet. The reset token and the endpoint touch auth. Anything on the security side always goes to opus. The tests get a score the same way.
+The green box is /orchestrate. It first asks me a few questions, one at a time. Then it splits the work and gives each piece a score. The email template is simple, so it goes to haiku. The reset screen has real UI logic, so it goes to sonnet. The auth work touches security. Anything on the security side always goes to opus. The tests get a score the same way.
 
 This split is an example to show the rules. It is not a real run.
 
 Now, checking. A cheap haiku verifier runs the checks again. A sonnet reviewer reads the reset screen. And because the auth part is security, a fresh opus security reviewer reads that diff, to look for weak spots.
 
-Nothing is built until I say yes.
+Nothing is built until I say yes. Writing "just go" in the goal does not skip that OK. I will show you that live in a few minutes.
 
-The last line is the honest part. Writing "just go" in the goal does not skip the OK. The catch: for a small task, this is too much overhead. And your main session must run on opus or sonnet. On haiku, it stops and asks you to switch. You still read the report at the end.
+Next big task: with plan mode or /goal, I type my asks again. With /orchestrate, it is the same skill, one command.
+
+One honest note. For a small task, this is too much overhead. Your main session must run on opus or sonnet. On haiku, it stops and asks you to switch. And you still read the report at the end.
 
 Here are the phases it goes through.
 
@@ -397,18 +405,20 @@ That's the check before anything runs. Here's what I've actually built with it.
 
 I built eqc-kit's latest upgrade with /orchestrate. That is the code map, the HTML report and the guard you heard about earlier. I also built most of my skills and agents this way.
 
-I only counted runs that finished. There are forty-eight, across eight projects, in about six weeks. On my own tools, that is thirteen of the forty-eight runs: skills, agents and eqc-kit.
-
-eqc-kit itself, version zero point one point zero, I built before /orchestrate existed. Only the latest upgrade went through it. It used one opus, two sonnet and one haiku builder. There were no escalations. No task had to move to a bigger model. And sixty of sixty tests passed.
-
-Across these runs, most of the building went to haiku and sonnet. Opus shows up in a few.
-
-Now the right side. Remember the footer on slide one? /create-presentation is the skill that built this deck. And /orchestrate built that skill. It took five tasks plus two fixes. Nothing had to move to a bigger model. There was one fix of one line during VERIFY. That build happened before the opus tier existed.
+I only counted runs that finished. There are forty-eight, across eight projects, in about six weeks. On my own tools, that is thirteen of the forty-eight runs: skills, agents and eqc-kit's latest upgrade.
 
 > ✂️ **CUTTABLE — say only if on time:**
-> Before any real work, an opus dry run found fifteen issues in that skill. Thirteen were fixed.
+> eqc-kit itself, version zero point one point zero, I built before /orchestrate existed. Only the latest upgrade went through it. It used one opus, two sonnet and one haiku builder. None moved up a model. And sixty of sixty tests passed.
 
-Verifiers can be wrong too. On that build, the final verifier gave a false alarm, because its search matched numbers in CSS. So I still read the report.
+Across these runs, the models were mostly haiku and sonnet. Opus shows up in a few.
+
+Now the right side. Remember the footer on slide one? presentation-builder is the plugin that built this deck. It has /create-presentation, /update-presentation and six agents that write, design and review. I built it with /orchestrate.
+
+It took three runs. One for the skill, one for the six agents, and one for /update-presentation. In total, there were eighteen builder tasks: six on haiku, ten on sonnet, and two on opus. The two opus tasks were ones I asked for at approval. You saw on slide sixteen that you can do that. No task had to move to a bigger model in any of the three runs.
+
+And then an opus dry run tried the finished skill on a sample deck. It found fifteen issues. Thirteen got fixed after.
+
+Verifiers can be wrong too. On one of those builds, the final verifier gave a false alarm, because its search matched numbers in CSS. So I still read the report.
 
 > ✂️ **CUTTABLE — say only if on time:**
 > The facts in this deck come from a context file in the same folder, so it does not make up numbers. If a slide is wrong, that file is the place to check.

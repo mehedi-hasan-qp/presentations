@@ -273,3 +273,9 @@ Base dir for skill paths: `/Users/mehedihasan/dev/personal/ai-skills/engineering
 - eqc-kit 0.1.0 was built 2026-09-29, before the first plan file, so only its latest upgrade is credited to /orchestrate.
 - eqc-kit upgrade run: "Actual mix: 1 opus · 2 sonnet · 1 haiku builders; verifiers haiku ×2, reviewer sonnet ×1, scout sonnet ×1. No escalations." and "npm test 60/60" [eqc-upgrade/docs/plans/2026-11-16-codemap-report-guardrails.md]
 - CLOSE lines across finished runs show most builders on haiku and sonnet; opus appears in a few runs.
+
+### presentation-builder build history (plan files in this repo, gathered 2026-11-18)
+- 3 /orchestrate runs, all Complete: the skill + repo init [docs/plans/2026-11-16-presentation-skill.md], the 6 specialist agents [docs/plans/2026-11-16-presentation-agents.md], /update-presentation [docs/plans/2026-11-16-update-presentation.md].
+- Builder tasks: 18 in total. Run 1: 1 sonnet, 2 opus, 2 haiku builders + 2 fixes (1 sonnet, 1 haiku). Run 2: 2 haiku + 4 sonnet. Run 3: 4 sonnet + 1 haiku. Totals: 6 haiku, 10 sonnet, 2 opus.
+- Escalations: none in any of the 3 runs (CLOSE lines).
+- Run 1: an opus dry-run found 15 skill issues, 13 fixed (context.md); final verifier raised a false alarm (grep matched CSS numbers); 1-line VERIFY fix.
