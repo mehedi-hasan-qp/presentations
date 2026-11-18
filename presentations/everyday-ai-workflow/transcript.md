@@ -5,7 +5,7 @@
 | `# Section …` / `## Slide N · …` | Where you are. Don't read it.           |
 | Plain paragraph                  | Say it out loud.                        |
 | `> 🎬 DO:`                       | An action. Do it, don't say it.         |
-| `> ⏸ PAUSE:`                     | Stop and let the room answer.           |
+| `> ⏸ PAUSE:`                     | Stop and let the audience answer.               |
 | `> ✂️ CUTTABLE`                  | Say it only if you're on time.          |
 | `> ⚠️ IF …:`                     | Backup: only if that condition happens. |
 | `➡️ Next slide`                  | Press →                                 |
@@ -26,13 +26,7 @@ Let's start with a standard most of us have never read to the end.
 
 ⏱ ~1.25 min
 
-At QuestionPro, we take engineering quality seriously. So, a quick show of hands. Who has read our whole Mobile EQC, from start to end? Now keep your hand up if you checked your own code against every rule.
-
-> ⏸ **PAUSE:** look at the hands
-
-> ⚠️ **IF** few hands: say "Yes. Very few hands. That's the point."
-
-> ⚠️ **IF** many hands: say "Great, then you know how long it takes."
+At QuestionPro, we take engineering quality seriously. Very few of us have read the whole Mobile EQC end to end, and fewer have checked our own code against every rule. I hadn't either.
 
 EQC means Engineering Quality Checks. The Mobile EQC is our standard for mobile apps: React Native, Flutter, Android and iOS. It has thirty-nine rules in three tiers. Nine are LOW, thirteen are MEDIUM, and seventeen are HIGH.
 
@@ -189,9 +183,7 @@ Now `/eqc-fix`. This is the ranked list. The top ones are cheap because they are
 
 > 🎬 **DO:** Switch back to the slides.
 
-Before I flip, one question. One of those fixes moved all our console logs to our Logger. How many files did it touch? Shout a number.
-
-> ⏸ **PAUSE:** take a few numbers
+Here's what those fixes added up to on our app.
 
 ➡️ **Next slide**
 
@@ -199,7 +191,7 @@ Before I flip, one question. One of those fixes moved all our console logs to ou
 
 ⏱ ~1.75 min
 
-Fifty-eight files. Well done to whoever was closest.
+One fix moved all our console logs to our Logger: fifty-eight files.
 
 And here is the level you saw in the terminal. Against the Mobile EQC, our compliance level went from HARD_FAIL to MEDIUM, in about five days. After one fix across about eighty-five files, all two thousand nine hundred twelve tests still passed.
 
@@ -248,11 +240,11 @@ That is eqc-kit. Any questions before we move on?
 
 ⏱ ~2 min
 
-Any questions about eqc-kit?
+Any questions about eqc-kit? Type them in the chat, or unmute.
 
-If it is quiet, here are two to think about. Which standard would your team bring? Or, which tier would your project land in today?
+> ⏸ **PAUSE:** Q&A, ~2 min; questions come in the chat or by unmuting, read chat questions aloud; move on at 15 minutes into the talk
 
-> ⏸ **PAUSE:** Q&A, ~2 min; move on at 15 minutes into the talk
+> ⚠️ **IF** no questions: say "Then let's move on."
 
 eqc-kit checks code against a standard. Next is how I get bigger work done without using my best model for everything.
 
@@ -343,11 +335,7 @@ The part of PLAN I want to show you is how it picks the model.
 
 ⏱ ~2 min
 
-Let's try one first. Which model would you give to this task: "add a config entry with exact steps"?
-
-> ⏸ **PAUSE:** take a few answers
-
-The answer is haiku. It is clear, it is one file, and it needs little thinking.
+Let's start with one example: "add a config entry with exact steps". That goes to haiku. It is clear, it is one file, and it needs little thinking.
 
 This is how scoring works. There are three questions for each task. How unclear is it? How much does it touch? How hard is it to think through? Each gets zero to two. You add them up.
 
@@ -423,9 +411,11 @@ Verifiers can be wrong too. On one of those builds, the final verifier gave a fa
 > ✂️ **CUTTABLE — say only if on time:**
 > The facts in this deck come from a context file in the same folder, so it does not make up numbers. If a slide is wrong, that file is the place to check.
 
-Now, questions about /orchestrate. If it is quiet, think of a ticket on your board right now. Would it score zero to two?
+Now, questions about /orchestrate. Type them in the chat, or unmute.
 
-> ⏸ **PAUSE:** Q&A, ~2.5 min; move on at about 30 minutes in
+> ⏸ **PAUSE:** Q&A, ~2.5 min; questions come in the chat or by unmuting, read chat questions aloud; move on at about 30 minutes in
+
+> ⚠️ **IF** no questions: say "Then let's move on."
 
 The last section is lighter. It is about what happens after the code is written.
 
@@ -469,11 +459,7 @@ The key idea is one piece of writing, with several readers.
 
 ⏱ ~1.5 min
 
-A question for the room. Who reads your commit messages?
-
-> ⏸ **PAUSE:** take a few answers
-
-"Nobody" is the usual answer. The real answer is: more people than you think. On our dev builds, the last commit message becomes the tester note. So if your commit says "wip fix stuff", that is what QA sees.
+More people read your commit messages than you think. On our dev builds, the last commit message becomes the tester note. So if your commit says "wip fix stuff", that is what QA sees.
 
 Now look at the table. Developers and testers read the commit message, and /git-commit writes it. Reviewers read the pull request, and /send-pr writes it. Managers read the release notes. Users read the store note, the "What's new" text in the App Store or Play Store. /release-notes writes both, and CI copies the store note. It is the same facts every time. They are rewritten for each reader as they move down the chain.
 
@@ -570,9 +556,11 @@ Thank you. Now, the last round of questions.
 
 ⏱ ~2 min
 
-Thank you all. I am happy to take any question about the three sections. If it is quiet, I have one for you: which one are you trying first, or what would you build?
+Thank you all. I am happy to take any question about the three sections. Type it in the chat, or unmute.
 
-> ⏸ **PAUSE:** Q&A, ~2 min
+> ⏸ **PAUSE:** Q&A, ~2 min; questions come in the chat or by unmuting, read chat questions aloud
+
+> ⚠️ **IF** no questions: say "Then thank you again."
 
 > 🎬 **DO:** Leave this slide up so the commands and the install line stay on screen.
 

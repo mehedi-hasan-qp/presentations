@@ -18,11 +18,16 @@ Backfilled from `index.html`, `context.md` and `transcript.md` on 2026-11-16. **
 
 **Review fixes round 2 (2026-11-18, user-confirmed; Outline rows 6, 9, 14, 18 and `## Slides` 1, 5, 6, 9, 14, 18 updated):** A slide 18 dry-run (opus tested the finished skill on a sample deck; 13 fixed after) · B slide 14 split "e.g. … auth → opus" · E slide 18 eqc-kit 0.1.0 paragraph CUTTABLE, "no task had to move to a bigger model" said once · G slide 18 left card (title = run stats, "Own tools" line; "most of my skills and agents" kept in the notes) · H slide 18 notes: the two opus tasks were asked for at approval · I "0 escalations" → "None moved up a model." · J slide 14 /goal line 2 "One model builds all." · K slide 6 title and notes say "AI prompting" (box label kept) · L slide 6 eqc-kit line 4 · M slide 6 rule line glosses god files · N, O slide 9 cards 1 and 3 · P slide 9 Platform.select and FlatList/Crashlytics lines CUTTABLE · S slide 1 footer line · T slide 5 notes. Layout F, Q, R recorded in the Builder notes on 6, 9, 14. Transcript-only C, D not in this file. Minutes unchanged (40.0).
 
+**Fix (2026-11-18, user-requested, wording only):** online delivery. Brief gains a Delivery line; slide 2 show of hands → chat/unmute poll (hook, row 2 gist, engagement item 3, notes); GUESS-FIRST notes on 8, 16, 21 and Q&A notes on 11, 18, 27 say answers come in the chat or by unmuting. No structure or timing change.
+
+**Fix (2026-11-18, user-requested, wording only):** no questions to the audience. Slide 2 chat/unmute poll → a statement (hook, row 2 gist, notes); GUESS-FIRST dropped on 8, 9 (58 stated plainly), 16 (config entry → haiku kept as a plain example) and 21 ("More people read your commit messages than you think."); Q&A slides 11, 18, 27 still invite questions (chat or unmute) but have no seed questions; engagement item 3 rewritten (no guess-first, no show of hands); Brief Delivery line updated. Same 27 slides, same order, same minutes (40.0).
+
 ## Brief
 
 - **Topic:** "Ask first, build cheap, ship clean": my everyday AI workflow (eqc-kit, /orchestrate, the ship chain)
 - **Speaker:** Mehedi Hasan, Mobile Team, QuestionPro
 - **Audience:** fellow engineers, internal team session / brown-bag. First exposure: they have never seen eqc-kit, /orchestrate, reflect, /git-commit, /send-pr, release-notes or ci-pipeline. Every slide must make sense without the speaker.
+- **Delivery:** online: screen share, camera off; no questions to the audience; in the Q&A buffers, audience questions come in the chat or by unmuting, and the presenter reads chat questions aloud.
 - **Desired outcome:** each listener picks any tool or idea and tries it, or builds something of their own
 - **Duration:** 40 min (3 sections: 15 / 15 / 10, each ending in a Q&A buffer of 2-2.5 min; cues sum to 40.0 min)
 - **Slide count:** 27
@@ -32,7 +37,7 @@ Backfilled from `index.html`, `context.md` and `transcript.md` on 2026-11-16. **
 
 ## Narrative arc
 
-- **Hook (slide 2, not an agenda):** "At QuestionPro we take engineering quality seriously", then a show of hands: who has read the whole Mobile EQC (Engineering Quality Checks, 39 rules), and who checked their code against every rule. Slide 1's footer ("Built with presentation-builder") is planted for a later payoff. Slide 3 then gives first-timers the four terms the rest of the talk uses.
+- **Hook (slide 2, not an agenda):** "At QuestionPro we take engineering quality seriously", then a statement about the Mobile EQC (Engineering Quality Checks, 39 rules): "Very few of us have read the whole Mobile EQC end to end, and fewer have checked our own code against every rule. I hadn't either." Slide 1's footer ("Built with presentation-builder") is planted for a later payoff. Slide 3 then gives first-timers the four terms the rest of the talk uses.
 - **Problem:** checking 39 Mobile EQC rules by hand never happens (slide 2); I was asked if my projects were compliant and checking by hand, even with AI, was too much (slide 5); I kept typing the same plan-mode instructions (phases, tiered sub-agents, interview me first) for every big task (slide 13).
 - **Stakes:** HARD_FAIL compliance; even one rule (folder structure) checked with AI prompting gives "pass" with no proof and can break again later (slide 6); one model builds all of a "forgot password" flow, auth included, and checks its own work (slide 14).
 - **Insight:** AI checks each rule with proof, a plain script works out the level, and the guard remembers what passed (slides 6-7); eqc-kit isn't tied to the Mobile EQC: it takes your team's own written standard and uses its tiers (slide 10); a score per task picks the model, security always goes to opus, and the lower tier wins when unsure (slides 14, 16); one piece of writing has four audiences (slide 21).
@@ -46,32 +51,32 @@ Backfilled from `index.html`, `context.md` and `transcript.md` on 2026-11-16. **
 | # | Component | Title | Key points | Notes gist | Min |
 |---|---|---|---|---|---|
 | 1 | title | Ask first, build cheap, ship clean | **CHG** kicker "Mehedi Hasan · Mobile Team · QuestionPro"; subtitle: three tools for checking, planning and shipping code; footer: built with presentation-builder | Intro; **CHG** goal: try one thing or build your own; footer comes back on slide 18 | 0.5 |
-| 2 | center | **CHG** 39 rules. Nobody wants to check them by hand. | "At QuestionPro we take engineering quality seriously"; Mobile EQC (Engineering Quality Checks): 39 rules, 3 tiers, React Native / Flutter / Android / iOS; "eqc-kit checks · /orchestrate plans · the ship chain ships" | Opens with the QuestionPro line; show of hands; EQC spelled out; tier counts (9 / 13 / 17) in notes | 1.25 |
+| 2 | center | **CHG** 39 rules. Nobody wants to check them by hand. | "At QuestionPro we take engineering quality seriously"; Mobile EQC (Engineering Quality Checks): 39 rules, 3 tiers, React Native / Flutter / Android / iOS; "eqc-kit checks · /orchestrate plans · the ship chain ships" | Opens with the QuestionPro line; "very few of us have read it end to end … I hadn't either"; EQC spelled out; tier counts (9 / 13 / 17) in notes | 1.25 |
 | 3 | dtable | A skill is a playbook. Sub-agents are its helpers. | Claude Code: AI coding agent in your terminal; skill (`/name`) = saved playbook, sub-agent = helper given one task; haiku → sonnet → opus = cheapest → priciest model | Primer for first-timers; every tool today is a skill or uses sub-agents | 1 |
 | 4 | divider | 01 · eqc-kit | **CHG** sub: "Checks every rule in your standard, one by one, and shows the file that proves it" | ~10 min then Q&A; "ask first" signpost | 0.25 |
 | 5 | steps-list | How I ended up building eqc-kit | **CHG** 4 short rows: handed the Mobile EQC → checked by hand → AI, still too much → automated it (hi); install line + 5 tools | Speaker's story; "not tied to the Mobile EQC" saved for slide 10; one-command install | 1.25 |
 | 6 | vs-grid | **CHG** One Mobile EQC rule: AI prompting vs eqc-kit | Rule: MEDIUM, folder structure, "feature-first, no god files (one huge file that does everything)"; light red box "AI prompting": says pass, no proof, new answer each time · light green box (hi) "eqc-kit": checks the folders, pass + the files, saved and read back next time; "our app passes" | By hand, RN folder list (cuttable), my AI-prompting pains and the honest catch in the notes | 1.5 |
 | 7 | dtable | What you run, and where AI is used | **CHG** one-line "What it does" per command: `/eqc-check` · `/eqc-fix` · `eqc guard` · `verify` + hooks; short "Uses AI?" column ("Yes (a plain script sets the level)" for `/eqc-check`) | Detail (code map, level script, HTML report, baseline) in the notes; code-map, second half of verify and hooks paragraphs cuttable | 1.75 |
-| 8 | demo | Demo: check, report, and what to fix next | **CHG** shorter step-descs: 01 cached `/eqc-check` (hi) · 02 `COMPLIANCE.html` · 03 `/eqc-fix` ranked list | 3-part demo; FALLBACK per part; guess-first on Logger file count | 2.75 |
-| 9 | card-grid | **CHG** Our mobile app against the Mobile EQC: Compliance level: HARD_FAIL → MEDIUM | 3 positive cards: ~5 days (from HARD_FAIL to MEDIUM, 27 recorded fixes) · 58 files to our Logger (hi) · 2,912 / 2,912 tests passing (after one ~85-file fix); one-line level definitions | Reveal 58; ESLint, `Platform.select()` (cuttable), FlatList / Crashlytics (cuttable), today 33 / 2 / 4, the 4 still failing, i18n story (cuttable) and the secret in the notes | 1.75 |
+| 8 | demo | Demo: check, report, and what to fix next | **CHG** shorter step-descs: 01 cached `/eqc-check` (hi) · 02 `COMPLIANCE.html` · 03 `/eqc-fix` ranked list | 3-part demo; FALLBACK per part | 2.75 |
+| 9 | card-grid | **CHG** Our mobile app against the Mobile EQC: Compliance level: HARD_FAIL → MEDIUM | 3 positive cards: ~5 days (from HARD_FAIL to MEDIUM, 27 recorded fixes) · 58 files to our Logger (hi) · 2,912 / 2,912 tests passing (after one ~85-file fix); one-line level definitions | 58 files to the Logger, stated plainly; ESLint, `Platform.select()` (cuttable), FlatList / Crashlytics (cuttable), today 33 / 2 / 4, the 4 still failing, i18n story (cuttable) and the secret in the notes | 1.75 |
 | 10 | steps-list | **NEW** Not tied to the Mobile EQC. Bring your own standard. | Bring your team's written standard → eqc-kit reads it and lists every rule in your tiers (LOW/MEDIUM/HIGH, Bronze/Silver/Gold) → same check, report and fixes (hi) | eqc-kit is the tool, the standard is yours; built to adapt to your standard and tiers; it needs a written standard | 1 |
-| 11 | center | Questions? (eqc-kit) | Q&A buffer | Seeds; move on at 15 min | 2 |
+| 11 | center | Questions? (eqc-kit) | Q&A buffer | Questions in the chat or by unmuting; move on at 15 min | 2 |
 | 12 | divider | 02 · /orchestrate | sub: "Plans big work with you, then sends each task to the cheapest model that can do it" | Separate tool, ~12 min then questions; "build cheap" signpost | 0.25 |
 | 13 | steps-list | Why I built /orchestrate | **CHG** 3 shorter rows: kept going back to plan mode → typed the same asks every time → made it a skill (hi); footer: main reason, fewer tokens | Speaker's origin story; no token number | 1.5 |
 | 14 | vs-grid | **CHG** One "forgot password" task, three ways to run it | Lead: endpoint, reset email, reset screen, tests; it touches auth; light red boxes "Plan mode" and "/goal (runs till done)": one model builds all, checks itself · light green box (hi) "/orchestrate": asks first, splits (e.g. email → haiku · screen → sonnet · auth → opus), waits for your OK, another agent checks | /goal defined in one line; the split is an example, not a captured run; security is always opus; "just go" doesn't skip the OK, the catch, and "next big task" in the notes | 2.75 |
 | 15 | dtable | How /orchestrate runs a big task, phase by phase | **CHG** lead: the orchestrator plans and checks, helpers write the code; 5 one-line rows: GRILL · PLAN · PREVIEW (the gate) · EXECUTE / VERIFY · CLOSE | Detail (fast lane, 3 helpers, file owners, "ok, but…", ≤5-line fix, reviewers, resume) in the notes; shortcuts paragraph cuttable | 2.5 |
-| 16 | dtable | How it picks a model for each task | **CHG** shorter lead; 0–2 haiku · 3–4 sonnet · 5–6 split first, opus if it can't be split · security always opus; pick-lower quote; one-line "if a task fails" | Guess-first "add a config entry with exact steps" → haiku; ties back to slide 14; opus requests and retry ladder in the notes | 2 |
+| 16 | dtable | How it picks a model for each task | **CHG** shorter lead; 0–2 haiku · 3–4 sonnet · 5–6 split first, opus if it can't be split · security always opus; pick-lower quote; one-line "if a task fails" | Example: "add a config entry with exact steps" → haiku; ties back to slide 14; opus requests and retry ladder in the notes | 2 |
 | 17 | demo | Demo: the preview gate | 01 paused at PREVIEW, "just go" written into the goal · 02 reply "ok, but drop task 3" (hi); watch-for: "just go" in the goal didn't skip the gate | Pre-staged run with one security task; reject at the end; never type a bare "go" / "just go" at the prompt | 1.75 |
-| 18 | vs-grid | **CHG** What I've built with /orchestrate | **CHG** left (short): title "48 finished runs · 8 projects · ~6 weeks"; own tools: 13 runs (skills, agents, eqc-kit's latest upgrade); mostly haiku / sonnet · right (hi, same shape) "This deck · built with /orchestrate": title "presentation-builder, a Claude Code plugin"; 2 skills (new deck · change one); 6 agents, one job each; closing line "Questions?" | Slide 1 payoff (footer callback spoken); what the plugin is; build facts in notes only (3 runs, 18 tasks, none moved up a model, dry-run 15 issues / 13 fixed); the 2 opus tasks were asked for at approval; eqc-kit 0.1.0 predates /orchestrate (cuttable); verifier false alarm (honest limit); context-file line cuttable; Q&A seed; content ~1.75 + Q&A 2.5 | 4.25 |
+| 18 | vs-grid | **CHG** What I've built with /orchestrate | **CHG** left (short): title "48 finished runs · 8 projects · ~6 weeks"; own tools: 13 runs (skills, agents, eqc-kit's latest upgrade); mostly haiku / sonnet · right (hi, same shape) "This deck · built with /orchestrate": title "presentation-builder, a Claude Code plugin"; 2 skills (new deck · change one); 6 agents, one job each; closing line "Questions?" | Slide 1 payoff (footer callback spoken); what the plugin is; build facts in notes only (3 runs, 18 tasks, none moved up a model, dry-run 15 issues / 13 fixed); the 2 opus tasks were asked for at approval; eqc-kit 0.1.0 predates /orchestrate (cuttable); verifier false alarm (honest limit); context-file line cuttable; Q&A in the chat or by unmuting; content ~1.75 + Q&A 2.5 | 4.25 |
 | 19 | divider | 03 · The ship chain | sub: "After the code works: commit, PR, release notes, build" | Lighter section; value is in the connection; "ship clean" signpost | 0.25 |
 | 20 | steps-list | Each skill feeds the next | 01-05: /reflect, /git-commit (hi, "start here"), /send-pr, /release-notes, ci-pipeline | What each step does; /git-commit is the cheapest start | 1.5 |
-| 21 | dtable | One change, four write-ups, four readers | Commit: devs + testers; PR: reviewers; Release notes: managers; Store note: users; "Written by" column | Guess-first: who reads your commits; cut-path refs → slides 22/23 | 1.5 |
+| 21 | dtable | One change, four write-ups, four readers | Commit: devs + testers; PR: reviewers; Release notes: managers; Store note: users; "Written by" column | "More people read your commit messages than you think"; tester note; cut-path refs → slides 22/23 | 1.5 |
 | 22 | code-block | Commits are written for the release notes | git-commit: "raw material for release notes"; release-notes: "don't trust commit messages alone" | Cuttable; two halves of a contract | 0.75 |
 | 23 | demo | Demo: v1.9.4 notes beside their commits | Step-descs; code block "One change, three write-ups"; watch-for line | Match a commit to its sentence; read the store note | 1.5 |
 | 24 | center | No release notes, no build | CI fails if `RELEASE_NOTES_v<version>.md` is missing; staging and production copy the store note from it | Enforced, not recommended | 1 |
 | 25 | card-grid | Ask first, build cheap, ship clean (recap) | eqc-kit (Ask first: check every rule, with proof, before you fix; sub "checks your code, keeps passing rules passing"); /orchestrate (Build cheap); ship chain (hi, Ship clean) | One sentence per section; **CHG** "Pick any one" | 0.75 |
 | 26 | closing | **CHG** Pick any one. Try it. Or build your own. | **CHG** pain + command: EQC compliance hassle → eqc-kit · big ticket → `/orchestrate` · vague commits → `/git-commit`; install line | Match a tool to your pain, or build your own; install line is a prompt | 0.75 |
-| 27 | center | Questions? (final) | **CHG** mirrors slide 26 (pain + command) + install line on screen | Open floor; "Which one are you trying first?" | 2 |
+| 27 | center | Questions? (final) | **CHG** mirrors slide 26 (pain + command) + install line on screen | Open floor: questions in the chat or by unmuting | 2 |
 
 Total: 40.0 min (40 min slot). Sections: eqc-kit 15.0 (slides 1-11) · /orchestrate 15.0 (12-18: content 12.5 + Q&A 2.5 inside slide 18) · ship chain 10.0 (19-27). Rows: 27 (matches slide count).
 
@@ -177,7 +182,7 @@ Items 1-7 already applied in the deck (accepted suggestions recorded in `context
 
 1. **What:** retitle to "Ask first, build cheap, ship clean". **Why:** title matches the three-part workflow; the close now asks for "pick any one, or build your own", which the title doesn't contradict. **Where:** 1, 25.
 2. **What:** keep internal names off slides ("our mobile app"), except QuestionPro on slides 1-2 and the Mobile EQC by name (speaker decision, revision 5); no project or repo names on slide 18. **Why:** internal detail lives in the notes. **Where:** all, esp. 5, 9, 18.
-3. **What:** a "guess first" audience moment per section. **Why:** interaction every ~8-10 min. **Where:** 8→9 (Logger file count), 16 ("add a config entry with exact steps" model), 21 (who reads commits); plus show of hands on 2.
+3. **What:** no questions to the audience (guess-first moments and the slide 2 poll removed, 2026-11-18, user request). The only audience interaction is the three Q&A buffers, where questions come in the chat or by unmuting and I read chat questions aloud. **Why:** online talk, camera off; the speaker prefers statements over asking the room. **Where:** Q&A on 11, 18, 27; 2, 8, 9, 16, 21 now state the point plainly.
 4. **What:** demo prep: re-run /eqc-check and capture a screenshot fallback for every demo part. **Why:** slides 8 and 9 must agree; demos can break. **Where:** 8, 9, 17, 23.
 5. **What:** intentional honest limits. **Why:** engineers trust stated failure modes. **Where:** 6 (eqc-kit catch, in notes), 9 (the 4 still failing, in notes), 14 (/orchestrate catch, in notes), 18 (verifiers fail too, in notes).
 6. **What:** slide 1 footer foreshadows the reveal. **Why:** setup and payoff. **Where:** 1, 18.
@@ -212,8 +217,7 @@ On-slide copy:
 
 Speaker notes:
 At QuestionPro, we take engineering quality seriously.
-Show of hands: who has read the whole Mobile EQC, end to end? Keep your hand up if you checked your own code against every rule.
-(Expect very few hands. That's the point.)
+Very few of us have read the whole Mobile EQC end to end, and fewer have checked our own code against every rule. I hadn't either.
 EQC stands for Engineering Quality Checks. The Mobile EQC is our standard for mobile apps: React Native, Flutter, Android and iOS. 39 rules in three tiers: 9 LOW, 13 MEDIUM, 17 HIGH.
 The standard is good. The problem is that checking 39 rules across a whole app by hand is slow, boring work, so it doesn't happen.
 Each part today is something I used to skip: checking, planning, writing it up.
@@ -350,7 +354,7 @@ PREP: dev eqc-kit installed in the app repo, full check re-run this morning, bro
 FALLBACK (part 1): screenshot ./screenshots/eqc-check-scorecard.png — "Here's the same scorecard from this morning; the live one says the same thing."
 FALLBACK (part 2): screenshot ./screenshots/eqc-compliance-report.png — "This is the page it writes next to the Markdown report; it's just a file, no setup."
 FALLBACK (part 3): screenshot ./screenshots/eqc-fix-ranked.png — "Here's the ranked list from my last run; same output, no waiting."
-Transition (GUESS-FIRST, take a few numbers before flipping to slide 9): "Before I flip: one of the fixes moved all our console logs to our Logger. How many files did that touch?"
+Transition: "Here's what those fixes added up to on our app."
 Watch for: how fast the first one is, and which fixes it puts at the top.
 ~2.75 min
 
@@ -364,11 +368,11 @@ On-slide copy:
   - 2,912 / 2,912 / Tests passing / after one ~85-file fix
 - HARD_FAIL = a LOW-tier rule fails. MEDIUM = nothing fails in LOW or MEDIUM.
 
-Builder note: three cards only; `.hi` on the 58 card (the slide 8 guess-first reveal). The level-definition line is a short `p` under the grid. Larger card text as inline styles in this deck only (template unchanged): `.card-slash` 2.2rem, `.card-name` 1.2rem, `.card-sub` 0.95rem.
+Builder note: three cards only; `.hi` on the 58 card. The level-definition line is a short `p` under the grid. Larger card text as inline styles in this deck only (template unchanged): `.card-slash` 2.2rem, `.card-name` 1.2rem, `.card-sub` 0.95rem.
 
 Speaker notes:
-The guess: 58 files for the Logger sweep.
-Fifty-eight. And the level you saw in the terminal: against the Mobile EQC, our compliance level went from HARD_FAIL to MEDIUM, in about five days. And after one fix that touched about 85 files, all 2,912 tests still passed.
+One fix moved all our console logs to our Logger: 58 files.
+And the level you saw in the terminal: against the Mobile EQC, our compliance level went from HARD_FAIL to MEDIUM, in about five days. And after one fix that touched about 85 files, all 2,912 tests still passed.
 Some detail behind it. Fixing the ESLint errors alone, 54 errors in 30 files, got us from HARD_FAIL to LOW. Of the 27 recorded fixes, 25 are done and 2 partial.
 CUTTABLE if running late — 34 Platform.OS checks became Platform.select().
 CUTTABLE if running late — Also: FlatList windowSize on 33 lists, and Crashlytics error handling in 17 files.
@@ -405,8 +409,7 @@ On-slide copy:
 - eqc-kit
 
 Speaker notes:
-Open the floor.
-If it's quiet, seed one: "Which standard would your team bring?" or "Which tier would your project land in today?"
+Open for questions: type them in the chat or unmute. Read chat questions aloud before answering.
 Watch the clock: this buffer is 2 minutes. Move on at 15 minutes into the talk.
 Transition: "eqc-kit checks code against a standard. Next is how I get bigger work done without burning my best model."
 ~2 min — Q&A buffer
@@ -516,7 +519,7 @@ On-slide copy:
 - A task fails? It retries, then moves up or re-scopes. Still failing: it pauses and tells you.
 
 Speaker notes:
-GUESS-FIRST: which model gets "add a config entry with exact steps"? Take a few answers. (Answer: haiku. It's clear, it's one file, and it doesn't need much thinking.)
+Example: "add a config entry with exact steps" goes to haiku. It's clear, it's one file, and it doesn't need much thinking.
 Three questions per task: how unclear is it, how much does it touch, how hard is it to think through. Zero to two each, add them up.
 Big tasks get split first. Opus only gets a task that really can't be split, or anything that touches security, like auth, secrets, crypto or permissions. Those always go to opus, and a fresh opus reviewer goes through the diff looking for vulnerabilities. That's why the auth part of the forgot-password task went to opus: because it's security, not because of its score.
 You can also ask for opus yourself. If a plan has more than 2 opus tasks, it asks you to confirm.
@@ -571,7 +574,7 @@ Building it took 3 runs and 18 tasks, and none moved up a model. The two opus ta
 Then opus tried the finished skill on a sample deck, a dry-run. It found 15 issues, and 13 got fixed after.
 Verifiers get it wrong too: on one of those builds, the final verifier raised a false alarm because its search matched numbers in CSS. So I still read the report.
 CUTTABLE if running late — The facts in this deck come from a context file in the same folder, so it doesn't make numbers up. If a slide is wrong, that file is the place to check.
-Q&A: open the floor on /orchestrate. Seed if quiet: "What's a ticket on your board right now that would score 0–2?" Move on at about 30 minutes in.
+Q&A on /orchestrate: questions in the chat or by unmuting; read chat questions aloud. Move on at about 30 minutes in.
 Transition: "Last section is lighter: what happens after the code is written."
 ~4.25 min (~1.75 content + 2.5 Q&A buffer)
 
@@ -619,8 +622,7 @@ On-slide copy:
   - Store note (App/Play Store "What's new") | Users | `/release-notes` (CI copies it)
 
 Speaker notes:
-GUESS-FIRST: who reads your commit messages? Take answers. "Nobody" is the usual one.
-Answer: more people than you think. On our dev builds, the last commit message becomes the tester note. So "wip fix stuff" is what QA sees.
+More people read your commit messages than you think. On our dev builds, the last commit message becomes the tester note. So "wip fix stuff" is what QA sees.
 Same facts, rewritten for each reader as they move down the chain.
 Transition: "Which means commits get written with the next step in mind." (If slide 22 is cut: "Here's a real one." and go to slide 23.)
 ~1.5 min
@@ -719,8 +721,7 @@ On-slide copy:
 - Get /orchestrate and /git-commit: paste into Claude Code → "Fetch and follow https://raw.githubusercontent.com/mehedibangladeshi/ai-skills/master/INSTALL.md"
 
 Speaker notes:
-Thank everyone. Open the floor for anything across the three sections.
-Seed if quiet: "Which one are you trying first, or what would you build?"
+Thank everyone. Questions on anything across the three sections: type them in the chat or unmute. Read chat questions aloud before answering.
 Leave this slide up through Q&A: the commands and the install line stay on screen.
 Transition: none, this is the end.
 ~2 min — Q&A buffer
