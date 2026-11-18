@@ -254,3 +254,22 @@ Base dir for skill paths: `/Users/mehedihasan/dev/personal/ai-skills/engineering
 - Dates are my conversion of reflog epoch timestamps at +0600; they are not from `git log` output.
 - No statement of why the opus tier was added beyond the commit subject line (9f8017e).
 - Plan mode and /goal behavior descriptions come only from the speaker; not checked against Claude Code docs.
+
+## Revision 3 facts (gathered 2026-11-18)
+
+### Mobile EQC standard
+- Full name: "Mobile Engineering Quality Checks (EQC) — Unified Standard V1.1", "Covers: React Native (RN) · Flutter · Android Native · iOS Native" [pearl-cx/CustomerExperience/docs/eqc/EQC_standard_v1.1.md:1-5]
+- Folder-structure rule is MEDIUM item 1: "Folder structure — Feature-first, no god files" [EQC_standard_v1.1.md:120; EQC_rules.md:116-118]
+  - RN: src/screens/<Name>/ · src/features/<Name>/ · src/components/ · src/navigation/
+  - Flutter: lib/features/<name>/bloc/ · screens/ · widgets/ · lib/shared/widgets/
+  - Android: feature/<name>/ui/ · domain/ · data/ (Clean Architecture)
+  - iOS: Features/<Name>/ViewModels/ · Views/ · Models/ · Shared/Components/ [EQC_rules.md:118-126]
+- Our app passes it: COMPLIANCE.md lists MEDIUM-11 as the only non-passing MEDIUM rule [docs/eqc/COMPLIANCE.md:14, 21-23]
+- Speaker direction: QuestionPro takes engineering quality seriously (user, 2026-11-18). Company name may now appear on slides 1 and 2.
+
+### /orchestrate run history (plan files under ~/dev/**/docs/plans, Status line = Complete)
+- 48 finished runs across 8 projects, 2026-10-05 to 2026-11-17 (about 6 weeks). 56 plan files in total; only finished ones are counted.
+- 13 of the 48 were work on my own skills, agents and eqc-kit: create-presentation skill + its 6 agents + update-presentation (4 runs, ETH), reflect, send-pr (2 runs), /orchestrate's own code-map and opus-tier upgrades, repo restructure and install (6 runs, ai-skills-lab), orchestrate audit + publish (2 runs, skills), eqc-kit's latest upgrade: code map, HTML report, guard (1 run, eqc-upgrade).
+- eqc-kit 0.1.0 was built 2026-09-29, before the first plan file, so only its latest upgrade is credited to /orchestrate.
+- eqc-kit upgrade run: "Actual mix: 1 opus · 2 sonnet · 1 haiku builders; verifiers haiku ×2, reviewer sonnet ×1, scout sonnet ×1. No escalations." and "npm test 60/60" [eqc-upgrade/docs/plans/2026-11-16-codemap-report-guardrails.md]
+- CLOSE lines across finished runs show most builders on haiku and sonnet; opus appears in a few runs.

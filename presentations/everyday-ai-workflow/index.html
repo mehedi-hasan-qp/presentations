@@ -280,27 +280,29 @@
 
   <!-- 1 title -->
   <div class="slide title-slide active">
-    <div class="kicker">Mehedi Hasan · Mobile Team</div>
+    <div class="kicker">Mehedi Hasan · Mobile Team · QuestionPro</div>
     <h1>Ask first, build cheap,<br><span class="accent">ship clean</span></h1>
     <p style="margin-top: 2rem; max-width: 720px;">My everyday AI workflow: three tools for checking, planning and shipping code.</p>
-    <p style="margin-top: 1.1rem; max-width: 620px; color: var(--fg-muted); font-size: 0.9rem;">Built with /create-presentation — more on that later.</p>
-    <aside class="notes">Hi, I'm Mehedi, from the Mobile Team. This is the AI workflow I actually use every day, not the conference-poster version.
-Three tools: one checks code, one plans work, one chain ships it. Each stands on its own.
-Goal: you leave with two or three things to try this week.
-Ignore that footer for now. It comes back on slide 17.
-Transition: "Let's start with a document most of us have never read to the end."
+    <p style="margin-top: 1.1rem; max-width: 620px; color: var(--fg-muted); font-size: 0.95rem;">Built with /create-presentation — more on that later.</p>
+    <aside class="notes">Hi, I'm Mehedi, from the Mobile Team here at QuestionPro. This is the AI workflow I actually use every day.
+Three tools: one checks code, one plans work, one chain ships it. Each one stands on its own.
+Goal: you leave with one thing to try, or an idea for something of your own.
+Ignore that footer for now. It comes back on slide 18.
+Transition: "Let's start with a standard most of us have never read to the end."
 ~0.5 min</aside>
   </div>
 
   <!-- 2 center -->
   <div class="slide center">
     <div class="kicker">The problem</div>
-    <h1>39 rules. One long doc.<br><span class="accent">Nobody wants to check them by hand.</span></h1>
-    <p style="margin-top: 2rem; max-width: 760px;">Our quality standard: 39 rules in 3 tiers (9 LOW, 13 MEDIUM, 17 HIGH).</p>
-    <p style="margin-top: 1.1rem; max-width: 700px; color: var(--fg-muted);">Today: eqc-kit checks · /orchestrate plans · the ship chain ships.</p>
-    <aside class="notes">Show of hands: who has read the whole quality standard, end to end? Keep your hand up if you checked your own code against every rule.
+    <h1 style="font-size: clamp(2rem, 3.8vw, 3.4rem);">39 rules.<br><span class="accent">Nobody wants to check them by hand.</span></h1>
+    <p style="margin-top: 1.5rem; max-width: 880px; font-size: 1.2rem; line-height: 1.5;">At QuestionPro we take engineering quality seriously. Our Mobile EQC (Engineering Quality Checks) has 39 rules in 3 tiers, for React Native, Flutter, Android and iOS.</p>
+    <p style="margin-top: 1rem; max-width: 880px; font-size: 1.1rem; color: var(--fg-muted);">Today: eqc-kit checks · /orchestrate plans · the ship chain ships.</p>
+    <aside class="notes">At QuestionPro, we take engineering quality seriously.
+Show of hands: who has read the whole Mobile EQC, end to end? Keep your hand up if you checked your own code against every rule.
 (Expect very few hands. That's the point.)
-The standard is fine. The problem is that checking 39 rules across a whole app by hand is a week of nobody's favourite work, so it doesn't happen.
+EQC stands for Engineering Quality Checks. The Mobile EQC is our standard for mobile apps: React Native, Flutter, Android and iOS. 39 rules in three tiers: 9 LOW, 13 MEDIUM, 17 HIGH.
+The standard is good. The problem is that checking 39 rules across a whole app by hand is slow, boring work, so it doesn't happen.
 Each part today is something I used to skip: checking, planning, writing it up.
 Transition: "Before the tools, four words you'll hear all talk."
 ~1.25 min</aside>
@@ -330,111 +332,115 @@ Transition: "With those four words, section one."
   <!-- 4 divider -->
   <div class="slide divider center">
     <h2>01 · eqc-kit</h2>
-    <div class="sub">Checks your code against your team's own quality standard</div>
+    <div class="sub">Checks every rule in your standard, one by one, and shows the file that proves it</div>
     <aside class="notes">Section one: eqc-kit. About 10 minutes, then questions.
 This is the one I built myself, so I'll start with how that happened.
+This is the "ask first" part: ask the standard before you change code.
 Transition: "It started with one question."
 ~0.25 min</aside>
   </div>
 
   <!-- 5 steps-list -->
-  <div class="slide">
+  <div class="slide" style="padding-top: 2rem; padding-bottom: 4.25rem;">
     <div class="kicker">eqc-kit · Why I built it</div>
-    <h2>How I ended up<br><span class="accent">building eqc-kit</span></h2>
-    <div class="steps-list" style="max-width: 100%; margin-top: 0.5rem;">
-      <div class="step-row" style="padding: 0.5rem 1.25rem;">
+    <h2 style="font-size: clamp(1.6rem, 3.4vw, 2.8rem);">How I ended up<br><span class="accent">building eqc-kit</span></h2>
+    <div class="steps-list" style="max-width: 100%; margin-top: 0.75rem;">
+      <div class="step-row" style="padding: 0.55rem 1.25rem;">
         <div class="step-num">01</div>
-        <div><div class="step-title">I was handed our quality standard</div><div class="step-desc">And one question: are your projects compliant?</div></div>
+        <div><div class="step-title">I was handed the Mobile EQC</div><div class="step-desc">And one question: are your projects compliant?</div></div>
       </div>
-      <div class="step-row" style="padding: 0.5rem 1.25rem;">
+      <div class="step-row" style="padding: 0.55rem 1.25rem;">
         <div class="step-num">02</div>
-        <div><div class="step-title">I typed the same asks every time</div><div class="step-desc">Split into phases, a sub-agent per phase on a model that fits, interview me first. Same prompt, every big task.</div></div>
+        <div><div class="step-title">I checked it by hand</div><div class="step-desc">Rule by rule, through the whole project. Slow, boring work.</div></div>
       </div>
-      <div class="step-row hi" style="padding: 0.5rem 1.25rem;">
+      <div class="step-row" style="padding: 0.55rem 1.25rem;">
+        <div class="step-num">03</div>
+        <div><div class="step-title">Then I used AI</div><div class="step-desc">It helped, but it was still too much work, and I didn't trust the answers.</div></div>
+      </div>
+      <div class="step-row hi" style="padding: 0.55rem 1.25rem;">
         <div class="step-num">04</div>
-        <div><div class="step-title">So I automated it</div><div class="step-desc">One thing led to another. Now it's eqc-kit: an open-source (MIT) npm package that checks your code against your own written standard.</div></div>
+        <div><div class="step-title">So I automated it</div><div class="step-desc">Now it's eqc-kit: an open-source (MIT) npm package.</div></div>
       </div>
     </div>
-    <p style="margin-top: 0.5rem; max-width: 960px; font-size: 1.05rem; color: var(--fg-muted);"><code>npx eqc-kit init</code> · works in Claude Code, Codex, Cursor, Copilot and Gemini CLI</p>
-    <aside class="notes">So, quick story. I was given the EQC docs and asked if my projects were compliant.
-I went through the doc and checked it one by one against the project. It was a tedious job.
-I was using AI, but it was still too much.
-So I started to make the process automated. And one thing led to another, and now I have this entire eqc-kit.
-It's not tied to our doc. You bring any written standard, and the tiers come from it: LOW/MEDIUM/HIGH, Bronze/Silver/Gold, whatever your doc uses.
+    <p style="margin-top: 0.6rem; max-width: 100%; font-size: 1rem; line-height: 1.4; color: var(--fg-muted);"><code>npx eqc-kit init</code> · works in Claude Code, Codex, Cursor, Copilot and Gemini CLI</p>
+    <aside class="notes">Quick story. I was given our Mobile EQC and asked if my projects were compliant.
+I went through the standard and checked it rule by rule against the project. It was slow, boring work.
+I was using AI, but it was still too much work, and I didn't trust the answers.
+So I started to automate the process. One thing led to another, and now I have eqc-kit.
+It's not tied to the Mobile EQC. I'll come back to that just before questions.
 Install is one command. The setup asks a few questions, and they all have defaults, so you can just keep pressing Enter. No dependencies, Node 18 or newer.
 In Claude Code you get slash commands. In the other tools it adds a block to AGENTS.md, so you just say "eqc check".
-Transition: "Before I built it, I tried the two obvious ways. Here's how they compare."
+Transition: "Here's what checking one rule looks like, three ways."
 ~1.25 min</aside>
   </div>
 
   <!-- 6 dtable -->
-  <div class="slide">
-    <div class="kicker">eqc-kit · Why not just ask AI?</div>
-    <h2>Three ways to check a project<br><span class="accent">against the standard</span></h2>
+  <div class="slide" style="padding-top: 2rem; padding-bottom: 4.25rem;">
+    <div class="kicker">eqc-kit · One rule, three ways</div>
+    <h2 style="font-size: clamp(1.6rem, 3.4vw, 2.8rem);">One Mobile EQC rule,<br><span class="accent">checked three ways</span></h2>
+    <p style="margin-top: 0.5rem; max-width: 100%; font-size: 1rem; line-height: 1.4;">The rule (MEDIUM tier): <strong>Folder structure</strong> — feature-first, no god files (no single huge file that does everything).</p>
     <table class="dtable" style="margin-top: 0.4rem;">
-      <tr><th style="padding: 0.4rem 0.7rem; width: 15%;">Question</th><th style="padding: 0.4rem 0.7rem; width: 22%;">Manual review<br><span style="text-transform: none; letter-spacing: 0; font-weight: 400;">read the doc, check each rule by hand</span></th><th style="padding: 0.4rem 0.7rem; width: 26%;">Ask AI directly<br><span style="text-transform: none; letter-spacing: 0; font-weight: 400;">paste the doc, ask "is my project compliant?"</span></th><th class="acc" style="padding: 0.4rem 0.7rem; width: 37%;">eqc-kit</th></tr>
-      <tr><td style="padding: 0.2rem 0.7rem; font-size: 0.82rem;"><strong>Can I trust a "pass"?</strong></td><td style="padding: 0.2rem 0.7rem; font-size: 0.82rem;">Yes, if I was careful</td><td style="padding: 0.2rem 0.7rem; font-size: 0.82rem;">It said pass when it wasn't</td><td style="padding: 0.2rem 0.7rem; font-size: 0.82rem;">Every rule's answer points at the file that proves it; a plain script, not the AI, works out the level</td></tr>
-      <tr><td style="padding: 0.2rem 0.7rem; font-size: 0.82rem;"><strong>Is every rule checked?</strong></td><td style="padding: 0.2rem 0.7rem; font-size: 0.82rem;">Easy to skip one when you're tired</td><td style="padding: 0.2rem 0.7rem; font-size: 0.82rem;">Lost track halfway</td><td style="padding: 0.2rem 0.7rem; font-size: 0.82rem;">First it lists every rule; then one agent per tier checks them</td></tr>
-      <tr><td style="padding: 0.2rem 0.7rem; font-size: 0.82rem;"><strong>Same answer next time?</strong></td><td style="padding: 0.2rem 0.7rem; font-size: 0.82rem;">Depends who checks</td><td style="padding: 0.2rem 0.7rem; font-size: 0.82rem;">Different answer every time</td><td style="padding: 0.2rem 0.7rem; font-size: 0.82rem;">Saved results are re-read, not re-guessed; a plain script turns the same answers into the same level every time.</td></tr>
-      <tr><td style="padding: 0.2rem 0.7rem; font-size: 0.82rem;"><strong>Does it stay fixed?</strong></td><td style="padding: 0.2rem 0.7rem; font-size: 0.82rem;">One-off check</td><td style="padding: 0.2rem 0.7rem; font-size: 0.82rem;">Fixed today, broken again by the next feature</td><td style="padding: 0.2rem 0.7rem; font-size: 0.82rem;">Remembers every rule that passed; <code>eqc guard</code> and optional git hooks catch it slipping back</td></tr>
-      <tr><td style="padding: 0.2rem 0.7rem; font-size: 0.82rem;"><strong>What does each run cost?</strong></td><td style="padding: 0.2rem 0.7rem; font-size: 0.82rem;">Your time, every time</td><td style="padding: 0.2rem 0.7rem; font-size: 0.82rem;">Same exploring, same tokens, every time</td><td style="padding: 0.2rem 0.7rem; font-size: 0.82rem;">Re-reading saved results costs nothing; uses your code map if it's up to date</td></tr>
+      <tr><th style="padding: 0.4rem 0.8rem; width: 14%;">Step</th><th style="padding: 0.4rem 0.8rem; width: 23%;">By hand</th><th style="padding: 0.4rem 0.8rem; width: 27%;">Paste the standard into an AI chat</th><th class="acc" style="padding: 0.4rem 0.8rem; width: 36%;">eqc-kit</th></tr>
+      <tr><td style="padding: 0.4rem 0.8rem; font-size: 0.9rem;"><strong>Find the rule</strong></td><td style="padding: 0.4rem 0.8rem; font-size: 0.9rem;">Look it up in the standard</td><td style="padding: 0.4rem 0.8rem; font-size: 0.9rem;">Paste all 39 rules</td><td style="padding: 0.4rem 0.8rem; font-size: 0.9rem;">Already on its rule list</td></tr>
+      <tr><td style="padding: 0.4rem 0.8rem; font-size: 0.9rem;"><strong>Check the code</strong></td><td style="padding: 0.4rem 0.8rem; font-size: 0.9rem;">Open every folder, look for huge files</td><td style="padding: 0.4rem 0.8rem; font-size: 0.9rem;">Explores from scratch, can lose track</td><td style="padding: 0.4rem 0.8rem; font-size: 0.9rem;">An agent for the MEDIUM rules checks the folders</td></tr>
+      <tr><td style="padding: 0.4rem 0.8rem; font-size: 0.9rem;"><strong>The answer</strong></td><td style="padding: 0.4rem 0.8rem; font-size: 0.9rem;">Your own notes</td><td style="padding: 0.4rem 0.8rem; font-size: 0.9rem;">Can say "pass" when it isn't</td><td style="padding: 0.4rem 0.8rem; font-size: 0.9rem;">pass, with the files that prove it</td></tr>
+      <tr><td style="padding: 0.4rem 0.8rem; font-size: 0.9rem;"><strong>Next time</strong></td><td style="padding: 0.4rem 0.8rem; font-size: 0.9rem;">Do it all again</td><td style="padding: 0.4rem 0.8rem; font-size: 0.9rem;">Same tokens again, maybe a different answer</td><td style="padding: 0.4rem 0.8rem; font-size: 0.9rem;">Saved; a guard flags it if it stops passing</td></tr>
     </table>
-    <p style="margin-top: 0.4rem; max-width: 100%; font-size: 0.88rem; line-height: 1.4; color: var(--fg-muted);"><strong>The catch:</strong> you need a written standard, the first full check takes time and tokens, and agents can still get it wrong, so read the evidence.</p>
-    <aside class="notes">Manual review is where I started. It works if you're careful, but it's slow and it's a one-off. Nobody does it twice.
-Then I tried the obvious thing: paste the doc into the AI and ask "is my project compliant?" Here's what actually happened to me.
-It said pass when it wasn't.
-It lost track halfway through. Thirty-nine rules is a lot to hold in one go.
-Ask twice, get a different answer.
-It fixed things for now, and later, while working on a new feature, the AI would break the same rule again.
-And every time, it burned tokens and time doing the same exploring from scratch.
-The right column is what eqc-kit does about each one. By "answer" I mean pass, partial, fail or not applicable, plus the file that shows it. You can open the file and argue with it.
-Bottom line on the slide is the honest part. You need a written standard first. The first full check isn't cheap. And the agents can still be wrong, which is exactly why every answer comes with evidence you can read.
+    <p style="margin-top: 0.5rem; max-width: 100%; font-size: 1rem; line-height: 1.4; color: var(--fg-muted);">Our app passes this rule. <strong>The catch:</strong> eqc-kit needs a written standard, and the first full check costs time and tokens.</p>
+    <aside class="notes">Let's make it concrete with one real rule from the Mobile EQC. MEDIUM tier: folder structure, feature-first, no god files.
+CUTTABLE if running late — The rule lists the folders per stack. For React Native that's src/screens, src/features, src/components and src/navigation. Flutter, Android and iOS each get their own layout.
+By hand: find the rule, open the project, walk the folders, look for huge files. It works if you're careful. Then you do it again next time, plus the other 38 rules.
+Pasting the standard into an AI chat is what I tried next. Here's what actually happened to me: it explored from scratch every time, it lost track, it said pass when it wasn't, and asking twice gave a different answer. And later, while working on a new feature, the AI would break the same rule again.
+eqc-kit: the rule is already on its list, a MEDIUM-tier agent checks it, and the answer comes with the files that prove it. You can open them and argue with it. It's saved, so next time it's re-read, not re-guessed, and guard warns you if the rule stops passing.
+Our app passes this one.
+The bottom line is the honest part: you need a written standard, the first full check isn't cheap, and the agents can still be wrong, so read the evidence.
 Transition: "So what do you actually run?"
-~2.25 min</aside>
+~1.5 min</aside>
   </div>
 
   <!-- 7 dtable -->
   <div class="slide">
     <div class="kicker">eqc-kit · The commands</div>
-    <h2>What you run,<br><span class="accent">and where AI is used</span></h2>
-    <table class="dtable" style="margin-top: 0.4rem;">
-      <tr><th style="padding: 0.4rem 0.7rem; width: 14%;">Command</th><th class="acc" style="padding: 0.4rem 0.7rem; width: 63%;">What it does</th><th style="padding: 0.4rem 0.7rem; width: 23%;">Uses AI?</th></tr>
-      <tr><td style="padding: 0.4rem 0.7rem; font-size: 0.9rem;"><code>/eqc-check</code></td><td style="padding: 0.4rem 0.7rem; font-size: 0.9rem;">Turns your doc into a rule list, then one agent per tier checks the code (using a code map, e.g. a graphify graph, first, if yours is up to date). Each rule gets pass / partial / fail / n/a with the file as proof. A plain script works out the level (the highest tier with no fails at or below it). Writes <code>COMPLIANCE.md</code> and a <code>COMPLIANCE.html</code> page.</td><td style="padding: 0.4rem 0.7rem; font-size: 0.9rem;">Yes, to check rules. No, to count.</td></tr>
-      <tr><td style="padding: 0.4rem 0.7rem; font-size: 0.9rem;"><code>/eqc-fix</code></td><td style="padding: 0.4rem 0.7rem; font-size: 0.9rem;">Suggests what to fix first: low effort, high gain. Small fixes go straight to one helper; big ones get a plan you approve first. Never commits for you.</td><td style="padding: 0.4rem 0.7rem; font-size: 0.9rem;">Yes</td></tr>
-      <tr><td style="padding: 0.4rem 0.7rem; font-size: 0.9rem;"><code>eqc guard</code></td><td style="padding: 0.4rem 0.7rem; font-size: 0.9rem;">Compares the latest results with the baseline (every rule that has passed). Fails only if one of those stops passing, or the level drops. Known fails don't block you.</td><td style="padding: 0.4rem 0.7rem; font-size: 0.9rem;">No</td></tr>
-      <tr><td style="padding: 0.4rem 0.7rem; font-size: 0.9rem;"><code>verify</code> + git hooks</td><td style="padding: 0.4rem 0.7rem; font-size: 0.9rem;">An optional shell check (e.g. <code>npm run lint</code>), only for rules a command can test. Runs on commit and push once you opt in with <code>npx eqc-kit hooks</code>.</td><td style="padding: 0.4rem 0.7rem; font-size: 0.9rem;">No: too slow, costly and unpredictable for every commit</td></tr>
+    <h2 style="font-size: clamp(1.6rem, 3.4vw, 2.8rem);">What you run,<br><span class="accent">and where AI is used</span></h2>
+    <table class="dtable" style="margin-top: 1rem;">
+      <tr><th style="padding: 0.4rem 0.8rem; width: 22%;">Command</th><th class="acc" style="padding: 0.4rem 0.8rem; width: 50%;">What it does</th><th style="padding: 0.4rem 0.8rem; width: 28%;">Uses AI?</th></tr>
+      <tr><td style="padding: 0.65rem 0.9rem; font-size: 1rem;"><code>/eqc-check</code></td><td style="padding: 0.65rem 0.9rem; font-size: 1rem;">Checks every rule, with the file as proof</td><td style="padding: 0.65rem 0.9rem; font-size: 1rem;">Yes (a plain script sets the level)</td></tr>
+      <tr><td style="padding: 0.65rem 0.9rem; font-size: 1rem;"><code>/eqc-fix</code></td><td style="padding: 0.65rem 0.9rem; font-size: 1rem;">Suggests fixes, easiest wins first</td><td style="padding: 0.65rem 0.9rem; font-size: 1rem;">Yes</td></tr>
+      <tr><td style="padding: 0.65rem 0.9rem; font-size: 1rem;"><code>eqc guard</code></td><td style="padding: 0.65rem 0.9rem; font-size: 1rem;">Fails if a rule that passed stops passing</td><td style="padding: 0.65rem 0.9rem; font-size: 1rem;">No</td></tr>
+      <tr><td style="padding: 0.65rem 0.9rem; font-size: 1rem;"><code>verify</code> + git hooks</td><td style="padding: 0.65rem 0.9rem; font-size: 1rem;">Optional: runs a command like <code>npm run lint</code> on commit</td><td style="padding: 0.65rem 0.9rem; font-size: 1rem;">No</td></tr>
     </table>
     <aside class="notes">Four things you run. The top two use AI, the bottom two don't.
-/eqc-check: the first time, one agent reads your doc and lists every rule by tier. Then one agent per tier goes through the code, in parallel.
-If you already have a code map, like a graphify graph, it looks there first, but only if the map is newer than your last commit and your uncommitted changes. It never builds or refreshes the map for you, and anything it finds there it confirms in the real code.
+/eqc-check: the first time, one agent reads your standard and lists every rule by tier. Then one agent per tier goes through the code, in parallel. Each rule gets pass, partial, fail or not applicable, with the file as proof.
+CUTTABLE if running late — If you already have a code map, like a graphify graph, it looks there first, but only if the map is newer than your last commit and your uncommitted changes. It never builds or refreshes the map for you, and anything it finds there it confirms in the real code.
 Then a plain script, no AI, works out the level: the highest tier where that tier and every tier below it have no fails. A fail in the lowest tier is HARD_FAIL. The script never reads your code; it just counts the answers.
-New: next to the Markdown report you also get an HTML page. One file, no JavaScript, you just open it in the browser.
-/eqc-fix: it ranks what to fix, low effort and high gain first. Small stuff goes to one fixer. Bigger stuff: opus writes a plan, you approve it, and cheaper models do the typing. It asks before touching CI, packages, architecture or the top tier, and it only runs one fixer at a time.
-guard: this is the answer to "AI fixed it, then broke it again". Every time results are saved, it remembers which rules passed. That's the baseline, and it only goes up. Guard checks against it. A rule that was already failing won't block you; only something that used to pass and now doesn't.
-verify: some rules a plain command can check, like "lint is clean". Those rules carry a command, like npm run lint. Not every rule gets one, only the ones a command can check without judgment. The script runs them only for rules that are passing, so a known fail never blocks a commit; only a regression does.
+It writes the report as Markdown, and next to it an HTML page. One file, no JavaScript, you just open it in the browser.
+/eqc-fix: it ranks what to fix, low effort and high gain first. Small stuff goes to one fixer. Bigger stuff: opus writes a plan, you approve it, and cheaper models do the typing. It asks before touching CI, packages, architecture or the top tier, it only runs one fixer at a time, and it never commits for you.
+guard: this is the answer to "AI fixed it, then broke it again". Every time results are saved, it remembers which rules passed. That's the baseline, and it only goes up. Guard fails if one of those rules stops passing, or the level drops. A rule that was already failing won't block you.
+verify: some rules a plain command can check, like "lint is clean". Those rules carry a command, like npm run lint. The script runs them only for rules that are passing, so a known fail never blocks a commit; only a regression does.
+CUTTABLE if running late — Not every rule gets one, only the ones a command can check without judgment.
 CUTTABLE if running late — hooks: opt-in, one command per clone, npx eqc-kit hooks. Commit runs verify; push runs verify, then guard. It won't override hooks you already have, like Husky; it prints the lines to add instead. Anyone can skip hooks with --no-verify, so put the same two commands in CI.
 Why no AI in the hooks? Too slow, costs money on every commit, and you'd get a different answer each time.
-Transition: "Enough talking. Let me show you two of these, and the report it writes, on our app."
-~2 min</aside>
+Transition: "Let me show you two of these, and the report it writes, on our app."
+~1.75 min</aside>
   </div>
 
   <!-- 8 demo -->
-  <div class="slide">
-    <div class="demo-badge">Live demo</div>
-    <div class="kicker demo">Demo · /eqc-check · the report · /eqc-fix</div>
-    <h2>Demo: check, report,<br><span class="accent">and what to fix next</span></h2>
-    <div class="steps-list" style="max-width: 100%; margin-top: 0.6rem;">
-      <div class="step-row hi">
+  <div class="slide" style="padding-top: 2rem; padding-bottom: 4.25rem;">
+    <div class="demo-badge" style="margin-bottom: 0.6rem;">Live demo</div>
+    <div class="kicker demo" style="margin-bottom: 0.9rem;">Demo · /eqc-check · the report · /eqc-fix</div>
+    <h2 style="font-size: clamp(1.6rem, 3.4vw, 2.8rem);">Demo: check, report,<br><span class="accent">and what to fix next</span></h2>
+    <div class="steps-list" style="max-width: 100%; margin-top: 0.75rem;">
+      <div class="step-row hi" style="padding: 0.55rem 1.25rem;">
         <div class="step-num demo">01</div>
-        <div><div class="step-title"><code>/eqc-check</code> with no arguments</div><div class="step-desc">Re-reads the last saved results: level per tier, every open fail with its evidence. Instant, no agents running.</div></div>
+        <div><div class="step-title"><code>/eqc-check</code> with no arguments</div><div class="step-desc">Re-reads the last results. Instant, no agents.</div></div>
       </div>
-      <div class="step-row">
+      <div class="step-row" style="padding: 0.55rem 1.25rem;">
         <div class="step-num demo">02</div>
-        <div><div class="step-title">Open <code>docs/eqc/COMPLIANCE.html</code></div><div class="step-desc">The same results as one page in the browser: level, progress per tier, what needs attention, every rule.</div></div>
+        <div><div class="step-title">Open <code>docs/eqc/COMPLIANCE.html</code></div><div class="step-desc">The same results as one page in the browser.</div></div>
       </div>
-      <div class="step-row">
+      <div class="step-row" style="padding: 0.55rem 1.25rem;">
         <div class="step-num demo">03</div>
-        <div><div class="step-title">Run <code>/eqc-fix</code></div><div class="step-desc">A ranked list of what to fix next, low effort and high gain first. I'll cancel before it changes anything.</div></div>
+        <div><div class="step-title">Run <code>/eqc-fix</code></div><div class="step-desc">What to fix next, easiest wins first. I'll cancel before it changes anything.</div></div>
       </div>
     </div>
     <aside class="notes">Watch for: the first part is instant (no agents, no tokens); the report is just a file; the fix list starts with the cheap wins.
@@ -455,144 +461,175 @@ Watch for: how fast the first one is, and which fixes it puts at the top.
   </div>
 
   <!-- 9 dtable -->
-  <div class="slide">
+  <div class="slide" style="padding-top: 2rem; padding-bottom: 4.25rem;">
     <div class="kicker">eqc-kit · Our mobile app</div>
-    <h2>Our mobile app went from HARD_FAIL<br><span class="accent">to MEDIUM in about 5 days</span></h2>
-    <p style="margin-top: 0.5rem; max-width: 100%; font-size: 0.95rem; line-height: 1.4;">HARD_FAIL = a rule in the lowest tier fails. MEDIUM = no fails in LOW or MEDIUM. Today: MEDIUM, 33 pass, 2 partial, 4 fail.</p>
-    <table class="dtable" style="margin-top: 0.5rem;">
-      <tr><th style="padding: 0.4rem 0.8rem; width: 32%;">What changed</th><th class="acc" style="padding: 0.4rem 0.8rem;">How much</th></tr>
-      <tr><td style="padding: 0.55rem 0.8rem; font-size: 0.95rem;"><strong>ESLint errors</strong></td><td style="padding: 0.55rem 0.8rem; font-size: 0.95rem;">54 errors in 30 files. This alone took us from HARD_FAIL to LOW.</td></tr>
-      <tr><td style="padding: 0.55rem 0.8rem; font-size: 0.95rem;"><code>console.*</code> → our Logger</td><td style="padding: 0.55rem 0.8rem; font-size: 0.95rem;">58 files</td></tr>
-      <tr><td style="padding: 0.55rem 0.8rem; font-size: 0.95rem;"><code>Platform.OS</code> checks → <code>Platform.select()</code></td><td style="padding: 0.55rem 0.8rem; font-size: 0.95rem;">34 places</td></tr>
-      <tr><td style="padding: 0.55rem 0.8rem; font-size: 0.95rem;"><strong>Tests kept green the whole way</strong></td><td style="padding: 0.55rem 0.8rem; font-size: 0.95rem;">~85 test files touched, 2,912 of 2,912 passing</td></tr>
-      <tr><td style="padding: 0.55rem 0.8rem; font-size: 0.95rem;"><strong>Still failing (4)</strong></td><td style="padding: 0.55rem 0.8rem; font-size: 0.95rem;">3 big architecture jobs (state migration across 123 files, a data-fetching library, certificate pinning) + TypeScript, recorded as a fail because the project has to stay JavaScript</td></tr>
+    <h2 style="font-size: clamp(1.6rem, 3.4vw, 2.8rem);">Our mobile app against the Mobile EQC<br><span class="accent">Compliance level: HARD_FAIL → MEDIUM</span></h2>
+    <p style="margin-top: 0.5rem; max-width: 100%; font-size: 1rem; line-height: 1.4;">In about 5 days. HARD_FAIL = a LOW-tier rule fails. MEDIUM = nothing fails in LOW or MEDIUM. Today: 33 pass, 2 partial, 4 fail.</p>
+    <table class="dtable" style="margin-top: 0.4rem;">
+      <tr><th style="padding: 0.4rem 0.8rem; width: 34%;">What changed</th><th class="acc" style="padding: 0.4rem 0.8rem; width: 66%;">How much</th></tr>
+      <tr><td style="padding: 0.4rem 0.8rem; font-size: 0.9rem;"><strong>ESLint errors</strong></td><td style="padding: 0.4rem 0.8rem; font-size: 0.9rem;">54 errors in 30 files (this alone: HARD_FAIL → LOW)</td></tr>
+      <tr><td style="padding: 0.4rem 0.8rem; font-size: 0.9rem;"><code>console.*</code> → our Logger</td><td style="padding: 0.4rem 0.8rem; font-size: 0.9rem;">58 files</td></tr>
+      <tr><td style="padding: 0.4rem 0.8rem; font-size: 0.9rem;"><code>Platform.OS</code> → <code>Platform.select()</code></td><td style="padding: 0.4rem 0.8rem; font-size: 0.9rem;">34 places</td></tr>
+      <tr><td style="padding: 0.4rem 0.8rem; font-size: 0.9rem;"><strong>One big sweep</strong></td><td style="padding: 0.4rem 0.8rem; font-size: 0.9rem;">~85 files, 2,912 / 2,912 tests passing</td></tr>
+      <tr><td style="padding: 0.4rem 0.8rem; font-size: 0.9rem;"><strong>Still failing (4)</strong></td><td style="padding: 0.4rem 0.8rem; font-size: 0.9rem;">3 big architecture jobs + TypeScript (the project must stay JavaScript)</td></tr>
     </table>
     <aside class="notes">The guess: 58 files for the Logger sweep.
-Fifty-eight. And the level you saw in the terminal: MEDIUM, right there in the title.
-We started at HARD_FAIL. Fixing the ESLint errors alone got us to LOW. All in, 27 recorded fixes in about five days: 25 done, 2 partial.
+Fifty-eight. And the level you saw in the terminal: against the Mobile EQC, our compliance level went from HARD_FAIL to MEDIUM.
+Fixing the ESLint errors alone got us from HARD_FAIL to LOW. All in, 27 recorded fixes in about five days: 25 done, 2 partial.
 Not on the slide: FlatList windowSize on 33 lists, and Crashlytics error handling in 17 files.
-My favourite one: the i18n rule took 7 audits and 6 rounds of fixes, because every audit found more hardcoded English. In the end I added a custom ESLint rule so it can't come back.
-The four still failing are honest. Three are big architecture moves, not quick wins. TypeScript can't pass because the project has to stay JavaScript, so the kit records it as a fail and says why it doesn't apply, instead of pretending. I'd rather have an honest fail than a fake pass.
+CUTTABLE if running late — My favourite one: the i18n rule took 7 audits and 6 rounds of fixes, because every audit found more hardcoded English. In the end I added a custom ESLint rule so it can't come back.
+The four still failing are honest. Three are big architecture moves, not quick wins: a state migration across 123 files, a data-fetching library, and certificate pinning. TypeScript can't pass because the project has to stay JavaScript, so the kit records it as a fail and says why it doesn't apply, instead of pretending. I'd rather have an honest fail than a fake pass.
 Also, the audit found a hardcoded secret in the codebase. I'm not naming it. It's handled.
 (The "today" numbers come from the cached check. Re-run before the talk and update if they moved.)
-Transition: "That's eqc-kit. Questions before we move on?"
+Transition: "One more thing before questions: eqc-kit isn't tied to the Mobile EQC."
 ~1.75 min</aside>
   </div>
 
-  <!-- 10 center Q&amp;A -->
+  <!-- 10 steps-list -->
+  <div class="slide">
+    <div class="kicker">eqc-kit · Your standard</div>
+    <h2 style="font-size: clamp(1.6rem, 3.4vw, 2.8rem);">Not tied to the Mobile EQC.<br><span class="accent">Bring your own standard.</span></h2>
+    <div class="steps-list" style="max-width: 100%; margin-top: 1rem;">
+      <div class="step-row" style="padding: 0.8rem 1.25rem;">
+        <div class="step-num">01</div>
+        <div><div class="step-title">Bring your team's written standard</div><div class="step-desc">The rules your team already wrote down.</div></div>
+      </div>
+      <div class="step-row" style="padding: 0.8rem 1.25rem;">
+        <div class="step-num">02</div>
+        <div><div class="step-title">eqc-kit reads it and lists every rule</div><div class="step-desc">In your tiers: LOW / MEDIUM / HIGH, Bronze / Silver / Gold, whatever yours uses.</div></div>
+      </div>
+      <div class="step-row hi" style="padding: 0.8rem 1.25rem;">
+        <div class="step-num">03</div>
+        <div><div class="step-title">Same check, report and fixes</div><div class="step-desc">Everything you just saw, on your own rules.</div></div>
+      </div>
+    </div>
+    <p style="margin-top: 0.9rem; max-width: 100%; font-size: 1rem; line-height: 1.4; color: var(--fg-muted);">The Mobile EQC is just the standard I use it with.</p>
+    <aside class="notes">You might think eqc-kit only works with the Mobile EQC. It isn't tied to it. eqc-kit is the tool; the standard is yours.
+It's built to take your team's own written standard and adapt to it.
+It reads the standard, lists every rule, and takes the tiers from it. Ours are LOW, MEDIUM and HIGH. Yours might be Bronze, Silver and Gold. It uses whatever yours has.
+After that it's the same flow: the check, the report, the fixes and the guard.
+The one thing it needs is a written standard.
+Transition: "That's eqc-kit. Questions before we move on?"
+~1 min</aside>
+  </div>
+
+  <!-- 11 center Q&A -->
   <div class="slide center">
     <div class="kicker">Q&amp;A</div>
     <h1>Questions?<br><span class="accent">eqc-kit</span></h1>
     <aside class="notes">Open the floor.
-If it's quiet, seed one: "Which tier would your project land in today?" or "Which of your rules could a plain command check, like lint?"
+If it's quiet, seed one: "Which standard would your team bring?" or "Which tier would your project land in today?"
 Watch the clock: this buffer is 2 minutes. Move on at 15 minutes into the talk.
 Transition: "eqc-kit checks code against a standard. Next is how I get bigger work done without burning my best model."
 ~2 min — Q&amp;A buffer</aside>
   </div>
 
-  <!-- 11 divider -->
+  <!-- 12 divider -->
   <div class="slide divider center">
     <h2>02 · /orchestrate</h2>
     <div class="sub">Plans big work with you, then sends each task to the cheapest model that can do it</div>
     <aside class="notes">Section two: /orchestrate. It's a separate tool, you can use it without eqc-kit.
 About 12 minutes, then questions.
-Same as before, I'll start with why I built it.
+Same as before, I'll start with why I built it. This is the "build cheap" part: send each task to the cheapest model that can do it.
 Transition: "It came out of a habit I had with plan mode."
 ~0.25 min</aside>
   </div>
 
-  <!-- 12 steps-list -->
+  <!-- 13 steps-list -->
   <div class="slide">
     <div class="kicker">/orchestrate · Why I built it</div>
-    <h2>Why I built <span class="accent">/orchestrate</span></h2>
-    <div class="steps-list" style="max-width: 100%; margin-top: 0.5rem;">
-      <div class="step-row" style="padding: 0.5rem 1.25rem;">
+    <h2 style="font-size: clamp(1.6rem, 3.4vw, 2.8rem);">Why I built <span class="accent">/orchestrate</span></h2>
+    <div class="steps-list" style="max-width: 100%; margin-top: 1rem;">
+      <div class="step-row" style="padding: 0.8rem 1.25rem;">
         <div class="step-num">01</div>
-        <div><div class="step-title">I kept going back to plan mode</div><div class="step-desc">Plan mode: Claude Code writes a plan and waits for your OK before it edits. I used it for every long task.</div></div>
+        <div><div class="step-title">I kept going back to plan mode</div><div class="step-desc">Claude Code writes a plan and waits for your OK. I used it for every long task.</div></div>
       </div>
-      <div class="step-row" style="padding: 0.5rem 1.25rem;">
+      <div class="step-row" style="padding: 0.8rem 1.25rem;">
         <div class="step-num">02</div>
-        <div><div class="step-title">I typed the same asks every time</div><div class="step-desc">Split into phases, a sub-agent per phase on a model that fits, interview me first. Same prompt, every big task.</div></div>
+        <div><div class="step-title">I typed the same asks every time</div><div class="step-desc">Split into phases, a sub-agent per phase on the right model, interview me first.</div></div>
       </div>
-      <div class="step-row hi" style="padding: 0.5rem 1.25rem;">
+      <div class="step-row hi" style="padding: 0.8rem 1.25rem;">
         <div class="step-num">03</div>
-        <div><div class="step-title">So I made it a skill</div><div class="step-desc">Now it's /orchestrate. One command, and the instructions are already there.</div></div>
+        <div><div class="step-title">So I made it a skill</div><div class="step-desc">Now it's /orchestrate. One command, instructions built in.</div></div>
       </div>
     </div>
-    <p style="margin-top: 0.5rem; max-width: 960px; font-size: 1.05rem; color: var(--fg-muted);">Why I built it: to spend fewer tokens by sending each piece to the cheapest model that can do it.</p>
+    <p style="margin-top: 0.9rem; max-width: 100%; font-size: 1rem; line-height: 1.4; color: var(--fg-muted);"><strong>Main reason:</strong> fewer tokens. Each piece goes to the cheapest model that can do it.</p>
     <aside class="notes">This one comes straight out of my day-to-day work.
 I was doing my usual work and kept going back to plan mode. Every time, I asked Claude to split the long work into phases, hand each phase to a sub-agent on a model that matches how hard that piece is, and interview me before starting.
 It was the same prompt and the same instructions over and over again, every big task. So I started building this skill.
 The main reason I built it is tokens. Most pieces of a big task don't need the biggest model. If each piece goes to the cheapest model that can do it, you spend fewer.
-I don't have a number for that, and I'll come back to it in a couple of slides.
-Transition: "Before the skill, I used three other ways. Here's how they compare."
+I don't have a number for that, and I'll come back to it on slide 16.
+Transition: "Here's how it compares with plan mode and /goal, on one task."
 ~1.5 min</aside>
   </div>
 
-  <!-- 13 dtable -->
-  <div class="slide">
+  <!-- 14 dtable -->
+  <div class="slide" style="padding-top: 2rem; padding-bottom: 4.25rem;">
     <div class="kicker">/orchestrate · Why not plan mode or /goal?</div>
-    <h2 style="font-size: clamp(1.6rem, 3.4vw, 2.8rem);">Four ways to run <span class="accent">a big task with AI</span></h2>
-    <table class="dtable" style="margin-top: 0.3rem;">
-      <tr><th style="padding: 0.25rem 0.6rem; width: 15%;">Question</th><th style="padding: 0.25rem 0.6rem; width: 17%;">Long prompt every time</th><th style="padding: 0.25rem 0.6rem; width: 20%;">Plan mode</th><th style="padding: 0.25rem 0.6rem; width: 18%;">/goal<br><span style="text-transform: none; letter-spacing: 0; font-weight: 400;">keeps working until the goal is met</span></th><th class="acc" style="padding: 0.25rem 0.6rem; width: 30%;">/orchestrate</th></tr>
-      <tr><td style="padding: 0.15rem 0.6rem; font-size: 0.9rem;"><strong>Remembers the instructions?</strong></td><td style="padding: 0.15rem 0.6rem; font-size: 0.9rem;">No, you retype or paste them</td><td style="padding: 0.15rem 0.6rem; font-size: 0.9rem;">No, you retype your asks</td><td style="padding: 0.15rem 0.6rem; font-size: 0.9rem;">No, it keeps the goal, not your method</td><td style="padding: 0.15rem 0.6rem; font-size: 0.9rem;">Yes, it's a skill</td></tr>
-      <tr><td style="padding: 0.15rem 0.6rem; font-size: 0.9rem;"><strong>Interviews you first?</strong></td><td style="padding: 0.15rem 0.6rem; font-size: 0.9rem;">Only if you type that in</td><td style="padding: 0.15rem 0.6rem; font-size: 0.9rem;">Only if you ask, every time</td><td style="padding: 0.15rem 0.6rem; font-size: 0.9rem;">No, it just starts working</td><td style="padding: 0.15rem 0.6rem; font-size: 0.9rem;">Yes (if needed), one question at a time</td></tr>
-      <tr><td style="padding: 0.15rem 0.6rem; font-size: 0.9rem;"><strong>Stops for your OK before building?</strong></td><td style="padding: 0.15rem 0.6rem; font-size: 0.9rem;">No, it starts editing</td><td style="padding: 0.15rem 0.6rem; font-size: 0.9rem;">Yes, once, for the whole plan</td><td style="padding: 0.15rem 0.6rem; font-size: 0.9rem;">No, it starts working right away</td><td style="padding: 0.15rem 0.6rem; font-size: 0.9rem;">Yes, a hard gate: "just go" in your goal doesn't skip it</td></tr>
-      <tr><td style="padding: 0.15rem 0.6rem; font-size: 0.9rem;"><strong>Picks a model per task?</strong></td><td style="padding: 0.15rem 0.6rem; font-size: 0.9rem;">No, same model for everything</td><td style="padding: 0.15rem 0.6rem; font-size: 0.9rem;">No, one model builds it all</td><td style="padding: 0.15rem 0.6rem; font-size: 0.9rem;">No</td><td style="padding: 0.15rem 0.6rem; font-size: 0.9rem;">Yes, by score: haiku, sonnet or opus</td></tr>
-      <tr><td style="padding: 0.15rem 0.6rem; font-size: 0.9rem;"><strong>Who checks the work?</strong></td><td style="padding: 0.15rem 0.6rem; font-size: 0.9rem;">Nobody, unless you do</td><td style="padding: 0.15rem 0.6rem; font-size: 0.9rem;">The same model that built it</td><td style="padding: 0.15rem 0.6rem; font-size: 0.9rem;">It checks itself</td><td style="padding: 0.15rem 0.6rem; font-size: 0.9rem;">A separate haiku verifier, plus sonnet or opus reviewers</td></tr>
-      <tr><td style="padding: 0.15rem 0.6rem; font-size: 0.9rem;"><strong>Picks up after a break?</strong></td><td style="padding: 0.15rem 0.6rem; font-size: 0.9rem;">No, forgets between sessions</td><td style="padding: 0.15rem 0.6rem; font-size: 0.9rem;">No, the plan lives in the chat</td><td style="padding: 0.15rem 0.6rem; font-size: 0.9rem;">Only within the session</td><td style="padding: 0.15rem 0.6rem; font-size: 0.9rem;">Yes, from the plan file (<code>/orchestrate resume</code>)</td></tr>
+    <h2 style="font-size: clamp(1.6rem, 3.4vw, 2.8rem);">One "forgot password" task,<br><span class="accent">three ways to run it</span></h2>
+    <p style="margin-top: 0.5rem; max-width: 100%; font-size: 1rem; line-height: 1.4;">The task: an API endpoint, a reset email, a reset screen, tests. It touches auth. (/goal: Claude Code keeps working until a goal is met.)</p>
+    <table class="dtable" style="margin-top: 0.4rem;">
+      <tr><th style="padding: 0.4rem 0.8rem; width: 15%;">Step</th><th style="padding: 0.4rem 0.8rem; width: 20%;">Plan mode</th><th style="padding: 0.4rem 0.8rem; width: 20%;">/goal (runs until done)</th><th class="acc" style="padding: 0.4rem 0.8rem; width: 45%;">/orchestrate</th></tr>
+      <tr><td style="padding: 0.4rem 0.8rem; font-size: 0.9rem;"><strong>Before it builds</strong></td><td style="padding: 0.4rem 0.8rem; font-size: 0.9rem;">Writes a plan, waits for your OK</td><td style="padding: 0.4rem 0.8rem; font-size: 0.9rem;">Starts right away</td><td style="padding: 0.4rem 0.8rem; font-size: 0.9rem;">Asks you questions, shows the plan, waits for your OK</td></tr>
+      <tr><td style="padding: 0.4rem 0.8rem; font-size: 0.9rem;"><strong>Who builds</strong></td><td style="padding: 0.4rem 0.8rem; font-size: 0.9rem;">One model does it all</td><td style="padding: 0.4rem 0.8rem; font-size: 0.9rem;">One model does it all</td><td style="padding: 0.4rem 0.8rem; font-size: 0.9rem;">Email template → haiku · Reset screen → sonnet · Token + endpoint → opus (auth)</td></tr>
+      <tr><td style="padding: 0.4rem 0.8rem; font-size: 0.9rem;"><strong>Who checks</strong></td><td style="padding: 0.4rem 0.8rem; font-size: 0.9rem;">The same model</td><td style="padding: 0.4rem 0.8rem; font-size: 0.9rem;">The same model</td><td style="padding: 0.4rem 0.8rem; font-size: 0.9rem;">A haiku verifier + an opus security reviewer</td></tr>
+      <tr><td style="padding: 0.4rem 0.8rem; font-size: 0.9rem;"><strong>Next big task</strong></td><td style="padding: 0.4rem 0.8rem; font-size: 0.9rem;">Type your asks again</td><td style="padding: 0.4rem 0.8rem; font-size: 0.9rem;">Type your method again</td><td style="padding: 0.4rem 0.8rem; font-size: 0.9rem;">Same skill: <code>/orchestrate</code></td></tr>
     </table>
-    <p style="margin-top: 0.4rem; max-width: 100%; font-size: 0.85rem; line-height: 1.4; color: var(--fg-muted);"><strong>The catch:</strong> the planning and checking add overhead that isn't worth it on small tasks, it has to run on opus or sonnet (it stops on haiku), and you still read the report.</p>
-    <aside class="notes">These are the three things I used before. The first three columns are how each one worked for me day to day, not a feature list from the docs.
-Long prompt: it works, but I pasted it every time, one model did everything, and nothing stopped it before it started editing. Next session, it was gone.
-Plan mode is good at planning. But I still typed the phases, the sub-agents, the models and the "interview me" part every time. Once I approved, one model built the whole thing and checked its own work, and the plan only lived in that chat.
-/goal keeps going until the goal is met. It doesn't ask me anything first, it starts working right away, there's no model choice, and it checks itself.
-The /orchestrate column is what the next two slides explain. On the OK row, the difference is that its gate can't be skipped: even "just go" written into the goal doesn't skip it. "If needed" on the interview: for tiny goals it takes a fast lane and skips the questions. The verifier still runs.
+    <p style="margin-top: 0.5rem; max-width: 100%; font-size: 1rem; line-height: 1.4; color: var(--fg-muted);">Writing "just go" in the goal doesn't skip the OK. <strong>The catch:</strong> too much overhead for small tasks, and your main session must run on opus or sonnet.</p>
+    <aside class="notes">One task every stack has: forgot password. An API endpoint, a reset email, a reset screen, and tests. It touches auth, which matters in a second.
+The plan mode and /goal columns are how they worked for me day to day, not a feature list from the docs.
+Plan mode writes a plan and waits for my OK, which is good. But I type the phases, sub-agents, models and "interview me" part myself, every time. After I approve, one model builds all four parts and checks its own work.
+/goal is a Claude Code command that keeps working until a goal is met. It starts right away, no questions, one model, and it checks itself.
+/orchestrate asks me a few questions first, one at a time. Then it splits the work and scores each piece. The email template is simple, so haiku. The reset screen is real UI logic, so sonnet. The reset token and the endpoint touch auth, and anything on the security surface always goes to opus. The tests get scored the same way.
+That split is an example to show the rules, not a captured run.
+Checking: a cheap haiku verifier re-runs the checks. The reset screen gets a sonnet reviewer, and because the auth part is security, a fresh opus security reviewer reads that diff looking for vulnerabilities.
+And nothing gets built until I say yes.
 The bottom line is the honest part. On a small task, all that planning and checking is overhead you don't need. It has to run on opus or sonnet; on haiku it stops and asks you to switch. And you still read the report at the end.
-Transition: "So what's it actually like to use?"
+Transition: "Here are the phases it goes through."
 ~2.75 min</aside>
   </div>
 
-  <!-- 14 dtable -->
-  <div class="slide">
+  <!-- 15 dtable -->
+  <div class="slide" style="padding-top: 2rem; padding-bottom: 4.25rem;">
     <div class="kicker">/orchestrate · How it works</div>
     <h2 style="font-size: clamp(1.6rem, 3.4vw, 2.8rem);">How /orchestrate runs a big task,<br><span class="accent">phase by phase</span></h2>
-    <p style="margin-top: 0.4rem; max-width: 100%; font-size: 0.95rem; line-height: 1.4;">Five phases: GRILL → PLAN → PREVIEW → EXECUTE / VERIFY → CLOSE. The orchestrator doesn't write the code; helpers on haiku, sonnet or opus do.</p>
-    <table class="dtable" style="margin-top: 0.4rem;">
-      <tr><th style="padding: 0.3rem 0.7rem; width: 17%;">Phase</th><th class="acc" style="padding: 0.3rem 0.7rem;">What it does</th></tr>
-      <tr><td style="padding: 0.3rem 0.7rem; font-size: 0.82rem;"><strong>GRILL</strong></td><td style="padding: 0.3rem 0.7rem; font-size: 0.82rem;">Asks you questions one at a time, each with a recommended answer. If you have a code map, its helpers search that before grepping. Tiny goals skip this step (fast lane).</td></tr>
-      <tr><td style="padding: 0.3rem 0.7rem; font-size: 0.82rem;"><strong>PLAN</strong></td><td style="padding: 0.3rem 0.7rem; font-size: 0.82rem;">Splits the goal into tasks and scores each one (next slide). At most 3 helpers run at once, and each file has one owner.</td></tr>
-      <tr><td style="padding: 0.3rem 0.7rem; font-size: 0.82rem;"><strong>PREVIEW</strong> · the gate</td><td style="padding: 0.3rem 0.7rem; font-size: 0.82rem;">Shows every task with its score and model, then stops. Only your reply counts: "just go" written into the goal is ignored, and "ok, but…" is an edit.</td></tr>
-      <tr><td style="padding: 0.3rem 0.7rem; font-size: 0.82rem;"><strong>EXECUTE / VERIFY</strong></td><td style="padding: 0.3rem 0.7rem; font-size: 0.82rem;">Helpers build. A haiku verifier runs the checks; a sonnet reviewer reads the diff (an opus security reviewer for security tasks). The orchestrator may make one fix of 5 lines or less per task, only for a bug the verifier found.</td></tr>
-      <tr><td style="padding: 0.3rem 0.7rem; font-size: 0.82rem;"><strong>CLOSE</strong></td><td style="padding: 0.3rem 0.7rem; font-size: 0.82rem;">Reports which models did the work. Everything is in a plan file, so you can stop, resume or reject. Never commits on its own.</td></tr>
+    <p style="margin-top: 0.5rem; max-width: 100%; font-size: 1rem; line-height: 1.4;">The orchestrator plans and checks. Helpers on haiku, sonnet or opus write the code.</p>
+    <table class="dtable" style="margin-top: 0.5rem;">
+      <tr><th style="padding: 0.4rem 0.8rem; width: 28%;">Phase</th><th class="acc" style="padding: 0.4rem 0.8rem; width: 72%;">What it does</th></tr>
+      <tr><td style="padding: 0.4rem 0.8rem; font-size: 1rem;"><strong>GRILL</strong></td><td style="padding: 0.4rem 0.8rem; font-size: 1rem;">Asks you questions, one at a time</td></tr>
+      <tr><td style="padding: 0.4rem 0.8rem; font-size: 1rem;"><strong>PLAN</strong></td><td style="padding: 0.4rem 0.8rem; font-size: 1rem;">Splits the goal into scored tasks</td></tr>
+      <tr><td style="padding: 0.4rem 0.8rem; font-size: 1rem;"><strong>PREVIEW · the gate</strong></td><td style="padding: 0.4rem 0.8rem; font-size: 1rem;">Shows the plan, waits for your OK</td></tr>
+      <tr><td style="padding: 0.4rem 0.8rem; font-size: 1rem;"><strong>EXECUTE / VERIFY</strong></td><td style="padding: 0.4rem 0.8rem; font-size: 1rem;">Helpers build; a separate verifier checks</td></tr>
+      <tr><td style="padding: 0.4rem 0.8rem; font-size: 1rem;"><strong>CLOSE</strong></td><td style="padding: 0.4rem 0.8rem; font-size: 1rem;">Reports which models did the work; never commits</td></tr>
     </table>
-    <aside class="notes">This is the whole thing in one table. I'll go through it quickly.
-GRILL is the interview I used to ask for by hand. One question at a time, and it gives you its recommended answer, so most of the time I just say yes. If the goal is tiny, it skips this.
-PLAN: it splits the goal into tasks and scores each one. Scoring is the next slide. It also decides up front who owns which file, so three helpers working at the same time don't step on each other.
-PREVIEW is the part I care about most. It shows the full plan and stops. I'll show you that live in a minute.
-EXECUTE: the orchestrator doesn't write the code, the helpers do. The one exception is a fix of 5 lines or less per task, and only for a bug the verifier found. Then a cheap haiku verifier re-runs the checks, and a separate reviewer reads the diff.
+    <aside class="notes">Five phases. The slide keeps it short; I'll add the detail as I go.
+GRILL is the interview I used to ask for by hand. One question at a time, each with a recommended answer, so most of the time I just say yes. If you have a code map, its helpers search that before grepping. Tiny goals take a fast lane and skip this.
+PLAN: it splits the goal into tasks and scores each one. Scoring is the next slide. At most 3 helpers run at once, and each file has one owner, so they don't step on each other.
+PREVIEW is the part I care about most. It shows every task with its score and model, then stops. Only my reply counts: "just go" written into the goal is ignored, and "ok, but…" counts as an edit. I'll show you that live in a minute.
+EXECUTE / VERIFY: the orchestrator doesn't write the code, the helpers do. The one exception is a fix of 5 lines or less per task, and only for a bug the verifier found. A cheap haiku verifier re-runs the checks; a sonnet reviewer reads the diff, or an opus security reviewer for security tasks.
 CLOSE tells me which models actually did the work. Everything lives in a plan file under docs/plans, so I can stop, close the laptop, and run /orchestrate resume the next day. It suggests a commit; it never makes one.
 CUTTABLE if running late — the shortcuts it isn't allowed to take. Each one sounds reasonable in the moment. "I'll do this quick fix myself": hand it to a helper. "Approval was given in advance": show the preview anyway. "Small repo, I'll just read it": it reads at most 2 files of 100 lines per phase itself and sends a scout for the rest. "I'll run the tests to be sure": the verifier does that. "This agent sets its own model": pass the model anyway.
 Transition: "The part of PLAN I want to show you is how it picks the model."
 ~2.5 min</aside>
   </div>
 
-  <!-- 15 dtable -->
-  <div class="slide">
+  <!-- 16 dtable -->
+  <div class="slide" style="padding-top: 2rem; padding-bottom: 4.25rem;">
     <div class="kicker">/orchestrate · Picking a model</div>
     <h2 style="font-size: clamp(1.6rem, 3.4vw, 2.8rem);">How it picks a model<br><span class="accent">for each task</span></h2>
-    <p style="margin-top: 0.4rem; max-width: 100%; font-size: 0.95rem; line-height: 1.4;">Each task scores 0–2 on Ambiguity (how unclear it is), Breadth (how much it touches) and Reasoning (how hard it is to think through). The total picks the model.</p>
-    <table class="dtable" style="margin-top: 0.4rem;">
-      <tr><th style="padding: 0.3rem 0.8rem; width: 38%;">Score or task type</th><th class="acc" style="padding: 0.3rem 0.8rem;">Goes to</th></tr>
-      <tr><td style="padding: 0.3rem 0.8rem; font-size: 0.9rem;"><strong>0–2</strong></td><td style="padding: 0.3rem 0.8rem; font-size: 0.9rem;">haiku</td></tr>
-      <tr><td style="padding: 0.3rem 0.8rem; font-size: 0.9rem;"><strong>3–4</strong></td><td style="padding: 0.3rem 0.8rem; font-size: 0.9rem;">sonnet</td></tr>
-      <tr><td style="padding: 0.3rem 0.8rem; font-size: 0.9rem;"><strong>5–6</strong></td><td style="padding: 0.3rem 0.8rem; font-size: 0.9rem;">Split into smaller tasks first; opus only if it can't be split</td></tr>
-      <tr><td style="padding: 0.3rem 0.8rem; font-size: 0.9rem;"><strong>Security work</strong> (auth, secrets, crypto, permissions…)</td><td style="padding: 0.3rem 0.8rem; font-size: 0.9rem;">Always opus, plus an opus security reviewer</td></tr>
+    <p style="margin-top: 0.5rem; max-width: 100%; font-size: 1rem; line-height: 1.4;">Each task scores 0–2 on Ambiguity (how unclear), Breadth (how wide) and Reasoning (how hard). Add them up.</p>
+    <table class="dtable" style="margin-top: 0.5rem;">
+      <tr><th style="padding: 0.4rem 0.8rem; width: 46%;">Score or task type</th><th class="acc" style="padding: 0.4rem 0.8rem; width: 54%;">Goes to</th></tr>
+      <tr><td style="padding: 0.4rem 0.8rem; font-size: 1rem;"><strong>0–2</strong></td><td style="padding: 0.4rem 0.8rem; font-size: 1rem;">haiku</td></tr>
+      <tr><td style="padding: 0.4rem 0.8rem; font-size: 1rem;"><strong>3–4</strong></td><td style="padding: 0.4rem 0.8rem; font-size: 1rem;">sonnet</td></tr>
+      <tr><td style="padding: 0.4rem 0.8rem; font-size: 1rem;"><strong>5–6</strong></td><td style="padding: 0.4rem 0.8rem; font-size: 1rem;">Split first; opus only if it can't be split</td></tr>
+      <tr><td style="padding: 0.4rem 0.8rem; font-size: 1rem;"><strong>Security work (auth, secrets, crypto, permissions…)</strong></td><td style="padding: 0.4rem 0.8rem; font-size: 1rem;">Always opus, plus an opus security reviewer</td></tr>
     </table>
-    <p style="margin-top: 0.4rem; max-width: 100%; font-size: 0.88rem; line-height: 1.4; color: var(--fg-muted);">You can ask for opus yourself. If a plan has more than 2 opus tasks, it asks you to confirm.<br>Its rule: "When unsure, pick the lower tier: escalating costs less than over-provisioning."<br>If a task fails: haiku retries → sonnet retries → one opus try, or the orchestrator re-scopes it → still failing? It pauses and tells you.</p>
+    <p style="margin-top: 0.5rem; max-width: 100%; font-size: 1rem; line-height: 1.4; color: var(--fg-muted);">Its rule: "When unsure, pick the lower tier: escalating costs less than over-provisioning."<br>A task fails? It retries, then moves up or re-scopes. Still failing: it pauses and tells you.</p>
     <aside class="notes">GUESS-FIRST: which model gets "add a config entry with exact steps"? Take a few answers. (Answer: haiku. It's clear, it's one file, and it doesn't need much thinking.)
 Three questions per task: how unclear is it, how much does it touch, how hard is it to think through. Zero to two each, add them up.
-Big tasks get split first. Opus only gets a task that really can't be split, or anything that touches security, like auth, secrets, crypto or permissions. Those always go to opus, and a fresh opus reviewer goes through the diff looking for vulnerabilities.
+Big tasks get split first. Opus only gets a task that really can't be split, or anything that touches security, like auth, secrets, crypto or permissions. Those always go to opus, and a fresh opus reviewer goes through the diff looking for vulnerabilities. That's why the auth part of the forgot-password task went to opus: because it's security, not because of its score.
+You can also ask for opus yourself. If a plan has more than 2 opus tasks, it asks you to confirm.
 The rule I like most is the one on screen. When it's unsure, it picks the cheaper model. If that was wrong, the task fails and moves up. That still costs less than sending everything to the big model just in case.
 That's where the token saving comes from. I can't give you a number. Try it on one real task and look at the model mix it reports at CLOSE.
 CUTTABLE if running late — the retry ladder: a failed haiku task retries once on haiku with the exact error and the current diff, then moves to sonnet. Sonnet retries once, then the orchestrator either tries opus once or works out the problem itself and re-scopes or splits the task. If that still fails, it pauses and reports to me. Every retry is logged in the plan file.
@@ -600,98 +637,99 @@ Transition: "Now the gate itself, live."
 ~2 min</aside>
   </div>
 
-  <!-- 16 demo -->
-  <div class="slide">
-    <div class="demo-badge">Live demo</div>
-    <div class="kicker demo">Demo · the preview gate</div>
-    <h2>Demo:<br><span class="accent">the preview gate</span></h2>
-    <div class="steps-list" style="max-width: 100%;">
-      <div class="step-row">
+  <!-- 17 demo -->
+  <div class="slide" style="padding-top: 2rem; padding-bottom: 4.25rem;">
+    <div class="demo-badge" style="margin-bottom: 0.6rem;">Live demo</div>
+    <div class="kicker demo" style="margin-bottom: 0.9rem;">Demo · the preview gate</div>
+    <h2 style="font-size: clamp(1.6rem, 3.4vw, 2.8rem);">Demo:<br><span class="accent">the preview gate</span></h2>
+    <div class="steps-list" style="max-width: 100%; margin-top: 0.75rem;">
+      <div class="step-row" style="padding: 0.7rem 1.25rem;">
         <div class="step-num demo">01</div>
         <div><div class="step-title">Paused at PREVIEW</div><div class="step-desc">I wrote "just go" into the goal. It still stopped, and says so. Every task has its score and model; the opus row says why.</div></div>
       </div>
-      <div class="step-row hi">
+      <div class="step-row hi" style="padding: 0.7rem 1.25rem;">
         <div class="step-num demo">02</div>
         <div><div class="step-title">Reply "ok, but drop task 3"</div><div class="step-desc">That counts as an edit: it changes the plan and shows it again. Only a plain yes approves.</div></div>
       </div>
     </div>
-    <p style="margin-top: 1.25rem; max-width: 820px; font-size: 1.05rem; color: var(--fg-muted);">Watch for: "just go" in the goal didn't skip the gate.</p>
+    <p style="margin-top: 1rem; max-width: 100%; font-size: 1rem; line-height: 1.4; color: var(--fg-muted);">Watch for: "just go" in the goal didn't skip the gate.</p>
     <aside class="notes">Watch for: "just go" in the goal didn't skip the gate.
-PREP: before the talk, use the current skill (the one with the opus tier). Run /orchestrate on opus or sonnet with a small goal that includes one security-touching task, and end the goal with "just go": /orchestrate <goal>, just go. An opus row with its reason tag should show up. Answer GRILL and stop at PREVIEW. The preview should print a line saying approval in the goal was ignored. Leave the terminal paused at "Approve, edit, or reject?". Don't approve.
+PREP: before the talk, use the current skill (the one with the opus tier). Run /orchestrate on opus or sonnet with a small goal that includes one security-touching task, and end the goal with "just go": /orchestrate &lt;goal&gt;, just go. An opus row with its reason tag should show up. Answer GRILL and stop at PREVIEW. The preview should print a line saying approval in the goal was ignored. Leave the terminal paused at "Approve, edit, or reject?". Don't approve.
 PREP: capture ./screenshots/orchestrate-preview.png from that same run. Don't use the README preview; it's marked illustrative.
 1. Switch to the pre-staged terminal.
-2. Walk the task table (task, score, tier). Point at the Tier column: the opus row carries its reason, e.g. opus (security: <surface>). Read the "Mix" line.
+2. Walk the task table (task, score, tier). Point at the Tier column: the opus row carries its reason, e.g. opus (security: &lt;surface&gt;). Read the "Mix" line.
 3. Point at the line saying "just go" in the goal was ignored, then at the prompt: "Approve, edit, or reject?"
 4. Reply "ok, but drop task 3". That counts as an edit: show the re-preview with the plan changed. Never type a bare 'go' or 'just go' at the prompt: that approves.
 5. Reject, and switch back to the slides.
 FALLBACK: screenshot ./screenshots/orchestrate-preview.png — "Here's the preview from a real run; the bit to notice is that 'just go' in the goal didn't skip the gate."
-Transition: "That's the check before anything runs. Here's what the checking after looked like on real runs."
+Transition: "That's the check before anything runs. Here's what I've actually built with it."
 ~1.75 min</aside>
   </div>
 
-  <!-- 17 vs-grid -->
-  <div class="slide">
+  <!-- 18 vs-grid -->
+  <div class="slide" style="padding-top: 2rem; padding-bottom: 4.25rem;">
     <div class="kicker">/orchestrate · In practice</div>
-    <h2>What happened<br><span class="accent">when I used it</span></h2>
-    <div class="vs-grid" style="margin-top: 0.75rem;">
+    <h2 style="font-size: clamp(1.6rem, 3.4vw, 2.8rem);">What I've built<br><span class="accent">with /orchestrate</span></h2>
+    <div class="vs-grid" style="margin-top: 1rem;">
       <div class="vs-card">
-        <div class="vs-card-label">My runs</div>
-        <div class="vs-card-title">Two "done" claims that weren't true</div>
-        <div class="vs-attr"><strong>Coverage audit:</strong> the agent said "done", but ~65 identifiers were missing. Retried with the exact list: 0 missing.</div>
-        <div class="vs-attr"><strong>E2E (end-to-end) test:</strong> the agent said line 143 was covered. It wasn't.</div>
+        <div class="vs-card-label">Built with it</div>
+        <div class="vs-card-title" style="font-size: 1.35rem;">eqc-kit's latest upgrade, and most of my skills and agents</div>
+        <div class="vs-attr"><strong>Runs:</strong> 48 finished, across 8 projects, in about 6 weeks</div>
+        <div class="vs-attr"><strong>On my own tools:</strong> 13 of the 48 runs (skills, agents, eqc-kit)</div>
+        <div class="vs-attr"><strong>Models:</strong> most tasks went to haiku and sonnet</div>
       </div>
       <div class="vs-card hi">
         <div class="vs-card-label">This deck</div>
-        <div class="vs-card-title">Built by a skill that /orchestrate built</div>
+        <div class="vs-card-title" style="font-size: 1.35rem;">Built by a skill that /orchestrate built</div>
         <div class="vs-attr"><strong>The skill:</strong> /create-presentation made these slides.</div>
-        <div class="vs-attr"><strong>The build:</strong> /orchestrate built it in 5 tasks + 2 fixes, 0 escalations (before the opus tier existed).</div>
+        <div class="vs-attr"><strong>The build:</strong> /orchestrate built it in 5 tasks + 2 fixes, 0 escalations (no task needed a bigger model).</div>
       </div>
     </div>
-    <p style="margin-top: 0.75rem; max-width: 960px; font-size: 1.05rem; color: var(--fg-muted);">Questions?</p>
-    <aside class="notes">Two real catches from my own runs. In a test-coverage audit, a sonnet helper wrote from memory and said it was done. The verifier found about 65 identifiers missing. The retry got the exact list and came back with zero missing.
-Another time, a helper said line 143 of an end-to-end test was covered. A coverage refresh said it wasn't.
-Verifiers get it wrong too. On one run the final verifier raised a false alarm because its search matched numbers in CSS. So I still read the report.
-Across about 11 runs, most of the work went to haiku and sonnet.
-One thing to be clear on: the ~11 runs and the 0-escalation build all happened before I added the opus tier you saw on slide 15.
-Now the right side. Remember the footer on slide 1? /create-presentation is the skill that built this deck, and /orchestrate built that skill. 5 tasks plus 2 fixes, nothing had to move to a bigger model, and one 1-line fix during VERIFY.
-Before any real work, an opus dry-run found 15 issues in that skill; 13 got fixed. And the CSS false alarm I just mentioned was this same build.
-The facts in this deck come from a context file in the same folder, so it doesn't make numbers up. If a slide is wrong, that file is the place to check.
-Q&A: open the floor on /orchestrate. Seed if quiet: "What's a ticket on your board right now that would score 0–2?" Move on at about 30 minutes in.
+    <p style="margin-top: 1rem; max-width: 960px; font-size: 1.2rem; color: var(--fg-muted);">Questions?</p>
+    <aside class="notes">I built eqc-kit's latest upgrade with /orchestrate: the code map, the HTML report and the guard you heard about earlier. Same for most of my skills and agents.
+I only counted runs that finished: 48, across 8 projects, in about 6 weeks. 13 of them were on my own tools.
+eqc-kit itself, version 0.1.0, I built before /orchestrate existed. Only the latest upgrade went through it: 1 opus, 2 sonnet and 1 haiku builder, no escalations, 60 of 60 tests passing.
+Across those runs, most of the building went to haiku and sonnet. Opus shows up in a few.
+Now the right side. Remember the footer on slide 1? /create-presentation is the skill that built this deck, and /orchestrate built that skill. 5 tasks plus 2 fixes, nothing had to move to a bigger model, and one 1-line fix during VERIFY. That build happened before the opus tier existed.
+CUTTABLE if running late — Before any real work, an opus dry-run found 15 issues in that skill; 13 got fixed.
+Verifiers get it wrong too: on that build, the final verifier raised a false alarm because its search matched numbers in CSS. So I still read the report.
+CUTTABLE if running late — The facts in this deck come from a context file in the same folder, so it doesn't make numbers up. If a slide is wrong, that file is the place to check.
+Q&amp;A: open the floor on /orchestrate. Seed if quiet: "What's a ticket on your board right now that would score 0–2?" Move on at about 30 minutes in.
 Transition: "Last section is lighter: what happens after the code is written."
-~4.25 min (~1.75 content + 2.5 Q&A buffer)</aside>
+~4.25 min (~1.75 content + 2.5 Q&amp;A buffer)</aside>
   </div>
 
-  <!-- 18 divider -->
+  <!-- 19 divider -->
   <div class="slide divider center">
     <h2>03 · The ship chain</h2>
     <div class="sub">After the code works: commit, PR, release notes, build</div>
-    <aside class="notes">Section three, lighter coverage. Each skill is small on its own; the value is that they connect.
+    <aside class="notes">Section three, lighter coverage. Each skill is small on its own; the value is that they connect. This is the "ship clean" part: write it once so every reader gets what they need.
 Transition: "Here's the chain."
 ~0.25 min</aside>
   </div>
 
-  <!-- 19 steps-list -->
-  <div class="slide">
+  <!-- 20 steps-list -->
+  <div class="slide" style="padding-top: 2rem; padding-bottom: 4.25rem;">
     <div class="kicker">Ship chain · 4 skills + our CI</div>
-    <h2>Each skill <span class="accent">feeds the next</span></h2>
-    <div class="steps-list" style="max-width: 100%; margin-top: 1rem;">
-      <div class="step-row" style="padding: 0.6rem 1.25rem;">
+    <h2 style="font-size: clamp(1.6rem, 3.4vw, 2.8rem);">Each skill <span class="accent">feeds the next</span></h2>
+    <div class="steps-list" style="max-width: 100%; margin-top: 0.9rem;">
+      <div class="step-row" style="padding: 0.5rem 1.25rem;">
         <div class="step-num">01</div>
         <div><div class="step-title">/reflect</div><div class="step-desc">Session end: updates CLAUDE.md (the agent's project notes) and docs</div></div>
       </div>
-      <div class="step-row hi" style="padding: 0.6rem 1.25rem;">
+      <div class="step-row hi" style="padding: 0.5rem 1.25rem;">
         <div class="step-num">02</div>
         <div><div class="step-title">/git-commit · start here</div><div class="step-desc">Conventional Commit (<code>type(scope): summary</code>); you confirm</div></div>
       </div>
-      <div class="step-row" style="padding: 0.6rem 1.25rem;">
+      <div class="step-row" style="padding: 0.5rem 1.25rem;">
         <div class="step-num">03</div>
         <div><div class="step-title">/send-pr</div><div class="step-desc">Writes the PR title and body</div></div>
       </div>
-      <div class="step-row" style="padding: 0.6rem 1.25rem;">
+      <div class="step-row" style="padding: 0.5rem 1.25rem;">
         <div class="step-num">04</div>
         <div><div class="step-title">/release-notes</div><div class="step-desc">Commits + diffs → release notes file</div></div>
       </div>
-      <div class="step-row" style="padding: 0.6rem 1.25rem;">
+      <div class="step-row" style="padding: 0.5rem 1.25rem;">
         <div class="step-num">05</div>
         <div><div class="step-title">ci-pipeline</div><div class="step-desc">Our CI: builds and ships from that file</div></div>
       </div>
@@ -706,25 +744,25 @@ Transition: "The trick is that it's one piece of writing with several readers."
 ~1.5 min</aside>
   </div>
 
-  <!-- 20 dtable -->
-  <div class="slide">
+  <!-- 21 dtable -->
+  <div class="slide" style="padding-top: 2rem; padding-bottom: 4.25rem;">
     <div class="kicker">Ship chain · Audiences</div>
-    <h2>One change,<br><span class="accent">four write-ups, four readers</span></h2>
-    <table class="dtable">
-      <tr><th>Writing</th><th class="acc">Read by</th><th>Written by</th></tr>
-      <tr><td><strong>Commit message</strong></td><td>Developers + testers (dev-build tester note)</td><td><code>/git-commit</code></td></tr>
-      <tr><td><strong>Pull request</strong></td><td>Reviewers</td><td><code>/send-pr</code></td></tr>
-      <tr><td><strong>Release notes</strong></td><td>Managers</td><td><code>/release-notes</code></td></tr>
-      <tr><td><strong>Store note</strong> (App/Play Store "What's new")</td><td>Users</td><td><code>/release-notes</code> (CI copies it)</td></tr>
+    <h2 style="font-size: clamp(1.6rem, 3.4vw, 2.8rem);">One change,<br><span class="accent">four write-ups, four readers</span></h2>
+    <table class="dtable" style="margin-top: 1rem;">
+      <tr><th style="padding: 0.4rem 0.8rem; width: 38%;">Writing</th><th class="acc" style="padding: 0.4rem 0.8rem; width: 37%;">Read by</th><th style="padding: 0.4rem 0.8rem; width: 25%;">Written by</th></tr>
+      <tr><td style="padding: 0.6rem 0.9rem; font-size: 1rem;"><strong>Commit message</strong></td><td style="padding: 0.6rem 0.9rem; font-size: 1rem;">Developers + testers (dev-build tester note)</td><td style="padding: 0.6rem 0.9rem; font-size: 1rem;"><code>/git-commit</code></td></tr>
+      <tr><td style="padding: 0.6rem 0.9rem; font-size: 1rem;"><strong>Pull request</strong></td><td style="padding: 0.6rem 0.9rem; font-size: 1rem;">Reviewers</td><td style="padding: 0.6rem 0.9rem; font-size: 1rem;"><code>/send-pr</code></td></tr>
+      <tr><td style="padding: 0.6rem 0.9rem; font-size: 1rem;"><strong>Release notes</strong></td><td style="padding: 0.6rem 0.9rem; font-size: 1rem;">Managers</td><td style="padding: 0.6rem 0.9rem; font-size: 1rem;"><code>/release-notes</code></td></tr>
+      <tr><td style="padding: 0.6rem 0.9rem; font-size: 1rem;"><strong>Store note (App/Play Store "What's new")</strong></td><td style="padding: 0.6rem 0.9rem; font-size: 1rem;">Users</td><td style="padding: 0.6rem 0.9rem; font-size: 1rem;"><code>/release-notes</code> (CI copies it)</td></tr>
     </table>
     <aside class="notes">GUESS-FIRST: who reads your commit messages? Take answers. "Nobody" is the usual one.
 Answer: more people than you think. On our dev builds, the last commit message becomes the tester note. So "wip fix stuff" is what QA sees.
 Same facts, rewritten for each reader as they move down the chain.
-Transition: "Which means commits get written with the next step in mind." (If slide 21 is cut: "Here's a real one." and go to slide 22.)
+Transition: "Which means commits get written with the next step in mind." (If slide 22 is cut: "Here's a real one." and go to slide 23.)
 ~1.5 min</aside>
   </div>
 
-  <!-- 21 code-block -->
+  <!-- 22 code-block -->
   <div class="slide">
     <div class="kicker">Ship chain · Under the hood</div>
     <h2>Commits are written<br><span class="accent">for the release notes</span></h2>
@@ -744,31 +782,31 @@ Transition: "Here's a real one."
 ~0.75 min</aside>
   </div>
 
-  <!-- 22 demo -->
-  <div class="slide">
-    <div class="demo-badge">Live demo</div>
-    <div class="kicker demo">Demo · our mobile app v1.9.4</div>
-    <h2>Demo: v1.9.4 notes<br><span class="accent">beside their commits</span></h2>
-    <div class="steps-list" style="max-width: 100%;">
-      <div class="step-row hi">
+  <!-- 23 demo -->
+  <div class="slide" style="padding-top: 2rem; padding-bottom: 4.25rem;">
+    <div class="demo-badge" style="margin-bottom: 0.6rem;">Live demo</div>
+    <div class="kicker demo" style="margin-bottom: 0.9rem;">Demo · our mobile app v1.9.4</div>
+    <h2 style="font-size: clamp(1.6rem, 3.4vw, 2.8rem);">Demo: v1.9.4 notes beside their commits</h2>
+    <div class="steps-list" style="max-width: 100%; margin-top: 0.5rem;">
+      <div class="step-row hi" style="padding: 0.4rem 1.25rem;">
         <div class="step-num demo">01</div>
         <div><div class="step-title">Open RELEASE_NOTES_v1.9.4.md</div><div class="step-desc">Written by /release-notes; ends with the store note</div></div>
       </div>
-      <div class="step-row">
+      <div class="step-row" style="padding: 0.4rem 1.25rem;">
         <div class="step-num demo">02</div>
         <div><div class="step-title">Put <code>git log</code> beside it</div><div class="step-desc">Match one commit to its sentence</div></div>
       </div>
     </div>
-    <div class="code-block" style="margin-top: 1rem;">
+    <div class="code-block" style="margin-top: 0.7rem;">
       <div class="code-head"><span>One change, three write-ups</span><span class="code-lang">real</span></div>
-      <div class="code-body"><span class="tok-dim"># commit</span>
+      <div class="code-body" style="padding: 0.5rem 1.5rem; line-height: 1.45;"><span class="tok-dim"># commit</span>
 fix(android): restore hardware back button navigation on SDK 36
 <span class="tok-dim"># release notes</span>
 Android Back Button Fixed (Android 16 / SDK 36)
 <span class="tok-dim"># store note</span>
 Fixed the Android back button and improved app stability</div>
     </div>
-    <p style="margin-top: 0.75rem; max-width: 820px; font-size: 1.05rem; color: var(--fg-muted);">Watch for: one commit line becoming a sentence a manager or user can read.</p>
+    <p style="margin-top: 0.6rem; max-width: 100%; font-size: 1rem; line-height: 1.4; color: var(--fg-muted);">Watch for: one commit line becoming a sentence a manager or user can read.</p>
     <aside class="notes">The code block on screen is the example: one real change in three write-ups. The live demo shows it side by side.
 Watch for: one commit line turning into a sentence a manager or a user can read.
 1. Open docs/RELEASE_NOTES_v1.9.4.md in the editor, left pane.
@@ -781,7 +819,7 @@ Transition: "And this file isn't optional."
 ~1.5 min</aside>
   </div>
 
-  <!-- 23 center -->
+  <!-- 24 center -->
   <div class="slide center">
     <div class="kicker">Enforced, not recommended</div>
     <h1>No release notes,<br><span class="accent">no build</span></h1>
@@ -794,45 +832,46 @@ Transition: "Let's pull the three sections together."
 ~1 min</aside>
   </div>
 
-  <!-- 24 card-grid -->
+  <!-- 25 card-grid -->
   <div class="slide">
     <div class="kicker">Recap</div>
     <h2>Ask first, build cheap,<br><span class="accent">ship clean</span></h2>
     <div class="card-grid">
-      <div class="card"><div class="card-slash">eqc-kit</div><div class="card-name">Ask first: big fixes wait for your OK</div><div class="card-sub">checks your code, keeps passing rules passing</div></div>
+      <div class="card"><div class="card-slash">eqc-kit</div><div class="card-name">Ask first: check every rule, with proof, before you fix</div><div class="card-sub">checks your code, keeps passing rules passing</div></div>
       <div class="card"><div class="card-slash">/orchestrate</div><div class="card-name">Build cheap: score the task, then pick the model</div><div class="card-sub">plans, then cheaper models build</div></div>
       <div class="card hi"><div class="card-slash">ship chain</div><div class="card-name">Ship clean: write the commit for its next reader</div><div class="card-sub">commit → PR → notes → build</div></div>
     </div>
     <aside class="notes">One sentence each.
-eqc-kit: agents check your code against your own standard, a plain script works out the level, big fixes wait for your OK, and the guard stops passing rules from slipping back.
+eqc-kit: agents check your code against your team's written standard, like our Mobile EQC, a plain script works out the level, big fixes wait for your OK, and the guard stops passing rules from slipping back.
 /orchestrate: every task gets a score before it gets a model; you approve the plan, cheaper models build and a verifier checks.
 Ship chain: write the commit for whoever reads it next, and it becomes the PR, the release notes and the store note, with CI making sure.
-Transition: "You don't need all three. Pick two."
+Transition: "You don't need all three. Pick any one."
 ~0.75 min</aside>
   </div>
 
-  <!-- 25 closing -->
-  <div class="slide center">
+  <!-- 26 closing -->
+  <div class="slide center" style="padding-top: 2rem; padding-bottom: 4.25rem;">
     <div class="kicker">Your move</div>
-    <h1>Pick two.<br><span class="accent">Try them this week.</span></h1>
-    <p style="margin-top: 2rem; max-width: 900px; font-size: 1.2rem;">Quality doc nobody checks? <code>npx eqc-kit init</code> · Big ticket? <code>/orchestrate</code> · Vague commits? <code>/git-commit</code> today</p>
-    <p style="margin-top: 1.1rem; max-width: 900px; color: var(--fg-muted); font-size: 1rem; overflow-wrap: anywhere;">Get /orchestrate and /git-commit: paste into Claude Code → "Fetch and follow https://raw.githubusercontent.com/mehedibangladeshi/ai-skills/master/INSTALL.md"</p>
-    <aside class="notes">Pick the two that match your pain. If your commit messages say "fix", /git-commit is the five-minute win: start today.
-The install line is a prompt: paste it into your agent and it sets up the skills.
-It's my repo — read INSTALL.md first if you like.
+    <h1 style="font-size: clamp(2rem, 4.6vw, 4rem);">Pick any one. Try it.<br><span class="accent">Or build your own.</span></h1>
+    <p style="margin-top: 1.5rem; max-width: 900px; font-size: 1.2rem; line-height: 1.6;">Too much hassle to check and keep up EQC compliance? Try eqc-kit: <code>npx eqc-kit init</code><br>Big ticket? Try <code>/orchestrate</code><br>Vague commits? Try <code>/git-commit</code></p>
+    <p style="margin-top: 1rem; max-width: 900px; color: var(--fg-muted); font-size: 1rem; line-height: 1.5; overflow-wrap: anywhere;">Get /orchestrate and /git-commit: paste into Claude Code → "Fetch and follow https://raw.githubusercontent.com/mehedibangladeshi/ai-skills/master/INSTALL.md"</p>
+    <aside class="notes">Pick whichever one matches your pain. You don't need all three.
+If your commit messages say "fix", /git-commit is the quickest win: start today.
+Or take one idea and build your own. Every tool today started as something I kept doing by hand.
+The install line is a prompt: paste it into your agent and it sets up the skills. It's my repo, so read INSTALL.md first if you like.
 The same lines stay on the next slide through Q&amp;A, so no rush to copy.
 Transition: "Thanks. Last round of questions."
 ~0.75 min</aside>
   </div>
 
-  <!-- 26 center Q&A -->
-  <div class="slide center">
+  <!-- 27 center Q&A -->
+  <div class="slide center" style="padding-top: 2rem; padding-bottom: 4.25rem;">
     <div class="kicker">Q&amp;A</div>
     <h1>Questions?</h1>
-    <p style="margin-top: 2rem; max-width: 900px; font-size: 1.2rem;">Quality doc nobody checks? <code>npx eqc-kit init</code> · Big ticket? <code>/orchestrate</code> · Vague commits? <code>/git-commit</code> today</p>
-    <p style="margin-top: 1.1rem; max-width: 900px; color: var(--fg-muted); font-size: 1rem; overflow-wrap: anywhere;">Get /orchestrate and /git-commit: paste into Claude Code → "Fetch and follow https://raw.githubusercontent.com/mehedibangladeshi/ai-skills/master/INSTALL.md"</p>
+    <p style="margin-top: 1.5rem; max-width: 900px; font-size: 1.2rem; line-height: 1.6;">Too much hassle to check and keep up EQC compliance? Try eqc-kit: <code>npx eqc-kit init</code><br>Big ticket? Try <code>/orchestrate</code><br>Vague commits? Try <code>/git-commit</code></p>
+    <p style="margin-top: 1rem; max-width: 900px; color: var(--fg-muted); font-size: 1rem; line-height: 1.5; overflow-wrap: anywhere;">Get /orchestrate and /git-commit: paste into Claude Code → "Fetch and follow https://raw.githubusercontent.com/mehedibangladeshi/ai-skills/master/INSTALL.md"</p>
     <aside class="notes">Thank everyone. Open the floor for anything across the three sections.
-Seed if quiet: "Which two are you trying first?"
+Seed if quiet: "Which one are you trying first, or what would you build?"
 Leave this slide up through Q&amp;A: the commands and the install line stay on screen.
 Transition: none, this is the end.
 ~2 min — Q&amp;A buffer</aside>
