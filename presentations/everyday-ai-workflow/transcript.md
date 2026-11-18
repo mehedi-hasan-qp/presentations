@@ -412,11 +412,11 @@ I only counted runs that finished. There are forty-eight, across eight projects,
 
 Across these runs, the models were mostly haiku and sonnet. Opus shows up in a few.
 
-Now the right side. Remember the footer on slide one? presentation-builder is the plugin that built this deck. It has /create-presentation, /update-presentation and six agents that write, design and review. I built it with /orchestrate.
+Now the right side. Remember the footer on slide one? This deck was built with presentation-builder. And /orchestrate built presentation-builder.
 
-It took three runs. One for the skill, one for the six agents, and one for /update-presentation. In total, there were eighteen builder tasks: six on haiku, ten on sonnet, and two on opus. The two opus tasks were ones I asked for at approval. You saw on slide sixteen that you can do that. No task had to move to a bigger model in any of the three runs.
+So what is it? A Claude Code plugin. It has two skills. One makes a new deck. One changes a deck. It also has six agents, and each has one job. One reads my sources. One writes the outline and slide text. One writes the script. One builds the HTML. And two review it, one for content and one for design.
 
-And then an opus dry run tried the finished skill on a sample deck. It found fifteen issues. Thirteen got fixed after.
+It took three runs and eighteen tasks. None moved up a model. The two opus tasks were ones I asked for at approval. Then an opus dry run on a sample deck found fifteen issues. Thirteen got fixed.
 
 Verifiers can be wrong too. On one of those builds, the final verifier gave a false alarm, because its search matched numbers in CSS. So I still read the report.
 

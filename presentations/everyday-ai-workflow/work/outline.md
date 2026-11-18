@@ -62,7 +62,7 @@ Backfilled from `index.html`, `context.md` and `transcript.md` on 2026-11-16. **
 | 15 | dtable | How /orchestrate runs a big task, phase by phase | **CHG** lead: the orchestrator plans and checks, helpers write the code; 5 one-line rows: GRILL · PLAN · PREVIEW (the gate) · EXECUTE / VERIFY · CLOSE | Detail (fast lane, 3 helpers, file owners, "ok, but…", ≤5-line fix, reviewers, resume) in the notes; shortcuts paragraph cuttable | 2.5 |
 | 16 | dtable | How it picks a model for each task | **CHG** shorter lead; 0–2 haiku · 3–4 sonnet · 5–6 split first, opus if it can't be split · security always opus; pick-lower quote; one-line "if a task fails" | Guess-first "add a config entry with exact steps" → haiku; ties back to slide 14; opus requests and retry ladder in the notes | 2 |
 | 17 | demo | Demo: the preview gate | 01 paused at PREVIEW, "just go" written into the goal · 02 reply "ok, but drop task 3" (hi); watch-for: "just go" in the goal didn't skip the gate | Pre-staged run with one security task; reject at the end; never type a bare "go" / "just go" at the prompt | 1.75 |
-| 18 | vs-grid | **CHG** What I've built with /orchestrate | **CHG** left (short): title "48 finished runs · 8 projects · ~6 weeks"; own tools: 13 runs (skills, agents, eqc-kit's latest upgrade); mostly haiku / sonnet · right (hi) "This deck": slide 1 footer callback; presentation-builder (/create-presentation, /update-presentation, 6 agents) built with /orchestrate: 3 runs, 18 builder tasks (6 haiku · 10 sonnet · 2 opus), none moved up a model, opus dry-run on a sample deck 15 issues / 13 fixed; closing line "Questions?" | Slide 1 payoff; the 2 opus tasks were asked for at approval; eqc-kit 0.1.0 predates /orchestrate (cuttable); verifier false alarm (honest limit); context-file line cuttable; Q&A seed; content ~1.75 + Q&A 2.5 | 4.25 |
+| 18 | vs-grid | **CHG** What I've built with /orchestrate | **CHG** left (short): title "48 finished runs · 8 projects · ~6 weeks"; own tools: 13 runs (skills, agents, eqc-kit's latest upgrade); mostly haiku / sonnet · right (hi, same shape) "This deck · built with /orchestrate": title "presentation-builder, a Claude Code plugin"; 2 skills (new deck · change one); 6 agents, one job each; closing line "Questions?" | Slide 1 payoff (footer callback spoken); what the plugin is; build facts in notes only (3 runs, 18 tasks, none moved up a model, dry-run 15 issues / 13 fixed); the 2 opus tasks were asked for at approval; eqc-kit 0.1.0 predates /orchestrate (cuttable); verifier false alarm (honest limit); context-file line cuttable; Q&A seed; content ~1.75 + Q&A 2.5 | 4.25 |
 | 19 | divider | 03 · The ship chain | sub: "After the code works: commit, PR, release notes, build" | Lighter section; value is in the connection; "ship clean" signpost | 0.25 |
 | 20 | steps-list | Each skill feeds the next | 01-05: /reflect, /git-commit (hi, "start here"), /send-pr, /release-notes, ci-pipeline | What each step does; /git-commit is the cheapest start | 1.5 |
 | 21 | dtable | One change, four write-ups, four readers | Commit: devs + testers; PR: reviewers; Release notes: managers; Store note: users; "Written by" column | Guess-first: who reads your commits; cut-path refs → slides 22/23 | 1.5 |
@@ -555,11 +555,9 @@ On-slide copy:
 - Left vs-card: label "Built with it" · title "48 finished runs · 8 projects · ~6 weeks"
   - Own tools: 13 runs (skills, agents, eqc-kit's latest upgrade)
   - Models: mostly haiku and sonnet
-- Right vs-card (hi): label "This deck" · title "Remember the footer on slide 1? /orchestrate built presentation-builder."
-  - What: /create-presentation, /update-presentation + 6 agents
-  - Runs: 3 (the skill, the 6 agents, /update-presentation)
-  - Builders: 18 tasks: 6 haiku · 10 sonnet · 2 opus. None moved up a model.
-  - Dry-run: opus tested the new skill on a sample deck: 15 issues, 13 fixed
+- Right vs-card (hi): label "This deck · built with /orchestrate" · title "presentation-builder, a Claude Code plugin"
+  - 2 skills: /create-presentation (new deck) · /update-presentation (change one)
+  - 6 agents, one job each: research · outline · script · build · content review · design review
 - Closing line: Questions?
 
 Speaker notes:
@@ -567,9 +565,9 @@ I built eqc-kit's latest upgrade with /orchestrate: the code map, the HTML repor
 I only counted runs that finished: 48, across 8 projects, in about 6 weeks. 13 of them were on my own tools.
 CUTTABLE if running late — eqc-kit itself, version 0.1.0, I built before /orchestrate existed. Only the latest upgrade went through it: 1 opus, 2 sonnet and 1 haiku builder, 60 of 60 tests passing.
 Across those runs, most of the building went to haiku and sonnet. Opus shows up in a few.
-Now the right side. Remember the footer on slide 1? presentation-builder is the plugin that built this deck: /create-presentation, /update-presentation and six agents that write, design and review. I built it with /orchestrate.
-Three runs: one for the skill, one for the six agents, one for /update-presentation. 18 builder tasks in total: 6 on haiku, 10 on sonnet, 2 on opus. None moved up a model: no task had to move to a bigger model.
-The two opus tasks were ones I asked for at approval. You saw on slide 16 that you can do that.
+Now the right side. Remember the footer on slide 1? This deck was built with presentation-builder, and /orchestrate built presentation-builder.
+It's a Claude Code plugin with two skills: one makes a new deck, one changes a deck. And six agents, each with one job: one reads my sources, one writes the outline and slide text, one writes the script, one builds the HTML, and two review it, one for content and one for design.
+Building it took 3 runs and 18 tasks, and none moved up a model. The two opus tasks were ones I asked for at approval; you saw on slide 16 that you can do that.
 Then opus tried the finished skill on a sample deck, a dry-run. It found 15 issues, and 13 got fixed after.
 Verifiers get it wrong too: on one of those builds, the final verifier raised a false alarm because its search matched numbers in CSS. So I still read the report.
 CUTTABLE if running late — The facts in this deck come from a context file in the same folder, so it doesn't make numbers up. If a slide is wrong, that file is the place to check.
@@ -577,7 +575,7 @@ Q&A: open the floor on /orchestrate. Seed if quiet: "What's a ticket on your boa
 Transition: "Last section is lighter: what happens after the code is written."
 ~4.25 min (~1.75 content + 2.5 Q&A buffer)
 
-Builder note: no project or repo names on this slide (presentation-builder is the plugin name, it stays). Cards keep 2 / 4 short attrs; if it overflows, drop the left card's "Models" line into the notes first, then the right card's "What" line. Keep the right card's runs, builders and dry-run lines (slide 1 payoff).
+Builder note: no project or repo names on this slide (presentation-builder is the plugin name, it stays). The two cards are symmetrical: label, one-line title, exactly 2 attr lines each. The right card keeps class `vs-card hi` and uses the same inline title size as the left card. Its attrs start with `<strong>2 skills:</strong>` and `<strong>6 agents, one job each:</strong>`. No build stats on the slide (runs, builders, dry-run live in the notes).
 
 ### Slide 19 — 03 · The ship chain (divider)
 On-slide copy:

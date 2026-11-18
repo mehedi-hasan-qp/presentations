@@ -672,12 +672,10 @@ Transition: "That's the check before anything runs. Here's what I've actually bu
         <div class="vs-attr"><strong>Models:</strong> mostly haiku and sonnet</div>
       </div>
       <div class="vs-card hi">
-        <div class="vs-card-label">This deck</div>
-        <div class="vs-card-title" style="font-size: 1.35rem;">Remember the footer on slide 1? /orchestrate built presentation-builder.</div>
-        <div class="vs-attr"><strong>What:</strong> /create-presentation, /update-presentation + 6 agents</div>
-        <div class="vs-attr"><strong>Runs:</strong> 3 (the skill, the 6 agents, /update-presentation)</div>
-        <div class="vs-attr"><strong>Builders:</strong> 18 tasks: 6 haiku · 10 sonnet · 2 opus. None moved up a model.</div>
-        <div class="vs-attr"><strong>Dry-run:</strong> opus tested the new skill on a sample deck: 15 issues, 13 fixed</div>
+        <div class="vs-card-label">This deck · built with /orchestrate</div>
+        <div class="vs-card-title" style="font-size: 1.35rem;">presentation-builder, a Claude Code plugin</div>
+        <div class="vs-attr"><strong>2 skills:</strong> /create-presentation (new deck) · /update-presentation (change one)</div>
+        <div class="vs-attr"><strong>6 agents, one job each:</strong> research · outline · script · build · content review · design review</div>
       </div>
     </div>
     <p style="margin-top: 1rem; max-width: 960px; font-size: 1.2rem; color: var(--fg-muted);">Questions?</p>
@@ -685,10 +683,10 @@ Transition: "That's the check before anything runs. Here's what I've actually bu
 I only counted runs that finished: 48, across 8 projects, in about 6 weeks. 13 of them were on my own tools.
 CUTTABLE if running late — eqc-kit itself, version 0.1.0, I built before /orchestrate existed. Only the latest upgrade went through it: 1 opus, 2 sonnet and 1 haiku builder, 60 of 60 tests passing.
 Across those runs, most of the building went to haiku and sonnet. Opus shows up in a few.
-Now the right side. Remember the footer on slide 1? presentation-builder is the plugin that built this deck: /create-presentation, /update-presentation and six agents that write, design and review. I built it with /orchestrate.
-Three runs: one for the skill, one for the six agents, one for /update-presentation. 18 builder tasks in total: 6 on haiku, 10 on sonnet, 2 on opus. Zero escalations in all three runs: no task had to move to a bigger model.
-Then opus tried the finished skill on a sample deck and found 15 issues. 13 got fixed after that.
-The two opus tasks were ones I asked for at approval. You saw on slide 16 that you can do that.
+Now the right side. Remember the footer on slide 1? This deck was built with presentation-builder, and /orchestrate built presentation-builder.
+It's a plugin with two skills: one makes a new deck, one changes a deck. And six agents, each with one job: one reads my sources, one writes the outline and slide text, one writes the script, one builds the HTML, and two review it, content and design.
+Build facts, short: 3 runs, 18 tasks, none moved up a model. An opus dry-run on a sample deck found 15 issues, 13 fixed.
+The 2 opus tasks were ones I asked for at approval. You saw on slide 16 that you can do that.
 Verifiers get it wrong too: on one of those builds, the final verifier raised a false alarm because its search matched numbers in CSS. So I still read the report.
 CUTTABLE if running late — The facts in this deck come from a context file in the same folder, so it doesn't make numbers up. If a slide is wrong, that file is the place to check.
 Q&amp;A: open the floor on /orchestrate. Seed if quiet: "What's a ticket on your board right now that would score 0–2?" Move on at about 30 minutes in.
