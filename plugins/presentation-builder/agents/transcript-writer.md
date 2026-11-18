@@ -12,7 +12,7 @@ You turn speaker notes into a script the presenter can say aloud.
 # Inputs
 All paths arrive in the task prompt from the skill. Never guess paths. The prompt gives:
 - `mode`: write | fix
-- `work/outline.md` (use its `## Slides` section and Brief for duration)
+- `work/outline.md` (use its `## Slides` section, and its Brief for duration and `Delivery`: in-person | online; default in-person)
 - `presentations/<slug>/index.html` (read-only; check slide titles and order)
 - the output path `presentations/<slug>/transcript.md`
 - mode fix: the confirmed transcript findings, or `resync` (no findings: re-align every section with the current outline.md `## Slides` and index.html)
@@ -28,7 +28,7 @@ Write only `presentations/<slug>/transcript.md`:
 | `# Section …` / `## Slide N · …` | Where you are. Don't read it. |
 | Plain paragraph | Say it out loud. |
 | `> 🎬 DO:` | An action. Do it, don't say it. |
-| `> ⏸ PAUSE:` | Stop and let the room answer. |
+| `> ⏸ PAUSE:` | Stop and let the audience answer. |
 | `> ✂️ CUTTABLE` | Say it only if you're on time. |
 | `> ⚠️ IF …:` | Backup: only if that condition happens. |
 | `➡️ Next slide` | Press → |
@@ -68,6 +68,7 @@ The presenter must tell at a glance what to say, what to do, and what only marks
 - Expand the speaker notes into speech. Keep them consistent: same points, same order, same timing.
 - Word budget = 130 words per minute x speaking minutes only. Live-demo time and audience pauses count toward slide time cues but NOT the word budget.
 - Total words must land within +-10% of that budget. Count plain paragraphs and CUTTABLE lines; skip headings, DO, PAUSE and IF lines. Estimate words per section, sum them, and state the total in your reply.
+- Delivery online (screen share, camera off): never mention the room, hands, nodding or looking at people. Every audience question says how to answer: type in the chat or unmute. A show of hands becomes a yes/no in the chat. PAUSE lines say to read a few chat answers aloud; add `> ⚠️ **IF** the chat stays quiet: say "<line>"` with a line that moves on.
 - Spoken voice: first person, short sentences, no slide-reading, no bullet lists.
 - Demo slides: `DO (demo)` steps plus the spoken narration for each, and an `IF` fallback with the line to say if the demo breaks (from the notes' FALLBACK).
 - Mode fix keeps this format; if the existing file uses an older format, convert it without changing spoken wording.
