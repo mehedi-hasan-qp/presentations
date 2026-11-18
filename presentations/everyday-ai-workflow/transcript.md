@@ -5,7 +5,7 @@
 | `# Section …` / `## Slide N · …` | Where you are. Don't read it.           |
 | Plain paragraph                  | Say it out loud.                        |
 | `> 🎬 DO:`                       | An action. Do it, don't say it.         |
-| `> ⏸ PAUSE:`                     | Stop and let the audience answer.               |
+| `> ⏸ PAUSE:`                     | Stop and let the audience answer.       |
 | `> ✂️ CUTTABLE`                  | Say it only if you're on time.          |
 | `> ⚠️ IF …:`                     | Backup: only if that condition happens. |
 | `➡️ Next slide`                  | Press →                                 |
@@ -16,9 +16,15 @@
 
 ⏱ ~0.5 min
 
-Hi everyone, I'm Mehedi, from the Mobile Team here at QuestionPro. This is the AI workflow I use every day. There are three tools. One checks code. One plans work. One chain ships it. Each one works on its own. My goal is simple: you leave with one thing to try, or an idea to build your own. Keep this small footer in mind: "Built with presentation-builder". I'll come back to it on slide eighteen.
+Hi everyone, I'm Mehedi Hasan, from the Mobile Team here at QuestionPro.
+This is the AI workflow I use every day. There are three tools.
+One checks code.
+One plans work.
+One chain ships it.
+Each one works on its own. My goal is simple: you leave with one thing to try, or an idea to build something of your own.
+Btw, keep this small footer in mind: "Built with presentation-builder". I'll come back to it later.
 
-Let's start with a standard most of us have never read to the end.
+Let's start with a standard most of us have never read to the end. Mostly, we read the highlights and scratched our heads.
 
 ➡️ **Next slide**
 
@@ -26,15 +32,15 @@ Let's start with a standard most of us have never read to the end.
 
 ⏱ ~1.25 min
 
-At QuestionPro, we take engineering quality seriously. Very few of us have read the whole Mobile EQC end to end, and fewer have checked our own code against every rule. I hadn't either.
+At QuestionPro, we take engineering quality seriously. But I don't think everyone has read the whole EQC docs end-to-end, I guess most of us read the highlights and titles, and thought about tackling one item at a time. I have my team's Mobile EQC doc 1.1 and the web team has EQC doc 2.0.
 
-EQC means Engineering Quality Checks. The Mobile EQC is our standard for mobile apps: React Native, Flutter, Android and iOS. It has thirty-nine rules in three tiers. Nine are LOW, thirteen are MEDIUM, and seventeen are HIGH.
+As you already know, EQC means Engineering Quality Checks. The Mobile EQC is our standard for mobile apps: React Native, Flutter, Android and iOS. It has thirty-nine rules in three tiers. Nine are LOW, thirteen are MEDIUM, and seventeen are HIGH.
 
 The standard is good. The problem is the work. To check thirty-nine rules across a whole app by hand is slow and boring. So it does not happen.
 
-Today has three parts. Each one is something I used to skip: checking, planning, and writing it up.
+Today this presentation has three parts. Each one is something I used to skip: checking, planning, and writing it up.
 
-Before the tools, here are four words you will hear all talk.
+Before the tools, here are four things you will hear all talk.
 
 ➡️ **Next slide**
 
@@ -42,19 +48,20 @@ Before the tools, here are four words you will hear all talk.
 
 ⏱ ~1 min
 
-This is a quick primer, because none of these tools came up here before.
+This is a quick primer, I know you all already know this, but I'm going through it anyway.
 
-Claude Code is where I run all of this. It is an AI coding agent in the terminal.
+First, our best friend Claude Code, where I usually run all of this.
 
-A skill is a saved set of instructions. You type its name with a slash, and it follows the playbook. It does the same thing every time.
+Skill: it's a saved set of instructions. You type its name with a slash, and it follows the playbook, does the same thing every time.
 
-A sub-agent is a helper. The main session gives it one task, and it sends back a short report.
+Sub-agent: it's a helper. The main session gives it one task, and it sends back a short report.
 
-Haiku, sonnet and opus are three model sizes. Keep the order in mind. A lot of today is about sending work to the cheapest model that can do it.
+Now the models: you must already know haiku, sonnet and opus. Three models from 2 tiers.
+A lot of today is about sending work to the cheapest model that can do it.
 
-Everything you will see is a skill, a set of sub-agents, or both. Also, eqc-kit works in four other AI coding tools. So for that one, you don't need Claude Code.
+Everything you will see is a skill, a set of sub-agents, or both. Also, eqc-kit works in four other AI coding tools too. So for that one, you don't need Claude Code.
 
-Now we have the four words. Let's start section one.
+Now, let's start section one.
 
 ➡️ **Next slide**
 
@@ -62,9 +69,11 @@ Now we have the four words. Let's start section one.
 
 ⏱ ~0.25 min
 
-Section one is eqc-kit. It is about ten minutes, then questions. I built this one myself, so I will start with how it happened. This is the "ask first" part: ask the standard before you change code.
+Section one is eqc-kit.
 
-It started with one question.
+I built this one myself, so I will start with how it happened. This is the "ask first" part from the title: ask the standard before you change code.
+
+It actually started with one question.
 
 ➡️ **Next slide**
 
@@ -72,7 +81,7 @@ It started with one question.
 
 ⏱ ~1.25 min
 
-Here is the short story. Someone gave me the Mobile EQC and asked: are your projects compliant?
+Here is the short story. Datta gave me the Mobile EQC and asked: are your projects compliant with the EQC?
 
 So I took the standard and checked it against the project, rule by rule. It was slow, boring work.
 
@@ -80,11 +89,11 @@ Then I used AI. It helped, but it was still too much work, and I did not trust t
 
 So I started to automate the process. One thing led to another, and now I have eqc-kit.
 
-It is not tied to the Mobile EQC. I will come back to that just before questions.
+FYI, it is not tied to the Mobile EQC doc only. But I will come back to that later.
 
-Install is one command. The setup asks a few questions. All of them have defaults, so you can just press Enter. There are no dependencies. You need Node eighteen or newer.
+Installing this is just one command. The setup asks a few questions. All of them have defaults, so you can just press Enter. There are no dependencies. But you'll need Node eighteen or newer.
 
-In Claude Code, you get slash commands. In the other tools, it adds a block to AGENTS.md, so you just say "eqc check".
+After that, in Claude Code, you get slash commands. In the other tools, it adds a block to AGENTS.md, so you just say "eqc check".
 
 Now let me show you what checking one rule looks like, with AI prompting and with eqc-kit.
 
@@ -99,17 +108,19 @@ Let's use one real rule from the Mobile EQC. It is a MEDIUM rule: folder structu
 > ✂️ **CUTTABLE — say only if on time:**
 > The rule lists the folders for each stack. For React Native, that is src/screens, src/features, src/components and src/navigation. Flutter, Android and iOS each have their own layout.
 
-First, by hand. You find the rule, open the project, walk through the folders, and look for huge files. It works if you are careful. Then next time you do it all again, plus the other thirty-eight rules.
+First, by hand. You find the rule, open the project, walk through the folders, and look for huge files. It works if you are careful. Then next time you do it all over again, plus the other thirty-eight rules.
 
-The red box is what I tried next. I tried AI prompting. I pasted the standard in and asked. Here is what happened to me. Each time, it explored the project from the start. It lost track. It said pass when it was not a pass. When I asked twice, I got two different answers. And later, when I built a new feature, the AI broke the same rule again.
+The red box is what I tried next. I tried AI prompting. I pasted the standard in and asked. Here is what happened to me.
+Each time, it explored the project from the start. It lost track. It said pass when it was not a pass. When I asked twice, I got two different answers. And later, when I built a new feature, the AI broke the same rule again.
 
-The green box is eqc-kit. The rule is already on its list. An agent for the MEDIUM rules checks the folders. The answer comes with the files that prove it, so you can open them and argue. The result is saved. Next time it is read back, not re-guessed. And guard warns you if the rule stops passing.
+The green box is eqc-kit.
+The rule is already on its list. An agent for the MEDIUM rules checks the folders. The answer comes with the files that prove it, so you can open them and argue. The result is saved. Next time it is read back, not guessed again. And guard warns you if the rule stops passing.
 
-Our app passes this one.
+Our app CXOTG passes this one.
 
-One honest note. You need a written standard. The first full check is not cheap. And the agents can still be wrong, so read the evidence.
+One honest note. You need a written EQC doc. The first full check is not cheap. And the agents can still be wrong, so read the evidence.
 
-So, what do you actually run?
+So, now the question is, what do you actually run?
 
 ➡️ **Next slide**
 
@@ -210,11 +221,10 @@ Today we have thirty-three passes, two partial, and four fails.
 > ✂️ **CUTTABLE — say only if on time:**
 > My favourite story is the i18n rule. It took seven audits and six rounds of fixes, because each audit found more hardcoded English. In the end, I added a custom ESLint rule so it cannot come back.
 
-The four fails are honest. Three are big architecture moves, not quick wins. One is a state migration across a hundred and twenty-three files. One is a data-fetching library. One is certificate pinning. TypeScript cannot pass, because the project must stay JavaScript. So the kit records it as a fail and says why. I prefer an honest fail to a fake pass.
+The four fails are honest.
+Three are big architecture moves, not quick wins. One is a state migration across a hundred and twenty-three files. One is a data-fetching library. One is certificate pinning. TypeScript cannot pass, because the project must stay JavaScript. So the kit records it as a fail and says why. I prefer an honest fail to a fake pass.
 
-Also, the audit found a hardcoded secret in the code. I will not say which one. It is handled.
-
-One more thing before questions. eqc-kit is not tied to the Mobile EQC.
+Also, the audit found a hardcoded secret in the code. I will not say which one. But, it is handled.
 
 ➡️ **Next slide**
 
@@ -222,17 +232,15 @@ One more thing before questions. eqc-kit is not tied to the Mobile EQC.
 
 ⏱ ~1 min
 
-You may think eqc-kit only works with the Mobile EQC. It isn't tied to it. eqc-kit is the tool. The standard is yours.
+You may think eqc-kit only works with the Mobile EQC. It isn't tied to it. eqc-kit is just a tool. The standard, the EQC doc, is yours.
 
 It is built to take your team's own written standard, and to adapt to it.
 
-It reads the standard and lists every rule. It takes the tiers from your standard. Ours are LOW, MEDIUM and HIGH. Yours may be Bronze, Silver and Gold. It uses whatever tiers you have.
+It reads the standard and lists every rule. It takes the tiers from your standard. Ours are LOW, MEDIUM and HIGH. Yours may be something else. It uses whatever tiers you have.
 
 After that, the flow is the same: the check, the report, the fixes, and the guard.
 
 It needs one thing: a written standard.
-
-That is eqc-kit. Any questions before we move on?
 
 ➡️ **Next slide**
 
@@ -240,7 +248,7 @@ That is eqc-kit. Any questions before we move on?
 
 ⏱ ~2 min
 
-Any questions about eqc-kit? Type them in the chat, or unmute.
+Any questions about eqc-kit?
 
 > ⏸ **PAUSE:** Q&A, ~2 min; questions come in the chat or by unmuting, read chat questions aloud; move on at 15 minutes into the talk
 
@@ -258,7 +266,7 @@ eqc-kit checks code against a standard. Next is how I get bigger work done witho
 
 Section two is /orchestrate. It is a separate tool. You can use it without eqc-kit. It takes about twelve minutes, then questions.
 
-Like before, I will start with why I built it. It came from a habit I had with plan mode. This is the "build cheap" part: give each piece to the cheapest model that can do it.
+Like before, I will start with why I built it. It came from a habit I had with plan mode. This is the "build cheap" part from the title: give each piece to the cheapest model that can do it.
 
 ➡️ **Next slide**
 
@@ -272,7 +280,8 @@ I kept going back to plan mode. Every time, I asked Claude to split the long wor
 
 It was the same prompt, the same instructions, again and again, for every big task. So I started to build this skill.
 
-The main reason is tokens. Most pieces of a big task do not need the biggest model. If each piece goes to the cheapest model that can do it, you spend fewer tokens.
+The main reason is tokens. Most pieces of a big task do not need the biggest model.
+If each piece goes to the cheapest model that can do it, you spend fewer tokens.
 
 I do not have a number for that. I will come back to it on slide sixteen.
 
@@ -288,11 +297,12 @@ Here is a task every app has: forgot password. It has an API endpoint, a reset e
 
 The two red boxes show how plan mode and /goal worked for me every day. They are not a feature list from the docs.
 
-Plan mode writes a plan and waits for my OK. That is good. But I type the phases, the sub-agents, the models and the "interview me" part myself, every time. After I approve, one model builds all four parts and checks its own work.
+Plan mode writes a plan and waits for my OK. That is good.
+But I type the phases, the sub-agents, the models and the "interview me" part myself, every time. After I approve, one model builds all four parts and checks its own work.
 
 /goal tells Claude Code to keep working until a goal is met. It starts right away. It asks no questions. One model builds all. It checks itself.
 
-The green box is /orchestrate. It first asks me a few questions, one at a time. Then it splits the work and gives each piece a score. The email template is simple, so it goes to haiku. The reset screen has real UI logic, so it goes to sonnet. The auth work touches security. Anything on the security side always goes to opus. The tests get a score the same way.
+The green box is my skill /orchestrate. It first asks me a few questions, one at a time. Then it splits the work and gives each piece a score. The email template is simple, so it goes to haiku. The reset screen has real UI logic, so it goes to sonnet. The auth work touches security. Anything on the security side always goes to opus. The tests get a score the same way.
 
 This split is an example to show the rules. It is not a real run.
 
@@ -302,7 +312,8 @@ Nothing is built until I say yes. Writing "just go" in the goal does not skip th
 
 Next big task: with plan mode or /goal, I type my asks again. With /orchestrate, it is the same skill, one command.
 
-One honest note. For a small task, this is too much overhead. Your main session must run on opus or sonnet. On haiku, it stops and asks you to switch. And you still read the report at the end.
+One honest note.
+For a small task, this is too much overhead. So, I gave it a "fastlane" mode. For a smaller task, it sets the goal, shows it to you for a short glance and just does it. You'll still read the report at the end.
 
 Here are the phases it goes through.
 
@@ -312,7 +323,7 @@ Here are the phases it goes through.
 
 ⏱ ~2.5 min
 
-There are five phases. I will go fast. The slide keeps it short; I will add the detail as I go.
+There are five phases. I will go fast.
 
 GRILL is the interview I used to ask for by hand. It asks one question at a time, and gives a recommended answer with each. So most of the time I just say yes. If you have a code map, its helpers search that before they search the files. Tiny goals take a fast lane and skip this.
 
@@ -337,20 +348,25 @@ The part of PLAN I want to show you is how it picks the model.
 
 Let's start with one example: "add a config entry with exact steps". That goes to haiku. It is clear, it is one file, and it needs little thinking.
 
-This is how scoring works. There are three questions for each task. How unclear is it? How much does it touch? How hard is it to think through? Each gets zero to two. You add them up.
+This is how scoring works. There are three questions for each task.
+How unclear is it?
+How much does it touch?
+How hard is it to think through?
+Each gets zero to two. You add them up.
 
 Big tasks are split first. Opus gets a task only if it really cannot be split, or if it touches security. That means auth, secrets, crypto or permissions. Those always go to opus. And a fresh opus reviewer reads the diff to look for weak spots. That is why the auth part of the forgot password task went to opus. It was because of security, not because of its score.
 
 You can also ask for opus yourself. If a plan has more than two opus tasks, it asks you to confirm.
 
-My favourite rule is the one on the screen. When it is not sure, it picks the cheaper model. If that was wrong, the task fails and moves up. That still costs less than sending everything to the big model, just in case.
+My favourite rule is the one on the bottom of the screen.
+When it is not sure, it picks the cheaper model. If that was wrong, the task fails and moves up. That still costs less than sending everything to the big model, just in case.
 
 This is where the token saving comes from. I cannot give you a number. Try it on one real task. Then look at the model mix it reports at CLOSE.
 
 > ✂️ **CUTTABLE — say only if on time:**
 > If a task fails, it goes up a ladder. A failed haiku task tries once more on haiku, with the exact error and the current diff. Then it moves to sonnet. Sonnet tries once more. Then the orchestrator either tries opus once, or finds the problem itself and re-scopes or splits the task. If that still fails, it pauses and tells me. Every retry is saved in the plan file.
 
-Now the gate itself, live.
+Now let's see the gate itself, live.
 
 ➡️ **Next slide**
 
@@ -404,20 +420,18 @@ Now the right side. Remember the footer on slide one? This deck was built with p
 
 So what is it? A Claude Code plugin. It has two skills. One makes a new deck. One changes a deck. It also has six agents, and each has one job. One reads my sources. One writes the outline and slide text. One writes the script. One builds the HTML. And two review it, one for content and one for design.
 
-It took three runs and eighteen tasks. None moved up a model. The two opus tasks were ones I asked for at approval. Then an opus dry run on a sample deck found fifteen issues. Thirteen got fixed.
+It took three runs and eighteen tasks. None moved up a model.
 
 Verifiers can be wrong too. On one of those builds, the final verifier gave a false alarm, because its search matched numbers in CSS. So I still read the report.
 
 > ✂️ **CUTTABLE — say only if on time:**
 > The facts in this deck come from a context file in the same folder, so it does not make up numbers. If a slide is wrong, that file is the place to check.
 
-Now, questions about /orchestrate. Type them in the chat, or unmute.
+Now, are there any questions about /orchestrate? Please ask.
 
 > ⏸ **PAUSE:** Q&A, ~2.5 min; questions come in the chat or by unmuting, read chat questions aloud; move on at about 30 minutes in
 
 > ⚠️ **IF** no questions: say "Then let's move on."
-
-The last section is lighter. It is about what happens after the code is written.
 
 ➡️ **Next slide**
 
@@ -427,7 +441,8 @@ The last section is lighter. It is about what happens after the code is written.
 
 ⏱ ~0.25 min
 
-Section three is lighter. Each skill here is small on its own. The value is how they connect. This is the "ship clean" part: write it up once, so the next reader can use it.
+Section three is lighter. Each skill here is small on its own.
+The value is how they connect. This is the "ship clean" part from the title: write it up once, so the next reader can use it.
 
 Here is the chain.
 
@@ -439,9 +454,9 @@ Here is the chain.
 
 The first four are skills in the install repo. The last one is our CI.
 
-First is /reflect. It runs at the end of a session. It keeps CLAUDE.md, CONTEXT.md and the docs folder up to date with what changed. CLAUDE.md holds the agent's project notes. So the reason for each change gets written down.
+First is /reflect. It runs at the end of a session. It keeps CLAUDE.md, CONTEXT.md and all the related docs in the folder, up to date with what changed. CLAUDE.md holds the agent's project notes. So the reason for each change gets written down.
 
-Next is /git-commit. It shows you the message and waits for you to confirm. It writes a Conventional Commit: type, scope, summary. And it adds no AI attribution line.
+Next is /git-commit. It shows you the message and waits for you to confirm. It writes a Conventional Commit: type, scope, summary. And it adds no AI attribution line. And it does most of its work with git and bash commands.
 
 Then /send-pr. It writes a PR title and body that really say something.
 
@@ -459,9 +474,15 @@ The key idea is one piece of writing, with several readers.
 
 ⏱ ~1.5 min
 
-More people read your commit messages than you think. On our dev builds, the last commit message becomes the tester note. So if your commit says "wip fix stuff", that is what QA sees.
+More people read your commit messages than you think.
+On our dev builds, the last commit message becomes the tester note. So if your commit says "wip fix stuff", that is what QA sees.
 
-Now look at the table. Developers and testers read the commit message, and /git-commit writes it. Reviewers read the pull request, and /send-pr writes it. Managers read the release notes. Users read the store note, the "What's new" text in the App Store or Play Store. /release-notes writes both, and CI copies the store note. It is the same facts every time. They are rewritten for each reader as they move down the chain.
+Now look at the table. Developers and testers read the commit message, and /git-commit writes it.
+Reviewers read the pull request, and /send-pr writes it.
+Managers read the release notes.
+Users read the store note, the "What's new" text in the App Store or Play Store.
+
+/release-notes writes both, and CI copies the store note. It is the same facts every time. They are rewritten for each reader as they move down the chain.
 
 So we write commits with the next step in mind.
 
@@ -524,13 +545,17 @@ Now let's put the three sections together.
 
 One sentence for each.
 
-Ask first is eqc-kit. Agents check your code against your team's written standard, like our Mobile EQC. A plain script works out the level. Big fixes wait for your OK. And the guard stops passing rules from slipping back.
+Ask first is eqc-kit. Agents check your code against your EQC standard, like our Mobile EQC.
+A plain script works out the level.
+Big fixes wait for your OK. And the guard stops passing rules from slipping back.
 
-Build cheap is /orchestrate. Every task gets a score before it gets a model. You approve the plan. Cheaper models build, and a verifier checks.
+Build cheap is /orchestrate.
+Every task gets a score before it gets a model.
+You approve the plan. Cheaper models build, and a verifier checks.
 
-Ship clean is the ship chain. Write the commit for the person who reads it next. It becomes the PR, the release notes and the store note. And CI makes sure it happens.
-
-You don't need all three. Pick any one.
+Ship clean is the ship chain.
+Write the commit for the person who reads it next.
+It becomes the PR, the release notes and the store note. And CI makes sure it happens.
 
 ➡️ **Next slide**
 
@@ -540,13 +565,16 @@ You don't need all three. Pick any one.
 
 Pick the one that matches your pain. You do not need all three.
 
-Too much hassle to check and keep up EQC compliance? Try eqc-kit: `npx eqc-kit init`. Do you have a big ticket? Try `/orchestrate`. Are your commit messages just "fix"? Try `/git-commit`. /git-commit is the quickest win: start today.
+Too much hassle to check and keep up EQC compliance?
+Try eqc-kit: `npx eqc-kit init`.
 
-Or take one idea and build your own. Every tool today started as something I kept doing by hand.
+Do you have a big ticket? Try `/orchestrate`.
+
+Are your commit messages just "fix"? Try `/git-commit`. /git-commit is the quickest win: start today.
+
+Or just take one of the ideas and build your own. Every tool today started as something I kept doing by hand.
 
 The install line is a prompt. Paste it into your agent, and it sets up the skills. It is my repo, so you can read INSTALL.md first.
-
-The same lines stay on the next slide, during questions. So there is no rush to copy them.
 
 Thank you. Now, the last round of questions.
 
@@ -556,7 +584,7 @@ Thank you. Now, the last round of questions.
 
 ⏱ ~2 min
 
-Thank you all. I am happy to take any question about the three sections. Type it in the chat, or unmute.
+Thank you all. I am happy to take any question about the three sections.
 
 > ⏸ **PAUSE:** Q&A, ~2 min; questions come in the chat or by unmuting, read chat questions aloud
 
